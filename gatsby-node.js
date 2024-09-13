@@ -7,12 +7,28 @@
 /**
  * @type {import('gatsby').GatsbyNode['createPages']}
  */
-exports.createPages = async ({ actions }) => {
+exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
-  createPage({
-    path: "/using-dsg",
-    component: require.resolve("./src/templates/using-dsg.js"),
-    context: {},
-    defer: true,
+  const result = await graphql(`
+    query GetData {
+      allContentfulArtist {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+  `)
+
+  const artists = result.data.allContentfulArtist.edges
+
+  artists.forEach(({ node }) => {
+    const artistSlug = node.slug
+    createPage({
+      path: `/artist/${artistSlug}`,
+      component: require.resolve('./src/templates/artist-template.js'),
+      context: { slug: artistSlug },
+    })
   })
 }
