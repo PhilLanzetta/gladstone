@@ -1,0 +1,144 @@
+header {
+  font-family: var(--font-secondary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--large-padding);
+  z-index: 100;
+}
+
+.primaryOpen {
+  color: #000;
+  transition: all 500ms;
+}
+
+.primaryClosed {
+  color: #fff;
+  transition: all 500ms;
+}
+
+.primaryMenu {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 200;
+}
+
+.primaryMenu > div {
+  width: 33%;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+}
+
+.logo svg {
+  fill: currentColor;
+}
+
+.language {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+#navIcon {
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+  position: relative;
+  z-index: 100;
+}
+
+#navIcon span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  border-radius: 4px;
+  width: 100%;
+  background: currentColor;
+  opacity: 1;
+  left: 0;
+  top: 0;
+  transform: rotate(0deg);
+  transition: all 500ms;
+}
+
+#navIcon span:nth-child(1) {
+  top: 5px;
+}
+
+#navIcon span:nth-child(2) {
+  top: 17px;
+}
+
+#navIcon.open span:nth-child(1) {
+  top: 10px;
+  transform: rotate(45deg);
+  transition: all 500ms;
+}
+
+#navIcon.open span:nth-child(2) {
+  top: 10px;
+  transform: rotate(-45deg);
+  transition: all 500ms;
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.secondaryMenu {
+  height: 100vh;
+  width: 100vw;
+  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  gap: 20px;
+  font-size: var(--heading-size);
+}
+
+.secondaryClosed {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 500ms, transform 0ms 500ms;
+}
+
+.secondaryClosed a {
+  opacity: 0;
+  transition: all 500ms;
+}
+
+.secondaryOpen {
+  transform: translateY(0);
+  opacity: 1;
+  transition: opacity 500ms 1ms, transform 0ms;
+}
+
+.secondaryOpen a {
+  opacity: 1;
+  transition: all 1s;
+}
+
+.language button {
+  border-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  padding: 2px 8px;
+}
+
+.language button.activeLanguage {
+  border-color: currentColor;
+}

@@ -2,15 +2,18 @@ import React from "react"
 import { graphql } from "gatsby"
 import HomeTile from "../components/homeTile"
 import * as styles from "../components/index.module.css"
+import Layout from "../components/layout"
 
 const Index = ({ data }) => {
   const { homeTiles } = data.contentfulHomePage
   return (
-    <div className={styles.homeContainer}>
-      {homeTiles.map(item => (
-        <HomeTile key={item.id} tile={item}></HomeTile>
-      ))}
-    </div>
+    <Layout>
+      <div className={styles.homeContainer}>
+        {homeTiles.map(item => (
+          <HomeTile key={item.id} tile={item}></HomeTile>
+        ))}
+      </div>
+    </Layout>
   )
 }
 
@@ -28,6 +31,9 @@ export const query = graphql`
         tileWidth
         workTitle
         location
+        linkedContent {
+          slug
+        }
       }
     }
   }

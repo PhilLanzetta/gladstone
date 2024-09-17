@@ -1,6 +1,78 @@
+@font-face {
+  font-family: "Frame Head";
+  src: url(../fonts/frame/FrameHead-Roman.otf) format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Frame Head";
+  src: url(../fonts/frame/FrameHead-Italic.otf) format("opentype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Basel Grotesk";
+  src: url(../fonts/basel/BaselGrotesk-Regular.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
   border: 0;
   box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+html {
+  font-family: var(--font-primary);
+  font-size: 18px;
+}
+
+:root {
+  --font-primary: "Frame Head", serif;
+  --font-secondary: "Basel Grotesk", sans-serif;
+  --heading-size: 36px;
+  --large-padding: 50px;
+}
+
+@media screen and (max-width: 1000px) {
+  :root {
+    --heading-size: 28px;
+    --large-padding: 30px;
+  }
+
+  html {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    --heading-size: 22px;
+    --large-padding: 20px;
+  }
+
+  html {
+    font-size: 12px;
+  }
 }

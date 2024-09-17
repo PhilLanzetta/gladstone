@@ -1,9 +1,13 @@
 import React from 'react'
 import "./global.css"
+import Header from './header'
 
-const Layout = () => {
+const Layout = ({children}) => {
   return (
-    <div>Layout</div>
+    <>
+      <Header></Header>
+      {children}
+    </>
   )
 }
 
