@@ -1,7 +1,7 @@
 .tileContainer {
   position: relative;
   color: #fff;
-  font-size: var(--heading-size);
+  font-size: var(--heading-1-size);
 }
 
 .tileMedia {
@@ -21,6 +21,12 @@
   padding: var(--large-padding);
   width: 100%;
   align-items: flex-end;
+  gap: 10px;
+}
+
+.location {
+  text-align: right;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 600px) {

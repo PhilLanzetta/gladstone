@@ -1,7 +1,5 @@
 import React, { useState } from "react"
 import * as styles from "./header.module.css"
-import { StaticImage } from "gatsby-plugin-image"
-import logo from "../images/header-logo.svg"
 import { Link } from "gatsby"
 
 const Header = () => {
@@ -67,12 +65,24 @@ const Header = () => {
           isOpen ? styles.secondaryOpen : styles.secondaryClosed
         }`}
       >
-        <Link to="/artists">Artists</Link>
-        <Link to="/exhibitions">Exhibitions</Link>
-        <Link to="/fairs">Fairs</Link>
-        <Link to="/news">News & Events</Link>
-        <Link to="/about">About</Link>
-        <Link to="/shop">Shop</Link>
+        <Link to="/artists" className={styles.headerLink}>
+          Artists
+        </Link>
+        <Link to="/exhibitions" className={styles.headerLink}>
+          Exhibitions
+        </Link>
+        <Link to="/fairs" className={styles.headerLink}>
+          Fairs
+        </Link>
+        <Link to="/news" className={styles.headerLink}>
+          News & Events
+        </Link>
+        <Link to="/about" className={styles.headerLink}>
+          About
+        </Link>
+        <Link to="/shop" className={styles.headerLink}>
+          Shop
+        </Link>
       </div>
     </header>
   )

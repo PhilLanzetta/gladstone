@@ -1,0 +1,25 @@
+footer {
+  margin-top: var(--large-padding);
+  border-top: 1px solid #000;
+  padding: var(--large-padding);
+  font-family: var(--font-secondary);
+}
+
+.upperFooter {
+  display: flex;
+  gap: 8vw;
+  justify-content: center;
+  padding-bottom: var(--large-padding);
+}
+
+.linkContainer {
+  display: flex;
+  gap: 8vw;
+}
+
+.linkColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+

@@ -51,13 +51,12 @@ html {
 :root {
   --font-primary: "Frame Head", serif;
   --font-secondary: "Basel Grotesk", sans-serif;
-  --heading-size: 36px;
+  --heading-1-size: calc(1rem + 2vw);
   --large-padding: 50px;
 }
 
 @media screen and (max-width: 1000px) {
   :root {
-    --heading-size: 28px;
     --large-padding: 30px;
   }
 
@@ -68,7 +67,6 @@ html {
 
 @media screen and (max-width: 600px) {
   :root {
-    --heading-size: 22px;
     --large-padding: 20px;
   }
 

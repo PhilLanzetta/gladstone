@@ -106,7 +106,7 @@ header {
   justify-content: center;
   font-family: var(--font-primary);
   gap: 20px;
-  font-size: var(--heading-size);
+  font-size: var(--heading-1-size);
 }
 
 .secondaryClosed {
@@ -141,4 +141,19 @@ header {
 
 .language button.activeLanguage {
   border-color: currentColor;
+}
+
+.headerLink {
+  transition: all 500ms;
+}
+
+.headerLink:hover {
+  transform: skewX(-12deg);
+  transition: all 500ms;
+}
+
+@media screen and (max-width: 600px) {
+  .language {
+    gap: 0px;
+  }
 }
