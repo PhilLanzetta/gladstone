@@ -22,4 +22,27 @@ footer {
   flex-direction: column;
 }
 
+.lowerFooter {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  font-family: var(--font-primary);
+  margin-top: var(--large-padding);
+}
 
+@media screen and (max-width: 1000px) {
+  .upperFooter {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .linkContainer {
+    flex-direction: column;
+  }
+
+  .upperFooter {
+    align-items: flex-start;
+  }
+}

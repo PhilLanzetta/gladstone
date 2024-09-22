@@ -52,6 +52,7 @@ html {
   --font-primary: "Frame Head", serif;
   --font-secondary: "Basel Grotesk", sans-serif;
   --heading-1-size: calc(1rem + 2vw);
+  --heading-2-size: calc(0.75rem + 1vw);
   --large-padding: 50px;
 }
 
@@ -73,4 +74,8 @@ html {
   html {
     font-size: 12px;
   }
+}
+
+.pageContainer {
+  margin-top: 80px;
 }

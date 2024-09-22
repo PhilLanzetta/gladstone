@@ -38,6 +38,17 @@ const Footer = () => {
         </div>
         <MailForm></MailForm>
       </div>
+      <div className={styles.lowerFooter}>
+        <a href="https://google.com" target="_blank" rel="noreferrer">
+          New York
+        </a>
+        <a href="https://google.com" target="_blank" rel="noreferrer">
+          Brussels
+        </a>
+        <a href="https://google.com" target="_blank" rel="noreferrer">
+          Seoul
+        </a>
+      </div>
     </footer>
   )
 }

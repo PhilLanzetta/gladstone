@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import HomeTile from "../components/homeTile"
 import * as styles from "../components/index.module.css"
 import Layout from "../components/layout"
+import LocationListing from "../components/locationListing"
 
 const Index = ({ data }) => {
   const { homeTiles } = data.contentfulHomePage
@@ -12,6 +13,7 @@ const Index = ({ data }) => {
         {homeTiles.map(item => (
           <HomeTile key={item.id} tile={item}></HomeTile>
         ))}
+        <LocationListing></LocationListing>
       </div>
     </Layout>
   )

@@ -1,0 +1,25 @@
+.locationListingContainer {
+  width: 100%;
+  display: flex;
+  padding: calc(var(--large-padding) * 2) var(--large-padding);
+  flex-wrap: wrap;
+}
+
+.locationListingContainer a {
+  display: flex;
+  flex-direction: column;
+  width: 33%;
+  margin-bottom: calc(var(--large-padding) * 2);
+  padding-right: 10px;
+}
+
+.locationHeading {
+  font-size: var(--heading-2-size);
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 1000px) {
+  .locationListingContainer a {
+    width: 50%;
+  }
+}
