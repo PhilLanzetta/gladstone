@@ -26,7 +26,7 @@ const CustomForm = ({ status, message, onValidated }) => {
   }
   return (
     <div className={styles.mailForm}>
-      <p className={styles.mailHeader}>
+      <p>
         Join our mailing list for updates about our artists, exhibitions,
         events, and more.
       </p>

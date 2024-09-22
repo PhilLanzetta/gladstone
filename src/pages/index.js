@@ -5,10 +5,10 @@ import * as styles from "../components/index.module.css"
 import Layout from "../components/layout"
 import LocationListing from "../components/locationListing"
 
-const Index = ({ data }) => {
+const Index = ({ data, location }) => {
   const { homeTiles } = data.contentfulHomePage
   return (
-    <Layout>
+    <Layout location={location}>
       <div className={styles.homeContainer}>
         {homeTiles.map(item => (
           <HomeTile key={item.id} tile={item}></HomeTile>

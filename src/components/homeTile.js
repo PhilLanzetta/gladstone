@@ -19,7 +19,7 @@ const HomeTile = ({ tile }) => {
         }
       ></GatsbyImage>
       <div className={styles.textContainer}>
-        <div className={styles.artistTitle}>
+        <div>
           <div>{artist}</div>
           <div>
             <em>{workTitle}</em>

@@ -34,8 +34,14 @@ header {
   justify-content: center;
 }
 
+.logo a {
+  display: block;
+  width: 100%;
+}
+
 .logo svg {
   fill: currentColor;
+  width: 100%;
 }
 
 .language {
