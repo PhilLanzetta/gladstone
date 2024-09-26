@@ -1,0 +1,38 @@
+import React from "react"
+import * as styles from "./exhibitionTile.module.css"
+import moment from "moment"
+import { GatsbyImage } from "gatsby-plugin-image"
+import { Link } from "gatsby"
+
+const ExhibitionTile = ({ content }) => {
+  const { title, artists, endDate, startDate, tileImage, region, slug } =
+    content
+  return (
+    <div className={styles.tileContainer}>
+      <Link to={`/exhibit/${slug}`}>
+        <GatsbyImage
+          image={tileImage.image.gatsbyImageData}
+          alt={tileImage.image.description}
+          className={styles.tileImage}
+        ></GatsbyImage>
+        <div className={styles.exhibitInfo}>
+          <div className={styles.infoLeft}>
+            {artists.map(artist => (
+              <p key={artist.id}>{artist.name}</p>
+            ))}
+            <p>{title}</p>
+            <p className={styles.date}>
+              {moment(startDate).format("MMMM D")} &mdash;{" "}
+              {moment(endDate).format("MMMM D, YYYY")}{" "}
+            </p>
+          </div>
+          <div className={styles.infoRight}>
+            <p>{region}</p>
+          </div>
+        </div>
+      </Link>
+    </div>
+  )
+}
+
+export default ExhibitionTile

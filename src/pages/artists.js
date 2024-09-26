@@ -6,7 +6,7 @@ const Artists = () => {
   return (
     <Layout>
       <div className="pageContainer">
-        <div className={styles.artistsPageHeading}>Artists</div>
+        <div className="pageHeading">Artists</div>
       </div>
     </Layout>
   )

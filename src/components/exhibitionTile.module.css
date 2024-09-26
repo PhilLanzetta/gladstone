@@ -1,0 +1,31 @@
+.tileContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.tileImage {
+  aspect-ratio: 5 / 4;
+}
+
+.exhibitInfo {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.infoLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoRight {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.date {
+  font-family: var(--font-secondary);
+}
+
+

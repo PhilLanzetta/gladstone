@@ -5,6 +5,7 @@ import * as styles from "./homeTile.module.css"
 
 const HomeTile = ({ tile }) => {
   const { artist, image, workTitle, location, tileWidth, linkedContent } = tile
+
   return (
     <Link
       className={styles.tileContainer}

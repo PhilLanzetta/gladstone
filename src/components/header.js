@@ -12,7 +12,7 @@ const Header = ({ location }) => {
           ? isOpen
             ? styles.primaryOpen
             : styles.primaryClosed
-          : styles.primaryOpen
+          : styles.pagePrimaryOpen
       }
     >
       <div className={styles.primaryMenu}>

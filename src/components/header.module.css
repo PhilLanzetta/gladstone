@@ -4,12 +4,19 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  padding: var(--large-padding);
+  padding: calc(var(--large-padding) / 2) var(--large-padding);
   z-index: 100;
 }
 
 .primaryOpen {
   color: #000;
+  transition: all 500ms;
+}
+
+.pagePrimaryOpen {
+  color: #000;
+  border-bottom: 1px solid #000;
+  background: rgba(255, 255, 255, 0.75);
   transition: all 500ms;
 }
 

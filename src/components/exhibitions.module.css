@@ -1,0 +1,52 @@
+.exhibitionsHeader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.exhibitionsHeader > div {
+  width: 33%;
+}
+
+.headerLinkContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.activeLink {
+  text-decoration: underline;
+}
+
+.placeHolder {
+  height: 100vh;
+}
+
+.exhibitSectionHeading {
+  font-size: var(--heading-2-size);
+  padding-bottom: 20px;
+}
+
+.currentContainer,
+.upcomingContainer,
+.pastContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.currentContainer > div {
+  width: calc(50% - 10px);
+  padding-bottom: var(--large-padding);
+}
+
+.upcomingContainer > div,
+.pastContainer > div {
+  width: calc(33% - 10px);
+  padding-bottom: var(--large-padding);
+}
