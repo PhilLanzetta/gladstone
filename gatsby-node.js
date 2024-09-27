@@ -18,17 +18,35 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
       }
+      allContentfulExhibition {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
     }
   `)
 
   const artists = result.data.allContentfulArtist.edges
 
+  const exhibits = result.data.allContentfulExhibition.edges
+
   artists.forEach(({ node }) => {
     const artistSlug = node.slug
     createPage({
       path: `/artist/${artistSlug}`,
-      component: require.resolve('./src/templates/artist-template.js'),
+      component: require.resolve("./src/templates/artist-template.js"),
       context: { slug: artistSlug },
+    })
+  })
+
+  exhibits.forEach(({ node }) => {
+    const exhibitSlug = node.slug
+    createPage({
+      path: `/exhibit/${exhibitSlug}`,
+      component: require.resolve("./src/templates/exhibit-template.js"),
+      context: { slug: exhibitSlug },
     })
   })
 }

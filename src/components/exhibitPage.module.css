@@ -1,0 +1,67 @@
+.exhibitionsHeader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.exhibitionsHeader > div {
+  width: 33%;
+}
+
+.headerLinkContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.aboveTheFold {
+  display: flex;
+  padding-top: 40px;
+  margin-bottom: calc(var(--large-padding) * 2);
+}
+
+.aboveLeft,
+.aboveRight {
+  width: 50%;
+}
+
+.aboveLeft {
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.aboveHeading {
+  font-size: var(--heading-2-size);
+}
+
+.aboveInfo {
+  font-family: var(--font-secondary);
+}
+
+.aboveDescription {
+  margin-top: var(--large-padding);
+}
+
+.carouselHolder {
+  margin-bottom: calc(var(--large-padding) * 2);
+}
+
+.artistContainer {
+  margin-top: calc(var(--large-padding) / 2);
+  display: flex;
+  gap: 15px;
+}
+
+.artistImage {
+  width: 33%;
+}
+
+.artistBio {
+  width: 67%;
+}
