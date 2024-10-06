@@ -28,7 +28,7 @@
 }
 
 .exhibitSectionHeading {
-  font-size: var(--heading-2-size);
+  font-size: var(--title);
   padding-bottom: 20px;
 }
 
@@ -49,4 +49,10 @@
 .pastContainer > div {
   width: calc(33% - 10px);
   padding-bottom: var(--large-padding);
+}
+
+@media screen and (max-width: 800px) {
+  .headerLinkContainer {
+    gap: 10px;
+  }
 }

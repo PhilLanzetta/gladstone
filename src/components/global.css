@@ -53,8 +53,12 @@ html {
 :root {
   --font-primary: "Frame Head", serif;
   --font-secondary: "Basel Grotesk", sans-serif;
-  --heading-1-size: calc(1rem + 2vw);
-  --heading-2-size: calc(1rem + 1vw);
+  --headline: 60px;
+  --title: 40px;
+  --subtitle: 30px;
+  --body-text: 22px;
+  --subtext: 18px;
+  --caption: 14px;
   --large-padding: 50px;
 }
 
@@ -65,12 +69,18 @@ html {
 }
 
 .pageHeading {
- font-size: var(--heading-1-size);
+  font-size: var(--title);
 }
 
 @media screen and (max-width: 1000px) {
   :root {
     --large-padding: 30px;
+    --headline: 34px;
+    --title: 24px;
+    --subtitle: 14px;
+    --body-text: 12px;
+    --subtext: 12px;
+    --caption: 12px;
   }
 
   html {
@@ -90,9 +100,4 @@ html {
   html {
     font-size: 12px;
   }
-
-  .pageContainer {
-    padding-top: 100px;
-  }
-
 }

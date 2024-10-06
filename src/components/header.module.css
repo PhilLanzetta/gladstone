@@ -119,7 +119,8 @@ header {
   justify-content: center;
   font-family: var(--font-primary);
   gap: 20px;
-  font-size: var(--heading-1-size);
+  font-size: var(--headline);
+  overflow-y: scroll;
 }
 
 .secondaryClosed {
@@ -144,7 +145,8 @@ header {
   transition: all 1s;
 }
 
-.language button {
+.language button,
+.mobileLanguage button {
   border-radius: 15px;
   border-width: 1px;
   border-style: solid;
@@ -152,7 +154,8 @@ header {
   padding: 2px 8px;
 }
 
-.language button.activeLanguage {
+.language button.activeLanguage,
+.mobileLanguage button.activeLanguage {
   border-color: currentColor;
 }
 
@@ -165,8 +168,94 @@ header {
   transition: all 500ms;
 }
 
-@media screen and (max-width: 600px) {
+.searchIcon {
+  display: none;
+}
+
+.secondaryBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  padding: calc(var(--large-padding) / 2) var(--large-padding);
+  align-items: center;
+  width: 100%;
+}
+
+.secondaryBottom > div {
+  width: 33%;
+}
+
+.headerSearchContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.headerSearch {
+  font-style: italic;
+}
+
+.headerLocations,
+.headerSocial {
+  font-size: var(--subtext);
+  display: flex;
+  gap: 20px;
+}
+
+.headerSocial {
+  font-family: var(--font-secondary);
+  justify-content: flex-end;
+}
+
+.mobileLanguage {
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
   .language {
-    gap: 0px;
+    display: none;
+  }
+
+  .primaryMenu > div {
+    width: 27%;
+  }
+
+  .primaryMenu .logo {
+    width: 46%;
+  }
+
+  .searchIcon {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mobileLanguage {
+    display: flex;
+    gap: 10px;
+    font-size: var(--subtext);
+    justify-content: center;
+    font-family: var(--font-secondary);
+  }
+
+  .secondaryBottom {
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 8vh;
+  }
+
+  .secondaryBottom > div {
+    width: 100%;
+  }
+
+  .headerLocations {
+    display: none;
+  }
+
+  .headerSearchContainer {
+    display: none;
+  }
+
+  .headerSocial {
+    justify-content: center;
   }
 }

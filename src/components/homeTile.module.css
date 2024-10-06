@@ -1,7 +1,7 @@
 .tileContainer {
   position: relative;
   color: #fff;
-  font-size: var(--heading-1-size);
+  font-size: var(--headline);
 }
 
 .tileMedia {

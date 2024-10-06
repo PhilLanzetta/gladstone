@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import moment from "moment"
 import * as styles from "../components/exhibitPage.module.css"
@@ -89,12 +89,19 @@ const Exhibit = ({ data }) => {
             <p className={styles.aboveHeading}>About</p>
             {artists.map(artist => (
               <div key={artist.id} className={styles.artistContainer}>
-                <GatsbyImage
-                  image={artist.featuredImage?.image?.gatsbyImageData}
-                  alt={artist.featuredImage?.image?.description}
-                  className={styles.artistImage}
-                ></GatsbyImage>
-                <div className={styles.artistBio}>{artist.featuredBiography.featuredBiography}</div>
+                <Link to={`/artist/${artist.slug}`} className={styles.artistLink}>
+                  <GatsbyImage
+                    image={artist.featuredImage?.image?.gatsbyImageData}
+                    alt={artist.featuredImage?.image?.description}
+                    className={styles.artistImage}
+                  ></GatsbyImage>
+                </Link>
+                <div
+                  className={styles.artistBio}
+                  dangerouslySetInnerHTML={{
+                    __html: artist.featuredBiography?.childMarkdownRemark.html,
+                  }}
+                ></div>
               </div>
             ))}
           </>
@@ -110,8 +117,11 @@ export const query = graphql`
       artists {
         id
         name
+        slug
         featuredBiography {
-          featuredBiography
+          childMarkdownRemark {
+            html
+          }
         }
         featuredImage {
           captionDescription

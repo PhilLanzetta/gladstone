@@ -1,0 +1,44 @@
+.exhibitionsHeader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.exhibitionsHeader > div {
+  width: 33%;
+}
+
+.headerLinkContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.headerLinkContainer a {
+  white-space: nowrap;
+}
+
+.artistSectionHeading {
+  font-size: var(--title);
+  padding-bottom: 20px;
+}
+
+.aboutContainer {
+  display: flex;
+  gap: 40px;
+  margin-bottom: var(--large-padding);
+}
+
+.artistImage,
+.artistBio {
+  width: 50%;
+}
+
+.artistBio p {
+  margin-bottom: 20px;
+}

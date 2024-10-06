@@ -65,10 +65,52 @@ const Header = ({ location }) => {
             </svg>
           </Link>
         </div>
-        <div className={styles.language}>
-          <button>中文</button>
-          <button>한국인</button>
-          <button className={styles.activeLanguage}>EN</button>
+        <div>
+          {isOpen && (
+            <div className={styles.searchIcon}>
+              <Link to="/search">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="15.28"
+                  height="17.233"
+                  viewBox="0 0 15.28 17.233"
+                >
+                  <g
+                    id="Group_139"
+                    data-name="Group 139"
+                    transform="translate(-31.534 -30.777)"
+                  >
+                    <line
+                      id="Line_150"
+                      data-name="Line 150"
+                      y1="5.862"
+                      x2="5.073"
+                      transform="translate(32.102 41.657)"
+                      fill="none"
+                      stroke="#000"
+                      stroke-width="1.5"
+                    />
+                    <g
+                      id="Ellipse_8"
+                      data-name="Ellipse 8"
+                      transform="translate(34.639 30.777)"
+                      fill="none"
+                      stroke="#000"
+                      stroke-width="1.5"
+                    >
+                      <circle cx="6.088" cy="6.088" r="6.088" stroke="none" />
+                      <circle cx="6.088" cy="6.088" r="5.338" fill="none" />
+                    </g>
+                  </g>
+                </svg>
+              </Link>
+            </div>
+          )}
+          <div className={styles.language}>
+            <button>中文</button>
+            <button>한국인</button>
+            <button className={styles.activeLanguage}>EN</button>
+          </div>
         </div>
       </div>
       <div
@@ -94,6 +136,43 @@ const Header = ({ location }) => {
         <Link to="/shop" className={styles.headerLink}>
           Shop
         </Link>
+        <div className={styles.secondaryBottom}>
+          <div className={styles.headerLocations}>
+            <a href="https://google.com" target="_blank" rel="noreferrer">
+              New York
+            </a>
+            <a href="https://google.com" target="_blank" rel="noreferrer">
+              Brussels
+            </a>
+            <a href="https://google.com" target="_blank" rel="noreferrer">
+              Seoul
+            </a>
+          </div>
+          <div className={styles.headerSearchContainer}>
+            <Link to="/search" className={styles.headerSearch}>
+              Search
+            </Link>
+          </div>
+          <div className={styles.mobileLanguage}>
+            <button>中文</button>
+            <button>한국인</button>
+            <button className={styles.activeLanguage}>EN</button>
+          </div>
+          <div className={styles.headerSocial}>
+            <a href="https://www.google.com" target="_blank" rel="noreferrer">
+              Twitter
+            </a>
+            <a href="https://www.google.com" target="_blank" rel="noreferrer">
+              Instagram
+            </a>
+            <a href="https://www.google.com" target="_blank" rel="noreferrer">
+              Facebook
+            </a>
+            <a href="https://www.google.com" target="_blank" rel="noreferrer">
+              WeChat
+            </a>
+          </div>
+        </div>
       </div>
     </header>
   )

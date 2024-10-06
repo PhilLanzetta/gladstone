@@ -4,9 +4,17 @@ import moment from "moment"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 
-const ExhibitionTile = ({ content }) => {
-  const { title, artists, endDate, startDate, tileImage, region, slug } =
-    content
+const ExhibitionTile = ({ content, artistPage }) => {
+  const {
+    title,
+    artists,
+    endDate,
+    startDate,
+    tileImage,
+    region,
+    slug,
+    location,
+  } = content
   return (
     <div className={styles.tileContainer}>
       <Link to={`/exhibit/${slug}`}>
@@ -20,7 +28,8 @@ const ExhibitionTile = ({ content }) => {
             {artists.map(artist => (
               <p key={artist.id}>{artist.name}</p>
             ))}
-            <p>{title}</p>
+            {!artistPage && <p>{title}</p>}
+            {artistPage && <p>{location}</p>}
             <p className={styles.date}>
               {moment(startDate).format("MMMM D")} &mdash;{" "}
               {moment(endDate).format("MMMM D, YYYY")}{" "}

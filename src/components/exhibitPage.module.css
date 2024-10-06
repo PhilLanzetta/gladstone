@@ -37,7 +37,7 @@
 }
 
 .aboveHeading {
-  font-size: var(--heading-2-size);
+  font-size: var(--title);
 }
 
 .aboveInfo {
@@ -58,10 +58,21 @@
   gap: 15px;
 }
 
-.artistImage {
+.artistBio {
+  width: 67%;
+}
+
+.artistBio p {
+  margin-bottom: 20px;
+}
+
+.artistLink {
+  display: inline-block;
   width: 33%;
 }
 
-.artistBio {
-  width: 67%;
+@media screen and (max-width: 600px) {
+  .headerLinkContainer {
+    gap: 10px;
+  }
 }

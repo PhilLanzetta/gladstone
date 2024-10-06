@@ -14,7 +14,7 @@
 }
 
 .locationHeading {
-  font-size: var(--heading-2-size);
+  font-size: var(--title);
   margin-bottom: 15px;
 }
 
