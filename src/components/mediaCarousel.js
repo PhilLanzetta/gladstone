@@ -47,12 +47,12 @@ const MediaCarousel = ({ media }) => {
                   image={mediaElement.image.gatsbyImageData}
                   alt={mediaElement.image.description}
                 ></GatsbyImage>
-                <figcaption className={styles.mainCaption}>
-                  <p>{mediaElement.captionTitle}</p>
-                  <p className={styles.captionDesc}>
-                    {mediaElement.captionDescription}
-                  </p>
-                </figcaption>
+                <figcaption
+                  className={styles.mainCaption}
+                  dangerouslySetInnerHTML={{
+                    __html: mediaElement.caption?.childMarkdownRemark.html,
+                  }}
+                ></figcaption>
               </figure>
             </div>
           </div>

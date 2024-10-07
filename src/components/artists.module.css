@@ -1,3 +1,23 @@
-.artistsPageHeading {
-  font-size: var(--headline);
+.artistContainer {
+  padding-top: var(--large-padding);
+  column-count: 4;
+  column-gap: 10px;
+}
+
+.artistLink {
+  display: block;
+  margin-bottom: 5px;
+  opacity: 0.5;
+  transition: all 400ms;
+}
+
+.artistLink:hover {
+  opacity: 1;
+  transition: all 400ms;
+}
+
+@media screen and (max-width: 745px) {
+  .artistContainer {
+    column-count: 2;
+  }
 }

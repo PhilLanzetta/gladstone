@@ -91,8 +91,11 @@ export const query = graphql`
         }
       }
       featuredImage {
-        captionDescription
-        captionTitle
+        caption {
+          childMarkdownRemark {
+            html
+          }
+        }
         image {
           description
           gatsbyImageData

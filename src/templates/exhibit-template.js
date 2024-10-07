@@ -89,7 +89,10 @@ const Exhibit = ({ data }) => {
             <p className={styles.aboveHeading}>About</p>
             {artists.map(artist => (
               <div key={artist.id} className={styles.artistContainer}>
-                <Link to={`/artist/${artist.slug}`} className={styles.artistLink}>
+                <Link
+                  to={`/artist/${artist.slug}`}
+                  className={styles.artistLink}
+                >
                   <GatsbyImage
                     image={artist.featuredImage?.image?.gatsbyImageData}
                     alt={artist.featuredImage?.image?.description}
@@ -124,8 +127,11 @@ export const query = graphql`
           }
         }
         featuredImage {
-          captionDescription
-          captionTitle
+          caption {
+            childMarkdownRemark {
+              html
+            }
+          }
           image {
             description
             gatsbyImageData
@@ -147,8 +153,11 @@ export const query = graphql`
           description
           gatsbyImageData
         }
-        captionDescription
-        captionTitle
+        caption {
+          childMarkdownRemark {
+            html
+          }
+        }
         id
       }
       location
@@ -156,8 +165,11 @@ export const query = graphql`
       startDate
       title
       workMedia {
-        captionDescription
-        captionTitle
+        caption {
+          childMarkdownRemark {
+            html
+          }
+        }
         id
         image {
           description
