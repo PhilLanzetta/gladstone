@@ -1,7 +1,38 @@
+.artistHeader {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.viewContainer {
+  display: flex;
+  gap: 12px;
+  font-family: var(--font-secondary);
+  align-items: center;
+}
+
+.viewButton {
+  display: flex;
+  align-items: center;
+  transition: all 400ms;
+}
+
+.viewButton:hover {
+  opacity: 1;
+  transition: all 400ms;
+}
+
+.faded {
+  opacity: 0.5;
+  transition: all 400ms;
+}
+
 .artistContainer {
   padding-top: var(--large-padding);
   column-count: 4;
   column-gap: 10px;
+  
 }
 
 .artistLink {
@@ -16,8 +47,21 @@
   transition: all 400ms;
 }
 
+.artistTile {
+ break-inside: avoid;
+}
+
+.artistTileImage {
+  aspect-ratio: 5 / 4;
+  margin-bottom: 10px;
+}
+
 @media screen and (max-width: 745px) {
   .artistContainer {
     column-count: 2;
+  }
+
+  .artistTileImage {
+    margin-bottom: 5px;
   }
 }

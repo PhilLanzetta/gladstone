@@ -40,7 +40,7 @@
 @media screen and (max-width: 1000px) {
   .formContainer {
     font-family: var(--font-primary);
-    width: 50%;
+    width: 80%;
   }
 }
 

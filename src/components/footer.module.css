@@ -39,10 +39,8 @@ footer {
 
 @media screen and (max-width: 600px) {
   .linkContainer {
-    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
   }
 
-  .upperFooter {
-    align-items: flex-start;
-  }
 }
