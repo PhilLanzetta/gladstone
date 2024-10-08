@@ -25,7 +25,7 @@ const ExhibitionTile = ({ content, artistPage }) => {
         ></GatsbyImage>
         <div className={styles.exhibitInfo}>
           <div className={styles.infoLeft}>
-            {artists.map(artist => (
+            {artists?.map(artist => (
               <p key={artist.id}>{artist.name}</p>
             ))}
             {!artistPage && <p>{title}</p>}
@@ -36,7 +36,7 @@ const ExhibitionTile = ({ content, artistPage }) => {
             </p>
           </div>
           <div className={styles.infoRight}>
-            <p>{region}</p>
+            <p>{region !== "Offsite" ? region : location}</p>
           </div>
         </div>
       </Link>

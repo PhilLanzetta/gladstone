@@ -29,6 +29,12 @@
 a {
   text-decoration: none;
   color: inherit;
+  transition: all 400ms;
+}
+
+a:hover {
+  opacity: 0.5;
+  transition: all 400ms;
 }
 
 button {
@@ -37,10 +43,13 @@ button {
   color: inherit;
   font-size: inherit;
   font-family: inherit;
+  transition: all 400ms;
 }
 
 button:hover {
   cursor: pointer;
+  opacity: 0.5;
+  transition: all 400ms;
 }
 
 html {

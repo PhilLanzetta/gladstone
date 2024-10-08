@@ -145,6 +145,11 @@ header {
   transition: all 1s;
 }
 
+.secondaryOpen a:hover {
+  opacity: 0.5;
+  transition: all 400ms;
+}
+
 .language button,
 .mobileLanguage button {
   border-radius: 15px;
@@ -160,11 +165,6 @@ header {
 }
 
 .headerLink {
-  transition: all 500ms;
-}
-
-.headerLink:hover {
-  transform: skewX(-12deg);
   transition: all 500ms;
 }
 

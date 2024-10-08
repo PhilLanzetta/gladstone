@@ -22,27 +22,9 @@ const Exhibit = ({ data }) => {
   return (
     <Layout>
       <div className="pageContainer">
-        <div className={styles.exhibitionsHeader}>
-          <div className="pageHeading">Exhibitions</div>
-          <div className={styles.headerLinkContainer}>
-            <a href="/exhibitions/#current" activeClassName={styles.activeLink}>
-              Current
-            </a>
-            <a
-              activeClassName={styles.activeLink}
-              href="/exhibitions/#upcoming"
-            >
-              Upcoming
-            </a>
-            <a activeClassName={styles.activeLink} href="/exhibitions/#offsite">
-              Offsite
-            </a>
-            <a activeClassName={styles.activeLink} href="/exhibitions/#past">
-              Past
-            </a>
-          </div>
-          <div></div>
-        </div>
+        <Link to="/exhibitions" className="pageHeading">
+          Exhibitions
+        </Link>
         <div className={styles.aboveTheFold}>
           <div className={styles.aboveLeft}>
             {artists.map(artist => (
