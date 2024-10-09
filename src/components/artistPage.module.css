@@ -48,6 +48,7 @@
   flex-wrap: wrap;
   width: 100%;
   gap: 3%;
+  margin-bottom: var(--large-padding);
 }
 
 .exhibitionContainer > div {

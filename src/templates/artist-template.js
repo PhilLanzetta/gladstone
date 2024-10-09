@@ -8,8 +8,16 @@ import ExhibitionTile from "../components/exhibitionTile"
 import MediaCarousel from "../components/mediaCarousel"
 
 const Artist = ({ data }) => {
-  const { name, exhibitions, headshot, featuredBiography, artworksCarousel } =
-    data.contentfulArtist
+  const {
+    name,
+    exhibitions,
+    headshot,
+    featuredBiography,
+    artworksCarousel,
+    press,
+    studioVisit,
+    videos,
+  } = data.contentfulArtist
 
   return (
     <Layout>
@@ -17,24 +25,34 @@ const Artist = ({ data }) => {
         <div className={styles.exhibitionsHeader}>
           <div className="pageHeading">{name}</div>
           <div className={styles.headerLinkContainer}>
-            <a href="#art" activeClassName={styles.activeLink}>
-              Artwork
-            </a>
+            {artworksCarousel && (
+              <a href="#art" activeClassName={styles.activeLink}>
+                Artwork
+              </a>
+            )}
             <a activeClassName={styles.activeLink} href="#about">
               About
             </a>
-            <a href="#exhibitions" activeClassName={styles.activeLink}>
-              Exhibitions
-            </a>
-            <a activeClassName={styles.activeLink} href="#press">
-              Press
-            </a>
-            <a activeClassName={styles.activeLink} href="#studio">
-              Studio Visit
-            </a>
-            <a activeClassName={styles.activeLink} href="#video">
-              Video
-            </a>
+            {exhibitions && (
+              <a href="#exhibitions" activeClassName={styles.activeLink}>
+                Exhibitions
+              </a>
+            )}
+            {press && (
+              <a activeClassName={styles.activeLink} href="#press">
+                Press
+              </a>
+            )}
+            {studioVisit && (
+              <a activeClassName={styles.activeLink} href="#studio">
+                Studio Visit
+              </a>
+            )}
+            {videos && (
+              <a activeClassName={styles.activeLink} href="#video">
+                Video
+              </a>
+            )}
             <a activeClassName={styles.activeLink} href="#publications">
               Publications
             </a>
@@ -75,6 +93,19 @@ const Artist = ({ data }) => {
             </div>
           </>
         )}
+        {press && (
+          <>
+            <p className={styles.artistSectionHeading}>Press</p>
+            <div className={styles.pressContainer}>
+              {press.map(pressItem => (
+                <div key={pressItem.id}>
+                  <p>{pressItem.title}</p>
+                  <p>{pressItem.publication}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </Layout>
   )
@@ -85,6 +116,7 @@ export const query = graphql`
     contentfulArtist(slug: { eq: $slug }) {
       slug
       name
+      videos
       featuredBiography {
         childMarkdownRemark {
           html
@@ -99,6 +131,30 @@ export const query = graphql`
         image {
           description
           gatsbyImageData
+        }
+      }
+      press {
+        id
+        articleLink
+        date
+        articlePdf {
+          file {
+            url
+          }
+        }
+        author
+        publication
+        title
+      }
+      studioVisit {
+        image {
+          description
+          gatsbyImageData
+        }
+        caption {
+          childMarkdownRemark {
+            html
+          }
         }
       }
       exhibitions {
