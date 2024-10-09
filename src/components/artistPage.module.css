@@ -54,3 +54,7 @@
 .exhibitionContainer > div {
   width: 30%;
 }
+
+.pressContainer {
+  display: flex;
+}
