@@ -42,3 +42,14 @@
 .artistBio p {
   margin-bottom: 20px;
 }
+
+.exhibitionContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 3%;
+}
+
+.exhibitionContainer > div {
+  width: 30%;
+}

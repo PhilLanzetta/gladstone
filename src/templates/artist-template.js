@@ -5,9 +5,10 @@ import Seo from "../components/seo"
 import Layout from "../components/layout"
 import * as styles from "../components/artistPage.module.css"
 import ExhibitionTile from "../components/exhibitionTile"
+import MediaCarousel from "../components/mediaCarousel"
 
 const Artist = ({ data }) => {
-  const { name, exhibition, featuredImage, featuredBiography } =
+  const { name, exhibitions, headshot, featuredBiography, artworksCarousel } =
     data.contentfulArtist
 
   return (
@@ -40,11 +41,16 @@ const Artist = ({ data }) => {
           </div>
           <div></div>
         </div>
+        {artworksCarousel && (
+          <div id="art">
+            <MediaCarousel media={artworksCarousel}></MediaCarousel>
+          </div>
+        )}
         <p className={styles.artistSectionHeading}>About</p>{" "}
         <div className={styles.aboutContainer} id="about">
           <GatsbyImage
-            image={featuredImage?.image?.gatsbyImageData}
-            alt={featuredImage?.image?.description}
+            image={headshot?.image?.gatsbyImageData}
+            alt={headshot?.image?.description}
             className={styles.artistImage}
           ></GatsbyImage>
           <div
@@ -54,12 +60,12 @@ const Artist = ({ data }) => {
             }}
           ></div>
         </div>
-        {exhibition && (
+        {exhibitions && (
           <>
             <p className={styles.artistSectionHeading}>Exhibitions</p>{" "}
-            <div id="exhibitions" className={styles.exhibtionContainer}>
+            <div id="exhibitions" className={styles.exhibitionContainer}>
               {" "}
-              {exhibition.map(exhibit => (
+              {exhibitions.map(exhibit => (
                 <ExhibitionTile
                   key={exhibit.id}
                   content={exhibit}
@@ -84,7 +90,7 @@ export const query = graphql`
           html
         }
       }
-      featuredImage {
+      headshot {
         caption {
           childMarkdownRemark {
             html
@@ -95,7 +101,7 @@ export const query = graphql`
           gatsbyImageData
         }
       }
-      exhibition {
+      exhibitions {
         artists {
           id
           name
@@ -111,6 +117,20 @@ export const query = graphql`
             description
             gatsbyImageData
           }
+        }
+      }
+      artworksCarousel {
+        caption {
+          childMarkdownRemark {
+            html
+          }
+        }
+        id
+        image {
+          id
+          gatsbyImageData
+          width
+          height
         }
       }
     }
