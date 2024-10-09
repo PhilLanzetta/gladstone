@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import * as styles from "../components/artistPage.module.css"
 import ExhibitionTile from "../components/exhibitionTile"
 import MediaCarousel from "../components/mediaCarousel"
+import moment from "moment"
 
 const Artist = ({ data }) => {
   const {
@@ -99,8 +100,32 @@ const Artist = ({ data }) => {
             <div className={styles.pressContainer}>
               {press.map(pressItem => (
                 <div key={pressItem.id}>
+                  <p>{pressItem.author}</p>
                   <p>{pressItem.title}</p>
                   <p>{pressItem.publication}</p>
+                  <p className={styles.pressSecondary}>
+                    {moment(pressItem.date).format("MMMM D, YYYY")}
+                  </p>
+                  {pressItem.articlePdf && (
+                    <a
+                      className={styles.pressSecondary}
+                      href={pressItem.articlePdf.file.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Download PDF &darr;
+                    </a>
+                  )}
+                  {pressItem.articleLink && (
+                    <a
+                      href={pressItem.articleLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.pressSecondary}
+                    >
+                      View Website &#8599;
+                    </a>
+                  )}
                 </div>
               ))}
             </div>
