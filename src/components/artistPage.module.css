@@ -34,9 +34,12 @@
   margin-bottom: var(--large-padding);
 }
 
-.artistImage,
 .artistBio {
-  width: 50%;
+  width: 60%;
+}
+
+.artistImage {
+  width: 40%;
 }
 
 .artistBio p {
