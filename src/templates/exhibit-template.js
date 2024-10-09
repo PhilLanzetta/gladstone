@@ -27,7 +27,7 @@ const Exhibit = ({ data }) => {
         </Link>
         <div className={styles.aboveTheFold}>
           <div className={styles.aboveLeft}>
-            {artists.map(artist => (
+            {artists?.map(artist => (
               <p key={artist.id} className={styles.aboveHeading}>
                 {artist.name}
               </p>
@@ -66,7 +66,7 @@ const Exhibit = ({ data }) => {
             <MediaCarousel media={workMedia}></MediaCarousel>
           </div>
         )}
-        {artists.length > 0 && (
+        {artists && artists.length > 0 && (
           <>
             <p className={styles.aboveHeading}>About</p>
             {artists.map(artist => (

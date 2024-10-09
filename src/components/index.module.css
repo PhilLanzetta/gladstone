@@ -2,3 +2,7 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.homeContainer a:hover {
+  opacity: 1;
+}
