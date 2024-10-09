@@ -106,7 +106,7 @@ header {
 }
 
 .secondaryMenu {
-  height: 100vh;
+  height: clamp(800px, 100vh, 8000px);
   width: 100vw;
   background: #fff;
   position: fixed;

@@ -98,7 +98,7 @@ const Artist = ({ data }) => {
         {press && (
           <>
             <p className={styles.artistSectionHeading}>Press</p>
-            <div className={styles.pressContainer}>
+            <div id="press" className={styles.pressContainer}>
               {press.map(pressItem => (
                 <div key={pressItem.id}>
                   <p>{pressItem.author}</p>
@@ -135,7 +135,12 @@ const Artist = ({ data }) => {
         {studioVisit && (
           <>
             <p className={styles.artistSectionHeading}>Studio Visit</p>
-            <SimpleCarousel images={studioVisit} slideCount={2.5}></SimpleCarousel>
+            <div id="studio">
+              <SimpleCarousel
+                images={studioVisit}
+                slideCount={2.5}
+              ></SimpleCarousel>
+            </div>
           </>
         )}
       </div>
