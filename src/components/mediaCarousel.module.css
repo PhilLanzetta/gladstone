@@ -1,5 +1,6 @@
 .mainSliderWrapper {
   margin-top: calc(var(--large-padding) / 2);
+  position: relative;
 }
 
 .mainImage {
@@ -8,15 +9,65 @@
   align-items: center;
 }
 
+.mainImage figure {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainImageImg {
+  align-self: center;
+}
+
 .mainCaption {
   margin-top: 10px;
 }
 
-.captionDesc {
+.mainCaption p {
   font-family: var(--font-secondary);
-  font-size: 0.85rem;
+  font-size: var(--caption);
+}
+
+.mainCaption h1 {
+  font-size: var(--subtext);
 }
 
 .thumbSliderWrapper {
   margin-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.thumbSliderWrapper .nextArrow {
+  right: -30px;
+}
+
+.thumbSliderWrapper .previousArrow {
+  left: -30px;
+}
+
+.nextArrow,
+.previousArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+  width: 13px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.nextArrow {
+  right: 0;
+}
+
+.carouselSVG {
+  height: 100%;
+  width: 100%;
+}
+
+.thumbnailContainer {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  cursor: pointer;
 }

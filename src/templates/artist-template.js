@@ -22,12 +22,6 @@ const Artist = ({ data }) => {
             <a activeClassName={styles.activeLink} href="#about">
               About
             </a>
-            <a activeClassName={styles.activeLink} href="#about">
-              Biography
-            </a>
-            <a activeClassName={styles.activeLink} href="#about">
-              Bibliography
-            </a>
             <a href="#exhibitions" activeClassName={styles.activeLink}>
               Exhibitions
             </a>

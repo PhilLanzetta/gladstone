@@ -76,8 +76,8 @@ const Exhibit = ({ data }) => {
                   className={styles.artistLink}
                 >
                   <GatsbyImage
-                    image={artist.featuredImage?.image?.gatsbyImageData}
-                    alt={artist.featuredImage?.image?.description}
+                    image={artist.headshot?.image?.gatsbyImageData}
+                    alt={artist.headshot?.image?.description}
                     className={styles.artistImage}
                   ></GatsbyImage>
                 </Link>
@@ -108,7 +108,7 @@ export const query = graphql`
             html
           }
         }
-        featuredImage {
+        headshot {
           caption {
             childMarkdownRemark {
               html
@@ -134,6 +134,8 @@ export const query = graphql`
         image {
           description
           gatsbyImageData
+          height
+          width
         }
         caption {
           childMarkdownRemark {
@@ -156,6 +158,8 @@ export const query = graphql`
         image {
           description
           gatsbyImageData
+          height
+          width
         }
       }
     }
