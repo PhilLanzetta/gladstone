@@ -60,6 +60,7 @@
 
 .pressContainer {
   display: flex;
+  margin-bottom: var(--large-padding);
 }
 
 .pressSecondary {

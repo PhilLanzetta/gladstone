@@ -7,6 +7,7 @@ import * as styles from "../components/artistPage.module.css"
 import ExhibitionTile from "../components/exhibitionTile"
 import MediaCarousel from "../components/mediaCarousel"
 import moment from "moment"
+import SimpleCarousel from "../components/simpleCarousel"
 
 const Artist = ({ data }) => {
   const {
@@ -131,6 +132,12 @@ const Artist = ({ data }) => {
             </div>
           </>
         )}
+        {studioVisit && (
+          <>
+            <p className={styles.artistSectionHeading}>Studio Visit</p>
+            <SimpleCarousel images={studioVisit} slideCount={2.5}></SimpleCarousel>
+          </>
+        )}
       </div>
     </Layout>
   )
@@ -175,6 +182,8 @@ export const query = graphql`
         image {
           description
           gatsbyImageData
+          height
+          width
         }
         caption {
           childMarkdownRemark {

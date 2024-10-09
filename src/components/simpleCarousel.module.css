@@ -1,0 +1,17 @@
+.slide {
+  margin-right: 20px;
+}
+
+.slideContainer {
+  display: flex;
+}
+
+.slideContainer figure {
+  height: 100%;
+}
+
+.slideContainer figcaption {
+  margin-top: 5px;
+  font-size: var(--caption);
+  padding-right: 20px;
+}
