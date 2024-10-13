@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import * as styles from "./header.module.css"
 import { Link } from "gatsby"
+import TranslateComponent from "../utils/useTranslate"
 
 const Header = ({ location }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -110,6 +111,7 @@ const Header = ({ location }) => {
             <button>中文</button>
             <button>한국인</button>
             <button className={styles.activeLanguage}>EN</button>
+            <TranslateComponent></TranslateComponent>
           </div>
         </div>
       </div>
