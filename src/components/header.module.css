@@ -16,7 +16,7 @@ header {
 .pagePrimaryOpen {
   color: #000;
   border-bottom: 1px solid #000;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgb(255, 255, 255);
   transition: all 500ms;
 }
 
@@ -57,46 +57,80 @@ header {
   gap: 10px;
 }
 
-#navIcon {
+#nav-icon {
   width: 30px;
-  height: 24px;
+  height: 20px;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   cursor: pointer;
   position: relative;
-  z-index: 100;
+  z-index: 1000;
 }
 
-#navIcon span {
+#nav-icon span {
   display: block;
   position: absolute;
-  height: 2px;
-  border-radius: 4px;
+  height: 1px;
   width: 100%;
   background: currentColor;
   opacity: 1;
   left: 0;
   top: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
   transform: rotate(0deg);
-  transition: all 500ms;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
-#navIcon span:nth-child(1) {
-  top: 5px;
+#nav-icon span:nth-child(1) {
+  top: 0px;
 }
 
-#navIcon span:nth-child(2) {
-  top: 17px;
+#nav-icon span:nth-child(2),
+#nav-icon span:nth-child(3) {
+  top: 9px;
 }
 
-#navIcon.open span:nth-child(1) {
-  top: 10px;
+#nav-icon span:nth-child(4) {
+  top: 18px;
+}
+
+#nav-icon.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+#nav-icon.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
   transform: rotate(45deg);
-  transition: all 500ms;
+  background-color: #000;
 }
 
-#navIcon.open span:nth-child(2) {
-  top: 10px;
+#nav-icon.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  transition: all 500ms;
+  background-color: #000;
+}
+
+#nav-icon.open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
 }
 
 .menuButton {
@@ -106,7 +140,7 @@ header {
 }
 
 .secondaryMenu {
-  height: clamp(800px, 100vh, 8000px);
+  height: 100vh;
   width: 100vw;
   background: #fff;
   position: fixed;
@@ -123,21 +157,30 @@ header {
   overflow-y: scroll;
 }
 
+.desktopSecondaryMenu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-primary);
+  font-size: var(--subtitle);
+}
+
 .secondaryClosed {
   opacity: 0;
-  transform: translateY(-100%);
-  transition: opacity 500ms, transform 0ms 500ms;
+  max-height: 0;
+  transition: all 400ms;
 }
 
 .secondaryClosed a {
   opacity: 0;
-  transition: all 500ms;
+  transition: all 400ms;
 }
 
 .secondaryOpen {
-  transform: translateY(0);
+  padding-top: 20px;
   opacity: 1;
-  transition: opacity 500ms 1ms, transform 0ms;
+  max-height: 100vh;
+  transition: all 400ms;
 }
 
 .secondaryOpen a {

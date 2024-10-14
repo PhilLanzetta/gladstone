@@ -68,3 +68,17 @@
   font-family: var(--font-secondary);
   font-size: var(--caption);
 }
+
+@media screen and (max-width: 700px) {
+  .aboutContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .artistBio,
+  .artistImage,
+  .exhibitionContainer > div {
+    width: 100%;
+  }
+}

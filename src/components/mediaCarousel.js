@@ -77,16 +77,18 @@ const MediaCarousel = ({ media }) => {
   }
 
   const settingsThumbs = {
-    slidesToShow: 6,
+    slidesToShow: media.length > 5 ? 6 : media.length,
     slidesToScroll: 1,
     infinite: false,
     asNavFor: styles.sliderFor,
     swipeToSlide: true,
     focusOnSelect: true,
-    arrows: true,
+    arrows: media.length > 6 ? true : false,
     nextArrow: <NextArrow addClassName={styles.nextArrow} />,
     prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
   }
+
+  const thumbWidth = media.length > 5 ? "100%" : `${(100 / 7) * media.length}%`
 
   return (
     <div className={styles.mainSliderWrapper}>
@@ -121,7 +123,10 @@ const MediaCarousel = ({ media }) => {
         })}
       </Slider>
       {media.length > 1 && (
-        <div className={styles.thumbSliderWrapper}>
+        <div
+          className={styles.thumbSliderWrapper}
+          style={{ width: thumbWidth }}
+        >
           <Slider
             {...settingsThumbs}
             asNavFor={nav1}

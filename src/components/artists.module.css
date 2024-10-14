@@ -30,13 +30,15 @@
 
 .artistContainer {
   padding-top: var(--large-padding);
-  column-count: 4;
-  column-gap: 10px;
-  
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .artistLink {
   display: block;
+  width: calc(25% - 8px);
   margin-bottom: 5px;
   opacity: 0.5;
   transition: all 400ms;
@@ -48,8 +50,7 @@
 }
 
 .artistTile {
- break-inside: avoid;
- margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .artistTileImage {
@@ -58,8 +59,8 @@
 }
 
 @media screen and (max-width: 745px) {
-  .artistContainer {
-    column-count: 2;
+  .artistLink {
+    width: calc(50% - 5px);
   }
 
   .artistTileImage {

@@ -3,6 +3,7 @@ footer {
   border-top: 1px solid #000;
   padding: var(--large-padding);
   font-family: var(--font-secondary);
+  background-color: var(--accent-color);
 }
 
 .upperFooter {
@@ -42,5 +43,4 @@ footer {
     width: 100%;
     justify-content: space-between;
   }
-
 }

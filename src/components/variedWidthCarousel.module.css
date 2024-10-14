@@ -1,6 +1,9 @@
+.slide {
+  margin-right: 20px;
+}
+
 .slideContainer {
   display: flex;
-  margin-right: 20px;
 }
 
 .slideContainer figure {
@@ -11,9 +14,4 @@
   margin-top: 5px;
   font-size: var(--caption);
   padding-right: 20px;
-}
-
-.slideContainer figcaption h1 {
-  font-size: var(--subtext);
-  margin-bottom: 5px;
 }

@@ -69,6 +69,7 @@ html {
   --subtext: 18px;
   --caption: 14px;
   --large-padding: 50px;
+  --accent-color: #f7fafa;
 }
 
 .pageContainer {

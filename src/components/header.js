@@ -1,17 +1,20 @@
 import React, { useState } from "react"
 import * as styles from "./header.module.css"
 import { Link } from "gatsby"
-import TranslateComponent from "../utils/useTranslate"
+import useWindowSize from "../utils/useWindowSize"
 
 const Header = ({ location }) => {
   const [isOpen, setIsOpen] = useState(false)
   const isHome = location?.pathname === "/"
+  const { width } = useWindowSize()
+  const isMobile = width < 700
+
   return (
     <header
       className={
         isHome
           ? isOpen
-            ? styles.primaryOpen
+            ? styles.pagePrimaryOpen
             : styles.primaryClosed
           : styles.pagePrimaryOpen
       }
@@ -23,6 +26,8 @@ const Header = ({ location }) => {
             onClick={() => setIsOpen(!isOpen)}
           >
             <div id={styles.navIcon} className={`${isOpen ? styles.open : ""}`}>
+              <span></span>
+              <span></span>
               <span></span>
               <span></span>
             </div>
@@ -111,14 +116,13 @@ const Header = ({ location }) => {
             <button>中文</button>
             <button>한국인</button>
             <button className={styles.activeLanguage}>EN</button>
-            <TranslateComponent></TranslateComponent>
           </div>
         </div>
       </div>
       <div
-        className={`${styles.secondaryMenu} ${
-          isOpen ? styles.secondaryOpen : styles.secondaryClosed
-        }`}
+        className={`${
+          isMobile ? styles.secondaryMenu : styles.desktopSecondaryMenu
+        } ${isOpen ? styles.secondaryOpen : styles.secondaryClosed}`}
       >
         <Link to="/artists" className={styles.headerLink}>
           Artists
@@ -138,43 +142,50 @@ const Header = ({ location }) => {
         <Link to="/shop" className={styles.headerLink}>
           Shop
         </Link>
-        <div className={styles.secondaryBottom}>
-          <div className={styles.headerLocations}>
-            <a href="https://google.com" target="_blank" rel="noreferrer">
-              New York
-            </a>
-            <a href="https://google.com" target="_blank" rel="noreferrer">
-              Brussels
-            </a>
-            <a href="https://google.com" target="_blank" rel="noreferrer">
-              Seoul
-            </a>
+        {!isMobile && (
+          <Link to="/search" className={styles.headerSearch}>
+            Search
+          </Link>
+        )}
+        {isMobile && (
+          <div className={styles.secondaryBottom}>
+            <div className={styles.headerLocations}>
+              <a href="https://google.com" target="_blank" rel="noreferrer">
+                New York
+              </a>
+              <a href="https://google.com" target="_blank" rel="noreferrer">
+                Brussels
+              </a>
+              <a href="https://google.com" target="_blank" rel="noreferrer">
+                Seoul
+              </a>
+            </div>
+            <div className={styles.headerSearchContainer}>
+              <Link to="/search" className={styles.headerSearch}>
+                Search
+              </Link>
+            </div>
+            <div className={styles.mobileLanguage}>
+              <button>中文</button>
+              <button>한국인</button>
+              <button className={styles.activeLanguage}>EN</button>
+            </div>
+            <div className={styles.headerSocial}>
+              <a href="https://www.google.com" target="_blank" rel="noreferrer">
+                Twitter
+              </a>
+              <a href="https://www.google.com" target="_blank" rel="noreferrer">
+                Instagram
+              </a>
+              <a href="https://www.google.com" target="_blank" rel="noreferrer">
+                Facebook
+              </a>
+              <a href="https://www.google.com" target="_blank" rel="noreferrer">
+                WeChat
+              </a>
+            </div>
           </div>
-          <div className={styles.headerSearchContainer}>
-            <Link to="/search" className={styles.headerSearch}>
-              Search
-            </Link>
-          </div>
-          <div className={styles.mobileLanguage}>
-            <button>中文</button>
-            <button>한국인</button>
-            <button className={styles.activeLanguage}>EN</button>
-          </div>
-          <div className={styles.headerSocial}>
-            <a href="https://www.google.com" target="_blank" rel="noreferrer">
-              Twitter
-            </a>
-            <a href="https://www.google.com" target="_blank" rel="noreferrer">
-              Instagram
-            </a>
-            <a href="https://www.google.com" target="_blank" rel="noreferrer">
-              Facebook
-            </a>
-            <a href="https://www.google.com" target="_blank" rel="noreferrer">
-              WeChat
-            </a>
-          </div>
-        </div>
+        )}
       </div>
     </header>
   )

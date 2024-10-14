@@ -1,23 +1,25 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import Slider from "react-slick"
-import * as styles from "./simpleCarousel.module.css"
+import * as styles from "./variedWidthCarousel.module.css"
 
-const SimpleCarousel = ({ images, slideCount }) => {
+const VariedWidthCarousel = ({ images, slideCount }) => {
   const settings = {
-    slidesToShow: slideCount,
+    slidesToShow: 1,
     infinite: false,
     useTransform: false,
     dots: false,
     arrows: false,
+    variableWidth: true,
   }
-
   return (
     <Slider {...settings}>
       {images.map(image => {
+        const imgWidth = (image.image?.width * 50) / image.image?.height
         return (
           <div
             key={image.id}
+            style={{ width: `calc(${imgWidth}vh + 20px)` }}
             className={styles.slide}
           >
             <div className={styles.slideContainer}>
@@ -25,6 +27,7 @@ const SimpleCarousel = ({ images, slideCount }) => {
                 <GatsbyImage
                   image={image.image?.gatsbyImageData}
                   alt={image.image?.description}
+                  style={{ height: "50vh", width: `${imgWidth}vh` }}
                 ></GatsbyImage>
                 <figcaption
                   dangerouslySetInnerHTML={{
@@ -40,4 +43,4 @@ const SimpleCarousel = ({ images, slideCount }) => {
   )
 }
 
-export default SimpleCarousel
+export default VariedWidthCarousel

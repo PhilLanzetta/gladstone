@@ -7,6 +7,8 @@ import * as styles from "../components/artistPage.module.css"
 import ExhibitionTile from "../components/exhibitionTile"
 import MediaCarousel from "../components/mediaCarousel"
 import moment from "moment"
+import VariedWidthCarousel from "../components/variedWidthCarousel"
+import useWindowSize from "../utils/useWindowSize"
 import SimpleCarousel from "../components/simpleCarousel"
 
 const Artist = ({ data }) => {
@@ -20,6 +22,9 @@ const Artist = ({ data }) => {
     studioVisit,
     videos,
   } = data.contentfulArtist
+
+  const { width } = useWindowSize()
+  const isMobile = width < 700
 
   return (
     <Layout>
@@ -63,7 +68,14 @@ const Artist = ({ data }) => {
         </div>
         {artworksCarousel && (
           <div id="art">
-            <MediaCarousel media={artworksCarousel}></MediaCarousel>
+            {isMobile ? (
+              <SimpleCarousel
+                images={artworksCarousel}
+                slideCount={1.5}
+              ></SimpleCarousel>
+            ) : (
+              <MediaCarousel media={artworksCarousel}></MediaCarousel>
+            )}
           </div>
         )}
         <p className={styles.artistSectionHeading}>About</p>{" "}
@@ -136,10 +148,14 @@ const Artist = ({ data }) => {
           <>
             <p className={styles.artistSectionHeading}>Studio Visit</p>
             <div id="studio">
-              <SimpleCarousel
-                images={studioVisit}
-                slideCount={2.5}
-              ></SimpleCarousel>
+              {isMobile ? (
+                <SimpleCarousel
+                  images={studioVisit}
+                  slideCount={1.5}
+                ></SimpleCarousel>
+              ) : (
+                <VariedWidthCarousel images={studioVisit}></VariedWidthCarousel>
+              )}
             </div>
           </>
         )}
