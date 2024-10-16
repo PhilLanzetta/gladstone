@@ -1,10 +1,12 @@
 .slideContainer {
   display: flex;
   margin-right: 20px;
+  width: 100%;
 }
 
 .slideContainer figure {
   height: 100%;
+  padding-right: 20px;
 }
 
 .slideContainer figcaption {
@@ -16,4 +18,33 @@
 .slideContainer figcaption h1 {
   font-size: var(--subtext);
   margin-bottom: 5px;
+}
+
+.nextArrow,
+.previousArrow {
+  position: absolute;
+  bottom: -40px;
+  transform: translateY(-50%);
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.nextArrow {
+  right: 0px;
+}
+
+.previousArrow {
+  right: 40px;
+}
+
+.carouselSVG {
+  height: 100%;
+  width: 100%;
+}
+
+.slideCount {
+  margin-top: 20px;
+  font-size: var(--caption);
 }

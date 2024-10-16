@@ -14,7 +14,11 @@ function NextArrow(props) {
       tabIndex={0}
       aria-label="go to next"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" className={styles.carouselSVG}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={styles.carouselSVG}
+        viewBox="0 0 13.047 28.672"
+      >
         <path
           id="Polygon_3"
           data-name="Polygon 3"
@@ -40,7 +44,11 @@ function PrevArrow(props) {
       tabIndex={0}
       aria-label="go to previous"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" className={styles.carouselSVG}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={styles.carouselSVG}
+        viewBox="0 0 13.047 28.672"
+      >
         <path
           id="Polygon_4"
           data-name="Polygon 4"

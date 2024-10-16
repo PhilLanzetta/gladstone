@@ -69,6 +69,41 @@
   font-size: var(--caption);
 }
 
+.studioContainer {
+  margin-bottom: var(--large-padding);
+}
+
+.callToActionContainer {
+  margin-top: calc((var(--large-padding) * 2) + 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+.callToActionContainer h2 {
+  font-size: var(--headline);
+  padding: 0 8vw;
+}
+
+.ctaLink {
+  font-size: var(--subtext);
+  padding: 10px 30px;
+  border: 1px solid #000;
+  border-radius: 80px;
+}
+
+.explore {
+  font-size: var(--title);
+  font-style: italic;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: calc(var(--large-padding) * 2);
+}
+
 @media screen and (max-width: 700px) {
   .aboutContainer {
     display: flex;

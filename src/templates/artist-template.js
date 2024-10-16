@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo"
 import Layout from "../components/layout"
@@ -21,6 +21,8 @@ const Artist = ({ data }) => {
     press,
     studioVisit,
     videos,
+    callToActionText,
+    callToActionEmail,
   } = data.contentfulArtist
 
   const { width } = useWindowSize()
@@ -147,7 +149,7 @@ const Artist = ({ data }) => {
         {studioVisit && (
           <>
             <p className={styles.artistSectionHeading}>Studio Visit</p>
-            <div id="studio">
+            <div id="studio" className={styles.studioContainer}>
               {isMobile ? (
                 <SimpleCarousel
                   images={studioVisit}
@@ -159,6 +161,23 @@ const Artist = ({ data }) => {
             </div>
           </>
         )}
+        {videos && (
+          <>
+            <p className={styles.artistSectionHeading}>Video</p>
+            <div id="video">
+              <SimpleCarousel videos={videos} slideCount={1.5}></SimpleCarousel>
+            </div>
+          </>
+        )}
+        {callToActionText && (
+          <div className={styles.callToActionContainer}>
+            <h2>{callToActionText}</h2>
+            <a href={`mailto:${callToActionEmail}`} className={styles.ctaLink}>
+              Inquire here
+            </a>
+          </div>
+        )}
+        <Link to="/artists" className={styles.explore}>Explore Gladstone Artists</Link>
       </div>
     </Layout>
   )
@@ -170,6 +189,8 @@ export const query = graphql`
       slug
       name
       videos
+      callToActionText
+      callToActionEmail
       featuredBiography {
         childMarkdownRemark {
           html

@@ -26,9 +26,14 @@ const HomeTile = ({ tile }) => {
             <em>{workTitle}</em>
           </div>
         </div>
-        <div className={styles.location}>
-          <div>{location}</div>
-        </div>
+        {location && (
+          <div
+            className={styles.location}
+            dangerouslySetInnerHTML={{
+              __html: location.childMarkdownRemark.html,
+            }}
+          ></div>
+        )}
       </div>
     </Link>
   )

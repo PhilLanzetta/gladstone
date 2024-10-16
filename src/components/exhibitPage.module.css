@@ -71,6 +71,31 @@
   width: 33%;
 }
 
+@media screen and (max-width: 800px) {
+  .aboveTheFold {
+  flex-direction: column-reverse;
+  gap: 40px;
+}
+
+.aboveLeft,
+.aboveRight {
+  width: 100%;
+}
+
+.aboveLeft {
+  padding-right: 0px;
+}
+
+.artistContainer {
+  flex-direction: column;
+}
+
+.artistBio, .artistLink {
+  width: 100%;
+}
+
+}
+
 @media screen and (max-width: 600px) {
   .headerLinkContainer {
     gap: 10px;

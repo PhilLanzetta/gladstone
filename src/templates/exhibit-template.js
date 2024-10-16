@@ -5,6 +5,8 @@ import moment from "moment"
 import * as styles from "../components/exhibitPage.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import MediaCarousel from "../components/mediaCarousel"
+import useWindowSize from "../utils/useWindowSize"
+import SimpleCarousel from "../components/simpleCarousel"
 
 const Exhibit = ({ data }) => {
   const {
@@ -19,6 +21,10 @@ const Exhibit = ({ data }) => {
     openingReception,
     workMedia,
   } = data.contentfulExhibition
+
+  const { width } = useWindowSize()
+  const isMobile = width < 700
+
   return (
     <Layout>
       <div className="pageContainer">
@@ -57,13 +63,27 @@ const Exhibit = ({ data }) => {
         {installationMedia && (
           <div className={styles.carouselHolder}>
             <p className={styles.aboveHeading}>Installation</p>
-            <MediaCarousel media={installationMedia}></MediaCarousel>
+            {isMobile ? (
+              <SimpleCarousel
+                images={installationMedia}
+                slideCount={1.5}
+              ></SimpleCarousel>
+            ) : (
+              <MediaCarousel media={installationMedia}></MediaCarousel>
+            )}
           </div>
         )}
         {workMedia && (
           <div className={styles.carouselHolder}>
             <p className={styles.aboveHeading}>Work</p>
-            <MediaCarousel media={workMedia}></MediaCarousel>
+            {isMobile ? (
+              <SimpleCarousel
+                images={workMedia}
+                slideCount={1.5}
+              ></SimpleCarousel>
+            ) : (
+              <MediaCarousel media={workMedia}></MediaCarousel>
+            )}
           </div>
         )}
         {artists && artists.length > 0 && (

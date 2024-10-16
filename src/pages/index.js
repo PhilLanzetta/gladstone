@@ -32,7 +32,11 @@ export const query = graphql`
         }
         tileWidth
         workTitle
-        location
+        location {
+          childMarkdownRemark {
+            html
+          }
+        }
         linkedContent {
           slug
         }
