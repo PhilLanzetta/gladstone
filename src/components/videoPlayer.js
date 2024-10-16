@@ -154,6 +154,8 @@ const VideoPlayer = ({ video, videoId }) => {
           controls={isMobile}
           playing={playing}
           playsinline
+          onPlay={() => setVideoState({ ...videoState, playing: true })}
+          onPause={() => setVideoState({ ...videoState, playing: false })}
           volume={volume}
           muted={muted}
           onProgress={isMobile ? () => void 0 : progressHandler}
