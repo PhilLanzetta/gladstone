@@ -36,7 +36,15 @@ header {
   width: 33%;
 }
 
-.logo {
+.primaryMenu .logo {
+  width: 40%;
+}
+
+.primaryMenu .smallLogo {
+  width: 33%;
+}
+
+.logo, .smallLogo {
   display: flex;
   justify-content: center;
 }
@@ -46,8 +54,12 @@ header {
   width: 100%;
 }
 
-.logo svg {
-  fill: currentColor;
+.smallLogo a {
+  display: block;
+  width: 75%;
+}
+
+.logo img {
   width: 100%;
 }
 

@@ -26,7 +26,7 @@ const ExhibitionTile = ({ content, artistPage }) => {
         <div className={styles.exhibitInfo}>
           <div className={styles.infoLeft}>
             {artists?.map(artist => (
-              <p key={artist.id}>{artist.name}</p>
+              <p key={artist.id}>{artist.name !== title && artist.name}</p>
             ))}
             {!artistPage && <p>{title}</p>}
             {artistPage && <p>{location}</p>}

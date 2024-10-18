@@ -51,8 +51,74 @@
   padding-bottom: var(--large-padding);
 }
 
+.pastHeading {
+  display: flex;
+  gap: calc(var(--large-padding) * 2);
+  align-items: center;
+}
+
+.filterContainer {
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: var(--large-padding);
+}
+
+.filterOpen {
+  transform: rotateX(180deg);
+}
+
+.filterButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filterRelative {
+  position: relative;
+}
+
+.filterButton svg {
+  height: 15px;
+  width: 15px;
+  padding-bottom: 5px;
+}
+
+.artistDropdown {
+  position: absolute;
+  width: 250px;
+  max-height: 300px;
+  padding: 10px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  left: -10px;
+  overflow-y: scroll;
+  z-index: 10;
+  background: #fff;
+}
+
+.dropdownButton {
+  opacity: 0.5;
+  transition: all 400ms;
+}
+
+.dropdownButton:hover {
+  opacity: 1;
+  transition: all 400ms;
+}
+
 @media screen and (max-width: 800px) {
   .headerLinkContainer {
     gap: 10px;
   }
+
+  .filterButton svg {
+  height: 10px;
+  width: 10px;
+  padding-bottom: 5px;
+}
+
 }
