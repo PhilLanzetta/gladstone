@@ -44,11 +44,12 @@
 }
 
 @media screen and (max-width: 600px) {
-  .tileMedia {
-    aspect-ratio: 5 / 4;
+  .tileMedia,
+  .tileMediaHalf {
+    aspect-ratio: 4 / 5;
   }
 
-  .tileMediaHalf {
-    aspect-ratio: 5 / 8;
+  .textContainerHalf {
+    font-size: var(--title);
   }
 }

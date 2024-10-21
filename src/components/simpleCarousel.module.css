@@ -10,9 +10,17 @@
 }
 
 .slideContainer figcaption {
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: var(--caption);
   padding-right: 20px;
+}
+
+.slideContainer figcaption h1 {
+  line-height: 1.5;
+}
+
+.slideContainer figcaption p {
+  font-family: var(--font-secondary);
 }
 
 .slideContainer figcaption h1 {

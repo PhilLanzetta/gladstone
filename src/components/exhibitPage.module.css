@@ -36,13 +36,18 @@
   font-size: var(--title);
 }
 
+.sectionHeading {
+  font-size: var(--title);
+  padding-top: var(--large-padding);
+}
+
 .aboveInfo {
   font-family: var(--font-secondary);
 }
 
 .aboveDescription {
   margin-top: var(--medium-padding);
-  line-height: 1.25;
+  line-height: 1.5;
 }
 
 .carouselHolder {
@@ -85,6 +90,7 @@
 
   .artistContainer {
     flex-direction: column;
+    gap: 30px;
   }
 
   .artistBio,
@@ -97,4 +103,8 @@
   .headerLinkContainer {
     gap: 10px;
   }
+
+  .aboveDescription {
+  line-height: 1.75;
+}
 }

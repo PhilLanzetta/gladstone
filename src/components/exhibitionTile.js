@@ -28,8 +28,8 @@ const ExhibitionTile = ({ content, artistPage }) => {
             {artists?.map(artist => (
               <p key={artist.id}>{artist.name !== title && artist.name}</p>
             ))}
-            {!artistPage && <p>{title}</p>}
-            {artistPage && <p>{location}</p>}
+            <p className={styles.infoHeading}>{title}</p>
+            {artistPage && <p className={styles.infoHeading}>{location}</p>}
             <p className={styles.date}>
               {moment(startDate).format("MMMM D")} &mdash;{" "}
               {moment(endDate).format("MMMM D, YYYY")}{" "}

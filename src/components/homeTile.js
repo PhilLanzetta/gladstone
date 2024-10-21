@@ -2,14 +2,18 @@ import React from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import * as styles from "./homeTile.module.css"
+import useWindowSize from "../utils/useWindowSize"
 
 const HomeTile = ({ tile }) => {
   const { artist, image, workTitle, location, tileWidth, linkedContent } = tile
 
+  const { width } = useWindowSize()
+  const isMobile = width < 700
+
   return (
     <Link
       className={styles.tileContainer}
-      style={{ width: tileWidth }}
+      style={isMobile ? { width: "100%" } : { width: tileWidth }}
       to={`/artist/${linkedContent.slug}`}
     >
       <GatsbyImage
@@ -21,7 +25,9 @@ const HomeTile = ({ tile }) => {
       ></GatsbyImage>
       <div
         className={`${styles.textContainer} ${
-          tileWidth === "100%" ? styles.textContainerFull : styles.textContainerHalf
+          tileWidth === "100%"
+            ? styles.textContainerFull
+            : styles.textContainerHalf
         }`}
       >
         <div>

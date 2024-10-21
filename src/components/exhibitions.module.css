@@ -26,6 +26,7 @@
 .exhibitSectionHeading {
   font-size: var(--title);
   padding-bottom: 20px;
+  padding-top: var(--large-padding);
 }
 
 .currentContainer,
@@ -58,6 +59,7 @@
   display: flex;
   align-items: center;
   gap: var(--medium-padding);
+  padding-top: var(--large-padding);
 }
 
 .filterOpen {
@@ -119,5 +121,34 @@
     height: 10px;
     width: 10px;
     padding-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .exhibitionsHeader {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .exhibitionsHeader > div {
+    width: 100%;
+  }
+
+  .headerLinkContainer {
+    justify-content: flex-start;
+  }
+
+  .currentContainer > div {
+    width: 100%;
+  }
+
+  .upcomingContainer > div,
+  .pastContainer > div {
+    width: calc(50% - 10px);
+    padding-bottom: var(--medium-padding);
+  }
+
+  .pastHeading {
+    justify-content: space-between;
   }
 }

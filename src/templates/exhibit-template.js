@@ -34,7 +34,9 @@ const Exhibit = ({ data }) => {
         <div className={styles.aboveTheFold}>
           <div className={styles.aboveLeft}>
             {artists?.map(artist => (
-              <p key={artist.id}>{artist.name !== title && artist.name}</p>
+              <p key={artist.id} className={styles.aboveHeading}>
+                {artist.name !== title && artist.name}
+              </p>
             ))}
             <p className={styles.aboveHeading}>{title}</p>
             <p className={styles.aboveInfo}>
@@ -60,11 +62,11 @@ const Exhibit = ({ data }) => {
         </div>
         {installationMedia && (
           <div className={styles.carouselHolder}>
-            <p className={styles.aboveHeading}>Installation</p>
+            <p className={styles.sectionHeading}>Installation</p>
             {isMobile ? (
               <SimpleCarousel
                 images={installationMedia}
-                slideCount={1.5}
+                slideCount={1.25}
               ></SimpleCarousel>
             ) : (
               <MediaCarousel media={installationMedia}></MediaCarousel>
@@ -73,11 +75,11 @@ const Exhibit = ({ data }) => {
         )}
         {workMedia && (
           <div className={styles.carouselHolder}>
-            <p className={styles.aboveHeading}>Work</p>
+            <p className={styles.sectionHeading}>Work</p>
             {isMobile ? (
               <SimpleCarousel
                 images={workMedia}
-                slideCount={1.5}
+                slideCount={1.25}
               ></SimpleCarousel>
             ) : (
               <MediaCarousel media={workMedia}></MediaCarousel>
@@ -86,7 +88,7 @@ const Exhibit = ({ data }) => {
         )}
         {artists && artists.length > 0 && (
           <>
-            <p className={styles.aboveHeading}>About</p>
+            <p className={styles.sectionHeading}>About</p>
             {artists.map(artist => (
               <div key={artist.id} className={styles.artistContainer}>
                 <Link

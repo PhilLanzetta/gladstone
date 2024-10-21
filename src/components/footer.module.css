@@ -53,5 +53,14 @@ footer {
   .linkContainer {
     width: 100%;
     justify-content: space-between;
+    padding: var(--medium-padding) 0 var(--large-padding) 0;
+  }
+
+  .linkColumn {
+    gap: 5px;
+  }
+
+  .footerLogo {
+    width: 40%;
   }
 }

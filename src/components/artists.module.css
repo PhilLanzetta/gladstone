@@ -66,4 +66,8 @@
   .artistTileImage {
     margin-bottom: 5px;
   }
+
+  .artistContainer {
+    margin-top: var(--medium-padding);
+  }
 }

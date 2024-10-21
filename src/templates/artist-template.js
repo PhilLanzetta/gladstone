@@ -51,7 +51,7 @@ const Artist = ({ data }) => {
             {isMobile ? (
               <SimpleCarousel
                 images={artworksCarousel}
-                slideCount={1.5}
+                slideCount={1.25}
               ></SimpleCarousel>
             ) : (
               <MediaCarousel media={artworksCarousel}></MediaCarousel>
