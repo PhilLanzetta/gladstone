@@ -1,0 +1,6 @@
+.pdfButton {
+ border: 1px solid #000;
+ font-family: var(--font-secondary);
+ padding: 5px 20px;
+ border-radius: 30px;
+}

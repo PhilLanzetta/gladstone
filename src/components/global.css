@@ -68,12 +68,14 @@ html {
   --body-text: 22px;
   --subtext: 18px;
   --caption: 14px;
-  --large-padding: 50px;
+  --medium-padding: 50px;
+  --large-padding: 120px;
+  --extra-large-padding: 200px;
   --accent-color: #f7fafa;
 }
 
 .pageContainer {
-  padding: var(--large-padding);
+  padding: var(--medium-padding);
   padding-top: 180px;
   position: relative;
 }
@@ -82,9 +84,13 @@ html {
   font-size: var(--title);
 }
 
+p {
+  line-height: 1.5;
+}
+
 @media screen and (max-width: 1000px) {
   :root {
-    --large-padding: 30px;
+    --medium-padding: 30px;
     --headline: 34px;
     --title: 24px;
     --subtitle: 14px;
@@ -104,7 +110,7 @@ html {
 
 @media screen and (max-width: 600px) {
   :root {
-    --large-padding: 20px;
+    --medium-padding: 20px;
   }
 
   html {

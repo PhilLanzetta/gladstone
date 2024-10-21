@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: var(--medium-padding);
 }
 
 .exhibitionsHeader > div {
@@ -13,16 +13,12 @@
   display: flex;
   gap: 20px;
   justify-content: center;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
 }
 
 .aboveTheFold {
   display: flex;
   padding-top: 40px;
-  margin-bottom: calc(var(--large-padding) * 2);
+  margin-bottom: calc(var(--medium-padding) * 2);
 }
 
 .aboveLeft,
@@ -31,7 +27,7 @@
 }
 
 .aboveLeft {
-  padding-right: 20px;
+  padding-right: 60px;
   display: flex;
   flex-direction: column;
 }
@@ -45,21 +41,22 @@
 }
 
 .aboveDescription {
-  margin-top: var(--large-padding);
+  margin-top: var(--medium-padding);
+  line-height: 1.25;
 }
 
 .carouselHolder {
-  margin-bottom: calc(var(--large-padding) * 2);
+  margin-bottom: calc(var(--medium-padding) * 2);
 }
 
 .artistContainer {
-  margin-top: calc(var(--large-padding) / 2);
+  margin-top: calc(var(--medium-padding) / 2);
   display: flex;
-  gap: 15px;
+  gap: 60px;
 }
 
 .artistBio {
-  width: 67%;
+  width: 60%;
 }
 
 .artistBio p {
@@ -68,32 +65,32 @@
 
 .artistLink {
   display: inline-block;
-  width: 33%;
+  width: 40%;
 }
 
 @media screen and (max-width: 800px) {
   .aboveTheFold {
-  flex-direction: column-reverse;
-  gap: 40px;
-}
+    flex-direction: column-reverse;
+    gap: 40px;
+  }
 
-.aboveLeft,
-.aboveRight {
-  width: 100%;
-}
+  .aboveLeft,
+  .aboveRight {
+    width: 100%;
+  }
 
-.aboveLeft {
-  padding-right: 0px;
-}
+  .aboveLeft {
+    padding-right: 0px;
+  }
 
-.artistContainer {
-  flex-direction: column;
-}
+  .artistContainer {
+    flex-direction: column;
+  }
 
-.artistBio, .artistLink {
-  width: 100%;
-}
-
+  .artistBio,
+  .artistLink {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 600px) {

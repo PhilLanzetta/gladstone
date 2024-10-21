@@ -125,7 +125,9 @@ const Exhibitions = ({ data }) => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 14.43 7.922"
-                  className={artistOpen ? styles.filterOpen : ""}
+                  className={
+                    artistOpen ? styles.filterOpen : styles.filterClosed
+                  }
                 >
                   <g
                     id="Component_2_1"
@@ -184,7 +186,9 @@ const Exhibitions = ({ data }) => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 14.43 7.922"
-                  className={locationOpen ? styles.filterOpen : ""}
+                  className={
+                    locationOpen ? styles.filterOpen : styles.filterClosed
+                  }
                 >
                   <g
                     id="Component_2_1"
@@ -243,7 +247,7 @@ const Exhibitions = ({ data }) => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 14.43 7.922"
-                  className={yearOpen ? styles.filterOpen : ""}
+                  className={yearOpen ? styles.filterOpen : styles.filterClosed}
                 >
                   <g
                     id="Component_2_1"

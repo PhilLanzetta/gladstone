@@ -1,16 +1,16 @@
 footer {
-  margin-top: var(--large-padding);
   border-top: 1px solid #000;
-  padding: var(--large-padding);
+  padding: var(--medium-padding);
   font-family: var(--font-secondary);
   background-color: var(--accent-color);
+  font-size: var(--caption);
 }
 
 .upperFooter {
   display: flex;
   gap: 8vw;
   justify-content: center;
-  padding-bottom: var(--large-padding);
+  padding-bottom: var(--medium-padding);
 }
 
 .linkContainer {
@@ -25,10 +25,21 @@ footer {
 
 .lowerFooter {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: var(--large-padding);
+}
+
+.footerLogo {
+  width: 25%;
+}
+
+.lowerFooterLinks {
+  display: flex;
   justify-content: center;
   gap: 35px;
   font-family: var(--font-primary);
-  margin-top: var(--large-padding);
 }
 
 @media screen and (max-width: 1000px) {

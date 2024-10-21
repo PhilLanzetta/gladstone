@@ -19,7 +19,11 @@ const HomeTile = ({ tile }) => {
           tileWidth === "100%" ? styles.tileMedia : styles.tileMediaHalf
         }
       ></GatsbyImage>
-      <div className={styles.textContainer}>
+      <div
+        className={`${styles.textContainer} ${
+          tileWidth === "100%" ? styles.textContainerFull : styles.textContainerHalf
+        }`}
+      >
         <div>
           <div>{artist}</div>
           <div>

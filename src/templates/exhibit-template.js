@@ -34,9 +34,7 @@ const Exhibit = ({ data }) => {
         <div className={styles.aboveTheFold}>
           <div className={styles.aboveLeft}>
             {artists?.map(artist => (
-              <p key={artist.id} className={styles.aboveHeading}>
-                {artist.name}
-              </p>
+              <p key={artist.id}>{artist.name !== title && artist.name}</p>
             ))}
             <p className={styles.aboveHeading}>{title}</p>
             <p className={styles.aboveInfo}>

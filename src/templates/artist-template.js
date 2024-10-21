@@ -10,6 +10,7 @@ import moment from "moment"
 import VariedWidthCarousel from "../components/variedWidthCarousel"
 import useWindowSize from "../utils/useWindowSize"
 import SimpleCarousel from "../components/simpleCarousel"
+import PdfDownload from "../components/pdfDownload"
 
 const Artist = ({ data }) => {
   const {
@@ -23,6 +24,7 @@ const Artist = ({ data }) => {
     videos,
     callToActionText,
     callToActionEmail,
+    aboutDownloads,
   } = data.contentfulArtist
 
   const { width } = useWindowSize()
@@ -34,37 +36,13 @@ const Artist = ({ data }) => {
         <div className={styles.exhibitionsHeader}>
           <div className="pageHeading">{name}</div>
           <div className={styles.headerLinkContainer}>
-            {artworksCarousel && (
-              <a href="#art" activeClassName={styles.activeLink}>
-                Artwork
-              </a>
-            )}
-            <a activeClassName={styles.activeLink} href="#about">
-              About
-            </a>
-            {exhibitions && (
-              <a href="#exhibitions" activeClassName={styles.activeLink}>
-                Exhibitions
-              </a>
-            )}
-            {press && (
-              <a activeClassName={styles.activeLink} href="#press">
-                Press
-              </a>
-            )}
-            {studioVisit && (
-              <a activeClassName={styles.activeLink} href="#studio">
-                Studio Visit
-              </a>
-            )}
-            {videos && (
-              <a activeClassName={styles.activeLink} href="#video">
-                Video
-              </a>
-            )}
-            <a activeClassName={styles.activeLink} href="#publications">
-              Publications
-            </a>
+            {artworksCarousel && <a href="#art">Artwork</a>}
+            <a href="#about">About</a>
+            {exhibitions && <a href="#exhibitions">Exhibitions</a>}
+            {press && <a href="#press">Press</a>}
+            {studioVisit && <a href="#studio">Studio Visit</a>}
+            {videos && <a href="#video">Video</a>}
+            <a href="#publications">Publications</a>
           </div>
           <div></div>
         </div>
@@ -82,17 +60,25 @@ const Artist = ({ data }) => {
         )}
         <p className={styles.artistSectionHeading}>About</p>{" "}
         <div className={styles.aboutContainer} id="about">
-          <GatsbyImage
-            image={headshot?.image?.gatsbyImageData}
-            alt={headshot?.image?.description}
-            className={styles.artistImage}
-          ></GatsbyImage>
-          <div
-            className={styles.artistBio}
-            dangerouslySetInnerHTML={{
-              __html: featuredBiography?.childMarkdownRemark.html,
-            }}
-          ></div>
+          <div className={styles.artistImage}>
+            <GatsbyImage
+              image={headshot?.image?.gatsbyImageData}
+              alt={headshot?.image?.description}
+            ></GatsbyImage>
+          </div>
+          <div className={styles.artistBio}>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: featuredBiography?.childMarkdownRemark.html,
+              }}
+            ></div>
+            <div className={styles.downloadContainer}>
+              {aboutDownloads &&
+                aboutDownloads.map(pdf => (
+                  <PdfDownload key={pdf.id} content={pdf}></PdfDownload>
+                ))}
+            </div>
+          </div>
         </div>
         {exhibitions && (
           <>
@@ -171,13 +157,19 @@ const Artist = ({ data }) => {
         )}
         {callToActionText && (
           <div className={styles.callToActionContainer}>
-            <h2>{callToActionText}</h2>
+            <h2
+              dangerouslySetInnerHTML={{
+                __html: callToActionText.childMarkdownRemark.html,
+              }}
+            ></h2>
             <a href={`mailto:${callToActionEmail}`} className={styles.ctaLink}>
               Inquire here
             </a>
           </div>
         )}
-        <Link to="/artists" className={styles.explore}>Explore Gladstone Artists</Link>
+        <Link to="/artists" className={styles.explore}>
+          Explore Gladstone Artists
+        </Link>
       </div>
     </Layout>
   )
@@ -189,12 +181,25 @@ export const query = graphql`
       slug
       name
       videos
-      callToActionText
+      callToActionText {
+        childMarkdownRemark {
+          html
+        }
+      }
       callToActionEmail
       featuredBiography {
         childMarkdownRemark {
           html
         }
+      }
+      aboutDownloads {
+        buttonText
+        pdfFile {
+          file {
+            url
+          }
+        }
+        id
       }
       headshot {
         caption {

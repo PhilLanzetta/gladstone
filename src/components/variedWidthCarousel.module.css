@@ -11,7 +11,8 @@
 }
 
 .slideContainer figcaption {
-  margin-top: 5px;
+  margin-top: 15px;
+  font-family: var(--font-secondary);
   font-size: var(--caption);
   padding-right: 20px;
 }

@@ -1,5 +1,5 @@
 .mainSliderWrapper {
-  margin-top: calc(var(--large-padding) / 2);
+  margin-top: calc(var(--medium-padding) / 2);
   position: relative;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .mainCaption {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .mainCaption p {
@@ -30,10 +30,11 @@
 
 .mainCaption h1 {
   font-size: var(--subtext);
+  line-height: 1.5;
 }
 
 .thumbSliderWrapper {
-  margin: 20px auto 0 auto;
+  margin: var(--medium-padding) auto 0 auto;
   padding-left: 30px;
   padding-right: 30px;
 }

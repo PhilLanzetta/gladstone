@@ -1,7 +1,6 @@
 .tileContainer {
   position: relative;
   color: #fff;
-  font-size: var(--title);
 }
 
 .tileMedia {
@@ -18,15 +17,23 @@
   bottom: 0;
   display: flex;
   justify-content: space-between;
-  padding: var(--large-padding);
+  padding: var(--medium-padding);
   width: 100%;
   align-items: flex-end;
   gap: 10px;
   transition: all 400ms;
 }
 
+.textContainerFull {
+  font-size: var(--title);
+}
+
+.textContainerHalf {
+  font-size: var(--subtitle);
+}
+
 .textContainer:hover {
-  background: var(--accent-color);
+  background: #fff;
   color: #000000;
   transition: all 400ms;
 }

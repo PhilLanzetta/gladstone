@@ -85,18 +85,18 @@ const MediaCarousel = ({ media }) => {
   }
 
   const settingsThumbs = {
-    slidesToShow: media.length > 5 ? 6 : media.length,
+    slidesToShow: media.length > 7 ? 8 : media.length,
     slidesToScroll: 1,
     infinite: false,
     asNavFor: styles.sliderFor,
     swipeToSlide: true,
     focusOnSelect: true,
-    arrows: media.length > 6 ? true : false,
+    arrows: media.length > 7 ? true : false,
     nextArrow: <NextArrow addClassName={styles.nextArrow} />,
     prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
   }
 
-  const thumbWidth = media.length > 5 ? "100%" : `${(100 / 7) * media.length}%`
+  const thumbWidth = media.length > 7 ? "100%" : `${(100 / 8) * media.length}%`
 
   return (
     <div className={styles.mainSliderWrapper}>
@@ -107,7 +107,7 @@ const MediaCarousel = ({ media }) => {
       >
         {media.map(mediaElement => {
           const imgWidth =
-            (mediaElement.image?.width * 80) / mediaElement.image?.height
+            (mediaElement.image?.width * 60) / mediaElement.image?.height
           return (
             <div key={mediaElement.id}>
               <div className={styles.mainImage}>
@@ -115,7 +115,7 @@ const MediaCarousel = ({ media }) => {
                   <GatsbyImage
                     image={mediaElement.image.gatsbyImageData}
                     alt={mediaElement.image.description}
-                    style={{ height: "80vh", width: `${imgWidth}vh` }}
+                    style={{ height: "60vh", width: `${imgWidth}vh` }}
                     className={styles.mainImageImg}
                   ></GatsbyImage>
                   <figcaption
