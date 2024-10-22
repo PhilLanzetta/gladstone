@@ -40,11 +40,9 @@ const Footer = () => {
         <MailForm></MailForm>
       </div>
       <div className={styles.lowerFooter}>
-        <img
-          src={logo}
-          alt="Gladstone Gallery logo"
-          className={styles.footerLogo}
-        ></img>
+        <Link to="/" className={styles.footerLogo}>
+          <img src={logo} alt="Gladstone Gallery logo"></img>
+        </Link>
         <div className={styles.lowerFooterLinks}>
           <a href="https://google.com" target="_blank" rel="noreferrer">
             New York
