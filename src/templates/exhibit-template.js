@@ -28,7 +28,7 @@ const Exhibit = ({ data }) => {
   return (
     <Layout>
       <div className="pageContainer">
-        <Link to="/exhibitions" className="pageHeading">
+        <Link to="/exhibitions" className={styles.pageHeading}>
           Exhibitions
         </Link>
         <div className={styles.aboveTheFold}>
@@ -91,22 +91,25 @@ const Exhibit = ({ data }) => {
             <p className={styles.sectionHeading}>About</p>
             {artists.map(artist => (
               <div key={artist.id} className={styles.artistContainer}>
-                <Link
-                  to={`/artist/${artist.slug}`}
-                  className={styles.artistLink}
-                >
-                  <GatsbyImage
-                    image={artist.headshot?.image?.gatsbyImageData}
-                    alt={artist.headshot?.image?.description}
-                    className={styles.artistImage}
-                  ></GatsbyImage>
-                </Link>
-                <div
-                  className={styles.artistBio}
-                  dangerouslySetInnerHTML={{
-                    __html: artist.featuredBiography?.childMarkdownRemark.html,
-                  }}
-                ></div>
+                <GatsbyImage
+                  image={artist.headshot?.image?.gatsbyImageData}
+                  alt={artist.headshot?.image?.description}
+                  className={styles.artistImage}
+                ></GatsbyImage>
+                <div className={styles.artistBio}>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        artist.featuredBiography?.childMarkdownRemark.html,
+                    }}
+                  ></div>
+                  <Link
+                    to={`/artist/${artist.slug}`}
+                    className={styles.artistLink}
+                  >
+                    View Artist Page <span>&rarr;</span>
+                  </Link>
+                </div>
               </div>
             ))}
           </>

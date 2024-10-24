@@ -31,7 +31,6 @@ const About = ({ data }) => {
   return (
     <Layout>
       <div className="pageContainer">
-        <p className="pageHeading">About</p>
         <div
           className={styles.headlineText}
           dangerouslySetInnerHTML={{

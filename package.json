@@ -25,7 +25,8 @@
     "react-player": "^2.16.0",
     "react-slick": "^0.30.2",
     "screenfull": "^6.0.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "square": "^38.2.0"
   },
   "devDependencies": {
     "prettier": "^2.8.8"

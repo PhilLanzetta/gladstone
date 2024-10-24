@@ -13,10 +13,10 @@ const Artists = ({ data }) => {
   const [view, setView] = useState()
 
   useEffect(() => {
-    if (localStorage.getItem("view")) {
-      setView(localStorage.getItem("view"))
+    if (sessionStorage.getItem("view")) {
+      setView(sessionStorage.getItem("view"))
     } else {
-      setView("grid")
+      setView("list")
     }
   }, [])
 
@@ -28,8 +28,8 @@ const Artists = ({ data }) => {
           <div className={styles.viewContainer}>
             <p>View:</p>
             <button
-              className={`${styles.viewButton}
-                ${view === "grid" ? "" : styles.faded}
+              className={`${styles.gridButton}
+                ${view === "grid" ? styles.gridActive : styles.gridFaded}
               `}
               onClick={() => {
                 localStorage.setItem("view", "grid")
@@ -72,8 +72,8 @@ const Artists = ({ data }) => {
               </svg>
             </button>
             <button
-              className={`${styles.viewButton}
-                ${view === "list" ? "" : styles.faded}
+              className={`${styles.listButton}
+                ${view === "list" ? styles.listActive : styles.listFaded}
               `}
               onClick={() => {
                 localStorage.setItem("view", "list")
@@ -102,7 +102,6 @@ const Artists = ({ data }) => {
                       x2="17"
                       transform="translate(1828 169.5)"
                       fill="none"
-                      stroke="#000"
                       stroke-width="1"
                     />
                     <line
@@ -111,7 +110,6 @@ const Artists = ({ data }) => {
                       x2="17"
                       transform="translate(1828 177.04)"
                       fill="none"
-                      stroke="#000"
                       stroke-width="1"
                     />
                     <line
@@ -120,7 +118,6 @@ const Artists = ({ data }) => {
                       x2="17"
                       transform="translate(1828 184.04)"
                       fill="none"
-                      stroke="#000"
                       stroke-width="1"
                     />
                   </g>
@@ -129,16 +126,14 @@ const Artists = ({ data }) => {
             </button>
           </div>
         </div>
-        <div className={styles.artistContainer}>
-          {alphabeticNames.map(artist => (
-            <Link
-              key={artist.id}
-              to={`/artist/${artist.slug}`}
-              className={styles.artistLink}
-            >
-              {view === "list" ? (
-                <p>{artist.name}</p>
-              ) : (
+        {view === "grid" && (
+          <div className={styles.artistContainer}>
+            {alphabeticNames.map(artist => (
+              <Link
+                key={artist.id}
+                to={`/artist/${artist.slug}`}
+                className={styles.artistLink}
+              >
                 <div className={styles.artistTile}>
                   <GatsbyImage
                     image={artist.featuredImage?.image.gatsbyImageData}
@@ -147,10 +142,32 @@ const Artists = ({ data }) => {
                   ></GatsbyImage>
                   <p>{artist.name}</p>
                 </div>
-              )}
-            </Link>
-          ))}
-        </div>
+              </Link>
+            ))}
+          </div>
+        )}
+        {view === "list" && (
+          <div className={styles.listContainer}>
+            {alphabeticNames.map(artist => (
+              <Link
+                key={artist.id}
+                to={`/artist/${artist.slug}`}
+                className={styles.listArtistLink}
+              >
+                <p>{artist.name}</p>
+              </Link>
+            ))}
+            {alphabeticNames.map(artist => (
+              <Link
+                key={artist.id}
+                to={`/artist/${artist.slug}`}
+                className={styles.listArtistLink}
+              >
+                <p>{artist.name}</p>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </Layout>
   )

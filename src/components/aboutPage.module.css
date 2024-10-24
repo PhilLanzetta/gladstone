@@ -1,12 +1,13 @@
 .headlineText {
   font-size: var(--title);
-  height: 80vh;
+  height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .headlineText p {
+  margin-top: -10vh;
   width: clamp(200px, 100%, 900px);
 }
 
@@ -53,6 +54,7 @@
 .hours {
   font-size: var(--sub-text);
   font-family: var(--font-secondary);
+  color: var(--dark-gray);
 }
 
 .locationLink {
@@ -72,7 +74,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #f7fafa;
+  background: var(--dark-gray);
   opacity: 0.5;
   transition: all 400ms;
 }

@@ -40,11 +40,11 @@
 }
 
 .nextArrow {
-  right: 0px;
+  left: 60px;
 }
 
 .previousArrow {
-  right: 40px;
+  left: 0px;
 }
 
 .carouselSVG {
@@ -55,4 +55,5 @@
 .slideCount {
   margin-top: 20px;
   font-size: var(--caption);
+  margin-left: 25px;
 }

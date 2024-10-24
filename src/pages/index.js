@@ -28,7 +28,7 @@ export const query = graphql`
         id
         image {
           description
-          gatsbyImageData
+          gatsbyImageData(layout: FULL_WIDTH)
         }
         tileWidth
         workTitle

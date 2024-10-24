@@ -44,15 +44,15 @@ const Footer = () => {
           <img src={logo} alt="Gladstone Gallery logo"></img>
         </Link>
         <div className={styles.lowerFooterLinks}>
-          <a href="https://google.com" target="_blank" rel="noreferrer">
+          <p>
             New York
-          </a>
-          <a href="https://google.com" target="_blank" rel="noreferrer">
+          </p>
+          <p>
             Brussels
-          </a>
-          <a href="https://google.com" target="_blank" rel="noreferrer">
+          </p>
+          <p>
             Seoul
-          </a>
+          </p>
         </div>
       </div>
     </footer>

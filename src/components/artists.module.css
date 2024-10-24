@@ -12,19 +12,38 @@
   align-items: center;
 }
 
-.viewButton {
+.gridButton,
+.listButton {
   display: flex;
   align-items: center;
   transition: all 400ms;
 }
 
-.viewButton:hover {
-  opacity: 1;
+.listActive svg {
+  stroke: #000;
+}
+
+.gridActive svg {
+  fill: #000;
+}
+
+.listFaded svg {
+  stroke: var(--dark-gray);
   transition: all 400ms;
 }
 
-.faded {
-  opacity: 0.5;
+.gridFaded svg {
+  fill: var(--dark-gray);
+  transition: all 400ms;
+}
+
+.gridFaded:hover svg {
+  fill: #000;
+  transition: all 400ms;
+}
+
+.listFaded:hover svg {
+  stroke: #000;
   transition: all 400ms;
 }
 
@@ -36,12 +55,23 @@
   width: 100%;
 }
 
+.list-container {
+  padding-top: var(--medium-padding);
+  column-count: 4;
+  font-size: var(--body-text);
+}
+
 .artistLink {
   display: block;
   width: calc(25% - 8px);
   margin-bottom: 5px;
   opacity: 1;
   transition: all 400ms;
+}
+
+.listArtistLink {
+  display: block;
+  padding-bottom: 5px;
 }
 
 .artistLink:hover {

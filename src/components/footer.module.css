@@ -2,8 +2,8 @@ footer {
   border-top: 1px solid #000;
   padding: var(--medium-padding);
   font-family: var(--font-secondary);
-  background-color: var(--accent-color);
-  font-size: var(--caption);
+  background-color: var(--accent-gray);
+  font-size: var(--subtext);
 }
 
 .upperFooter {
@@ -21,6 +21,11 @@ footer {
 .linkColumn {
   display: flex;
   flex-direction: column;
+  color: var(--dark-gray);
+}
+
+.linkColumn a:hover {
+  color: #000;
 }
 
 .lowerFooter {

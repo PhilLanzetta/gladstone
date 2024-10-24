@@ -36,7 +36,11 @@ const Artist = ({ data }) => {
         <div className={styles.exhibitionsHeader}>
           <div className="pageHeading">{name}</div>
           <div className={styles.headerLinkContainer}>
-            {artworksCarousel && <a href="#art">Artwork</a>}
+            {artworksCarousel && (
+              <a href="#art" className={styles.landingLink}>
+                Artwork
+              </a>
+            )}
             <a href="#about">About</a>
             {exhibitions && <a href="#exhibitions">Exhibitions</a>}
             {press && <a href="#press">Press</a>}
@@ -44,7 +48,6 @@ const Artist = ({ data }) => {
             {videos && <a href="#video">Video</a>}
             <a href="#publications">Publications</a>
           </div>
-          <div></div>
         </div>
         {artworksCarousel && (
           <div id="art">
@@ -109,7 +112,7 @@ const Artist = ({ data }) => {
                   </p>
                   {pressItem.articlePdf && (
                     <a
-                      className={styles.pressSecondary}
+                      className={styles.pressSecondaryLink}
                       href={pressItem.articlePdf.file.url}
                       target="_blank"
                       rel="noreferrer"
@@ -122,7 +125,7 @@ const Artist = ({ data }) => {
                       href={pressItem.articleLink}
                       target="_blank"
                       rel="noreferrer"
-                      className={styles.pressSecondary}
+                      className={styles.pressSecondaryLink}
                     >
                       View Website &#8599;
                     </a>
@@ -167,10 +170,10 @@ const Artist = ({ data }) => {
             </a>
           </div>
         )}
-        <Link to="/artists" className={styles.explore}>
-          Explore Gladstone Artists
-        </Link>
       </div>
+      <Link to="/artists" className={styles.explore}>
+        Explore Gladstone Artists
+      </Link>
     </Layout>
   )
 }

@@ -1,22 +1,28 @@
 .exhibitionsHeader {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   margin-bottom: var(--medium-padding);
-}
-
-.exhibitionsHeader > div {
-  width: 33%;
 }
 
 .headerLinkContainer {
   display: flex;
   gap: 20px;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
-.activeLink {
-  text-decoration: underline;
+.headerLinkContainer a {
+  white-space: nowrap;
+  color: var(--dark-gray);
+}
+
+.headerLinkContainer a:hover {
+  color: #000;
+}
+
+.headerLinkContainer .landingLink {
+  color: #000;
 }
 
 .placeHolder {
@@ -103,12 +109,12 @@
 }
 
 .dropdownButton {
-  opacity: 0.5;
+  color: var(--mid-gray);
   transition: all 400ms;
 }
 
 .dropdownButton:hover {
-  opacity: 1;
+  color: #000;
   transition: all 400ms;
 }
 

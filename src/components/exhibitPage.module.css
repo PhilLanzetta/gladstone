@@ -1,18 +1,9 @@
-.exhibitionsHeader {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: var(--medium-padding);
+.pageHeading {
+  color: var(--mid-gray);
 }
 
-.exhibitionsHeader > div {
-  width: 33%;
-}
-
-.headerLinkContainer {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+.pageHeading:hover {
+  color: #000;
 }
 
 .aboveTheFold {
@@ -32,6 +23,17 @@
   flex-direction: column;
 }
 
+.aboveRight {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.aboveRight img {
+  max-height: 60vh;
+}
+
 .aboveHeading {
   font-size: var(--title);
 }
@@ -43,6 +45,7 @@
 
 .aboveInfo {
   font-family: var(--font-secondary);
+  color: var(--dark-gray);
 }
 
 .aboveDescription {
@@ -68,9 +71,21 @@
   margin-bottom: 20px;
 }
 
+.artistImage {
+  width: 40%;
+}
+
 .artistLink {
   display: inline-block;
-  width: 40%;
+  margin-top: var(--medium-padding);
+  border: 1px solid #000;
+  font-family: var(--font-secondary);
+  padding: 5px 20px;
+  border-radius: 30px;
+}
+
+.artistLink span {
+  padding-left: 10px;
 }
 
 @media screen and (max-width: 800px) {
@@ -105,6 +120,6 @@
   }
 
   .aboveDescription {
-  line-height: 1.75;
-}
+    line-height: 1.75;
+  }
 }

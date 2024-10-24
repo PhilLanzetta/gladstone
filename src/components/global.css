@@ -1,21 +1,21 @@
 @font-face {
   font-family: "Frame Head";
   src: url(../fonts/frame/FrameHead-Roman.otf) format("opentype");
-  font-weight: 600;
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Frame Head";
   src: url(../fonts/frame/FrameHead-Italic.otf) format("opentype");
-  font-weight: 600;
+  font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Basel Grotesk";
   src: url(../fonts/basel/BaselGrotesk-Regular.ttf) format("truetype");
-  font-weight: 600;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -33,7 +33,7 @@ a {
 }
 
 a:hover {
-  opacity: 0.5;
+  color: var(--dark-gray);
   transition: all 400ms;
 }
 
@@ -48,7 +48,6 @@ button {
 
 button:hover {
   cursor: pointer;
-  opacity: 0.5;
   transition: all 400ms;
 }
 
@@ -56,7 +55,6 @@ html {
   font-family: var(--font-primary);
   font-size: 18px;
   scroll-padding-top: 250px;
-  scroll-behavior: smooth;
 }
 
 :root {
@@ -67,11 +65,14 @@ html {
   --subtitle: 30px;
   --body-text: 22px;
   --subtext: 18px;
-  --caption: 14px;
+  --caption: 13px;
   --medium-padding: 50px;
   --large-padding: 120px;
   --extra-large-padding: 200px;
-  --accent-color: #f7fafa;
+  --accent-gray: #F8FAFA;
+  --light-gray: #DAE2E2;
+  --mid-gray: #B2C4C5;
+  --dark-gray: #647B7D;
 }
 
 .pageContainer {
@@ -116,5 +117,4 @@ p {
   html {
     font-size: 12px;
   }
-
 }

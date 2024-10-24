@@ -26,7 +26,7 @@ const CustomForm = ({ status, message, onValidated }) => {
   }
   return (
     <div className={styles.mailForm}>
-      <p>
+      <p className={styles.headerText}>
         Join our mailing list for updates about our artists, exhibitions,
         events, and more.
       </p>
@@ -39,34 +39,36 @@ const CustomForm = ({ status, message, onValidated }) => {
       {status === "success" && <div className={styles.success}>Thank you.</div>}
       {status !== "success" ? (
         <form onSubmit={e => handleFormSubmit(e)}>
-          <div className={styles.name}>
+          <div className={styles.inputContainer}>
+            <div className={styles.name}>
+              <input
+                type="text"
+                value={first}
+                autoCapitalize="off"
+                onChange={handleFirstChange}
+                placeholder="First"
+                required
+              />
+              <input
+                type="text"
+                value={last}
+                autoCapitalize="off"
+                onChange={handleLastChange}
+                placeholder="Last"
+                required
+              />
+            </div>
             <input
-              type="text"
-              value={first}
+              type="email"
+              value={email}
               autoCapitalize="off"
-              onChange={handleFirstChange}
-              placeholder="First"
+              onChange={handleEmailChange}
+              placeholder="Email"
               required
-            />
-            <input
-              type="text"
-              value={last}
-              autoCapitalize="off"
-              onChange={handleLastChange}
-              placeholder="Last"
-              required
+              className={styles.email}
             />
           </div>
-          <input
-            type="email"
-            value={email}
-            autoCapitalize="off"
-            onChange={handleEmailChange}
-            placeholder="Email"
-            required
-            className={styles.email}
-          />
-          <input type="submit" value="SUBMIT" className={styles.submit} />
+          <input type="submit" value="Subscribe" className={styles.submit} />
         </form>
       ) : null}
     </div>

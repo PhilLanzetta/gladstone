@@ -80,17 +80,12 @@ const Exhibitions = ({ data }) => {
         <div className={styles.exhibitionsHeader}>
           <div className="pageHeading">Exhibitions</div>
           <div className={styles.headerLinkContainer}>
-            <a href="#current" activeClassName={styles.activeLink}>
+            <a href="#current" className={styles.landingLink}>
               Current
             </a>
-            <a activeClassName={styles.activeLink} href="#upcoming">
-              Upcoming
-            </a>
-            <a activeClassName={styles.activeLink} href="#past">
-              Past
-            </a>
+            <a href="#upcoming">Upcoming</a>
+            <a href="#past">Past</a>
           </div>
-          <div></div>
         </div>
         <div id="current" className={styles.currentContainer}>
           {current.length > 0 &&

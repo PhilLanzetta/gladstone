@@ -26,7 +26,9 @@ const ExhibitionTile = ({ content, artistPage }) => {
         <div className={styles.exhibitInfo}>
           <div className={styles.infoLeft}>
             {artists?.map(artist => (
-              <p key={artist.id}>{artist.name !== title && artist.name}</p>
+              <p key={artist.id} className={styles.infoHeading}>
+                {artist.name !== title && artist.name}
+              </p>
             ))}
             <p className={styles.infoHeading}>{title}</p>
             {artistPage && <p className={styles.infoHeading}>{location}</p>}
@@ -36,7 +38,9 @@ const ExhibitionTile = ({ content, artistPage }) => {
             </p>
           </div>
           <div className={styles.infoRight}>
-            <p>{region !== "Offsite" ? region : location}</p>
+            <p className={styles.infoHeading}>
+              {region !== "Offsite" ? region : location}
+            </p>
           </div>
         </div>
       </Link>

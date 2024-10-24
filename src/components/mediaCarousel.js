@@ -2,6 +2,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState, useEffect } from "react"
 import Slider from "react-slick"
 import * as styles from "./mediaCarousel.module.css"
+import useWindowSize from "../utils/useWindowSize"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -68,6 +69,7 @@ const MediaCarousel = ({ media }) => {
   const [nav2, setNav2] = useState(null)
   const [slider1, setSlider1] = useState(null)
   const [slider2, setSlider2] = useState(null)
+  const { width } = useWindowSize()
 
   useEffect(() => {
     setNav1(slider1)
@@ -84,19 +86,25 @@ const MediaCarousel = ({ media }) => {
     prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
   }
 
+  const slideNumber = Math.floor(width / 100)
+
+  console.log(slideNumber)
   const settingsThumbs = {
-    slidesToShow: media.length > 7 ? 8 : media.length,
+    slidesToShow: media.length > slideNumber ? slideNumber : media.length,
     slidesToScroll: 1,
     infinite: false,
     asNavFor: styles.sliderFor,
     swipeToSlide: true,
     focusOnSelect: true,
-    arrows: media.length > 7 ? true : false,
+    arrows: media.length > slideNumber ? true : false,
     nextArrow: <NextArrow addClassName={styles.nextArrow} />,
     prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
   }
 
-  const thumbWidth = media.length > 7 ? "100%" : `${(100 / 8) * media.length}%`
+  const thumbWidth =
+    media.length > slideNumber
+      ? "100%"
+      : `${(100 / slideNumber) * media.length}%`
 
   return (
     <div className={styles.mainSliderWrapper}>
@@ -123,6 +131,7 @@ const MediaCarousel = ({ media }) => {
                     dangerouslySetInnerHTML={{
                       __html: mediaElement.caption?.childMarkdownRemark.html,
                     }}
+                    style={{ width: `${imgWidth}vh` }}
                   ></figcaption>
                 </figure>
               </div>

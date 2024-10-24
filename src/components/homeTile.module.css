@@ -3,6 +3,10 @@
   color: #fff;
 }
 
+.tileContainer:hover {
+  color: #fff;
+}
+
 .tileMedia {
   aspect-ratio: 16 / 9;
 }
@@ -41,6 +45,10 @@
 .location {
   text-align: right;
   white-space: nowrap;
+}
+
+.location p {
+  line-height: normal;
 }
 
 @media screen and (max-width: 600px) {
