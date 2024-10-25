@@ -51,13 +51,13 @@
   line-height: normal;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .tileMedia,
   .tileMediaHalf {
     aspect-ratio: 4 / 5;
   }
 
-  .textContainerHalf {
-    font-size: var(--title);
+  .textContainerHalf, .textContainerFull {
+    font-size: var(--body-text);
   }
 }

@@ -61,6 +61,7 @@
   margin-top: calc(var(--medium-padding) / 2);
   display: flex;
   gap: 60px;
+  padding-bottom: calc(var(--medium-padding) * 2);
 }
 
 .artistBio {
@@ -88,6 +89,26 @@
   padding-left: 10px;
 }
 
+.relatedContainer {
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: var(--large-padding);
+}
+
+.relatedContainer > div {
+  width: 33%;
+}
+
+.relatedTileImage {
+  aspect-ratio: 5 / 4;
+}
+
+.relatedInfoText {
+  margin-top: 10px;
+  font-size: var(--body-text);
+}
+
 @media screen and (max-width: 800px) {
   .aboveTheFold {
     flex-direction: column-reverse;
@@ -105,21 +126,40 @@
 
   .artistContainer {
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
   }
 
   .artistBio,
-  .artistLink {
+  .artistImage {
     width: 100%;
+  }
+
+  .artistBio p {
+    font-size: var(--body-text);
+    line-height: 1.75;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .headerLinkContainer {
     gap: 10px;
   }
 
   .aboveDescription {
     line-height: 1.75;
+    font-size: var(--body-text);
   }
+
+  .relatedContainer {
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .relatedContainer > div {
+    width: 100%;
+  }
+
+  .relatedInfoText {
+  font-size: var(--subtitle);
+}
 }

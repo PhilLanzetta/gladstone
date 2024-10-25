@@ -154,7 +154,6 @@ header {
 }
 
 .secondaryMenu {
-  height: 100vh;
   width: 100vw;
   background: #fff;
   position: fixed;
@@ -163,29 +162,14 @@ header {
   z-index: 80;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
   font-family: var(--font-primary);
-  gap: 20px;
-  font-size: var(--headline);
+  gap: 10px;
+  font-size: var(--title);
   overflow-y: scroll;
-}
-
-.homeMobileSecondaryMenu {
-  height: 100vh;
-  width: 100vw;
-  background: #fff;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 80;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-primary);
-  gap: 20px;
-  font-size: var(--headline);
+  padding: var(--medium-padding);
+  padding-top: 70px;
+  max-height: 100vh;
   overflow-y: scroll;
 }
 
@@ -237,22 +221,17 @@ header {
   transition: all 500ms;
 }
 
-.searchIcon {
-  display: none;
-}
-
 .secondaryBottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   display: flex;
-  padding: calc(var(--medium-padding) / 2) var(--medium-padding);
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
   width: 100%;
+  padding-top: var(--medium-padding);
 }
 
 .secondaryBottom > div {
-  width: 33.3%;
+  width: 100%;
 }
 
 .headerSearchContainer {
@@ -282,38 +261,25 @@ header {
   }
 
   .primaryMenu > div {
-    width: 27%;
+    width: 15%;
   }
 
   .primaryMenu .logo {
-    width: 46%;
+    width: 70%;
   }
 
   .primaryMenu .smallLogo {
-    width: 46%;
-  }
-
-  .searchIcon {
-    display: flex;
-    justify-content: flex-end;
+    width: 70%;
   }
 
   .mobileLanguage {
     display: flex;
+    flex-direction: row-reverse;
     gap: 10px;
     font-size: var(--subtext);
-    justify-content: center;
+    justify-content: flex-end;
     font-family: var(--font-secondary);
-  }
-
-  .secondaryBottom {
-    flex-direction: column;
-    gap: 10px;
-    padding-bottom: 8vh;
-  }
-
-  .secondaryBottom > div {
-    width: 100%;
+    margin-bottom: var(--medium-padding);
   }
 
   .headerLocations {
@@ -325,7 +291,22 @@ header {
   }
 
   .headerSocial {
-    justify-content: center;
+    justify-content: space-between;
+    color: var(--dark-gray);
+  }
+
+  #nav-icon {
+    width: 20px;
+    height: 15px;
+  }
+
+  #nav-icon span:nth-child(2),
+  #nav-icon span:nth-child(3) {
+    top: 7px;
+  }
+
+  #nav-icon span:nth-child(4) {
+    top: 14px;
   }
 }
 

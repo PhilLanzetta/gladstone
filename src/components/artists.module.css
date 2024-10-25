@@ -97,7 +97,20 @@
     margin-bottom: 5px;
   }
 
-  .artistContainer {
-    margin-top: var(--medium-padding);
+  .list-container {
+    column-count: 2;
+    font-size: var(--body-text);
+  }
+
+  .artistTile {
+    margin-bottom: 15px;
+  }
+
+  .artistTile p {
+    font-size: var(--body-text);
+  }
+
+  .artistLink:hover {
+    opacity: 1;
   }
 }

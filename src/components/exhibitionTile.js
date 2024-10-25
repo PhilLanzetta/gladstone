@@ -3,8 +3,9 @@ import * as styles from "./exhibitionTile.module.css"
 import moment from "moment"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
+import useWindowSize from "../utils/useWindowSize"
 
-const ExhibitionTile = ({ content, artistPage }) => {
+const ExhibitionTile = ({ content, artistPage, past }) => {
   const {
     title,
     artists,
@@ -15,6 +16,10 @@ const ExhibitionTile = ({ content, artistPage }) => {
     slug,
     location,
   } = content
+
+  const { width } = useWindowSize()
+  const mobilePast = width < 1100 && past
+
   return (
     <div className={styles.tileContainer}>
       <Link to={`/exhibit/${slug}`}>
@@ -26,22 +31,38 @@ const ExhibitionTile = ({ content, artistPage }) => {
         <div className={styles.exhibitInfo}>
           <div className={styles.infoLeft}>
             {artists?.map(artist => (
-              <p key={artist.id} className={styles.infoHeading}>
+              <p
+                key={artist.id}
+                className={
+                  mobilePast ? styles.mobileHeading : styles.infoHeading
+                }
+              >
                 {artist.name !== title && artist.name}
               </p>
             ))}
-            <p className={styles.infoHeading}>{title}</p>
+            <p
+              className={mobilePast ? styles.mobileHeading : styles.infoHeading}
+            >
+              {title}
+            </p>
             {artistPage && <p className={styles.infoHeading}>{location}</p>}
+            {mobilePast && (
+              <p className={styles.mobileHeading}>
+                {region !== "Offsite" ? region : location}
+              </p>
+            )}
             <p className={styles.date}>
               {moment(startDate).format("MMMM D")} &mdash;{" "}
               {moment(endDate).format("MMMM D, YYYY")}{" "}
             </p>
           </div>
-          <div className={styles.infoRight}>
-            <p className={styles.infoHeading}>
-              {region !== "Offsite" ? region : location}
-            </p>
-          </div>
+          {!mobilePast && (
+            <div className={styles.infoRight}>
+              <p className={styles.infoHeading}>
+                {region !== "Offsite" ? region : location}
+              </p>
+            </div>
+          )}
         </div>
       </Link>
     </div>

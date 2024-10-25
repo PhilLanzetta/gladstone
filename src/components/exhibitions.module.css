@@ -61,11 +61,10 @@
 }
 
 .filterContainer {
-  padding-bottom: 20px;
   display: flex;
   align-items: center;
   gap: var(--medium-padding);
-  padding-top: var(--large-padding);
+  font-size: 1rem;
 }
 
 .filterOpen {
@@ -144,11 +143,11 @@
     justify-content: flex-start;
   }
 
-  .currentContainer > div {
+  .currentContainer > div,
+  .upcomingContainer > div {
     width: 100%;
   }
 
-  .upcomingContainer > div,
   .pastContainer > div {
     width: calc(50% - 10px);
     padding-bottom: var(--medium-padding);
@@ -156,5 +155,17 @@
 
   .pastHeading {
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .headerLinkContainer a {
+    font-size: var(--body-text);
+  }
+
+  .filterContainer {
+    gap: 15px;
+    width: 100%;
+    font-size: var(--body-text);
   }
 }

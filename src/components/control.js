@@ -5,7 +5,7 @@ import pause from "../images/pause.svg"
 import forward from "../images/forward.svg"
 import sound from "../images/sound.svg"
 import * as styles from "./control.module.css"
-import play from "../images/forward.svg"
+import play from "../images/play.svg"
 
 const Control = forwardRef((props, controlRef) => {
   const {

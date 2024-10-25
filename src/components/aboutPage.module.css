@@ -123,4 +123,23 @@
   .leadershipColumn {
     width: 50%;
   }
+
+  .headlineText {
+  font-size: var(--title);
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headlineText p {
+  margin-top: 0;
+  width: 100%;
+}
+
+.locationLink:hover::after {
+  opacity: 1;
+  transition: all 400ms;
+}
+
 }

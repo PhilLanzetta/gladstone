@@ -54,7 +54,7 @@ const Artist = ({ data }) => {
             {isMobile ? (
               <SimpleCarousel
                 images={artworksCarousel}
-                slideCount={1.25}
+                slideCount={1.15}
               ></SimpleCarousel>
             ) : (
               <MediaCarousel media={artworksCarousel}></MediaCarousel>
@@ -103,7 +103,7 @@ const Artist = ({ data }) => {
             <p className={styles.artistSectionHeading}>Press</p>
             <div id="press" className={styles.pressContainer}>
               {press.map(pressItem => (
-                <div key={pressItem.id}>
+                <div key={pressItem.id} className={styles.pressItem}>
                   <p>{pressItem.author}</p>
                   <p>{pressItem.title}</p>
                   <p>{pressItem.publication}</p>
@@ -142,7 +142,7 @@ const Artist = ({ data }) => {
               {isMobile ? (
                 <SimpleCarousel
                   images={studioVisit}
-                  slideCount={1.5}
+                  slideCount={1.15}
                 ></SimpleCarousel>
               ) : (
                 <VariedWidthCarousel images={studioVisit}></VariedWidthCarousel>
@@ -154,7 +154,10 @@ const Artist = ({ data }) => {
           <>
             <p className={styles.artistSectionHeading}>Video</p>
             <div id="video">
-              <SimpleCarousel videos={videos} slideCount={1.5}></SimpleCarousel>
+              <SimpleCarousel
+                videos={videos}
+                slideCount={isMobile ? 1.15 : 1.5}
+              ></SimpleCarousel>
             </div>
           </>
         )}
@@ -183,7 +186,19 @@ export const query = graphql`
     contentfulArtist(slug: { eq: $slug }) {
       slug
       name
-      videos
+      videos {
+        id
+        caption {
+          childMarkdownRemark {
+            html
+          }
+        }
+        coverImage {
+          gatsbyImageData
+          description
+        }
+        source
+      }
       callToActionText {
         childMarkdownRemark {
           html

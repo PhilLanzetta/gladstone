@@ -1,8 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="27.856" height="23.854" viewBox="0 0 27.856 23.854">
-  <g id="Group_129" data-name="Group 129" transform="translate(-60 -2104.646)">
-    <path id="Path_71" data-name="Path 71" d="M-2686.53-1233.521v-9.342h6.5l7.312-5.9h.773v22.558h-.773l-7.312-5.887h-6.5Z" transform="translate(2747.03 3354.207)" fill="#fff" stroke="#fff" stroke-width="1"/>
-    <line id="Line_131" data-name="Line 131" x2="9.119" transform="translate(78.737 2116.073)" fill="none" stroke="#fff" stroke-width="1"/>
-    <line id="Line_132" data-name="Line 132" y1="6.514" x2="6.513" transform="translate(78.737 2105)" fill="none" stroke="#fff" stroke-width="1"/>
-    <line id="Line_133" data-name="Line 133" x2="6.513" y2="6.514" transform="translate(78.737 2120.633)" fill="none" stroke="#fff" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="10.906" height="14.541" viewBox="0 0 10.906 14.541">
+  <g id="Group_61" data-name="Group 61" transform="translate(0)">
+    <path id="Path_2" data-name="Path 2" d="M-3496-19960.061h3.378l4.777-4.1h1.053v14.541h-1.229l-2.73-2.23-1.872-1.52H-3496Z" transform="translate(3496 19964.156)" fill="#fff"/>
+    <ellipse id="Ellipse_5" data-name="Ellipse 5" cx="2.337" cy="2.337" rx="2.337" ry="2.337" transform="translate(6.232 4.674)" fill="#fff"/>
+    <ellipse id="Ellipse_6" data-name="Ellipse 6" cx="2.337" cy="2.337" rx="2.337" ry="2.337" transform="translate(6.232 4.674)" fill="#fff"/>
   </g>
 </svg>

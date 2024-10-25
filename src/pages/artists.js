@@ -32,7 +32,7 @@ const Artists = ({ data }) => {
                 ${view === "grid" ? styles.gridActive : styles.gridFaded}
               `}
               onClick={() => {
-                localStorage.setItem("view", "grid")
+                sessionStorage.setItem("view", "grid")
                 setView("grid")
               }}
             >
@@ -76,7 +76,7 @@ const Artists = ({ data }) => {
                 ${view === "list" ? styles.listActive : styles.listFaded}
               `}
               onClick={() => {
-                localStorage.setItem("view", "list")
+                sessionStorage.setItem("view", "list")
                 setView("list")
               }}
             >

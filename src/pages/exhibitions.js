@@ -107,8 +107,8 @@ const Exhibitions = ({ data }) => {
               ></ExhibitionTile>
             ))}
         </div>
-        <div id="past" className={styles.pastHeading}>
-          <p className={styles.exhibitSectionHeading}>Past</p>
+        <div id="past" className={`${styles.pastHeading} ${styles.exhibitSectionHeading}`}>
+          <p>Past</p>
           <div className={styles.filterContainer}>
             <p>Filter:</p>
             <div className={styles.filterRelative}>
@@ -300,6 +300,7 @@ const Exhibitions = ({ data }) => {
               <ExhibitionTile
                 key={exhibit.id}
                 content={exhibit}
+                past={true}
               ></ExhibitionTile>
             ))}
         </div>

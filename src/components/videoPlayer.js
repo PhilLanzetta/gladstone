@@ -1,12 +1,15 @@
 import React, { useState, useRef } from "react"
 import ReactPlayer from "react-player"
 import Control from "./control"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { formatTime } from "../utils/formatTime"
 import full from "../images/fullScreen.svg"
 import small from "../images/smallScreen.svg"
 import screenfull from "screenfull"
 import useWindowSize from "../utils/useWindowSize"
 import * as styles from "./videoPlayer.module.css"
+import { AnimatePresence, motion } from "framer-motion"
+import play from "../images/play.svg"
 
 let count = 0
 
@@ -144,8 +147,40 @@ const VideoPlayer = ({ video, videoId }) => {
         key={isMobile}
         ref={elementRef}
       >
+        <AnimatePresence>
+          {!playing && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              key="video-poster"
+              className={styles.coverImageContainer}
+            >
+              <GatsbyImage
+                image={video.coverImage?.gatsbyImageData}
+                alt={video.coverImage?.description}
+                className={styles.coverImage}
+              ></GatsbyImage>
+            </motion.div>
+          )}
+          {isMobile && !playing && (
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className={styles.playOverlay}
+              onClick={playPauseHandler}
+            >
+              <img
+                src={play}
+                alt="play"
+                className={styles.overlayPlayBtn}
+              ></img>
+            </motion.button>
+          )}
+        </AnimatePresence>
         <ReactPlayer
-          url={video}
+          url={video.source}
           ref={videoPlayerRef}
           width={"100%"}
           height={"100%"}
@@ -188,13 +223,13 @@ const VideoPlayer = ({ video, videoId }) => {
           ></Control>
         )}
         {!isMobile && (
-          <div
+          <button
             className={styles.fullScreenBtn}
             ref={fullScreenRef}
             onClick={handleClickFullscreen}
           >
             <img src={fullScreenState ? small : full} alt="full screen"></img>
-          </div>
+          </button>
         )}
       </div>
     </div>

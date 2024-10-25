@@ -79,7 +79,7 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
   }
 
   return (
-    <>
+    <div className={styles.simpleContainer}>
       <Slider {...settings}>
         {images &&
           images.map(image => {
@@ -102,10 +102,10 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
             )
           })}
         {videos &&
-          videos.map((video, index) => (
-            <div key={index} className={styles.slide}>
+          videos.map(video => (
+            <div key={video.id} className={styles.slide}>
               <div className={styles.slideContainer}>
-                <VideoPlayer video={video} videoId={index}></VideoPlayer>
+                <VideoPlayer video={video} videoId={video.id}></VideoPlayer>
               </div>
             </div>
           ))}
@@ -115,7 +115,7 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
           {Math.round(activeSlide + 1)} / {videos.length}
         </div>
       )}
-    </>
+    </div>
   )
 }
 

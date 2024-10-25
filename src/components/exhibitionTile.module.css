@@ -33,6 +33,10 @@
   font-size: var(--body-text);
 }
 
+.mobileHeading {
+  font-size: var(--body-text);
+}
+
 @media screen and (max-width: 700px) {
   .infoHeading {
     font-size: var(--subtitle);

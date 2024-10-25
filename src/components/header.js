@@ -60,7 +60,7 @@ const Header = ({ location }) => {
                 <span></span>
                 <span></span>
               </div>
-              Menu
+              {!isMobile && "Menu"}
             </button>
           </div>
           {isHome && (
@@ -85,46 +85,6 @@ const Header = ({ location }) => {
             </div>
           )}
           <div>
-            {isOpen && (
-              <div className={styles.searchIcon}>
-                <Link to="/search">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="15.28"
-                    height="17.233"
-                    viewBox="0 0 15.28 17.233"
-                  >
-                    <g
-                      id="Group_139"
-                      data-name="Group 139"
-                      transform="translate(-31.534 -30.777)"
-                    >
-                      <line
-                        id="Line_150"
-                        data-name="Line 150"
-                        y1="5.862"
-                        x2="5.073"
-                        transform="translate(32.102 41.657)"
-                        fill="none"
-                        stroke="#000"
-                        stroke-width="1.5"
-                      />
-                      <g
-                        id="Ellipse_8"
-                        data-name="Ellipse 8"
-                        transform="translate(34.639 30.777)"
-                        fill="none"
-                        stroke="#000"
-                        stroke-width="1.5"
-                      >
-                        <circle cx="6.088" cy="6.088" r="6.088" stroke="none" />
-                        <circle cx="6.088" cy="6.088" r="5.338" fill="none" />
-                      </g>
-                    </g>
-                  </svg>
-                </Link>
-              </div>
-            )}
             <div className={styles.language}>
               <button>中文</button>
               <button>한국인</button>
@@ -136,20 +96,20 @@ const Header = ({ location }) => {
           {isOpen && (
             <motion.div
               key="secondaryMenu"
-              initial={isMobile ? { opacity: 0 } : { opacity: 0 }}
-              animate={isMobile ? { opacity: 1 } : { opacity: 1 }}
+              initial={isMobile ? { opacity: 0, maxHeight: 0 } : { opacity: 0 }}
+              animate={
+                isMobile ? { opacity: 1, maxHeight: "100vh" } : { opacity: 1 }
+              }
               exit={
                 isMobile
-                  ? { opacity: 0 }
+                  ? { opacity: 0, maxHeight: 0 }
                   : {
                       opacity: 0,
                     }
               }
               className={
                 isMobile
-                  ? isHome
-                    ? styles.homeMobileSecondaryMenu
-                    : styles.secondaryMenu
+                  ? styles.secondaryMenu
                   : isHome
                   ? styles.homeSecondaryMenu
                   : styles.desktopSecondaryMenu
@@ -173,11 +133,7 @@ const Header = ({ location }) => {
               <Link to="/shop" className={styles.headerLink}>
                 Shop
               </Link>
-              {!isMobile && (
-                <Link to="/search">
-                  Search
-                </Link>
-              )}
+              <Link to="/search">Search</Link>
               {isMobile && (
                 <div className={styles.secondaryBottom}>
                   <div className={styles.headerLocations}>
@@ -202,11 +158,6 @@ const Header = ({ location }) => {
                     >
                       Seoul
                     </a>
-                  </div>
-                  <div className={styles.headerSearchContainer}>
-                    <Link to="/search" className={styles.headerSearch}>
-                      Search
-                    </Link>
                   </div>
                   <div className={styles.mobileLanguage}>
                     <button>中文</button>

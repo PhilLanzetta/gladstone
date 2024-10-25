@@ -23,21 +23,34 @@
   width: 100%;
 }
 
-.playPauseOverlay {
+.coverImageContainer {
   position: absolute;
-  top: 0;
-  left: 0;
   height: 100%;
   width: 100%;
-  z-index: 100;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  overflow: hidden;
 }
 
-.playPauseOverlay img {
-  width: 10%;
+.coverImage {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.playOverlay {
+  position: absolute;
+  z-index: 20;
+  height: 40px;
+  width: 40px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.overlayPlayBtn {
+  height: 100%;
+  width: 100%;
 }
 
 .fullScreenBtn {

@@ -64,10 +64,18 @@
 .pressContainer {
   display: flex;
   margin-bottom: var(--medium-padding);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pressItem {
+  width: calc(25% - 15px);
+  margin-bottom: var(--medium-padding);
 }
 
 .downloadContainer {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
   margin-top: 40px;
 }
@@ -155,13 +163,19 @@
   }
 
   .headerLinkContainer {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    display: none;
   }
 
   .artistBio p {
     line-height: 1.75;
+    font-size: var(--body-text);
+  }
+
+  .pressContainer {
+    gap: 10px;
+  }
+
+  .pressItem {
+    width: calc(50% - 5px);
   }
 }

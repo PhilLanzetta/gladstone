@@ -7,6 +7,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import MediaCarousel from "../components/mediaCarousel"
 import useWindowSize from "../utils/useWindowSize"
 import SimpleCarousel from "../components/simpleCarousel"
+import ExhibitionTile from "../components/exhibitionTile"
 
 const Exhibit = ({ data }) => {
   const {
@@ -20,6 +21,8 @@ const Exhibit = ({ data }) => {
     location,
     openingReception,
     workMedia,
+    relatedContent,
+    relatedHeading,
   } = data.contentfulExhibition
 
   const { width } = useWindowSize()
@@ -66,7 +69,7 @@ const Exhibit = ({ data }) => {
             {isMobile ? (
               <SimpleCarousel
                 images={installationMedia}
-                slideCount={1.25}
+                slideCount={1.15}
               ></SimpleCarousel>
             ) : (
               <MediaCarousel media={installationMedia}></MediaCarousel>
@@ -79,7 +82,7 @@ const Exhibit = ({ data }) => {
             {isMobile ? (
               <SimpleCarousel
                 images={workMedia}
-                slideCount={1.25}
+                slideCount={1.15}
               ></SimpleCarousel>
             ) : (
               <MediaCarousel media={workMedia}></MediaCarousel>
@@ -113,6 +116,44 @@ const Exhibit = ({ data }) => {
               </div>
             ))}
           </>
+        )}
+        {relatedContent && (
+          <div>
+            <p className={styles.sectionHeading}>{relatedHeading}</p>
+            <div className={styles.relatedContainer}>
+              {relatedContent.map(content => {
+                if (content.artistId) {
+                  const { artistId, slug, featuredImage, name } = content
+                  return (
+                    <div key={artistId}>
+                      <Link
+                        to={`/artist/${slug}`}
+                        className={styles.relatedArtistLink}
+                      >
+                        <div className={styles.artistTile}>
+                          <GatsbyImage
+                            image={featuredImage?.image.gatsbyImageData}
+                            alt={featuredImage?.description}
+                            className={styles.relatedTileImage}
+                          ></GatsbyImage>
+                          <p className={styles.relatedInfoText}>{name}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  )
+                } else if (content.exhibitId) {
+                  return (
+                    <ExhibitionTile
+                      key={content.exhibitId}
+                      content={content}
+                    ></ExhibitionTile>
+                  )
+                } else {
+                  return <div>Unknown Content</div>
+                }
+              })}
+            </div>
+          </div>
         )}
       </div>
     </Layout>
@@ -183,6 +224,38 @@ export const query = graphql`
           gatsbyImageData
           height
           width
+        }
+      }
+      relatedHeading
+      relatedContent {
+        ... on ContentfulArtist {
+          artistId: id
+          name
+          featuredImage {
+            image {
+              description
+              gatsbyImageData
+            }
+          }
+          slug
+        }
+        ... on ContentfulExhibition {
+          exhibitId: id
+          slug
+          artists {
+            id
+            name
+          }
+          tileImage {
+            image {
+              description
+              gatsbyImageData
+            }
+          }
+          location
+          region
+          startDate
+          endDate
         }
       }
     }

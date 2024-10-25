@@ -57,6 +57,11 @@ html {
   scroll-padding-top: 250px;
 }
 
+main {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 :root {
   --font-primary: "Frame Head", serif;
   --font-secondary: "Basel Grotesk", sans-serif;
@@ -69,10 +74,10 @@ html {
   --medium-padding: 50px;
   --large-padding: 120px;
   --extra-large-padding: 200px;
-  --accent-gray: #F8FAFA;
-  --light-gray: #DAE2E2;
-  --mid-gray: #B2C4C5;
-  --dark-gray: #647B7D;
+  --accent-gray: #f8fafa;
+  --light-gray: #dae2e2;
+  --mid-gray: #b2c4c5;
+  --dark-gray: #647b7d;
 }
 
 .pageContainer {
@@ -92,20 +97,31 @@ p {
 @media screen and (max-width: 1000px) {
   :root {
     --medium-padding: 30px;
+    --large-padding: 60px;
     --headline: 34px;
     --title: 24px;
-    --subtitle: 14px;
-    --body-text: 12px;
+    --subtitle: 18px;
+    --body-text: 14px;
     --subtext: 12px;
     --caption: 12px;
   }
 
   html {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .pageContainer {
     padding-top: 120px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .pageContainer {
+    padding-top: 80px;
+  }
+
+  html {
+    scroll-padding-top: 150px;
   }
 }
 
