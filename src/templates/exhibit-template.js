@@ -57,11 +57,13 @@ const Exhibit = ({ data }) => {
             <div className={styles.aboveDescription}>
               {exhibitionDescription.exhibitionDescription}
             </div>
-            <div className={styles.downloadContainer}>
-              {aboutDownloads.map(item => (
-                <PdfDownload key={item.id} content={item}></PdfDownload>
-              ))}
-            </div>
+            {aboutDownloads && (
+              <div className={styles.downloadContainer}>
+                {aboutDownloads.map(item => (
+                  <PdfDownload key={item.id} content={item}></PdfDownload>
+                ))}
+              </div>
+            )}
           </div>
           <div className={styles.aboveRight}>
             <GatsbyImage
