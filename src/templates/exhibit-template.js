@@ -8,6 +8,7 @@ import MediaCarousel from "../components/mediaCarousel"
 import useWindowSize from "../utils/useWindowSize"
 import SimpleCarousel from "../components/simpleCarousel"
 import ExhibitionTile from "../components/exhibitionTile"
+import PdfDownload from "../components/pdfDownload"
 
 const Exhibit = ({ data }) => {
   const {
@@ -23,6 +24,7 @@ const Exhibit = ({ data }) => {
     workMedia,
     relatedContent,
     relatedHeading,
+    aboutDownloads,
   } = data.contentfulExhibition
 
   const { width } = useWindowSize()
@@ -54,6 +56,11 @@ const Exhibit = ({ data }) => {
             <p className={styles.aboveInfo}>{location}</p>
             <div className={styles.aboveDescription}>
               {exhibitionDescription.exhibitionDescription}
+            </div>
+            <div className={styles.downloadContainer}>
+              {aboutDownloads.map(item => (
+                <PdfDownload key={item.id} content={item}></PdfDownload>
+              ))}
             </div>
           </div>
           <div className={styles.aboveRight}>
@@ -192,6 +199,15 @@ export const query = graphql`
         image {
           description
           gatsbyImageData
+        }
+      }
+      aboutDownloads {
+        id
+        buttonText
+        pdfFile {
+          file {
+            url
+          }
         }
       }
       installationMedia {

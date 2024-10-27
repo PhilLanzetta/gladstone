@@ -37,9 +37,8 @@ export const query = graphql`
             html
           }
         }
-        linkedContent {
-          slug
-        }
+        link
+        video
       }
     }
   }

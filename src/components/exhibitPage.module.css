@@ -109,6 +109,13 @@
   font-size: var(--body-text);
 }
 
+.downloadContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 40px;
+}
+
 @media screen and (max-width: 800px) {
   .aboveTheFold {
     flex-direction: column-reverse;

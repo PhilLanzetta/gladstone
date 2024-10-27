@@ -10,7 +10,7 @@ header {
 
 .homeOpen {
   background: #fff;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--light-gray);
   transition: all 400ms;
 }
 
@@ -20,7 +20,7 @@ header {
 
 .pagePrimary {
   color: #000;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--light-gray);
   background: rgb(255, 255, 255);
 }
 

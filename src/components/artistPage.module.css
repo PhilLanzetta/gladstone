@@ -114,6 +114,7 @@
 
 .callToActionContainer h2 {
   font-size: var(--headline);
+  font-weight: normal;
   padding: 0 8vw;
 }
 

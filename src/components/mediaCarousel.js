@@ -88,7 +88,6 @@ const MediaCarousel = ({ media }) => {
 
   const slideNumber = Math.floor(width / 100)
 
-  console.log(slideNumber)
   const settingsThumbs = {
     slidesToShow: media.length > slideNumber ? slideNumber : media.length,
     slidesToScroll: 1,
