@@ -1,12 +1,121 @@
-import React from 'react'
-import Layout from '../components/layout'
+import React, { useState, useEffect } from "react"
+import Layout from "../components/layout"
+import { graphql } from "gatsby"
+import * as styles from "../components/newsItem.module.css"
+import NewsItem from "../components/newsItem"
 
-const News = () => {
+const News = ({ data }) => {
+  const allNews = data.allContentfulNewsEntry.nodes
+  const [newsItems, setNewsItems] = useState(allNews)
+  const [filter, setFilter] = useState()
+
+  useEffect(() => {
+    if (filter === "Featured") {
+      const filteredContent = allNews.filter(item => item.isFeatured === true)
+      setNewsItems(filteredContent)
+    } else if (filter) {
+      const filteredContent = allNews.filter(item => item.category === filter)
+      setNewsItems(filteredContent)
+    } else {
+      setNewsItems(allNews)
+    }
+  }, [filter])
+
   return (
     <Layout>
-      <div>News</div>
+      <div className="pageContainer">
+        <div className={styles.newsHeader}>
+          <div className="pageHeading">News</div>
+          <div className={styles.headerLinkContainer}>
+            <button
+              onClick={() =>
+                filter === "Featured" ? setFilter() : setFilter("Featured")
+              }
+              className={
+                filter === "Featured"
+                  ? styles.buttonActive
+                  : styles.buttonInactive
+              }
+            >
+              Featured
+            </button>
+            <button
+              onClick={() =>
+                filter === "Exhibition" ? setFilter() : setFilter("Exhibition")
+              }
+              className={
+                filter === "Exhibition"
+                  ? styles.buttonActive
+                  : styles.buttonInactive
+              }
+            >
+              Museum Exhibitions
+            </button>
+            <button
+              onClick={() =>
+                filter === "Event" ? setFilter() : setFilter("Event")
+              }
+              className={
+                filter === "Event" ? styles.buttonActive : styles.buttonInactive
+              }
+            >
+              Events
+            </button>
+            <button
+              onClick={() =>
+                filter === "Announcement"
+                  ? setFilter()
+                  : setFilter("Announcement")
+              }
+              className={
+                filter === "Announcement"
+                  ? styles.buttonActive
+                  : styles.buttonInactive
+              }
+            >
+              Announcements
+            </button>
+          </div>
+        </div>
+        <div className={styles.newsContainer}>
+          {newsItems.map(item => (
+            <NewsItem key={item.id} content={item}></NewsItem>
+          ))}
+        </div>
+      </div>
     </Layout>
   )
 }
+
+export const query = graphql`
+  query {
+    allContentfulNewsEntry(sort: { date: DESC }) {
+      nodes {
+        category
+        id
+        isFeatured
+        link
+        newsImage {
+          gatsbyImageData(layout: FULL_WIDTH)
+          description
+        }
+        newsText {
+          childMarkdownRemark {
+            html
+          }
+        }
+        download {
+          buttonText
+          id
+          pdfFile {
+            file {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 export default News
