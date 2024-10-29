@@ -1,0 +1,58 @@
+.searchInfoContainer {
+  border-top: 1px solid var(--light-gray);
+  padding: var(--medium-padding);
+  display: flex;
+  transition: all 400ms;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.searchInfoContainer:hover {
+  background: var(--light-gray);
+  color: #000;
+  transition: all 400ms;
+}
+
+.searchInfoText {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.infoTextTop {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.searchResultTitle {
+  font-size: var(--subtitle);
+}
+
+.category {
+  color: var(--mid-gray);
+  justify-self: flex-end;
+  font-family: var(--font-secondary);
+}
+
+.dates {
+  font-family: var(--font-secondary);
+}
+
+.searchResultImage {
+ aspect-ratio: 4 / 3;
+}
+
+@media screen and (max-width: 700px) {
+  .searchInfoContainer {
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  .searchInfoText {
+    width: 100%;
+  }
+}

@@ -94,6 +94,10 @@ p {
   line-height: 1.5;
 }
 
+.ais-SearchBox-input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
 @media screen and (max-width: 1000px) {
   :root {
     --medium-padding: 30px;

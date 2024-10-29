@@ -1,0 +1,168 @@
+.searchPage {
+  width: 100%;
+  min-height: 95vh;
+  padding: var(--medium-padding);
+  padding-top: 250px;
+}
+
+.searchBox {
+  width: 100%;
+  border-bottom: 1px solid var(--dark-gray);
+}
+
+.searchBoxForm {
+  width: 100%;
+  position: relative;
+}
+
+.searchBoxInput {
+  width: 100%;
+  border: none;
+  font-family: var(--font-primary);
+  font-size: var(--body-text);
+}
+
+.searchBoxForm input:focus {
+  outline: none;
+}
+
+.searchBoxInput::placeholder {
+  color: var(--mid-gray);
+}
+
+.searchBoxSubmit,
+.searchBoxReset {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  display: flex;
+}
+
+.searchBoxIcon {
+  width: 10px;
+  fill: var(--dark-gray);
+}
+
+.hitsContainer {
+  padding-top: var(--medium-padding);
+  width: calc(100% + (var(--medium-padding) * 2));
+  margin-left: calc(var(--medium-padding) * -1);
+}
+
+.hitsContainer ol {
+  list-style: none;
+}
+
+.searchOptionsBar {
+  margin-top: 10px;
+  position: relative;
+  font-family: var(--font-secondary);
+}
+
+.filterLabel {
+  display: inline;
+}
+
+.refinementContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+}
+
+.search-filter-menu {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  opacity: 1;
+  transition: all var(--md-transition);
+}
+
+.refinementList {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.refinementItem {
+  color: var(--dark-gray);
+  transition: all 400ms;
+}
+
+.refinementItem:hover {
+  color: #000;
+  transition: all 400ms;
+}
+
+.refinementText {
+  cursor: pointer;
+}
+
+.refinementSelected {
+  color: #000;
+}
+
+.refinementItem input[type="checkbox"] {
+  appearance: none;
+  cursor: pointer;
+}
+
+.refinementCount {
+  display: none;
+}
+
+.paginationList {
+  display: flex;
+  position: relative;
+  font-size: var(--caption);
+  padding-top: var(--medium-padding);
+  border-top: 1px solid var(--light-gray);
+}
+
+.paginationList li {
+  list-style: none;
+}
+
+.paginationPage,
+.paginationDisabled {
+  color: var(--mid-gray);
+}
+
+.paginationPage {
+  margin-right: 10px;
+}
+
+.paginationDisabled {
+  cursor: default;
+}
+
+.paginationSelected {
+  color: #000;
+}
+
+.searchPrev,
+.searchNext {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+}
+
+.searchNext {
+  right: 0;
+}
+
+.searchPrev {
+  right: 150px;
+}
+
+@media screen and (max-width: 700px) {
+  .searchPage {
+    padding-top: 120px;
+  }
+
+  .searchBoxIcon {
+  width: 10px;
+  padding: 2px;
+}
+}
