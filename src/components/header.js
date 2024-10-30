@@ -21,7 +21,7 @@ const Header = ({ location }) => {
   const { scrollY } = useScroll()
   useMotionValueEvent(scrollY, "change", latest => {
     const previous = scrollY.getPrevious()
-    if (latest > previous && latest > 100) {
+    if (latest > previous && latest > 100 && !isOpen) {
       setHidden(true)
     } else {
       setHidden(false)
@@ -173,21 +173,21 @@ const Header = ({ location }) => {
                   </div>
                   <div className={styles.headerSocial}>
                     <a
-                      href="https://www.google.com"
+                      href="https://x.com/GladstoneNYC"
                       target="_blank"
                       rel="noreferrer"
                     >
                       Twitter
                     </a>
                     <a
-                      href="https://www.google.com"
+                      href="https://www.instagram.com/gladstone.gallery"
                       target="_blank"
                       rel="noreferrer"
                     >
                       Instagram
                     </a>
                     <a
-                      href="https://www.google.com"
+                      href="https://www.facebook.com/GladstoneNYC"
                       target="_blank"
                       rel="noreferrer"
                     >

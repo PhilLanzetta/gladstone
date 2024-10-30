@@ -1,8 +1,9 @@
-import React from "react"
+import React, { useState } from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 import * as styles from "./homeTile.module.css"
 import useWindowSize from "../utils/useWindowSize"
 import ReactPlayer from "react-player"
+import { AnimatePresence, motion } from "framer-motion"
 
 const HomeTile = ({ tile }) => {
   const {
@@ -18,6 +19,7 @@ const HomeTile = ({ tile }) => {
 
   const { width } = useWindowSize()
   const isMobile = width < 700
+  const [isPlaying, setIsPlaying] = useState(false)
 
   return (
     <a
@@ -25,7 +27,7 @@ const HomeTile = ({ tile }) => {
       style={isMobile ? { width: "100%" } : { width: tileWidth }}
       href={`${process.env.GATSBY_BASE_LINK}${link}`}
     >
-      {image && (
+      {image && !video && (
         <GatsbyImage
           image={image?.gatsbyImageData}
           alt={image?.description}
@@ -40,6 +42,28 @@ const HomeTile = ({ tile }) => {
             tileWidth === "100%" ? styles.tileMedia : styles.tileMediaHalf
           }
         >
+          <AnimatePresence>
+            {!isPlaying && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className={`${styles.videoCover} ${
+                  tileWidth === "100%" ? styles.tileMedia : styles.tileMediaHalf
+                }`}
+              >
+                <GatsbyImage
+                  image={image?.gatsbyImageData}
+                  alt={image?.description}
+                  className={
+                    tileWidth === "100%"
+                      ? styles.tileMedia
+                      : styles.tileMediaHalf
+                  }
+                ></GatsbyImage>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <ReactPlayer
             url={isMobile ? mobileVideo : video}
             width={"100%"}
@@ -50,6 +74,8 @@ const HomeTile = ({ tile }) => {
             controls={false}
             loop
             className={styles.videoPlayer}
+            onPlay={() => setIsPlaying(true)}
+            onBuffer={() => setIsPlaying(false)}
           ></ReactPlayer>
         </div>
       )}

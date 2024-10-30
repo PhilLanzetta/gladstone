@@ -26,6 +26,7 @@
   align-items: flex-end;
   gap: 10px;
   transition: all 400ms;
+  z-index: 10;
 }
 
 .textContainerFull {
@@ -63,6 +64,15 @@
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.videoCover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
 }
 
 @media screen and (max-width: 700px) {
