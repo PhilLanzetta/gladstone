@@ -73,6 +73,7 @@
 .featuredNewsText .downloadLink {
   font-size: var(--sub-text);
   font-family: var(--font-secondary);
+  color: var(--dark-gray);
 }
 
 .newsText {
