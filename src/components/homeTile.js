@@ -43,7 +43,7 @@ const HomeTile = ({ tile }) => {
           }
         >
           <AnimatePresence>
-            {!isPlaying && (
+            {!isPlaying && !isMobile && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
