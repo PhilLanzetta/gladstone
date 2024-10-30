@@ -26,8 +26,6 @@ const Control = forwardRef((props, controlRef) => {
     onMouseSeekDown,
   } = props
 
-  console.log(played)
-
   return (
     <div className={styles.videoControls} ref={controlRef}>
       <div className={styles.progressBar}>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Layout from "../components/layout"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import * as styles from "../components/newsItem.module.css"
 import NewsItem from "../components/newsItem"
 
@@ -25,8 +25,19 @@ const News = ({ data }) => {
     <Layout>
       <div className="pageContainer">
         <div className={styles.newsHeader}>
-          <div className="pageHeading">News</div>
+          <button
+            className={`pageHeading ${styles.allNewsBtn}`}
+            onClick={() => setFilter()}
+          >
+            News
+          </button>
           <div className={styles.headerLinkContainer}>
+            <button
+              onClick={() => setFilter()}
+              className={filter ? styles.buttonInactive : styles.buttonActive}
+            >
+              All
+            </button>
             <button
               onClick={() =>
                 filter === "Featured" ? setFilter() : setFilter("Featured")

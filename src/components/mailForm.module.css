@@ -20,7 +20,7 @@
 }
 
 .name input {
-  border: none;
+  border: 1px solid var(--mid-gray);
   padding: 2px 5px;
   background: #fff;
   border-radius: 6px;
@@ -29,7 +29,7 @@
 }
 
 .email {
-  border: none;
+  border: 1px solid var(--mid-gray);
   padding: 2px 5px;
   background: #fff;
   border-radius: 6px;

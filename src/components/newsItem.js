@@ -11,10 +11,33 @@ const NewsItem = ({ content }) => {
         alt={newsImage.description}
         className={isFeatured ? styles.featuredNewsImage : styles.newsImage}
       ></GatsbyImage>
-      <div
-        dangerouslySetInnerHTML={{ __html: newsText.childMarkdownRemark.html }}
-        className={isFeatured ? styles.featuredNewsText : styles.newsText}
-      ></div>
+      <div className={isFeatured ? styles.featuredNewsText : styles.newsText}>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: newsText.childMarkdownRemark.html,
+          }}
+        ></div>
+        {download && (
+          <a
+            className={styles.downloadLink}
+            href={download.pdfFile.file.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {download.buttonText} &darr;
+          </a>
+        )}
+        {link && (
+          <a
+            className={styles.downloadLink}
+            href={link}
+            target="_blank"
+            rel="noreferrer"
+          >
+            View Article &#8599;
+          </a>
+        )}
+      </div>
     </div>
   )
 }

@@ -5,7 +5,16 @@ import useWindowSize from "../utils/useWindowSize"
 import ReactPlayer from "react-player"
 
 const HomeTile = ({ tile }) => {
-  const { artist, image, video, workTitle, location, tileWidth, link } = tile
+  const {
+    artist,
+    image,
+    video,
+    workTitle,
+    location,
+    tileWidth,
+    link,
+    mobileVideo,
+  } = tile
 
   const { width } = useWindowSize()
   const isMobile = width < 700
@@ -32,7 +41,7 @@ const HomeTile = ({ tile }) => {
           }
         >
           <ReactPlayer
-            url={video}
+            url={isMobile ? mobileVideo : video}
             width={"100%"}
             height={"100%"}
             playing={true}

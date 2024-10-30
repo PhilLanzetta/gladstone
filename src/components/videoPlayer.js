@@ -30,6 +30,7 @@ const VideoPlayer = ({ video, videoId }) => {
   })
 
   const [fullScreenState, setFullScreenState] = useState(false)
+  const [hasPlayed, setHasPlayed] = useState(false)
 
   const { width, height } = useWindowSize()
   const isMobile = height > width ? width < 769 : width < 900
@@ -119,6 +120,7 @@ const VideoPlayer = ({ video, videoId }) => {
   }
 
   const mouseMoveHandler = () => {
+    console.log("moved")
     controlRef.current.style.visibility = "visible"
     fullScreenRef.current.style.visibility = "visible"
     count = 0
@@ -143,12 +145,11 @@ const VideoPlayer = ({ video, videoId }) => {
       <div
         className={styles.videoPlayer}
         id={videoId}
-        onMouseMove={isMobile ? null : mouseMoveHandler}
         key={isMobile}
         ref={elementRef}
       >
         <AnimatePresence>
-          {!playing && (
+          {!hasPlayed && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -163,7 +164,7 @@ const VideoPlayer = ({ video, videoId }) => {
               ></GatsbyImage>
             </motion.div>
           )}
-          {isMobile && !playing && (
+          {isMobile && !hasPlayed && (
             <motion.button
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -179,6 +180,12 @@ const VideoPlayer = ({ video, videoId }) => {
             </motion.button>
           )}
         </AnimatePresence>
+        {!isMobile && (
+          <div
+            className={styles.overlay}
+            onMouseMove={isMobile ? null : mouseMoveHandler}
+          ></div>
+        )}
         <ReactPlayer
           url={video.source}
           ref={videoPlayerRef}
@@ -189,12 +196,19 @@ const VideoPlayer = ({ video, videoId }) => {
           controls={isMobile}
           playing={playing}
           playsinline
-          onPlay={() => setVideoState({ ...videoState, playing: true })}
+          onPlay={() => {
+            setVideoState({ ...videoState, playing: true })
+            setHasPlayed(true)
+          }}
           onPause={() => setVideoState({ ...videoState, playing: false })}
           volume={volume}
           muted={muted}
           onProgress={isMobile ? () => void 0 : progressHandler}
-          onEnded={() => videoPlayerRef.current.seekTo(0)}
+          onEnded={() => {
+            videoPlayerRef.current.seekTo(0)
+            setVideoState({ ...videoState, playing: false })
+            setHasPlayed(false)
+          }}
           config={{
             youtube: {
               playerVars: { showinfo: 0 },
