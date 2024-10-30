@@ -30,7 +30,12 @@ export const shouldUpdateScroll = ({
   // if we used the browser's forwards or back button
   else {
     if (location.hash) {
-      return false
+      const target = document.getElementById(location.hash.slice(1))
+      const targetPosition =
+        target.getBoundingClientRect().top - 250 + window.scrollY
+      window.scrollTo({
+        top: targetPosition,
+      })
     } else {
       const savedPosition = getSavedScrollPosition(location) || [0, 0]
       window.setTimeout(
