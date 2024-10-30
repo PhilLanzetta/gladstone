@@ -19,20 +19,25 @@ export const shouldUpdateScroll = ({
     prevRouterProps &&
     prevRouterProps.location.pathname === location.pathname
   ) {
-    console.log('block1')
     return true
   }
   if (location.action === "PUSH") {
-    console.log('block2')
-    window.setTimeout(
-      () => window.scrollTo(location.hash || 0, 0),
-      TRANSITION_DELAY
-    )
+    if (location.hash) {
+      const target = document.getElementById(location.hash.slice(1))
+      const targetPosition =
+        target.getBoundingClientRect().top - 250 + window.scrollY
+      window.setTimeout(
+        () =>
+          window.scrollTo({
+            top: targetPosition,
+          }),
+        TRANSITION_DELAY
+      )
+    } else window.setTimeout(() => window.scrollTo(0, 0), TRANSITION_DELAY)
   }
   // if we used the browser's forwards or back button
   else {
     if (location.hash) {
-      console.log('block3')
       const target = document.getElementById(location.hash.slice(1))
       const targetPosition =
         target.getBoundingClientRect().top - 250 + window.scrollY
@@ -40,7 +45,6 @@ export const shouldUpdateScroll = ({
         top: targetPosition,
       })
     } else {
-      console.log('block4')
       const savedPosition = getSavedScrollPosition(location) || [0, 0]
       window.setTimeout(
         () => window.scrollTo(...savedPosition),
