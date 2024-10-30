@@ -30,7 +30,7 @@ export const shouldUpdateScroll = ({
   // if we used the browser's forwards or back button
   else {
     if (location.hash) {
-      return true
+      return false
     } else {
       const savedPosition = getSavedScrollPosition(location) || [0, 0]
       window.setTimeout(
