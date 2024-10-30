@@ -84,4 +84,8 @@
   .name input {
     width: 100%;
   }
+
+  .headerText {
+    font-size: var(--body-text);
+  }
 }

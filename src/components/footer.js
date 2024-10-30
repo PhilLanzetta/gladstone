@@ -23,13 +23,25 @@ const Footer = () => {
             <Link to="/about">Accessibility</Link>
           </div>
           <div className={styles.linkColumn}>
-            <a href="https://www.google.com" target="_blank" rel="noreferrer">
+            <a
+              href="https://x.com/GladstoneNYC"
+              target="_blank"
+              rel="noreferrer"
+            >
               Twitter
             </a>
-            <a href="https://www.google.com" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.instagram.com/gladstone.gallery"
+              target="_blank"
+              rel="noreferrer"
+            >
               Instagram
             </a>
-            <a href="https://www.google.com" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.facebook.com/GladstoneNYC"
+              target="_blank"
+              rel="noreferrer"
+            >
               Facebook
             </a>
             <a href="https://www.google.com" target="_blank" rel="noreferrer">
@@ -44,15 +56,9 @@ const Footer = () => {
           <img src={logo} alt="Gladstone Gallery logo"></img>
         </Link>
         <div className={styles.lowerFooterLinks}>
-          <p>
-            New York
-          </p>
-          <p>
-            Brussels
-          </p>
-          <p>
-            Seoul
-          </p>
+          <p>New York</p>
+          <p>Brussels</p>
+          <p>Seoul</p>
         </div>
       </div>
     </footer>

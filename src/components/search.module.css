@@ -20,6 +20,7 @@
   border: none;
   font-family: var(--font-primary);
   font-size: var(--body-text);
+  background: none;
 }
 
 .searchBoxForm input:focus {
@@ -161,7 +162,11 @@
   }
 
   .searchBoxIcon {
-  width: 10px;
-  padding: 2px;
-}
+    width: 15px;
+    padding: 2px;
+  }
+
+  .searchBoxInput {
+    font-size: 18px;
+  }
 }

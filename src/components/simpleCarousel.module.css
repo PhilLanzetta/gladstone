@@ -21,6 +21,7 @@
 
 .slideContainer figcaption h1 {
   line-height: 1.5;
+  font-weight: 400;
 }
 
 .slideContainer figcaption p {
@@ -30,6 +31,7 @@
 .slideContainer figcaption h1 {
   font-size: var(--body-text);
   margin-bottom: 5px;
+  font-weight: 400;
 }
 
 .nextArrow,

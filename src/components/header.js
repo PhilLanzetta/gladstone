@@ -143,29 +143,6 @@ const Header = ({ location }) => {
               <Link to="/search">Search</Link>
               {isMobile && (
                 <div className={styles.secondaryBottom}>
-                  <div className={styles.headerLocations}>
-                    <a
-                      href="https://google.com"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      New York
-                    </a>
-                    <a
-                      href="https://google.com"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Brussels
-                    </a>
-                    <a
-                      href="https://google.com"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Seoul
-                    </a>
-                  </div>
                   <div className={styles.mobileLanguage}>
                     <button>中文</button>
                     <button>한국인</button>

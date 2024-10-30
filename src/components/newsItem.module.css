@@ -88,6 +88,7 @@
 .newsText .downloadLink {
   font-size: var(--caption);
   font-family: var(--font-secondary);
+  color: var(--dark-gray);
 }
 
 .downloadLink {
@@ -98,6 +99,7 @@
   .headerLinkContainer {
     gap: 10px;
     justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   .newsHeader > div {
