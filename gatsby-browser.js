@@ -29,9 +29,15 @@ export const shouldUpdateScroll = ({
   }
   // if we used the browser's forwards or back button
   else {
-    const savedPosition = getSavedScrollPosition(location) ||
-      location.hash || [0, 0]
-    window.setTimeout(() => window.scrollTo(...savedPosition), TRANSITION_DELAY)
+    if (location.hash) {
+      return true
+    } else {
+      const savedPosition = getSavedScrollPosition(location) || [0, 0]
+      window.setTimeout(
+        () => window.scrollTo(...savedPosition),
+        TRANSITION_DELAY
+      )
+    }
   }
   return false
 }

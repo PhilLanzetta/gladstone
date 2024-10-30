@@ -19,6 +19,7 @@ const ExhibitionTile = ({ content, artistPage, past }) => {
 
   const { width } = useWindowSize()
   const mobilePast = width < 1100 && past
+  const titleIsArtist = artists.filter(artist => artist.name === title).length
 
   return (
     <div className={styles.tileContainer}>
@@ -37,13 +38,15 @@ const ExhibitionTile = ({ content, artistPage, past }) => {
                   mobilePast ? styles.mobileHeading : styles.infoHeading
                 }
               >
-                {artist.name !== title && artist.name}
+                {artist.name}
               </p>
             ))}
             <p
-              className={mobilePast ? styles.mobileHeading : styles.infoHeading}
+              className={`${
+                mobilePast ? styles.mobileHeading : styles.infoHeading
+              } ${styles.title}`}
             >
-              {title}
+              {!titleIsArtist && title}
             </p>
             {artistPage && <p className={styles.infoHeading}>{location}</p>}
             {mobilePast && (

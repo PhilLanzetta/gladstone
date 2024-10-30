@@ -75,9 +75,9 @@ const Search = () => {
           routing={true}
         >
           <SearchBox
-            placeholder="Search"
+            placeholder="Type here to search..."
             id="search-box"
-            searchAsYouType={false}
+            searchAsYouType={true}
             classNames={{
               root: styles.searchBox,
               form: styles.searchBoxForm,
@@ -88,21 +88,39 @@ const Search = () => {
               resetIcon: styles.searchBoxIcon,
             }}
             submitIconComponent={({ classNames }) => (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 9.698 20.856"
-                  className={classNames.submitIcon}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 15.28 17.233"
+                className={classNames.submitIcon}
+              >
+                <g
+                  id="Group_139"
+                  data-name="Group 139"
+                  transform="translate(-31.534 -30.777)"
                 >
-                  <path
-                    id="Polygon_3"
-                    data-name="Polygon 3"
-                    d="M0,8.659,10.1,0l10.1,8.659"
-                    transform="translate(9.039 0.325) rotate(90)"
+                  <line
+                    id="Line_150"
+                    data-name="Line 150"
+                    y1="5.862"
+                    x2="5.073"
+                    transform="translate(32.102 41.657)"
                     fill="none"
-                    stroke="#747474"
-                    stroke-width="1"
+                    stroke="#000"
+                    stroke-width="1.5"
                   />
-                </svg>
+                  <g
+                    id="Ellipse_8"
+                    data-name="Ellipse 8"
+                    transform="translate(34.639 30.777)"
+                    fill="none"
+                    stroke="#000"
+                    stroke-width="1.5"
+                  >
+                    <circle cx="6.088" cy="6.088" r="6.088" stroke="none" />
+                    <circle cx="6.088" cy="6.088" r="5.338" fill="none" />
+                  </g>
+                </g>
+              </svg>
             )}
             resetIconComponent={({ classNames }) => (
               <div className={classNames.resetIcon}></div>

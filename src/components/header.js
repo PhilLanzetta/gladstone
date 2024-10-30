@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import * as styles from "./header.module.css"
 import { Link } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
@@ -27,6 +27,13 @@ const Header = ({ location }) => {
       setHidden(false)
     }
   })
+
+  useEffect(() => {
+    if (isOpen) {
+      setHidden(false)
+    }
+    return
+  }, [isOpen])
 
   return (
     <header

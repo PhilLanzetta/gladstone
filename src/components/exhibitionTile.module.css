@@ -33,6 +33,10 @@
   font-size: var(--body-text);
 }
 
+.title {
+  font-style: italic;
+}
+
 .mobileHeading {
   font-size: var(--body-text);
 }
