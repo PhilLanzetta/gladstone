@@ -55,11 +55,11 @@
 }
 
 .featuredNewsImage {
-  width: 60%;
+  width: 70%;
 }
 
 .featuredNewsText {
-  width: 40%;
+  max-width: 40%;
 }
 
 .allNewsBtn:hover {
