@@ -74,8 +74,8 @@ const HomeTile = ({ tile }) => {
             controls={false}
             loop
             className={styles.videoPlayer}
-            onPlay={() => setIsPlaying(true)}
-            onBuffer={() => setIsPlaying(false)}
+            onReady={() => setIsPlaying(true)}
+            onError={() => setIsPlaying(false)}
           ></ReactPlayer>
         </div>
       )}
