@@ -157,15 +157,6 @@ const Artists = ({ data }) => {
                 <p>{artist.name}</p>
               </Link>
             ))}
-            {alphabeticNames.map(artist => (
-              <Link
-                key={artist.id}
-                to={`/artist/${artist.slug}`}
-                className={styles.listArtistLink}
-              >
-                <p>{artist.name}</p>
-              </Link>
-            ))}
           </div>
         )}
       </div>
