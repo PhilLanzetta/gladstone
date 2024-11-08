@@ -10,7 +10,6 @@ const About = ({ data }) => {
   const isMobile = width < 700
   const {
     aboutHeadlineText,
-    leadershipStaff,
     locations,
   } = data.contentfulAboutPage
 
@@ -138,15 +137,6 @@ const About = ({ data }) => {
 export const query = graphql`
   query {
     contentfulAboutPage {
-      leadershipstaff {
-        id
-        heading
-        staffMembers {
-          id
-          name
-          title
-        }
-      }
       aboutHeadlineText {
         childMarkdownRemark {
           html
