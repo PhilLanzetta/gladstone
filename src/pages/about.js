@@ -10,9 +10,7 @@ const About = ({ data }) => {
   const isMobile = width < 700
   const {
     aboutHeadlineText,
-    leadershipColumn1,
-    leadershipColumn2,
-    leadershipColumn3,
+    leadershipStaff,
     locations,
   } = data.contentfulAboutPage
 
@@ -132,44 +130,6 @@ const About = ({ data }) => {
             ))}
           </div>
         </div>
-        <div>
-          <p className={styles.aboutSectionHeading}>Leadership</p>
-          <div className={styles.leadershipContainer}>
-            <div className={styles.leadershipColumn}>
-              {leadershipColumn1.map(leader => (
-                <div key={leader.id}>
-                  <p className={styles.leaderName}>{leader.name}</p>
-                  <p className={styles.leaderTitle}>{leader.title}</p>
-                </div>
-              ))}
-              {isMobile &&
-                leadershipColumn2.map(leader => (
-                  <div key={leader.id}>
-                    <p className={styles.leaderName}>{leader.name}</p>
-                    <p className={styles.leaderTitle}>{leader.title}</p>
-                  </div>
-                ))}
-            </div>
-            {!isMobile && (
-              <div className={styles.leadershipColumn}>
-                {leadershipColumn2.map(leader => (
-                  <div key={leader.id}>
-                    <p className={styles.leaderName}>{leader.name}</p>
-                    <p className={styles.leaderTitle}>{leader.title}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-            <div className={styles.leadershipColumn}>
-              {leadershipColumn3.map(leader => (
-                <div key={leader.id}>
-                  <p className={styles.leaderName}>{leader.name}</p>
-                  <p className={styles.leaderTitle}>{leader.title}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </Layout>
   )
@@ -178,25 +138,19 @@ const About = ({ data }) => {
 export const query = graphql`
   query {
     contentfulAboutPage {
+      leadershipstaff {
+        id
+        heading
+        staffMembers {
+          id
+          name
+          title
+        }
+      }
       aboutHeadlineText {
         childMarkdownRemark {
           html
         }
-      }
-      leadershipColumn1 {
-        name
-        id
-        title
-      }
-      leadershipColumn2 {
-        id
-        name
-        title
-      }
-      leadershipColumn3 {
-        id
-        name
-        title
       }
       locations {
         id
