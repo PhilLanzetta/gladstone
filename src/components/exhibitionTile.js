@@ -19,7 +19,7 @@ const ExhibitionTile = ({ content, artistPage, past }) => {
 
   const { width } = useWindowSize()
   const mobilePast = width < 1100 && past
-  const titleIsArtist = artists.filter(artist => artist.name === title).length
+  const titleIsArtist = artists?.filter(artist => artist.name === title).length
 
   return (
     <div className={styles.tileContainer}>
