@@ -32,7 +32,7 @@ const Exhibitions = ({ data }) => {
   const allArtists = allPast
     .map(exhibit => exhibit.artists)
     .flat()
-    .map(artist => artist.name)
+    .map(artist => artist?.name)
     .filter(onlyUnique)
     .sort((a, b) => a.split(" ").pop().localeCompare(b.split(" ").pop()))
 

@@ -84,20 +84,22 @@
   transition: all 400ms;
 }
 
-.leadershipContainer {
-  display: flex;
-  gap: 40px;
+.staffOuterContainer {
+  margin-bottom: var(--large-padding);
 }
 
-.leadershipColumn {
-  width: 33%;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+.staffContainer {
+  column-count: 3;
+  column-gap: 20px;
 }
 
-.leaderTitle {
-  opacity: 0.5;
+.staff {
+  break-inside: avoid;
+  margin-bottom: var(--medium-padding);
+}
+
+.title {
+  color: var(--dark-gray);
 }
 
 @media screen and (max-width: 1000px) {
@@ -120,10 +122,6 @@
     width: 100%;
   }
 
-  .leadershipColumn {
-    width: 50%;
-  }
-
   .headlineText {
     font-size: var(--title);
     height: 70vh;
@@ -140,5 +138,10 @@
   .locationLink:hover::after {
     opacity: 0.5;
     transition: all 400ms;
+  }
+
+  .staffContainer {
+    column-count: 2;
+    column-gap: 10px;
   }
 }

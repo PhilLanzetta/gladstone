@@ -8,10 +8,8 @@ import useWindowSize from "../utils/useWindowSize"
 const About = ({ data }) => {
   const { width } = useWindowSize()
   const isMobile = width < 700
-  const {
-    aboutHeadlineText,
-    locations,
-  } = data.contentfulAboutPage
+  const { aboutHeadlineText, locations, leadershipstaff } =
+    data.contentfulAboutPage
 
   const newYorkLocations = locations.filter(location =>
     location.streetAddress.childMarkdownRemark.html.includes("New York")
@@ -129,6 +127,21 @@ const About = ({ data }) => {
             ))}
           </div>
         </div>
+        <div>
+          {leadershipstaff.map(section => (
+            <div key={section.id} className={styles.staffOuterContainer}>
+              <p className={styles.aboutSectionHeading}>{section.heading}</p>
+              <div className={styles.staffContainer}>
+                {section.staffMembers.map(staff => (
+                  <div key={staff.id} className={styles.staff}>
+                    <p>{staff.name}</p>
+                    <p className={styles.title}>{staff.title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </Layout>
   )
@@ -159,6 +172,15 @@ export const query = graphql`
           childMarkdownRemark {
             html
           }
+        }
+      }
+      leadershipstaff {
+        id
+        heading
+        staffMembers {
+          id
+          name
+          title
         }
       }
     }
