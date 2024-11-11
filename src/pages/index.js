@@ -38,7 +38,6 @@ export const query = graphql`
           }
         }
         link
-        video
       }
     }
   }
