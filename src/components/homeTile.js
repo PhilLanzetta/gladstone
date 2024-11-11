@@ -65,7 +65,7 @@ const HomeTile = ({ tile }) => {
             )}
           </AnimatePresence>
           <ReactPlayer
-            url={isMobile ? mobileVideo : video}
+            url={isMobile && mobileVideo ? mobileVideo : video}
             width={"100%"}
             height={"100%"}
             playing={true}
