@@ -54,9 +54,11 @@ const Exhibit = ({ data }) => {
               </p>
             )}
             <p className={styles.aboveInfo}>{location}</p>
-            <div className={styles.aboveDescription}>
-              {exhibitionDescription.exhibitionDescription}
-            </div>
+            {exhibitionDescription && (
+              <div className={styles.aboveDescription}>
+                {exhibitionDescription.exhibitionDescription}
+              </div>
+            )}
             {aboutDownloads && (
               <div className={styles.downloadContainer}>
                 {aboutDownloads.map(item => (
