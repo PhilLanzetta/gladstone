@@ -1,0 +1,227 @@
+import React from "react"
+import { graphql, Link } from "gatsby"
+import Layout from "../components/layout"
+import moment from "moment"
+import * as styles from "../components/exhibitPage.module.css"
+import { GatsbyImage } from "gatsby-plugin-image"
+import useWindowSize from "../utils/useWindowSize"
+import PdfDownload from "../components/pdfDownload"
+import Slider from "react-slick"
+
+function NextArrow(props) {
+  const { onClick } = props
+  return (
+    <div
+      className={props.addClassName}
+      onClick={onClick}
+      onKeyDown={onClick}
+      role="button"
+      tabIndex={0}
+      aria-label="go to next"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={styles.carouselSVG}
+        viewBox="0 0 13.047 28.672"
+      >
+        <path
+          id="Polygon_3"
+          data-name="Polygon 3"
+          d="M0,12.009,14.011,0,28.021,12.009"
+          transform="translate(12.389 0.325) rotate(90)"
+          fill="none"
+          stroke="#000"
+          stroke-width="1"
+        />
+      </svg>
+    </div>
+  )
+}
+
+function PrevArrow(props) {
+  const { onClick } = props
+  return (
+    <div
+      className={props.addClassName}
+      onClick={onClick}
+      onKeyDown={onClick}
+      role="button"
+      tabIndex={0}
+      aria-label="go to previous"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={styles.carouselSVG}
+        viewBox="0 0 13.047 28.672"
+      >
+        <path
+          id="Polygon_4"
+          data-name="Polygon 4"
+          d="M0,12.009,14.011,0,28.021,12.009"
+          transform="translate(0.659 28.346) rotate(-90)"
+          fill="none"
+          stroke="#000"
+          stroke-width="1"
+        />
+      </svg>
+    </div>
+  )
+}
+
+const Fair = ({ data }) => {
+  const {
+    title,
+    endDate,
+    fairDescription,
+    featuredImages,
+    startDate,
+    location,
+    openingReception,
+    aboutDownloads,
+    aboutLinks,
+  } = data.contentfulFair
+
+  const settings = {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    fade: true,
+    nextArrow: <NextArrow addClassName={styles.nextArrow} />,
+    prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
+  }
+
+  const { width } = useWindowSize()
+  const isMobile = width < 700
+
+  return (
+    <Layout>
+      <div className="pageContainer">
+        <Link to="/fairs" className={styles.pageHeading}>
+          Fairs
+        </Link>
+        <div className={styles.aboveTheFold}>
+          <div className={styles.aboveLeft}>
+            <p className={styles.aboveHeading}>{title}</p>
+            <p className={styles.aboveInfo}>
+              {moment(startDate).format("MMMM D")} &mdash;{" "}
+              {moment(endDate).format("MMMM D, YYYY")}{" "}
+            </p>
+            {openingReception && (
+              <p className={styles.aboveInfo}>
+                Opening Reception: {openingReception}
+              </p>
+            )}
+            {location && (
+              <p
+                className={styles.aboveInfo}
+                dangerouslySetInnerHTML={{
+                  __html: location.childMarkdownRemark.html,
+                }}
+              ></p>
+            )}
+            {fairDescription && (
+              <div
+                className={styles.aboveDescription}
+                dangerouslySetInnerHTML={{
+                  __html: fairDescription.childMarkdownRemark.html,
+                }}
+              ></div>
+            )}
+            <div className={styles.downloadContainer}>
+              {aboutLinks &&
+                aboutLinks.map(item => (
+                  <PdfDownload
+                    key={item.id}
+                    content={item}
+                    external={true}
+                  ></PdfDownload>
+                ))}
+              {aboutDownloads &&
+                aboutDownloads.map(item => (
+                  <PdfDownload key={item.id} content={item}></PdfDownload>
+                ))}
+            </div>
+          </div>
+          <div className={styles.fairAboveRight}>
+            <Slider {...settings}>
+              {featuredImages.map(featuredImage => (
+                <div key={featuredImage.id}>
+                  <div>
+                    <GatsbyImage
+                      image={featuredImage.image.gatsbyImageData}
+                      alt={featuredImage.image.description}
+                    ></GatsbyImage>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  )
+}
+
+export const query = graphql`
+  query getSingleFair($slug: String) {
+    contentfulFair(slug: { eq: $slug }) {
+      artists {
+        id
+        name
+        slug
+        featuredBiography {
+          childMarkdownRemark {
+            html
+          }
+        }
+        headshot {
+          caption {
+            childMarkdownRemark {
+              html
+            }
+          }
+          image {
+            description
+            gatsbyImageData
+          }
+        }
+      }
+      endDate
+      fairDescription {
+        childMarkdownRemark {
+          html
+        }
+      }
+      featuredImages {
+        id
+        image {
+          description
+          gatsbyImageData
+        }
+      }
+      aboutDownloads {
+        id
+        buttonText
+        pdfFile {
+          file {
+            url
+          }
+        }
+      }
+      aboutLinks {
+        id
+        label
+        url
+      }
+      location {
+        childMarkdownRemark {
+          html
+        }
+      }
+      startDate
+      title
+    }
+  }
+`
+
+export default Fair

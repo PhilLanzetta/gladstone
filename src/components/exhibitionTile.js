@@ -5,7 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
 
-const ExhibitionTile = ({ content, artistPage, past }) => {
+const ExhibitionTile = ({ content, artistPage, past, fair }) => {
   const {
     title,
     artists,
@@ -15,6 +15,7 @@ const ExhibitionTile = ({ content, artistPage, past }) => {
     region,
     slug,
     location,
+    city,
   } = content
 
   const { width } = useWindowSize()
@@ -23,7 +24,7 @@ const ExhibitionTile = ({ content, artistPage, past }) => {
 
   return (
     <div className={styles.tileContainer}>
-      <Link to={`/exhibit/${slug}`}>
+      <Link to={`${fair ? "/fair/" : "/exhibit/"}${slug}`}>
         <GatsbyImage
           image={tileImage.image.gatsbyImageData}
           alt={tileImage.image.description}
@@ -31,16 +32,17 @@ const ExhibitionTile = ({ content, artistPage, past }) => {
         ></GatsbyImage>
         <div className={styles.exhibitInfo}>
           <div className={styles.infoLeft}>
-            {artists?.map(artist => (
-              <p
-                key={artist.id}
-                className={
-                  mobilePast ? styles.mobileHeading : styles.infoHeading
-                }
-              >
-                {artist.name}
-              </p>
-            ))}
+            {!fair &&
+              artists?.map(artist => (
+                <p
+                  key={artist.id}
+                  className={
+                    mobilePast ? styles.mobileHeading : styles.infoHeading
+                  }
+                >
+                  {artist.name}
+                </p>
+              ))}
             <p
               className={`${
                 mobilePast ? styles.mobileHeading : styles.infoHeading
@@ -62,7 +64,8 @@ const ExhibitionTile = ({ content, artistPage, past }) => {
           {!mobilePast && (
             <div className={styles.infoRight}>
               <p className={styles.infoHeading}>
-                {region !== "Offsite" ? region : location}
+                {!fair && region !== "Offsite" ? region : location}
+                {fair && city}
               </p>
             </div>
           )}

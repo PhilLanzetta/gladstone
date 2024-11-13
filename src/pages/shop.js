@@ -1,31 +1,31 @@
-import React, { useEffect } from "react"
+import React from "react"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 
-const Shop = () => {
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "https://connect.squareupsandbox.com/v2/catalog/list",
-        {
-          headers: {
-            "Square-Version": "2024-10-17",
-            Authorization:
-              "EAAAl4abMG2eH_HOaUO9bnK-PUsBn0WR351n5AldzMJaQMepRivmrUy6crg-TuxA",
-            "Content-Type": "application/json",
-          },
-        }
-      )
-      const data = await response.json()
-      console.log(data)
-    }
-    fetchData()
-  }, [])
-
+const Shop = ({ data }) => {
+  const products = data.artistProduct.edges
+    .map(edge => edge.node.metafield?.value)
+    .filter(node => node !== undefined)
+  console.log(products)
   return (
     <Layout>
       <div>Shop</div>
     </Layout>
   )
 }
+
+export const query = graphql`
+  query {
+    artistProduct: allShopifyProduct {
+      edges {
+        node {
+          metafield(key: "artist", namespace: "custom") {
+            value
+          }
+        }
+      }
+    }
+  }
+`
 
 export default Shop
