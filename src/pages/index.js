@@ -30,6 +30,10 @@ export const query = graphql`
           description
           gatsbyImageData(layout: FULL_WIDTH)
         }
+        mobileImage {
+          description
+          gatsbyImageData(layout: FULL_WIDTH)
+        }
         tileWidth
         workTitle
         location {
@@ -38,6 +42,7 @@ export const query = graphql`
           }
         }
         link
+        linkIsExternal
       }
     }
   }

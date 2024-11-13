@@ -15,6 +15,8 @@ const HomeTile = ({ tile }) => {
     tileWidth,
     link,
     mobileVideo,
+    mobileImage,
+    linkIsExternal,
   } = tile
 
   const { width } = useWindowSize()
@@ -25,11 +27,17 @@ const HomeTile = ({ tile }) => {
     <a
       className={styles.tileContainer}
       style={isMobile ? { width: "100%" } : { width: tileWidth }}
-      href={`${process.env.GATSBY_BASE_LINK}${link}`}
+      href={linkIsExternal ? link : `${process.env.GATSBY_BASE_LINK}/${link}`}
+      target={linkIsExternal ? "_blank" : "_self"}
+      rel="noreferrer"
     >
       {image && !video && (
         <GatsbyImage
-          image={image?.gatsbyImageData}
+          image={
+            isMobile && mobileImage
+              ? mobileImage?.gatsbyImageData
+              : image?.gatsbyImageData
+          }
           alt={image?.description}
           className={
             tileWidth === "100%" ? styles.tileMedia : styles.tileMediaHalf
@@ -53,7 +61,11 @@ const HomeTile = ({ tile }) => {
                 }`}
               >
                 <GatsbyImage
-                  image={image?.gatsbyImageData}
+                  image={
+                    isMobile && mobileImage
+                      ? mobileImage?.gatsbyImageData
+                      : image?.gatsbyImageData
+                  }
                   alt={image?.description}
                   className={
                     tileWidth === "100%"

@@ -146,10 +146,11 @@ const Fair = ({ data }) => {
             <Slider {...settings}>
               {featuredImages.map(featuredImage => (
                 <div key={featuredImage.id}>
-                  <div>
+                  <div className={styles.fairSlide}>
                     <GatsbyImage
                       image={featuredImage.image.gatsbyImageData}
                       alt={featuredImage.image.description}
+                      className={styles.fairImage}
                     ></GatsbyImage>
                   </div>
                 </div>
