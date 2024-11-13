@@ -120,16 +120,25 @@
 .nextArrow,
 .previousArrow {
   position: absolute;
-  top: 50%;
+  bottom: -40px;
   transform: translateY(-50%);
-  height: 28px;
-  width: 13px;
+  height: 15px;
+  width: 15px;
   cursor: pointer;
   z-index: 10;
 }
 
 .nextArrow {
-  right: 0;
+  left: 60px;
+}
+
+.previousArrow {
+  left: 0px;
+}
+
+.carouselSVG {
+  height: 100%;
+  width: 100%;
 }
 
 .fairSlide {
@@ -138,8 +147,10 @@
   align-items: center;
 }
 
-.fairImage {
-  width: calc(100% - 50px);
+.slideCount {
+  margin-top: 20px;
+  font-size: var(--caption);
+  margin-left: 25px;
 }
 
 @media screen and (max-width: 800px) {

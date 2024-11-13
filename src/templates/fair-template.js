@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import moment from "moment"
@@ -81,6 +81,8 @@ const Fair = ({ data }) => {
     aboutLinks,
   } = data.contentfulFair
 
+  const [activeSlide, setActiveSlide] = useState(0)
+
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -88,6 +90,7 @@ const Fair = ({ data }) => {
     fade: true,
     nextArrow: <NextArrow addClassName={styles.nextArrow} />,
     prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
+    afterChange: current => setActiveSlide(current),
   }
 
   const { width } = useWindowSize()
@@ -156,6 +159,11 @@ const Fair = ({ data }) => {
                 </div>
               ))}
             </Slider>
+            {featuredImages?.length > 1 && (
+              <div className={styles.slideCount}>
+                {Math.round(activeSlide + 1)} / {featuredImages.length}
+              </div>
+            )}
           </div>
         </div>
       </div>

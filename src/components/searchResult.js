@@ -30,7 +30,7 @@ const Hit = ({ hit }) => {
                   <p className={styles.searchResultTitle}>{name}</p>
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: featuredBiography.childMarkdownRemark.excerpt,
+                      __html: featuredBiography?.childMarkdownRemark.excerpt,
                     }}
                     className={styles.artistBio}
                   ></div>
@@ -52,11 +52,13 @@ const Hit = ({ hit }) => {
               <div className={styles.searchInfoText}>
                 <div className={styles.infoTextTop}>
                   <p className={styles.searchResultTitle}>
-                    {artists[0].name} — {title}
+                    {artists && artists[0].name + " — "}
+                    {title}
                   </p>
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: exhibitionDescription.childMarkdownRemark.excerpt,
+                      __html:
+                        exhibitionDescription?.childMarkdownRemark.excerpt,
                     }}
                   ></div>
                   <div className={styles.dates}>
