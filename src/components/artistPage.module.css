@@ -141,6 +141,17 @@
   color: var(--light-gray);
 }
 
+.loadMoreBtn {
+  border: 1px solid var(--dark-gray);
+  padding: 10px 20px 5px 20px;
+  border-radius: 100px;
+  margin: 0 auto;
+}
+
+.loadMoreBtn:hover {
+  color: var(--dark-gray);
+}
+
 @media screen and (max-width: 700px) {
   .aboutContainer {
     display: flex;

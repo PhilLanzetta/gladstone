@@ -43,7 +43,9 @@ const Exhibit = ({ data }) => {
                 {artist.name !== title && artist.name}
               </p>
             ))}
-            <p className={styles.aboveHeading}>{title}</p>
+            <p className={styles.aboveHeading}>
+              <em>{title}</em>
+            </p>
             <p className={styles.aboveInfo}>
               {moment(startDate).format("MMMM D")} &mdash;{" "}
               {moment(endDate).format("MMMM D, YYYY")}{" "}
@@ -55,9 +57,12 @@ const Exhibit = ({ data }) => {
             )}
             <p className={styles.aboveInfo}>{location}</p>
             {exhibitionDescription && (
-              <div className={styles.aboveDescription}>
-                {exhibitionDescription.exhibitionDescription}
-              </div>
+              <div
+                className={styles.aboveDescription}
+                dangerouslySetInnerHTML={{
+                  __html: exhibitionDescription.childMarkdownRemark.html,
+                }}
+              ></div>
             )}
             {aboutDownloads && (
               <div className={styles.downloadContainer}>
@@ -197,7 +202,9 @@ export const query = graphql`
       }
       endDate
       exhibitionDescription {
-        exhibitionDescription
+        childMarkdownRemark {
+          html
+        }
       }
       featuredImage {
         image {

@@ -66,6 +66,8 @@ function PrevArrow(props) {
 
 const SimpleCarousel = ({ images, slideCount, videos }) => {
   const [activeSlide, setActiveSlide] = useState(0)
+  const [activeVideo, setActiveVideo] = useState(null)
+
   const settings = {
     slidesToShow: slideCount,
     infinite: false,
@@ -105,7 +107,12 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
           videos.map(video => (
             <div key={video.id} className={styles.slide}>
               <div className={styles.slideContainer}>
-                <VideoPlayer video={video} videoId={video.id}></VideoPlayer>
+                <VideoPlayer
+                  video={video}
+                  videoId={video.id}
+                  activeVideo={activeVideo}
+                  setActiveVideo={setActiveVideo}
+                ></VideoPlayer>
               </div>
             </div>
           ))}

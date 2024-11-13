@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo"
@@ -29,6 +29,39 @@ const Artist = ({ data }) => {
 
   const { width } = useWindowSize()
   const isMobile = width < 700
+
+  const [allPress, setAllPress] = useState(press)
+  const [pressList, setPressList] = useState(
+    press ? [...allPress.slice(0, 8)] : []
+  )
+  const [loadMorePress, setLoadMorePress] = useState(false)
+  const [hasMorePress, setHasMorePress] = useState(allPress?.length > 8)
+
+  const handleLoadMore = () => {
+    setLoadMorePress(true)
+  }
+
+  useEffect(() => {
+    setPressList(press && [...allPress.slice(0, 8)])
+  }, [allPress])
+
+  useEffect(() => {
+    if (loadMorePress && hasMorePress) {
+      const currentLength = pressList?.length
+      const isMore = currentLength < allPress.length
+      const nextResults = isMore
+        ? allPress.slice(currentLength, currentLength + 8)
+        : []
+      setPressList([...pressList, ...nextResults])
+      setLoadMorePress(false)
+    }
+  }, [loadMorePress, hasMorePress, allPress, pressList])
+
+  //Check if there is more
+  useEffect(() => {
+    const isMore = pressList?.length < allPress?.length
+    setHasMorePress(isMore)
+  }, [pressList, allPress?.length])
 
   return (
     <Layout>
@@ -102,7 +135,7 @@ const Artist = ({ data }) => {
           <>
             <p className={styles.artistSectionHeading}>Press</p>
             <div id="press" className={styles.pressContainer}>
-              {press.map(pressItem => (
+              {pressList.map(pressItem => (
                 <div key={pressItem.id} className={styles.pressItem}>
                   <p>{pressItem.author}</p>
                   <p>{pressItem.title}</p>
@@ -132,6 +165,11 @@ const Artist = ({ data }) => {
                   )}
                 </div>
               ))}
+              {hasMorePress && (
+                <button onClick={handleLoadMore} className={styles.loadMoreBtn}>
+                  View More +
+                </button>
+              )}
             </div>
           </>
         )}
@@ -198,6 +236,7 @@ export const query = graphql`
           description
         }
         source
+        aspectRatio
       }
       callToActionText {
         childMarkdownRemark {

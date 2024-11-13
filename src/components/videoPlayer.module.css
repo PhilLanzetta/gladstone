@@ -60,7 +60,7 @@
 
 .fullScreenBtn {
   position: absolute;
-  z-index: 150;
+  z-index: 15000;
   top: 10px;
   right: 10px;
   cursor: pointer;

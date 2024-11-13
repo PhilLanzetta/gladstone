@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import ReactPlayer from "react-player"
 import Control from "./control"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -13,7 +13,7 @@ import play from "../images/play.svg"
 
 let count = 0
 
-const VideoPlayer = ({ video, videoId }) => {
+const VideoPlayer = ({ video, videoId, activeVideo, setActiveVideo }) => {
   const videoPlayerRef = useRef(null)
   const controlRef = useRef(null)
   const fullScreenRef = useRef(null)
@@ -51,6 +51,7 @@ const VideoPlayer = ({ video, videoId }) => {
   const playPauseHandler = () => {
     //plays and pause the video (toggling)
     setVideoState({ ...videoState, playing: !videoState.playing })
+    setActiveVideo(videoId)
   }
 
   const rewindHandler = () => {
@@ -120,7 +121,6 @@ const VideoPlayer = ({ video, videoId }) => {
   }
 
   const mouseMoveHandler = () => {
-    console.log("moved")
     controlRef.current.style.visibility = "visible"
     fullScreenRef.current.style.visibility = "visible"
     count = 0
@@ -140,10 +140,19 @@ const VideoPlayer = ({ video, videoId }) => {
     }
   }
 
+  useEffect(() => {
+    if (activeVideo !== videoId && videoPlayerRef.current) {
+      setVideoState({ ...videoState, playing: false })
+    }
+  }, [activeVideo, videoId])
+
   return (
     <div className={styles.videoPlayerContainer}>
       <div
         className={styles.videoPlayer}
+        style={{
+          aspectRatio: video.aspectRatio ? video.aspectRatio : "16 / 9",
+        }}
         id={videoId}
         key={isMobile}
         ref={elementRef}
@@ -156,6 +165,7 @@ const VideoPlayer = ({ video, videoId }) => {
               exit={{ opacity: 0 }}
               key="video-poster"
               className={styles.coverImageContainer}
+              onClick={playPauseHandler}
             >
               <GatsbyImage
                 image={video.coverImage?.gatsbyImageData}
@@ -184,6 +194,7 @@ const VideoPlayer = ({ video, videoId }) => {
           <div
             className={styles.overlay}
             onMouseMove={isMobile ? null : mouseMoveHandler}
+            onClick={playPauseHandler}
           ></div>
         )}
         <ReactPlayer

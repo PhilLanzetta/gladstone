@@ -174,7 +174,7 @@ export const query = graphql`
         featuredImage {
           image {
             description
-            gatsbyImageData
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
       }
