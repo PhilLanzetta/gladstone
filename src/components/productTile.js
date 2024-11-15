@@ -1,6 +1,7 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import React from "react"
+import { Link } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
+import * as styles from "./productTile.module.css"
 
 const ProductTile = ({ product }) => {
   const {
@@ -9,26 +10,27 @@ const ProductTile = ({ product }) => {
     totalInventory,
     priceRangeV2,
     metafields,
+    title,
   } = product
 
-  const artist = metafields.filter(
-    (metafield) => metafield.key === 'artist'
-  )[0]?.value
+  const artist = metafields.filter(metafield => metafield.key === "artist")[0]
+    ?.value
 
   return (
-    <div className='product-tile'>
+    <div className={styles.productTile}>
       <Link to={`/shop/${handle}`}>
-        <div className='product-tile-image'>
+        <div className={styles.productTileImage}>
           <GatsbyImage
             image={featuredImage?.localFile.childImageSharp.gatsbyImageData}
           ></GatsbyImage>
-          <div className='payment-info'>
+          <div className={styles.paymentInfo}>
+            <p>{title}</p>
             {totalInventory > 0 && (
-              <p>${priceRangeV2.minVariantPrice.amount}</p>
+              <p className={styles.price}>${priceRangeV2.minVariantPrice.amount}</p>
             )}
           </div>
           {totalInventory < 1 && (
-            <div className='sold-out-sticker'>
+            <div className={styles.soldOutSticker}>
               Sold <br />
               Out
             </div>

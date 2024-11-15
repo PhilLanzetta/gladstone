@@ -1,0 +1,14 @@
+.productTile {
+  width: calc(33% - 10px);
+}
+
+.paymentInfo {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.price {
+  font-family: var(--font-secondary);
+}

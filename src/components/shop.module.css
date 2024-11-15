@@ -1,0 +1,85 @@
+.exhibitionsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--medium-padding);
+}
+
+.headerLinkContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.headerLinkContainer a {
+  white-space: nowrap;
+  color: var(--dark-gray);
+}
+
+.headerLinkContainer a:hover {
+  color: #000;
+}
+
+.nextArrow,
+.previousArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+  width: 13px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.nextArrow {
+  right: var(--medium-padding);
+}
+
+.previousArrow {
+  left: var(--medium-padding);
+}
+
+.carouselSVG {
+  height: 100%;
+  width: 100%;
+}
+
+.sliderContainer {
+  width: calc(100% + (var(--medium-padding) * 2));
+  margin-left: calc(var(--medium-padding) * -1);
+}
+
+.carouselImg {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.featuredSlide {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.featuredSlideInfo {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  z-index: 10;
+  font-size: var(--title);
+  padding: var(--medium-padding);
+}
+
+.shopSectionHeading {
+  font-size: var(--title);
+  padding-bottom: 20px;
+  padding-top: var(--large-padding);
+}
+
+.productContainer {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
