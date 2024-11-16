@@ -101,3 +101,24 @@
   opacity: 1;
   transition: all 400ms;
 }
+
+@media screen and (max-width: 700px) {
+  .exhibitionsHeader {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .headerLinkContainer {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .artistListing {
+    column-count: 2;
+    font-size: var(--body-text);
+  }
+}

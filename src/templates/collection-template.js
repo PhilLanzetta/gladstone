@@ -32,6 +32,7 @@ const CollectionTemplate = ({ data, location }) => {
               Clothing
             </Link>
           </div>
+          <button>Sort +</button>
         </div>
         <div className={styles.productTilesContainer}>
           {products.map(product => (
