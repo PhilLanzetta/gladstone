@@ -78,8 +78,26 @@
   padding-top: var(--large-padding);
 }
 
-.productContainer {
+.productTilesContainer {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+}
+
+.headerLinkContainer .activeLink {
+  color: #000;
+}
+
+.artistListing {
+  padding-top: var(--medium-padding);
+  column-count: 4;
+  font-size: var(--body-text);
+  width: 100%;
+}
+
+.artistLink {
+  display: block;
+  margin-bottom: 5px;
+  opacity: 1;
+  transition: all 400ms;
 }

@@ -3,7 +3,9 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import * as styles from "../components/shop.module.css"
 import Slider from "react-slick"
-import ProductTile from "../components/productTile"
+import { GatsbyImage } from "gatsby-plugin-image"
+import Pagination from "../components/pagination"
+import slugify from "slugify"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -66,24 +68,31 @@ function PrevArrow(props) {
 }
 
 const Shop = ({ data }) => {
-  const products = data.allShopifyProduct.nodes
-  const featured = products.filter(product =>
-    product.collections?.some(item => item.title === "Featured")
-  )
-  const newProducts = products.filter(product =>
-    product.collections?.some(item => item.title === "New Releases")
-  )
-  const publications = products.filter(product =>
-    product.collections?.some(item => item.title === "Publications")
-  )
+  function onlyUnique(value, index, array) {
+    return array.indexOf(value) === index
+  }
 
-  const ephemera = products.filter(product =>
-    product.collections?.some(item => item.title === "Ephemera")
-  )
+  const collections = data.allShopifyCollection.nodes
+  const featured = data.contentfulFeaturedShopCarousel.slides
+  const newProducts = collections.filter(
+    collection => collection.handle === "new-releases"
+  )[0]
+  const publications = collections.filter(
+    collection => collection.handle === "publications"
+  )[0]
 
-  const clothing = products.filter(product =>
-    product.collections?.some(item => item.title === "Clothing")
-  )
+  const ephemera = collections.filter(
+    collection => collection.handle === "ephemera"
+  )[0]
+
+  const clothing = collections.filter(
+    collection => collection.handle === "clothing"
+  )[0]
+
+  const artists = data.allShopifyMetafield.nodes
+    .map(node => node.value)
+    .filter(onlyUnique)
+    .sort((a, b) => a.split(" ").pop().localeCompare(b.split(" ").pop()))
 
   const settings = {
     slidesToShow: 1,
@@ -98,63 +107,75 @@ const Shop = ({ data }) => {
     <Layout>
       <div className="pageContainer">
         <div className={styles.exhibitionsHeader}>
-          <div className="pageHeading">Shop</div>
+          <Link className="pageHeading" to="/shop">
+            Shop
+          </Link>
           <div className={styles.headerLinkContainer}>
-            <Link to="/shop/featured">Featured</Link>
-            <Link to="/shop/new-releases">New Releases</Link>
-            <Link to="/shop/featured/publications">Publications</Link>
-            <Link to="/shop/ephemera">Ephemera</Link>
-            <Link to="/shop/clothing">Clothing</Link>
+            <Link to="/shop/featured" activeClassName={styles.activeLink}>
+              Featured
+            </Link>
+            <Link to="/shop/new-releases" activeClassName={styles.activeLink}>
+              New Releases
+            </Link>
+            <Link to="/shop/publications" activeClassName={styles.activeLink}>
+              Publications
+            </Link>
+            <Link to="/shop/ephemera" activeClassName={styles.activeLink}>
+              Ephemera
+            </Link>
+            <Link to="/shop/clothing" activeClassName={styles.activeLink}>
+              Clothing
+            </Link>
           </div>
         </div>
         <Slider {...settings} className={styles.sliderContainer}>
-          {featured.map(item => {
-            const image = item.metafields.filter(
-              field => field.key === "featured_image"
-            )[0]
-            const artist = item.metafields.filter(
-              field => field.key === "artist"
-            )[0]
-            return (
-              <div key={item.id} className={styles.featuredSlide}>
-                <img
-                  src={image.value}
-                  alt={item.title}
-                  className={styles.carouselImg}
-                ></img>
-                <Link
-                  to={`/shop/${item.handle}`}
-                  className={styles.featuredSlideInfo}
-                >
-                  <p>{artist.value}</p>
-                  <p>{item.title}</p>
-                </Link>
-              </div>
-            )
-          })}
+          {featured.map(slide => (
+            <div key={slide.id} className={styles.featuredSlide}>
+              <GatsbyImage
+                image={slide.image.gatsbyImageData}
+                alt={slide.image.description}
+                className={styles.carouselImg}
+              ></GatsbyImage>
+              <Link
+                to={`/shop/${slide.productHandle}`}
+                className={styles.featuredSlideInfo}
+                dangerouslySetInnerHTML={{
+                  __html: slide.tileText.childMarkdownRemark.html,
+                }}
+              ></Link>
+            </div>
+          ))}
         </Slider>
         <div className={styles.shopSectionHeading}>New Releases</div>
-        <div className={styles.productContainer}>
-          {newProducts.map(product => (
-            <ProductTile key={product.id} product={product}></ProductTile>
-          ))}
-        </div>
+        <Pagination
+          type="product"
+          data={newProducts.products}
+          showNum={3}
+        ></Pagination>
         <div className={styles.shopSectionHeading}>Publications</div>
-        <div className={styles.productContainer}>
-          {publications.map(product => (
-            <ProductTile key={product.id} product={product}></ProductTile>
-          ))}
-        </div>
+        <Pagination
+          type="product"
+          data={publications.products}
+          showNum={9}
+        ></Pagination>
         <div className={styles.shopSectionHeading}>Ephemera</div>
-        <div className={styles.productContainer}>
-          {ephemera.map(product => (
-            <ProductTile key={product.id} product={product}></ProductTile>
-          ))}
-        </div>
+        <Pagination
+          type="product"
+          data={ephemera.products}
+          showNum={3}
+        ></Pagination>
         <div className={styles.shopSectionHeading}>Clothing</div>
-        <div className={styles.productContainer}>
-          {clothing.map(product => (
-            <ProductTile key={product.id} product={product}></ProductTile>
+        <Pagination
+          type="product"
+          data={clothing.products}
+          showNum={3}
+        ></Pagination>
+        <div className={styles.shopSectionHeading}>Browse by Artist</div>
+        <div className={styles.artistListing}>
+          {artists.map((artist, index) => (
+            <Link key={index} to={`/shop/${slugify(artist, { lower: true })}`} className={styles.artistLink}>
+              {artist}
+            </Link>
           ))}
         </div>
       </div>
@@ -164,31 +185,56 @@ const Shop = ({ data }) => {
 
 export const query = graphql`
   query {
-    allShopifyProduct {
+    allShopifyCollection {
       nodes {
-        featuredImage {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
+        id
+        handle
+        title
+        products {
+          featuredImage {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
             }
           }
-        }
-        handle
-        id
-        metafields {
-          key
-          value
-        }
-        priceRangeV2 {
-          minVariantPrice {
-            amount
+          handle
+          id
+          metafields {
+            key
+            value
+          }
+          priceRangeV2 {
+            minVariantPrice {
+              amount
+            }
+          }
+          totalInventory
+          title
+          collections {
+            title
           }
         }
-        totalInventory
-        title
-        collections {
-          title
+      }
+    }
+    contentfulFeaturedShopCarousel {
+      slides {
+        id
+        productHandle
+        image {
+          gatsbyImageData(layout: FULL_WIDTH)
+          description
         }
+        tileText {
+          childMarkdownRemark {
+            html
+          }
+        }
+      }
+    }
+    allShopifyMetafield(filter: { key: { eq: "artist" } }) {
+      nodes {
+        value
       }
     }
   }

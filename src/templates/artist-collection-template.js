@@ -3,16 +3,41 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import ProductTile from "../components/productTile"
 import Seo from "../components/seo"
+import * as styles from "../components/shop.module.css"
 
 const ArtistCollectionTemplate = ({ data, location }) => {
   const products = data.allShopifyProduct.nodes
 
   return (
     <Layout location={location} collection={true}>
-      <div className="product-tiles-container">
-        {products.map(product => (
-          <ProductTile key={product.id} product={product}></ProductTile>
-        ))}
+      <div className="pageContainer">
+        <div className={styles.exhibitionsHeader}>
+          <Link className="pageHeading" to="/shop">
+            Shop
+          </Link>
+          <div className={styles.headerLinkContainer}>
+            <Link to="/shop/featured" activeClassName={styles.activeLink}>
+              Featured
+            </Link>
+            <Link to="/shop/new-releases" activeClassName={styles.activeLink}>
+              New Releases
+            </Link>
+            <Link to="/shop/publications" activeClassName={styles.activeLink}>
+              Publications
+            </Link>
+            <Link to="/shop/ephemera" activeClassName={styles.activeLink}>
+              Ephemera
+            </Link>
+            <Link to="/shop/clothing" activeClassName={styles.activeLink}>
+              Clothing
+            </Link>
+          </div>
+        </div>
+        <div className={styles.productTilesContainer}>
+          {products.map(product => (
+            <ProductTile key={product.id} product={product}></ProductTile>
+          ))}
+        </div>
       </div>
     </Layout>
   )

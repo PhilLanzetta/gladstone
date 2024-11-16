@@ -1,5 +1,6 @@
 .productTile {
   width: calc(33% - 10px);
+  position: relative;
 }
 
 .paymentInfo {
@@ -10,5 +11,28 @@
 }
 
 .price {
+  font-family: var(--font-secondary);
+}
+
+.productTileImage {
+  aspect-ratio: 1.5 / 1;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eaeaea;
+}
+
+.soldOutSticker {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: var(--caption);
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--dark-gray);
+  border-radius: 100%;
+  padding: 8px;
+  text-align: center;
   font-family: var(--font-secondary);
 }

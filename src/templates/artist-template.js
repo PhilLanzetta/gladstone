@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { graphql, Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo"
@@ -6,11 +6,11 @@ import Layout from "../components/layout"
 import * as styles from "../components/artistPage.module.css"
 import ExhibitionTile from "../components/exhibitionTile"
 import MediaCarousel from "../components/mediaCarousel"
-import moment from "moment"
 import VariedWidthCarousel from "../components/variedWidthCarousel"
 import useWindowSize from "../utils/useWindowSize"
 import SimpleCarousel from "../components/simpleCarousel"
 import PdfDownload from "../components/pdfDownload"
+import Pagination from "../components/pagination"
 
 const Artist = ({ data }) => {
   const {
@@ -29,39 +29,6 @@ const Artist = ({ data }) => {
 
   const { width } = useWindowSize()
   const isMobile = width < 700
-
-  const [allPress, setAllPress] = useState(press)
-  const [pressList, setPressList] = useState(
-    press ? [...allPress.slice(0, 8)] : []
-  )
-  const [loadMorePress, setLoadMorePress] = useState(false)
-  const [hasMorePress, setHasMorePress] = useState(allPress?.length > 8)
-
-  const handleLoadMore = () => {
-    setLoadMorePress(true)
-  }
-
-  useEffect(() => {
-    setPressList(press && [...allPress.slice(0, 8)])
-  }, [allPress])
-
-  useEffect(() => {
-    if (loadMorePress && hasMorePress) {
-      const currentLength = pressList?.length
-      const isMore = currentLength < allPress.length
-      const nextResults = isMore
-        ? allPress.slice(currentLength, currentLength + 8)
-        : []
-      setPressList([...pressList, ...nextResults])
-      setLoadMorePress(false)
-    }
-  }, [loadMorePress, hasMorePress, allPress, pressList])
-
-  //Check if there is more
-  useEffect(() => {
-    const isMore = pressList?.length < allPress?.length
-    setHasMorePress(isMore)
-  }, [pressList, allPress?.length])
 
   return (
     <Layout>
@@ -135,41 +102,7 @@ const Artist = ({ data }) => {
           <>
             <p className={styles.artistSectionHeading}>Press</p>
             <div id="press" className={styles.pressContainer}>
-              {pressList.map(pressItem => (
-                <div key={pressItem.id} className={styles.pressItem}>
-                  <p>{pressItem.author}</p>
-                  <p>{pressItem.title}</p>
-                  <p>{pressItem.publication}</p>
-                  <p className={styles.pressSecondary}>
-                    {moment(pressItem.date).format("MMMM D, YYYY")}
-                  </p>
-                  {pressItem.articlePdf && (
-                    <a
-                      className={styles.pressSecondaryLink}
-                      href={pressItem.articlePdf.file.url}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Download PDF &darr;
-                    </a>
-                  )}
-                  {pressItem.articleLink && (
-                    <a
-                      href={pressItem.articleLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={styles.pressSecondaryLink}
-                    >
-                      View Website &#8599;
-                    </a>
-                  )}
-                </div>
-              ))}
-              {hasMorePress && (
-                <button onClick={handleLoadMore} className={styles.loadMoreBtn}>
-                  View More +
-                </button>
-              )}
+              <Pagination type="press" data={press} showNum={8}></Pagination>
             </div>
           </>
         )}

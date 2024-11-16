@@ -61,41 +61,11 @@
   width: 30%;
 }
 
-.pressContainer {
-  display: flex;
-  margin-bottom: var(--medium-padding);
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.pressItem {
-  width: calc(25% - 15px);
-  margin-bottom: var(--medium-padding);
-}
-
 .downloadContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   margin-top: 40px;
-}
-
-.pressSecondary {
-  display: block;
-  font-family: var(--font-secondary);
-  font-size: var(--caption);
-  color: var(--dark-gray);
-}
-
-.pressSecondaryLink {
-  display: block;
-  font-family: var(--font-secondary);
-  font-size: var(--caption);
-  color: var(--dark-gray);
-}
-
-.pressSecondaryLink:hover {
-  color: #000;
 }
 
 .studioContainer {
@@ -141,16 +111,6 @@
   color: var(--light-gray);
 }
 
-.loadMoreBtn {
-  border: 1px solid var(--dark-gray);
-  padding: 10px 20px 5px 20px;
-  border-radius: 100px;
-  margin: 0 auto;
-}
-
-.loadMoreBtn:hover {
-  color: var(--dark-gray);
-}
 
 @media screen and (max-width: 700px) {
   .aboutContainer {
@@ -181,10 +141,6 @@
   .artistBio p {
     line-height: 1.75;
     font-size: var(--body-text);
-  }
-
-  .pressContainer {
-    gap: 10px;
   }
 
   .pressItem {
