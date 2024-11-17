@@ -1,12 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import ProductTile from "../components/productTile"
 import Seo from "../components/seo"
 import * as styles from "../components/shop.module.css"
+import { AnimatePresence, motion } from "framer-motion"
 
 const CollectionTemplate = ({ data, location }) => {
-  const products = data.shopifyCollection.products
+  const allProducts = data.shopifyCollection.products
+  const [filterOpen, setFilterOpen] = useState(false)
+  const [products, setProducts] = useState(allProducts)
 
   return (
     <Layout location={location} collection={true}>
@@ -31,8 +34,63 @@ const CollectionTemplate = ({ data, location }) => {
             <Link to="/shop/clothing" activeClassName={styles.activeLink}>
               Clothing
             </Link>
+            <Link to="/shop/artists" activeClassName={styles.activeLink}>
+              Artists
+            </Link>
           </div>
-          <button>Sort +</button>
+        </div>
+        <div className={styles.filterContainer}>
+          <button
+            onClick={() => setFilterOpen(!filterOpen)}
+            className={styles.filterButton}
+          >
+            Sort{" "}
+            <span className={styles.filterIndicator}>
+              {filterOpen ? "-" : "+"}
+            </span>
+          </button>
+          <AnimatePresence>
+            {filterOpen && (
+              <motion.div
+                key="sort"
+                initial={{ opacity: 0, maxHeight: 0 }}
+                animate={{ opacity: 1, maxHeight: "300px" }}
+                exit={{ opacity: 0, maxHeight: 0 }}
+                className={styles.filterDropdown}
+              >
+                <button
+                  className={styles.dropdownButton}
+                  onClick={() => {
+                    setProducts(
+                      allProducts.sort(
+                        (a, b) =>
+                          a.priceRangeV2?.minVariantPrice?.amount -
+                          b.priceRangeV2?.minVariantPrice?.amount
+                      )
+                    )
+                    setFilterOpen(false)
+                  }}
+                >
+                  Price: Low to High
+                </button>
+                <button
+                  className={styles.dropdownButton}
+                  onClick={() => {
+                    setProducts(
+                      allProducts.sort(
+                        (a, b) =>
+                          b.priceRangeV2?.minVariantPrice?.amount -
+                          a.priceRangeV2?.minVariantPrice?.amount
+                      )
+                    )
+                    setFilterOpen(false)
+                  }}
+                >
+                  Price: High to Low
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
         <div className={styles.productTilesContainer}>
           {products.map(product => (

@@ -1,10 +1,10 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import Layout from "../components/layout"
-import * as styles from "../components/shop.module.css"
+import Layout from "../../components/layout"
+import * as styles from "../../components/shop.module.css"
 import Slider from "react-slick"
 import { GatsbyImage } from "gatsby-plugin-image"
-import Pagination from "../components/pagination"
+import Pagination from "../../components/pagination"
 import slugify from "slugify"
 
 function NextArrow(props) {
@@ -126,6 +126,9 @@ const Shop = ({ data }) => {
             <Link to="/shop/clothing" activeClassName={styles.activeLink}>
               Clothing
             </Link>
+            <Link to="/shop/artists" activeClassName={styles.activeLink}>
+              Artists
+            </Link>
           </div>
         </div>
         <Slider {...settings} className={styles.sliderContainer}>
@@ -173,7 +176,11 @@ const Shop = ({ data }) => {
         <div className={styles.shopSectionHeading}>Browse by Artist</div>
         <div className={styles.artistListing}>
           {artists.map((artist, index) => (
-            <Link key={index} to={`/shop/${slugify(artist, { lower: true })}`} className={styles.artistLink}>
+            <Link
+              key={index}
+              to={`/shop/${slugify(artist, { lower: true })}`}
+              className={styles.artistLink}
+            >
               {artist}
             </Link>
           ))}
