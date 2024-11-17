@@ -13,9 +13,9 @@ const Cart = ({ toggleCart }) => {
 
   return (
     <motion.section
-      initial={{ translateX: "100%" }}
-      animate={{ translateX: 0 }}
-      exit={{ translateX: "100%" }}
+      initial={{ translateY: "-100%" }}
+      animate={{ translateY: 0 }}
+      exit={{ translateY: "-100%" }}
       transition={{ duration: 0.4 }}
       className="cart-container"
     >

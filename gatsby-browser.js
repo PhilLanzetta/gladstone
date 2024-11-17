@@ -2,6 +2,10 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import React from "react"
 import { AnimatePresence } from "framer-motion"
+import CombinedProvider from "./src/context/CombinedProvider"
+
+export const wrapRootElement = CombinedProvider
+
 export const wrapPageElement = ({ element }) => (
   <AnimatePresence mode="wait">{element}</AnimatePresence>
 )

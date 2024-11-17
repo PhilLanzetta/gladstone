@@ -8,6 +8,7 @@ import Seo from "../components/seo"
 import Slider from "react-slick"
 import * as styles from "../components/shop.module.css"
 import Cart from "../components/cart"
+import { AnimatePresence } from "framer-motion"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -87,7 +88,6 @@ const ProductPage = ({ location, data }) => {
 
   const { addVariantToCart, cart } = useStore()
 
-  console.log(cart)
   const sizes = variants
     .map(variant =>
       variant.selectedOptions.filter(option => option.name === "Size")
@@ -99,12 +99,29 @@ const ProductPage = ({ location, data }) => {
     slidesToScroll: 1,
     arrows: true,
     fade: true,
+    infinite: true,
     nextArrow: <NextArrow addClassName={styles.nextArrowProduct} />,
     prevArrow: <PrevArrow addClassName={styles.previousArrowProduct} />,
+    responsive: [
+      {
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 1.15,
+          arrows: false,
+          fade: false,
+          infinite: false,
+        },
+      },
+    ],
   }
 
   return (
     <Layout>
+      <AnimatePresence>
+        {isCartOpen && (
+          <Cart toggleCart={() => setIsCartOpen(!isCartOpen)}></Cart>
+        )}
+      </AnimatePresence>
       <div className="pageContainer">
         <div className={styles.exhibitionsHeader}>
           <Link className="pageHeading" to="/shop">
@@ -130,39 +147,49 @@ const ProductPage = ({ location, data }) => {
               Artists
             </Link>
             {cart.length > 0 && (
-              <div className="shop-cart">
-                <button
-                  onClick={() => setIsCartOpen(!isCartOpen)}
-                  className="shop-bag-button"
+              <button
+                onClick={() => setIsCartOpen(!isCartOpen)}
+                className={styles.shopBagButton}
+              >
+                <span className={styles.cartText}>Cart</span>
+                {cart.length > 0 ? (
+                  <span className={styles.cartNumber}>
+                    {cart
+                      .map(item => item.quantity)
+                      .reduce((prev, next) => prev + next)}
+                  </span>
+                ) : (
+                  ""
+                )}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={styles.cartSVG}
+                  viewBox="0 0 19 27"
                 >
-                  <p>
-                    Cart{"  "}
-                    {cart.length > 0 ? (
-                      <span className="cart-number">
-                        (
-                        {cart
-                          .map(item => item.quantity)
-                          .reduce((prev, next) => prev + next)}
-                        )
-                      </span>
-                    ) : (
-                      ""
-                    )}
-                  </p>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="cart-icon"
-                    viewBox="0 0 43.963 36.303"
+                  <g
+                    id="Ellipse_2"
+                    data-name="Ellipse 2"
+                    transform="translate(2)"
+                    fill="none"
+                    stroke="#000"
+                    stroke-width="1"
                   >
-                    <path
-                      id="Path_3"
-                      data-name="Path 3"
-                      d="M11.785,45.8a.3.3,0,0,0,.114.228v.057l.171.171h.057a.3.3,0,0,0,.228.114h0L35.039,54.35a.514.514,0,0,0,.285.057,1.2,1.2,0,0,0,.627-.228L55.215,34.915a.846.846,0,0,0,.228-.8.9.9,0,0,0-.57-.627l-.912-.228a24.972,24.972,0,0,1-.228-2.964,10.983,10.983,0,0,1,.057-1.368l1.368-1.368a.846.846,0,0,0,.228-.8.9.9,0,0,0-.57-.627L32.132,18.158a.809.809,0,0,0-.912.228L12.013,37.594h0c-.057.057-.114.114-.114.171v.057c0,.057-.057.057-.057.114v.114a21.318,21.318,0,0,0-.342,3.876,21.392,21.392,0,0,0,.285,3.876Zm11.057-3.078L33.5,46.485a25.951,25.951,0,0,0-.228,3.021,19.385,19.385,0,0,0,.171,2.565L14.065,45.231,13.381,45a17.765,17.765,0,0,1-.228-3.078,19.385,19.385,0,0,1,.171-2.565Zm30.036-9.29-1.026,1.026L34.583,51.671c-.057-.684-.114-1.425-.114-2.166a19.608,19.608,0,0,1,.171-2.622l.4.171a.514.514,0,0,0,.285.057,1.2,1.2,0,0,0,.627-.228L46.837,36l5.813-5.813v.171A18.651,18.651,0,0,0,52.878,33.433Z"
-                      transform="translate(-11.5 -18.104)"
-                    />
-                  </svg>
-                </button>
-              </div>
+                    <circle cx="7.5" cy="7.5" r="7.5" stroke="none" />
+                    <circle cx="7.5" cy="7.5" r="7" fill="none" />
+                  </g>
+                  <g
+                    id="Rectangle_97"
+                    data-name="Rectangle 97"
+                    transform="translate(0 7)"
+                    fill="#fff"
+                    stroke="#000"
+                    stroke-width="1"
+                  >
+                    <rect width="19" height="20" stroke="none" />
+                    <rect x="0.5" y="0.5" width="18" height="19" fill="none" />
+                  </g>
+                </svg>
+              </button>
             )}
           </div>
         </div>
