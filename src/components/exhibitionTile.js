@@ -23,7 +23,7 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
   const titleIsArtist = artists?.filter(artist => artist.name === title).length
 
   return (
-    <div className={styles.tileContainer}>
+    <div className={past ? styles.tileContainerPast : styles.tileContainer}>
       <Link to={`${fair ? "/fair/" : "/exhibit/"}${slug}`}>
         <GatsbyImage
           image={tileImage?.image.gatsbyImageData}

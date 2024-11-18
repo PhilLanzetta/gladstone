@@ -3,6 +3,13 @@
   flex-direction: column;
 }
 
+.tileContainerPast {
+  display: flex;
+  flex-direction: column;
+  width: calc(33% - 10px);
+  padding-bottom: var(--medium-padding);
+}
+
 .tileImage {
   aspect-ratio: 5 / 4;
 }
@@ -45,5 +52,9 @@
   .infoHeading {
     font-size: var(--subtitle);
   }
-}
 
+  .tileContainerPast {
+    width: calc(50% - 5px);
+    padding-bottom: var(--medium-padding);
+  }
+}

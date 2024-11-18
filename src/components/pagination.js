@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import moment from "moment"
 import * as styles from "./pagination.module.css"
 import ProductTile from "./productTile"
+import ExhibitionTile from "./exhibitionTile"
 
 const Pagination = ({ type, data, showNum }) => {
   const [allData, setAllData] = useState(data)
@@ -71,6 +72,14 @@ const Pagination = ({ type, data, showNum }) => {
       {type === "product" &&
         dataList.map(product => (
           <ProductTile key={product.id} product={product}></ProductTile>
+        ))}
+      {type === "exhibit" &&
+        dataList.map(exhibit => (
+          <ExhibitionTile
+            key={exhibit.id}
+            content={exhibit}
+            past={true}
+          ></ExhibitionTile>
         ))}
       {hasMoreData && (
         <button onClick={handleLoadMore} className={styles.loadMoreBtn}>

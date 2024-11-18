@@ -5,6 +5,7 @@ import * as styles from "../components/exhibitions.module.css"
 import moment from "moment"
 import ExhibitionTile from "../components/exhibitionTile"
 import { AnimatePresence, motion } from "framer-motion"
+import Pagination from "../components/pagination"
 
 const Exhibitions = ({ data }) => {
   const today = moment()
@@ -54,10 +55,12 @@ const Exhibitions = ({ data }) => {
 
   const handleFilter = (category, value) => {
     if (category === "artist") {
-      const filterdByArtist = allPast.filter(exhibit =>
-        exhibit.artists.some(artist => artist.name === value)
-      )
-      setPast(filterdByArtist)
+      const filteredByArtist = allPast
+        .filter(exhibit => exhibit.artists?.length)
+        .filter(exhibitWithArtist =>
+          exhibitWithArtist.artists.some(artist => artist.name === value)
+        )
+      setPast(filteredByArtist)
       setArtistOpen(false)
     } else if (category === "location") {
       const filterByLocation = allPast.filter(
@@ -107,7 +110,10 @@ const Exhibitions = ({ data }) => {
               ></ExhibitionTile>
             ))}
         </div>
-        <div id="past" className={`${styles.pastHeading} ${styles.exhibitSectionHeading}`}>
+        <div
+          id="past"
+          className={`${styles.pastHeading} ${styles.exhibitSectionHeading}`}
+        >
           <p>Past</p>
           <div className={styles.filterContainer}>
             <p>Filter:</p>
@@ -294,16 +300,14 @@ const Exhibitions = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className={styles.pastContainer}>
-          {past.length > 0 &&
-            past.map(exhibit => (
-              <ExhibitionTile
-                key={exhibit.id}
-                content={exhibit}
-                past={true}
-              ></ExhibitionTile>
-            ))}
-        </div>
+        {past.length > 0 && (
+          <Pagination
+            type="exhibit"
+            data={past}
+            showNum={6}
+            key={past}
+          ></Pagination>
+        )}
       </div>
     </Layout>
   )
@@ -311,7 +315,10 @@ const Exhibitions = ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulExhibition(sort: { startDate: DESC }) {
+    allContentfulExhibition(
+      sort: { startDate: DESC }
+      filter: { node_locale: { eq: "en-US" } }
+    ) {
       nodes {
         id
         artists {
