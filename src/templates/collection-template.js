@@ -5,6 +5,7 @@ import ProductTile from "../components/productTile"
 import Seo from "../components/seo"
 import * as styles from "../components/shop.module.css"
 import { AnimatePresence, motion } from "framer-motion"
+import ShopHeading from "../components/shopHeading"
 
 const CollectionTemplate = ({ data, location }) => {
   const allProducts = data.shopifyCollection.products
@@ -14,31 +15,7 @@ const CollectionTemplate = ({ data, location }) => {
   return (
     <Layout location={location} collection={true}>
       <div className="pageContainer">
-        <div className={styles.exhibitionsHeader}>
-          <Link className="pageHeading" to="/shop">
-            Shop
-          </Link>
-          <div className={styles.headerLinkContainer}>
-            <Link to="/shop/featured" activeClassName={styles.activeLink}>
-              Featured
-            </Link>
-            <Link to="/shop/new-releases" activeClassName={styles.activeLink}>
-              New Releases
-            </Link>
-            <Link to="/shop/publications" activeClassName={styles.activeLink}>
-              Publications
-            </Link>
-            <Link to="/shop/ephemera" activeClassName={styles.activeLink}>
-              Ephemera
-            </Link>
-            <Link to="/shop/clothing" activeClassName={styles.activeLink}>
-              Clothing
-            </Link>
-            <Link to="/shop/artists" activeClassName={styles.activeLink}>
-              Artists
-            </Link>
-          </div>
-        </div>
+        <ShopHeading></ShopHeading>
         <div className={styles.filterContainer}>
           <button
             onClick={() => setFilterOpen(!filterOpen)}

@@ -1,6 +1,7 @@
 import React from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 import useStore from "../context/StoreContext"
+import * as styles from "./cart.module.css"
 
 const ProductRow = ({ item }) => {
   const { product, quantity, variantIndex } = item
@@ -15,26 +16,34 @@ const ProductRow = ({ item }) => {
     useStore()
 
   return (
-    <section className="product-row-container">
-      <GatsbyImage
-        image={
-          product.media[0]?.image.localFile.childImageSharp.gatsbyImageData
-        }
-        className="product-row-image"
-      ></GatsbyImage>
-      <article className="product-row-info">
-        <p className="cart-product-title">
-          <span>{product.title}</span>
-        </p>
-        {size && <p className="product-row-size">Size - {size.value}</p>}
-        <p>
-          <span>{`$${product.priceRangeV2.minVariantPrice.amount}`}</span>
-        </p>
-        <article className="product-row-quantity">
-          <p>QUANTITY</p>
-          <div className="quantity-buttons">
+    <div className={styles.productRowContainer}>
+      <div className={styles.productSection}>
+        <p className={styles.heading}>Product</p>
+        <div className={styles.productInfo}>
+          <GatsbyImage
+            image={
+              product.media[0]?.image.localFile.childImageSharp.gatsbyImageData
+            }
+            className={styles.productRowImage}
+          ></GatsbyImage>
+          <p>
+            <span>{product.title}</span>
+          </p>
+          {size && <p className="product-row-size">Size - {size.value}</p>}
+        </div>
+      </div>
+      <div className={styles.rowRight}>
+        <div className={styles.priceContainer}>
+          <p className={styles.heading}>Price</p>
+          <p>
+            <span>{`$${product.priceRangeV2.minVariantPrice.amount}`}</span>
+          </p>
+        </div>
+        <div className={styles.quantityContainer}>
+          <p className={styles.heading}>Quantity</p>
+          <div className={styles.quantityButtons}>
             <button
-              className="quantity-btn"
+              className={styles.quantityBtn}
               onClick={() =>
                 lowerCartItemQuantity(
                   product.variants[variantIndex]?.shopifyId,
@@ -45,7 +54,7 @@ const ProductRow = ({ item }) => {
             >
               -
             </button>
-            <p>{quantity}</p>
+            <p className={styles.quantityBtnNum}>{quantity}</p>
             <button
               onClick={() =>
                 addCartItemQuantity(
@@ -53,25 +62,33 @@ const ProductRow = ({ item }) => {
                   variantIndex
                 )
               }
-              className="quantity-btn"
+              className={styles.quantityBtn}
             >
               +
             </button>
+            <button
+              onClick={() =>
+                removeLineItem(
+                  product.variants[variantIndex]?.shopifyId,
+                  variantIndex
+                )
+              }
+              className={styles.remove}
+            >
+              Remove
+            </button>
           </div>
-        </article>
-        <button
-          onClick={() =>
-            removeLineItem(
-              product.variants[variantIndex]?.shopifyId,
-              variantIndex
-            )
-          }
-          className="cart-remove"
-        >
-          Remove from cart
-        </button>
-      </article>
-    </section>
+        </div>
+        <div className={styles.rowTotalContainer}>
+          <p className={styles.heading}>Total</p>
+          <p>
+            <span>{`$${
+              product.priceRangeV2.minVariantPrice.amount * quantity
+            }`}</span>
+          </p>
+        </div>
+      </div>
+    </div>
   )
 }
 

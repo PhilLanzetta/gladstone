@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Layout from "../components/layout"
-import { graphql, Link } from "gatsby"
+import { graphql} from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import useWindowSize from "../utils/useWindowSize"
 import useStore from "../context/StoreContext"
@@ -9,6 +9,7 @@ import Slider from "react-slick"
 import * as styles from "../components/shop.module.css"
 import Cart from "../components/cart"
 import { AnimatePresence } from "framer-motion"
+import ShopHeading from "../components/shopHeading"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -73,8 +74,6 @@ function PrevArrow(props) {
 const ProductPage = ({ location, data }) => {
   const { width } = useWindowSize()
   const [variantIndex, setVariantIndex] = useState(0)
-  const [isCartOpen, setIsCartOpen] = useState(false)
-  const isMobile = width < 700
   const {
     media,
     title,
@@ -86,7 +85,7 @@ const ProductPage = ({ location, data }) => {
     collections,
   } = data.shopifyProduct
 
-  const { addVariantToCart, cart } = useStore()
+  const { addVariantToCart } = useStore()
 
   const sizes = variants
     .map(variant =>
@@ -117,82 +116,8 @@ const ProductPage = ({ location, data }) => {
 
   return (
     <Layout>
-      <AnimatePresence>
-        {isCartOpen && (
-          <Cart toggleCart={() => setIsCartOpen(!isCartOpen)}></Cart>
-        )}
-      </AnimatePresence>
       <div className="pageContainer">
-        <div className={styles.exhibitionsHeader}>
-          <Link className="pageHeading" to="/shop">
-            Shop
-          </Link>
-          <div className={styles.headerLinkContainer}>
-            <Link to="/shop/featured" activeClassName={styles.activeLink}>
-              Featured
-            </Link>
-            <Link to="/shop/new-releases" activeClassName={styles.activeLink}>
-              New Releases
-            </Link>
-            <Link to="/shop/publications" activeClassName={styles.activeLink}>
-              Publications
-            </Link>
-            <Link to="/shop/ephemera" activeClassName={styles.activeLink}>
-              Ephemera
-            </Link>
-            <Link to="/shop/clothing" activeClassName={styles.activeLink}>
-              Clothing
-            </Link>
-            <Link to="/shop/artists" activeClassName={styles.activeLink}>
-              Artists
-            </Link>
-            {cart.length > 0 && (
-              <button
-                onClick={() => setIsCartOpen(!isCartOpen)}
-                className={styles.shopBagButton}
-              >
-                <span className={styles.cartText}>Cart</span>
-                {cart.length > 0 ? (
-                  <span className={styles.cartNumber}>
-                    {cart
-                      .map(item => item.quantity)
-                      .reduce((prev, next) => prev + next)}
-                  </span>
-                ) : (
-                  ""
-                )}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={styles.cartSVG}
-                  viewBox="0 0 19 27"
-                >
-                  <g
-                    id="Ellipse_2"
-                    data-name="Ellipse 2"
-                    transform="translate(2)"
-                    fill="none"
-                    stroke="#000"
-                    stroke-width="1"
-                  >
-                    <circle cx="7.5" cy="7.5" r="7.5" stroke="none" />
-                    <circle cx="7.5" cy="7.5" r="7" fill="none" />
-                  </g>
-                  <g
-                    id="Rectangle_97"
-                    data-name="Rectangle 97"
-                    transform="translate(0 7)"
-                    fill="#fff"
-                    stroke="#000"
-                    stroke-width="1"
-                  >
-                    <rect width="19" height="20" stroke="none" />
-                    <rect x="0.5" y="0.5" width="18" height="19" fill="none" />
-                  </g>
-                </svg>
-              </button>
-            )}
-          </div>
-        </div>
+        <ShopHeading></ShopHeading>
         <div className={styles.productContainer}>
           <div className={styles.productLeft}>
             <Slider {...settings}>
