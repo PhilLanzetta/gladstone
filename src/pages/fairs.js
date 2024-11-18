@@ -5,6 +5,7 @@ import * as styles from "../components/exhibitions.module.css"
 import moment from "moment"
 import ExhibitionTile from "../components/exhibitionTile"
 import { AnimatePresence, motion } from "framer-motion"
+import Pagination from "../components/pagination"
 
 const Fairs = ({ data }) => {
   const today = moment()
@@ -21,13 +22,9 @@ const Fairs = ({ data }) => {
       moment(fair.endDate).isAfter(today)
   )
 
-  const upcoming = fairs.filter(fair =>
-    moment(fair.startDate).isAfter(today)
-  )
+  const upcoming = fairs.filter(fair => moment(fair.startDate).isAfter(today))
 
-  const allPast = fairs.filter(fair =>
-    moment(fair.endDate).isBefore(today)
-  )
+  const allPast = fairs.filter(fair => moment(fair.endDate).isBefore(today))
 
   const allArtists = allPast
     .map(exhibit => exhibit.artists)
@@ -51,6 +48,7 @@ const Fairs = ({ data }) => {
   const [yearOpen, setYearOpen] = useState(false)
   const [artistOpen, setArtistOpen] = useState(false)
   const [locationOpen, setLocationOpen] = useState(false)
+  const [change, setChange] = useState(0)
 
   const handleFilter = (category, value) => {
     if (category === "artist") {
@@ -59,18 +57,19 @@ const Fairs = ({ data }) => {
       )
       setPast(filterdByArtist)
       setArtistOpen(false)
+      setChange(prev => prev + 1)
     } else if (category === "location") {
-      const filterByLocation = allPast.filter(
-        exhibit => exhibit.city === value
-      )
+      const filterByLocation = allPast.filter(exhibit => exhibit.city === value)
       setPast(filterByLocation)
       setLocationOpen(false)
+      setChange(prev => prev + 1)
     } else if (category === "year") {
       const filterByYear = allPast.filter(
         exhibit => moment(exhibit.startDate).year() === value
       )
       setPast(filterByYear)
       setYearOpen(false)
+      setChange(prev => prev + 1)
     }
   }
 
@@ -159,6 +158,7 @@ const Fairs = ({ data }) => {
                       onClick={() => {
                         setPast(allPast)
                         setArtistOpen(false)
+                        setChange(prev => prev + 1)
                       }}
                       className={styles.dropdownButton}
                     >
@@ -220,6 +220,7 @@ const Fairs = ({ data }) => {
                       onClick={() => {
                         setPast(allPast)
                         setLocationOpen(false)
+                        setChange(prev => prev + 1)
                       }}
                       className={styles.dropdownButton}
                     >
@@ -279,6 +280,7 @@ const Fairs = ({ data }) => {
                       onClick={() => {
                         setPast(allPast)
                         setYearOpen(false)
+                        setChange(prev => prev + 1)
                       }}
                       className={styles.dropdownButton}
                     >
@@ -299,17 +301,15 @@ const Fairs = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className={styles.pastContainer}>
-          {past.length > 0 &&
-            past.map(exhibit => (
-              <ExhibitionTile
-                key={exhibit.id}
-                content={exhibit}
-                past={true}
-                fair={true}
-              ></ExhibitionTile>
-            ))}
-        </div>
+        {past.length && (
+          <Pagination
+            type="exhibit"
+            data={past}
+            showNum={6}
+            key={change}
+            fair={true}
+          ></Pagination>
+        )}
       </div>
     </Layout>
   )
@@ -317,7 +317,10 @@ const Fairs = ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulFair(sort: { startDate: DESC }) {
+    allContentfulFair(
+      sort: { startDate: DESC }
+      filter: { node_locale: { eq: "en-US" } }
+    ) {
       nodes {
         id
         artists {

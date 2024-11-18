@@ -4,7 +4,7 @@ import * as styles from "./pagination.module.css"
 import ProductTile from "./productTile"
 import ExhibitionTile from "./exhibitionTile"
 
-const Pagination = ({ type, data, showNum }) => {
+const Pagination = ({ type, data, showNum, fair }) => {
   const [allData, setAllData] = useState(data)
   const [dataList, setDataList] = useState([...allData.slice(0, showNum)])
   const [loadMoreData, setLoadMoreData] = useState(false)
@@ -79,6 +79,7 @@ const Pagination = ({ type, data, showNum }) => {
             key={exhibit.id}
             content={exhibit}
             past={true}
+            fair={fair}
           ></ExhibitionTile>
         ))}
       {hasMoreData && (

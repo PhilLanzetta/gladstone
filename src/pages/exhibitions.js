@@ -52,6 +52,7 @@ const Exhibitions = ({ data }) => {
   const [yearOpen, setYearOpen] = useState(false)
   const [artistOpen, setArtistOpen] = useState(false)
   const [locationOpen, setLocationOpen] = useState(false)
+  const [change, setChange] = useState(0)
 
   const handleFilter = (category, value) => {
     if (category === "artist") {
@@ -62,18 +63,21 @@ const Exhibitions = ({ data }) => {
         )
       setPast(filteredByArtist)
       setArtistOpen(false)
+      setChange(prev => prev + 1)
     } else if (category === "location") {
       const filterByLocation = allPast.filter(
         exhibit => exhibit.region === value
       )
       setPast(filterByLocation)
       setLocationOpen(false)
+      setChange(prev => prev + 1)
     } else if (category === "year") {
       const filterByYear = allPast.filter(
         exhibit => moment(exhibit.startDate).year() === value
       )
       setPast(filterByYear)
       setYearOpen(false)
+      setChange(prev => prev + 1)
     }
   }
 
@@ -160,6 +164,7 @@ const Exhibitions = ({ data }) => {
                       onClick={() => {
                         setPast(allPast)
                         setArtistOpen(false)
+                        setChange(prev => prev + 1)
                       }}
                       className={styles.dropdownButton}
                     >
@@ -221,6 +226,7 @@ const Exhibitions = ({ data }) => {
                       onClick={() => {
                         setPast(allPast)
                         setLocationOpen(false)
+                        setChange(prev => prev + 1)
                       }}
                       className={styles.dropdownButton}
                     >
@@ -280,6 +286,7 @@ const Exhibitions = ({ data }) => {
                       onClick={() => {
                         setPast(allPast)
                         setYearOpen(false)
+                        setChange(prev => prev + 1)
                       }}
                       className={styles.dropdownButton}
                     >
@@ -305,7 +312,7 @@ const Exhibitions = ({ data }) => {
             type="exhibit"
             data={past}
             showNum={6}
-            key={past}
+            key={change}
           ></Pagination>
         )}
       </div>
