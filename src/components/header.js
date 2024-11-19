@@ -11,7 +11,7 @@ import smallLogo from "../images/Gladstone_Small.svg"
 import bigLogo from "../images/Gladstone_Big.svg"
 import bigLogoBlack from "../images/Gladstone_Big_Black.svg"
 import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
-// import Language from "./language"
+import Language from "./language"
 
 const Header = ({ location }) => {
   const [isOpen, setIsOpen] = useState(false)
