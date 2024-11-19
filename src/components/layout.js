@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 
 const Layout = ({ children, location }) => {
   const container = {
-    out: { opacity: 0, transition: { duration: 0.5 } },
+    out: { opacity: 0, transition: { duration: 4 } },
     in: { opacity: 1, transition: { duration: 2 } },
     start: { opacity: 0 },
   }

@@ -28,7 +28,15 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
     `custom-square-plugin`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          quality: 100,
+        },
+      },
+    },
+    ,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
