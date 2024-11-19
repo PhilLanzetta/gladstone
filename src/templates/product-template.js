@@ -115,7 +115,6 @@ const ProductPage = ({ location, data }) => {
   }
 
   return (
-    <Layout>
       <div className="pageContainer">
         <ShopHeading></ShopHeading>
         <div className={styles.productContainer}>
@@ -178,7 +177,6 @@ const ProductPage = ({ location, data }) => {
           </div>
         </div>
       </div>
-    </Layout>
   )
 }
 

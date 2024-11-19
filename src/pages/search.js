@@ -67,7 +67,6 @@ const Search = () => {
   )
 
   return (
-    <Layout>
       <div className={styles.searchPage}>
         <InstantSearch
           searchClient={searchClient}
@@ -186,7 +185,6 @@ const Search = () => {
           </EmptyQueryBoundary>
         </InstantSearch>
       </div>
-    </Layout>
   )
 }
 

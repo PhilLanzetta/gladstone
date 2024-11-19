@@ -13,7 +13,6 @@ const CollectionTemplate = ({ data, location }) => {
   const [products, setProducts] = useState(allProducts)
 
   return (
-    <Layout location={location} collection={true}>
       <div className="pageContainer">
         <ShopHeading></ShopHeading>
         <div className={styles.filterContainer}>
@@ -75,7 +74,6 @@ const CollectionTemplate = ({ data, location }) => {
           ))}
         </div>
       </div>
-    </Layout>
   )
 }
 

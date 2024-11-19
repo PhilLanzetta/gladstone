@@ -97,7 +97,6 @@ const Fair = ({ data }) => {
   const isMobile = width < 700
 
   return (
-    <Layout>
       <div className="pageContainer">
         <Link to="/fairs" className={styles.pageHeading}>
           Fairs
@@ -167,7 +166,6 @@ const Fair = ({ data }) => {
           </div>
         </div>
       </div>
-    </Layout>
   )
 }
 

@@ -22,7 +22,6 @@ const News = ({ data }) => {
   }, [filter])
 
   return (
-    <Layout>
       <div className="pageContainer">
         <div className={styles.newsHeader}>
           <button
@@ -94,7 +93,6 @@ const News = ({ data }) => {
           ))}
         </div>
       </div>
-    </Layout>
   )
 }
 

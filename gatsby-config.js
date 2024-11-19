@@ -19,12 +19,12 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    // {
-    //   resolve: `gatsby-source-square-catalog`,
-    //   options: {
-    //     token: process.env.SQUARE_TOKEN,
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout`),
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
     `custom-square-plugin`,

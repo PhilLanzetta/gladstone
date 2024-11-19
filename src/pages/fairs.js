@@ -74,7 +74,6 @@ const Fairs = ({ data }) => {
   }
 
   return (
-    <Layout>
       <div className="pageContainer">
         <div className={styles.exhibitionsHeader}>
           <div className="pageHeading">Fairs</div>
@@ -311,7 +310,6 @@ const Fairs = ({ data }) => {
           ></Pagination>
         )}
       </div>
-    </Layout>
   )
 }
 

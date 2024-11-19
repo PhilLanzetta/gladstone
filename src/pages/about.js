@@ -24,7 +24,6 @@ const About = ({ data }) => {
   )
 
   return (
-    <Layout>
       <div className="pageContainer">
         <div
           className={styles.headlineText}
@@ -143,7 +142,6 @@ const About = ({ data }) => {
           ))}
         </div>
       </div>
-    </Layout>
   )
 }
 

@@ -6,10 +6,6 @@ import CombinedProvider from "./src/context/CombinedProvider"
 
 export const wrapRootElement = CombinedProvider
 
-export const wrapPageElement = ({ element }) => (
-  <AnimatePresence mode="wait">{element}</AnimatePresence>
-)
-
 export const shouldUpdateScroll = ({
   routerProps: { location },
   prevRouterProps,

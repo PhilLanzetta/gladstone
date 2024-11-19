@@ -8,14 +8,12 @@ import LocationListing from "../components/locationListing"
 const Index = ({ data, location }) => {
   const { homeTiles } = data.contentfulHomePage
   return (
-    <Layout location={location}>
       <div className={styles.homeContainer}>
         {homeTiles.map(item => (
           <HomeTile key={item.id} tile={item}></HomeTile>
         ))}
         <LocationListing></LocationListing>
       </div>
-    </Layout>
   )
 }
 

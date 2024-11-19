@@ -82,7 +82,6 @@ const Exhibitions = ({ data }) => {
   }
 
   return (
-    <Layout>
       <div className="pageContainer">
         <div className={styles.exhibitionsHeader}>
           <div className="pageHeading">Exhibitions</div>
@@ -316,7 +315,6 @@ const Exhibitions = ({ data }) => {
           ></Pagination>
         )}
       </div>
-    </Layout>
   )
 }
 

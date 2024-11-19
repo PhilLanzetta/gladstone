@@ -13,13 +13,9 @@ import bigLogoBlack from "../images/Gladstone_Big_Black.svg"
 import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
 import Language from "./language"
 
-const Header = ({ location }) => {
+const Header = ({ isHome }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
-  const isHome =
-    location?.pathname === "/en/" ||
-    location?.pathname === "/zh/" ||
-    location?.pathname === "/ko/"
   const { width } = useWindowSize()
   const isMobile = width < 700
   const { scrollY } = useScroll()

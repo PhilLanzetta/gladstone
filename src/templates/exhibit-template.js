@@ -31,7 +31,6 @@ const Exhibit = ({ data }) => {
   const isMobile = width < 700
 
   return (
-    <Layout>
       <div className="pageContainer">
         <Link to="/exhibitions" className={styles.pageHeading}>
           Exhibitions
@@ -172,7 +171,6 @@ const Exhibit = ({ data }) => {
           </div>
         )}
       </div>
-    </Layout>
   )
 }
 

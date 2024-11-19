@@ -21,7 +21,6 @@ const Artists = ({ data }) => {
   }, [])
 
   return (
-    <Layout>
       <div className="pageContainer">
         <div className={styles.artistHeader}>
           <div className="pageHeading">Artists</div>
@@ -160,7 +159,6 @@ const Artists = ({ data }) => {
           </div>
         )}
       </div>
-    </Layout>
   )
 }
 

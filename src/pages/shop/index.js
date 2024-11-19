@@ -105,7 +105,6 @@ const Shop = ({ data }) => {
   }
 
   return (
-    <Layout>
       <div className="pageContainer">
         <ShopHeading></ShopHeading>
         <Slider {...settings} className={styles.sliderContainer}>
@@ -163,7 +162,6 @@ const Shop = ({ data }) => {
           ))}
         </div>
       </div>
-    </Layout>
   )
 }
 

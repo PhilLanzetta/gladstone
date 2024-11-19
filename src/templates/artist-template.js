@@ -31,7 +31,7 @@ const Artist = ({ data }) => {
   const isMobile = width < 700
 
   return (
-    <Layout>
+    <>
       <div className="pageContainer">
         <div className={styles.exhibitionsHeader}>
           <div className="pageHeading">{name}</div>
@@ -148,7 +148,7 @@ const Artist = ({ data }) => {
       <Link to="/artists" className={styles.explore}>
         Explore Gladstone Artists
       </Link>
-    </Layout>
+    </>
   )
 }
 
