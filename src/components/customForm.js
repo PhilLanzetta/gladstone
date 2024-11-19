@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import * as styles from "./mailForm.module.css"
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
-const CustomForm = ({ status, message, onValidated }) => {
+const CustomForm = ({ status, message, onValidated, intl }) => {
   const [email, setEmail] = useState("")
   const [first, setFirst] = useState("")
   const [last, setLast] = useState("")
@@ -27,8 +28,7 @@ const CustomForm = ({ status, message, onValidated }) => {
   return (
     <div className={styles.mailForm}>
       <p className={styles.headerText}>
-        Join our mailing list for updates about our artists, exhibitions,
-        events, and more.
+        <FormattedMessage id="form_head"></FormattedMessage>
       </p>
       {status === "error" && (
         <div
@@ -36,7 +36,11 @@ const CustomForm = ({ status, message, onValidated }) => {
           dangerouslySetInnerHTML={{ __html: message }}
         />
       )}
-      {status === "success" && <div className={styles.success}>Thank you.</div>}
+      {status === "success" && (
+        <div className={styles.success}>
+          <FormattedMessage id="thank_you"></FormattedMessage>
+        </div>
+      )}
       {status !== "success" ? (
         <form onSubmit={e => handleFormSubmit(e)}>
           <div className={styles.inputContainer}>
@@ -46,7 +50,7 @@ const CustomForm = ({ status, message, onValidated }) => {
                 value={first}
                 autoCapitalize="off"
                 onChange={handleFirstChange}
-                placeholder="First"
+                placeholder={intl.formatMessage({ id: "first" })}
                 required
               />
               <input
@@ -54,7 +58,7 @@ const CustomForm = ({ status, message, onValidated }) => {
                 value={last}
                 autoCapitalize="off"
                 onChange={handleLastChange}
-                placeholder="Last"
+                placeholder={intl.formatMessage({ id: "last" })}
                 required
               />
             </div>
@@ -63,16 +67,20 @@ const CustomForm = ({ status, message, onValidated }) => {
               value={email}
               autoCapitalize="off"
               onChange={handleEmailChange}
-              placeholder="Email"
+              placeholder={intl.formatMessage({ id: "email" })}
               required
               className={styles.email}
             />
           </div>
-          <input type="submit" value="Subscribe" className={styles.submit} />
+          <input
+            type="submit"
+            value={intl.formatMessage({ id: "subscribe" })}
+            className={styles.submit}
+          />
         </form>
       ) : null}
     </div>
   )
 }
 
-export default CustomForm
+export default injectIntl(CustomForm)

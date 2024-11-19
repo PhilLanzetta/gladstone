@@ -1,41 +1,62 @@
 import React from "react"
 import * as styles from "./locationListing.module.css"
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
 const LocationListing = () => {
   return (
     <div className={styles.locationListingContainer}>
       <a href="https://google.com" target="_blank" rel="noreferrer">
-        <p className={styles.locationHeading}>New York: 24th Street</p>
+        <p className={styles.locationHeading}>
+          <FormattedMessage id="new_york_24.heading"></FormattedMessage>
+        </p>
         <p>
-          515 West 24th Street<br></br>New York, NY 10011
+          <FormattedMessage id="new_york_24.address_1"></FormattedMessage>
+          <br></br>
+          <FormattedMessage id="new_york_24.address_2"></FormattedMessage>
         </p>
       </a>
       <a href="https://google.com" target="_blank" rel="noreferrer">
-        <p className={styles.locationHeading}>New York: 21st Street</p>
+        <p className={styles.locationHeading}>
+          <FormattedMessage id="new_york_21.heading"></FormattedMessage>
+        </p>
         <p>
-          530 West 21st Street<br></br>New York, NY 10011
+          <FormattedMessage id="new_york_21.address_1"></FormattedMessage>
+          <br></br>
+          <FormattedMessage id="new_york_21.address_2"></FormattedMessage>
         </p>
       </a>
       <a href="https://google.com" target="_blank" rel="noreferrer">
-        <p className={styles.locationHeading}>New York: 64th Street</p>
+        <p className={styles.locationHeading}>
+          <FormattedMessage id="new_york_64.heading"></FormattedMessage>
+        </p>
         <p>
-          130 East 64th Street<br></br>New York, NY 10065
+          <FormattedMessage id="new_york_64.address_1"></FormattedMessage>
+          <br></br>
+          <FormattedMessage id="new_york_64.address_2"></FormattedMessage>
         </p>
       </a>
       <a href="https://google.com" target="_blank" rel="noreferrer">
-        <p className={styles.locationHeading}>Brussels</p>
+        <p className={styles.locationHeading}>
+          <FormattedMessage id="brussels.heading"></FormattedMessage>
+        </p>
         <p>
-          Grote Hertstraat 12 Rue du Grand Cerf<br></br>Brussels, Belgium 1000
+          <FormattedMessage id="brussels.address_1"></FormattedMessage>
+          <br></br>
+          <FormattedMessage id="brussels.address_2"></FormattedMessage>
         </p>
       </a>
       <a href="https://google.com" target="_blank" rel="noreferrer">
-        <p className={styles.locationHeading}>Seoul</p>
+        <p className={styles.locationHeading}>
+          <FormattedMessage id="seoul.heading"></FormattedMessage>
+        </p>
         <p>
-          760, Samseong-ro, Gangnam-gu<br></br>Seoul, 06070, Republic of Korea
+          <FormattedMessage id="seoul.address_1"></FormattedMessage>
+          <br></br>
+          <FormattedMessage id="seoul.address_2"></FormattedMessage>
         </p>
       </a>
     </div>
   )
 }
 
-export default LocationListing
+export default injectIntl(LocationListing)

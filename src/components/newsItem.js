@@ -1,6 +1,7 @@
 import React from "react"
 import * as styles from "./newsItem.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
 const NewsItem = ({ content }) => {
   const { isFeatured, link, newsImage, newsText, download } = content
@@ -34,7 +35,7 @@ const NewsItem = ({ content }) => {
             target="_blank"
             rel="noreferrer"
           >
-            View Article &#8599;
+            <FormattedMessage id="view_article"></FormattedMessage> &#8599;
           </a>
         )}
       </div>
@@ -42,4 +43,4 @@ const NewsItem = ({ content }) => {
   )
 }
 
-export default NewsItem
+export default injectIntl(NewsItem)

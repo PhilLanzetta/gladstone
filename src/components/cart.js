@@ -3,6 +3,7 @@ import useStore from "../context/StoreContext"
 import ProductRow from "./productRow"
 import { motion } from "framer-motion"
 import * as styles from './cart.module.css'
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
 const Cart = ({ toggleCart }) => {
   const { cart, checkout } = useStore()
@@ -19,21 +20,27 @@ const Cart = ({ toggleCart }) => {
       transition={{ duration: 0.4 }}
       className={styles.cartContainer}
     >
-      <div className={styles.cartHeading}>Cart</div>
+      <div className={styles.cartHeading}>
+        <FormattedMessage id="cart"></FormattedMessage>
+      </div>
       <div className={styles.cartProductsContainer}>
         {cart.length > 0 ? (
           cart.map((item, index) => <ProductRow key={index} item={item} />)
         ) : (
-          <p className={styles.emptyCart}>Your cart is empty.</p>
+          <p className={styles.emptyCart}>
+            <FormattedMessage id="cart_empty"></FormattedMessage>
+          </p>
         )}
       </div>
       <div className={styles.cartSummary}>
         <button className={styles.closeCart} onClick={toggleCart}>
-          Continue Shopping
+          <FormattedMessage id="cart_continue"></FormattedMessage>
         </button>
         <div className={styles.checkoutInfo}>
           <div className={styles.checkout}>
-            <div>Subtotal</div>
+            <div>
+              <FormattedMessage id="subtotal"></FormattedMessage>
+            </div>
             <div>
               $
               {checkout.totalPrice
@@ -41,13 +48,15 @@ const Cart = ({ toggleCart }) => {
                 : 0}
             </div>
           </div>
-          <p className={styles.priceDisclaimer}>Taxes and shipping calculated at checkout</p>
+          <p className={styles.priceDisclaimer}>
+            <FormattedMessage id="cart_disclaimer"></FormattedMessage>
+          </p>
           <button
             disabled={cart.length === 0}
             onClick={() => window.open(checkout.webUrl)}
             className={styles.checkoutBtn}
           >
-            Check Out
+            <FormattedMessage id="check_out"></FormattedMessage>
           </button>
         </div>
       </div>
@@ -55,4 +64,4 @@ const Cart = ({ toggleCart }) => {
   )
 }
 
-export default Cart
+export default injectIntl(Cart)

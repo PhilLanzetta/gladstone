@@ -4,7 +4,52 @@
   "exhibitions": "Exhibitions",
   "fairs": "Fairs",
   "news_events": "News & Events",
+  "events": "Events",
+  "publications": "Publications",
+  "staff": "Staff",
   "about": "About",
   "shop": "Shop",
-  "search": "Search"
+  "search": "Search",
+  "careers": "Careers",
+  "privacy": "Privacy & Cookies",
+  "accessibility": "Accessibility",
+  "cart": "Cart",
+  "cart_empty": "Your cart is empty.",
+  "cart_continue": "Continue Shopping",
+  "subtotal": "Subtotal",
+  "cart_disclaimer": "Taxes and shipping calculated at checkout",
+  "check_out": "Check Out",
+  "form_head": "Join our mailing list for updates about our artists, exhibitions, events, and more.",
+  "thank_you": "Thank You.",
+  "first": "First",
+  "last": "Last",
+  "email": "Email",
+  "subscribe": "Subscribe",
+  "new_york": "New York",
+  "brussels": {
+    "heading": "Brussels",
+    "address_1": "Grote Hertstraat 12 Rue du Grand Cerf",
+    "address_2": "Brussels, Belgium 1000"
+  },
+  "seoul": {
+    "heading": "Seoul",
+    "address_1": "760, Samseong-ro, Gangnam-gu",
+    "adress_2": "Seoul, 06070, Republic of Korea"
+  },
+  "new_york_24": {
+    "heading": "New York: 24th Street",
+    "address_1": "515 West 24th Street",
+    "adress_2": "New York, NY 10011"
+  },
+  "new_york_21": {
+    "heading": "New York: 21st Street",
+    "address_1": "530 West 21st Street",
+    "adress_2": "New York, NY 10011"
+  },
+  "new_york_64": {
+    "heading": "New York: 64th Street",
+    "address_1": "130 East 64th Street",
+    "adress_2": "New York, NY 10065"
+  },
+  "view_article": "View Article"
 }

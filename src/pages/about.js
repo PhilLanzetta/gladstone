@@ -127,7 +127,7 @@ const About = ({ data }) => {
             ))}
           </div>
         </div>
-        <div>
+        <div id="staff">
           {leadershipstaff.map(section => (
             <div key={section.id} className={styles.staffOuterContainer}>
               <p className={styles.aboutSectionHeading}>{section.heading}</p>

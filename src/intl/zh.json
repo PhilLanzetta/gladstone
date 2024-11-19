@@ -4,7 +4,52 @@
   "exhibitions": "展览",
   "fairs": "展览会",
   "news_events": "新闻与活动",
+  "events": "活动",
+  "publications": "刊物",
+  "staff": "雇员",
   "about": "关于",
   "shop": "店铺",
-  "search": "搜索"
+  "search": "搜索",
+  "careers": "职业机会",
+  "privacy": "隐私和浏览器 cookie",
+  "accessibility": "无障碍",
+  "cart": "大车",
+  "cart_empty": "您的购物车是空的。",
+  "cart_continue": "继续购物",
+  "subtotal": "小计",
+  "cart_disclaimer": "结账时计算的税费和运费",
+  "check_out": "查看",
+  "form_head": "加入我们的邮件列表，了解有关我们的艺术家、展览、活动等的最新信息。",
+  "thank_you": "谢谢。",
+  "first": "名字",
+  "last": "姓",
+  "email": "电子邮件",
+  "subscribe": "订阅",
+  "new_york": "纽约",
+  "brussels": {
+    "heading": "布鲁塞尔",
+    "address_1": "Grote Hertstraat 大瑟夫街 12 号",
+    "address_2": "比利时布鲁塞尔 1000"
+  },
+  "seoul": {
+    "heading": "汉城",
+    "address_1": "江南区三成路760",
+    "address_2": "首尔, 06070, 韩国"
+  },
+  "new_york_24": {
+    "heading": "纽约：24街",
+    "address_1": "西24街515号",
+    "address_2": "纽约, NY 10011"
+  },
+  "new_york_21": {
+    "heading": "纽约：21街",
+    "address_1": "西21街530号",
+    "address_2": "纽约, NY 10011"
+  },
+  "new_york_64": {
+    "heading": "纽约：64街",
+    "address_1": "东64街130号",
+    "address_2": "纽约, NY 10065"
+  },
+  "view_article": "查看文章"
 }

@@ -4,7 +4,52 @@
   "exhibitions": "전시회",
   "fairs": "박람회",
   "news_events": "뉴스 및 이벤트",
+  "events": "이벤트",
+  "publications": "출판물",
+  "staff": "직원",
   "about": "~에 대한",
   "shop": "가게",
-  "search": "찾다"
+  "search": "찾다",
+  "careers": "채용",
+  "privacy": "개인정보 보호 및 브라우저 쿠키",
+  "accessibility": "접근성",
+  "cart": "카트",
+  "cart_empty": "장바구니가 비어 있습니다.",
+  "cart_continue": "계속 쇼핑하기",
+  "subtotal": "소계",
+  "cart_disclaimer": "결제 시 계산되는 세금 및 배송비",
+  "check_out": "체크아웃",
+  "form_head": "아티스트, 전시회, 이벤트 등에 대한 업데이트를 받으려면 메일링 리스트에 가입하세요.",
+  "thank_you": "감사합니다.",
+  "first": "이름",
+  "last": "성",
+  "email": "이메일",
+  "subscribe": "구독하다",
+  "new_york": "뉴욕",
+  "brussels": {
+    "heading": "브뤼셀",
+    "address_1": "Grote Hertstraat 12 Rue du Grand Cerf",
+    "address_2": "브뤼셀, 벨기에 1000"
+  },
+  "seoul": {
+    "heading": "서울",
+    "address_1": "강남구 삼성로 760",
+    "address_2": "대한민국 서울, 06070"
+  },
+  "new_york_24": {
+    "heading": "뉴욕: 24번가",
+    "address_1": "515 웨스트 24번가",
+    "address_2": "뉴욕, 뉴욕 10011"
+  },
+  "new_york_21": {
+    "heading": "뉴욕: 21번가",
+    "address_1": "530 웨스트 21번가",
+    "address_2": "뉴욕, 뉴욕 10011"
+  },
+  "new_york_64": {
+    "heading": "뉴욕: 64번가",
+    "address_1": "130 이스트 64번가",
+    "address_2": "뉴욕, 뉴욕 10065"
+  },
+  "view_article": "기사 보기"
 }
