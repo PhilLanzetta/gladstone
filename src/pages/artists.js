@@ -166,7 +166,7 @@ const Artists = ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulArtist {
+    allContentfulArtist(filter: { node_locale: { eq: "en-US" } }) {
       nodes {
         name
         id

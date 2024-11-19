@@ -100,7 +100,10 @@ const News = ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulNewsEntry(sort: { date: DESC }) {
+    allContentfulNewsEntry(
+      sort: { date: DESC }
+      filter: { node_locale: { eq: "en-US" } }
+    ) {
       nodes {
         category
         id
