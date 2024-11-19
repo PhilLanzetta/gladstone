@@ -13,6 +13,7 @@
     "gatsby": "^5.13.5",
     "gatsby-plugin-algolia": "^1.0.3",
     "gatsby-plugin-image": "^3.13.1",
+    "gatsby-plugin-intl": "^5.10.0",
     "gatsby-plugin-manifest": "^5.13.1",
     "gatsby-plugin-react-i18next": "^3.0.1",
     "gatsby-plugin-sharp": "^5.13.1",

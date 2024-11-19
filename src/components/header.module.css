@@ -203,17 +203,18 @@ header {
   z-index: 300;
 }
 
-.language button,
-.mobileLanguage button {
+.language a,
+.mobileLanguage a {
   border-radius: 15px;
   border-width: 1px;
   border-style: solid;
   border-color: transparent;
   padding: 2px 8px;
+  cursor: pointer;
 }
 
-.language button.activeLanguage,
-.mobileLanguage button.activeLanguage {
+.language a.activeLanguage,
+.mobileLanguage a.activeLanguage {
   border-color: currentColor;
 }
 

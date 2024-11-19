@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import * as styles from "./header.module.css"
-import { Link } from "gatsby"
 import useWindowSize from "../utils/useWindowSize"
 import {
   AnimatePresence,
@@ -11,11 +10,16 @@ import {
 import smallLogo from "../images/Gladstone_Small.svg"
 import bigLogo from "../images/Gladstone_Big.svg"
 import bigLogoBlack from "../images/Gladstone_Big_Black.svg"
+import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
+import Language from "./language"
 
 const Header = ({ location }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
-  const isHome = location?.pathname === "/"
+  const isHome =
+    location?.pathname === "/en/" ||
+    location?.pathname === "/zh/" ||
+    location?.pathname === "/ko/"
   const { width } = useWindowSize()
   const isMobile = width < 700
   const { scrollY } = useScroll()
@@ -67,7 +71,7 @@ const Header = ({ location }) => {
                 <span></span>
                 <span></span>
               </div>
-              {!isMobile && "Menu"}
+              {!isMobile && <FormattedMessage id="menu"></FormattedMessage>}
             </button>
           </div>
           {isHome && (
@@ -93,9 +97,7 @@ const Header = ({ location }) => {
           )}
           <div>
             <div className={styles.language}>
-              <button>中文</button>
-              <button>한국인</button>
-              <button className={styles.activeLanguage}>EN</button>
+              <Language></Language>
             </div>
           </div>
         </div>
@@ -123,30 +125,30 @@ const Header = ({ location }) => {
               }
             >
               <Link to="/artists" className={styles.headerLink}>
-                Artists
+                <FormattedMessage id="artists"></FormattedMessage>
               </Link>
               <Link to="/exhibitions" className={styles.headerLink}>
-                Exhibitions
+                <FormattedMessage id="exhibitions"></FormattedMessage>
               </Link>
               <Link to="/fairs" className={styles.headerLink}>
-                Fairs
+                <FormattedMessage id="fairs"></FormattedMessage>
               </Link>
               <Link to="/news" className={styles.headerLink}>
-                News & Events
+                <FormattedMessage id="news_events"></FormattedMessage>
               </Link>
               <Link to="/about" className={styles.headerLink}>
-                About
+                <FormattedMessage id="about"></FormattedMessage>
               </Link>
               <Link to="/shop" className={styles.headerLink}>
-                Shop
+                <FormattedMessage id="shop"></FormattedMessage>
               </Link>
-              <Link to="/search">Search</Link>
+              <Link to="/search">
+                <FormattedMessage id="search"></FormattedMessage>
+              </Link>
               {isMobile && (
                 <div className={styles.secondaryBottom}>
                   <div className={styles.mobileLanguage}>
-                    <button>中文</button>
-                    <button>한국인</button>
-                    <button className={styles.activeLanguage}>EN</button>
+                    <Language></Language>
                   </div>
                   <div className={styles.headerSocial}>
                     <a
@@ -188,4 +190,4 @@ const Header = ({ location }) => {
   )
 }
 
-export default Header
+export default injectIntl(Header)
