@@ -22,7 +22,7 @@ const CustomForm = ({ status, message, onValidated }) => {
 
   const handleFormSubmit = e => {
     e.preventDefault()
-    email && email.indexOf("@") > -1 && onValidated({ EMAIL: email })
+    email && email.indexOf("@") > -1 && onValidated({ EMAIL: email, FNAME: first, LNAME: last })
   }
   return (
     <div className={styles.mailForm}>

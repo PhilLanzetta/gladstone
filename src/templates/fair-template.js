@@ -208,15 +208,6 @@ export const query = graphql`
           gatsbyImageData
         }
       }
-      aboutDownloads {
-        id
-        buttonText
-        pdfFile {
-          file {
-            url
-          }
-        }
-      }
       aboutLinks {
         id
         label

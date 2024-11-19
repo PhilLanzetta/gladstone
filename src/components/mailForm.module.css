@@ -55,6 +55,10 @@
   cursor: pointer;
 }
 
+.success {
+  margin-top: var(--medium-padding);
+}
+
 @media screen and (max-width: 1000px) {
   .formContainer {
     font-family: var(--font-primary);

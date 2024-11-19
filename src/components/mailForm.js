@@ -5,7 +5,7 @@ import * as styles from './mailForm.module.css'
 
 
 const MailForm = () => {
-  const postUrl = `https://studio.us5.list-manage.com/subscribe/post?u=d6dace50de5da0a95ea32afd&id=8ac1c7428`
+  const postUrl = process.env.GATSBY_MAILCHIMP_URL
 
   return (
     <div className={styles.formContainer}>
