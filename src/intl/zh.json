@@ -51,5 +51,8 @@
     "address_1": "东64街130号",
     "address_2": "纽约, NY 10065"
   },
-  "view_article": "查看文章"
+  "view_article": "查看文章",
+  "view_more": "查看更多+",
+  "view_website": "查看网站",
+  "download_pdf": "下载PDF"
 }

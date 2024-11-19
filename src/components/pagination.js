@@ -3,6 +3,7 @@ import moment from "moment"
 import * as styles from "./pagination.module.css"
 import ProductTile from "./productTile"
 import ExhibitionTile from "./exhibitionTile"
+import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
 const Pagination = ({ type, data, showNum, fair }) => {
   const [allData, setAllData] = useState(data)
@@ -54,7 +55,7 @@ const Pagination = ({ type, data, showNum, fair }) => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Download PDF &darr;
+                <FormattedMessage id="download_pdf"></FormattedMessage> &darr;
               </a>
             )}
             {pressItem.articleLink && (
@@ -64,7 +65,7 @@ const Pagination = ({ type, data, showNum, fair }) => {
                 rel="noreferrer"
                 className={styles.pressSecondaryLink}
               >
-                View Website &#8599;
+                <FormattedMessage id="view_website"></FormattedMessage> &#8599;
               </a>
             )}
           </div>
@@ -84,11 +85,11 @@ const Pagination = ({ type, data, showNum, fair }) => {
         ))}
       {hasMoreData && (
         <button onClick={handleLoadMore} className={styles.loadMoreBtn}>
-          View More +
+          <FormattedMessage id="view_more"></FormattedMessage>
         </button>
       )}
     </div>
   )
 }
 
-export default Pagination
+export default injectIntl(Pagination)

@@ -51,5 +51,8 @@
     "address_1": "130 East 64th Street",
     "adress_2": "New York, NY 10065"
   },
-  "view_article": "View Article"
+  "view_article": "View Article",
+  "view_more": "View More +",
+  "view_website": "View Website",
+  "download_pdf": "Download PDF"
 }

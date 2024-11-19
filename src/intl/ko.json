@@ -51,5 +51,8 @@
     "address_1": "130 이스트 64번가",
     "address_2": "뉴욕, 뉴욕 10065"
   },
-  "view_article": "기사 보기"
+  "view_article": "기사 보기",
+  "view_more": "더 많이 보기 +",
+  "view_website": "웹사이트 보기",
+  "download_pdf": "PDF 다운로드"
 }
