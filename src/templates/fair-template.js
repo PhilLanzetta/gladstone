@@ -79,6 +79,8 @@ const Fair = ({ data }) => {
     openingReception,
     aboutDownloads,
     aboutLinks,
+    viewingRoomPreview,
+    slug,
   } = data.contentfulFair
 
   const [activeSlide, setActiveSlide] = useState(0)
@@ -166,6 +168,13 @@ const Fair = ({ data }) => {
           )}
         </div>
       </div>
+      {viewingRoomPreview && (
+        <div>
+          <Link to={`/fair/${slug}/viewing-room`}>
+            <FormattedMessage id="viewing-room-preview"></FormattedMessage> →
+          </Link>
+        </div>
+      )}
     </div>
   )
 }
@@ -219,6 +228,10 @@ export const query = graphql`
       }
       startDate
       title
+      slug
+      viewingRoomPreview {
+        id
+      }
     }
   }
 `

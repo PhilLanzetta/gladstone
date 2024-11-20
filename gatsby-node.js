@@ -39,6 +39,15 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
       }
+      allContentfulViewingRoom {
+        edges {
+          node {
+            fair {
+              slug
+            }
+          }
+        }
+      }
       allShopifyProduct {
         edges {
           node {
@@ -70,6 +79,8 @@ exports.createPages = async ({ actions, graphql }) => {
   const exhibits = result.data.allContentfulExhibition.edges
 
   const fairs = result.data.allContentfulFair.edges
+
+  const viewingRooms = result.data.allContentfulViewingRoom.edges
 
   const products = result.data.allShopifyProduct.edges
 
@@ -103,6 +114,15 @@ exports.createPages = async ({ actions, graphql }) => {
     createPage({
       path: `/fair/${fairSlug}`,
       component: require.resolve("./src/templates/fair-template.js"),
+      context: { slug: fairSlug },
+    })
+  })
+
+  viewingRooms.forEach(({ node }) => {
+    const fairSlug = node.fair.slug
+    createPage({
+      path: `/fair/${fairSlug}/viewing-room`,
+      component: require.resolve("./src/templates/viewingRoom-template.js"),
       context: { slug: fairSlug },
     })
   })
