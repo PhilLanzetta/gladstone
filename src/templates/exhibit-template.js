@@ -29,6 +29,8 @@ const Exhibit = ({ data }) => {
 
   const { width } = useWindowSize()
   const isMobile = width < 700
+  const hasGladstoneArtist =
+    artists && artists.filter(artist => artist.isGladstoneArtist === true)
 
   return (
     <div className="pageContainer">
@@ -109,19 +111,25 @@ const Exhibit = ({ data }) => {
           )}
         </div>
       )}
-      {artists && artists.length > 0 && (
+      {hasGladstoneArtist.length > 0 && (
         <>
           <p className={styles.sectionHeading}>
             <FormattedMessage id="about"></FormattedMessage>
           </p>
-          {artists.map(artist => (
+          {hasGladstoneArtist.map(artist => (
             <div key={artist.id} className={styles.artistContainer}>
-              <GatsbyImage
-                image={artist.headshot?.image?.gatsbyImageData}
-                alt={artist.headshot?.image?.description}
-                className={styles.artistImage}
-              ></GatsbyImage>
-              <div className={styles.artistBio}>
+              {artist.headshot && (
+                <GatsbyImage
+                  image={artist.headshot?.image?.gatsbyImageData}
+                  alt={artist.headshot?.image?.description}
+                  className={styles.artistImage}
+                ></GatsbyImage>
+              )}
+              <div
+                className={
+                  artist.headshot ? styles.artistBio : styles.artistBioFull
+                }
+              >
                 <div
                   dangerouslySetInnerHTML={{
                     __html: artist.featuredBiography?.childMarkdownRemark.html,
@@ -187,6 +195,7 @@ export const query = graphql`
       artists {
         id
         name
+        isGladstoneArtist
         slug
         featuredBiography {
           childMarkdownRemark {

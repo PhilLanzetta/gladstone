@@ -69,7 +69,11 @@
   width: 60%;
 }
 
-.artistBio p {
+.artistBioFull {
+  width: 100%;
+}
+
+.artistBio p, .artistBioFull p {
   margin-bottom: 20px;
 }
 
