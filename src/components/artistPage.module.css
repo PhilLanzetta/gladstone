@@ -41,11 +41,15 @@
   width: 60%;
 }
 
+.artistBioFull {
+  width: 100%;
+}
+
 .artistImage {
   width: 40%;
 }
 
-.artistBio p {
+.artistBio p, .artistBioFull p {
   margin-bottom: 20px;
 }
 
@@ -138,7 +142,7 @@
     display: none;
   }
 
-  .artistBio p {
+  .artistBio p, .artistBioFull p {
     line-height: 1.75;
     font-size: var(--body-text);
   }

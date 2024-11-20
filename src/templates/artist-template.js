@@ -85,13 +85,15 @@ const Artist = ({ data }) => {
           <FormattedMessage id="about"></FormattedMessage>
         </p>{" "}
         <div className={styles.aboutContainer} id="about">
-          <div className={styles.artistImage}>
-            <GatsbyImage
-              image={headshot?.image?.gatsbyImageData}
-              alt={headshot?.image?.description}
-            ></GatsbyImage>
-          </div>
-          <div className={styles.artistBio}>
+          {headshot && (
+            <div className={styles.artistImage}>
+              <GatsbyImage
+                image={headshot?.image?.gatsbyImageData}
+                alt={headshot?.image?.description}
+              ></GatsbyImage>
+            </div>
+          )}
+          <div className={headshot ? styles.artistBio : styles.artistBioFull}>
             <div
               dangerouslySetInnerHTML={{
                 __html: featuredBiography?.childMarkdownRemark.html,
