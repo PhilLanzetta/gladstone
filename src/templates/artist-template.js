@@ -27,6 +27,8 @@ const Artist = ({ data }) => {
     aboutDownloads,
   } = data.contentfulArtist
 
+  const publications = data.allShopifyProduct.nodes
+
   const { width } = useWindowSize()
   const isMobile = width < 700
 
@@ -49,6 +51,11 @@ const Artist = ({ data }) => {
                 <FormattedMessage id="exhibitions"></FormattedMessage>
               </a>
             )}
+            {publications && (
+              <a href="#publications">
+                <FormattedMessage id="publications"></FormattedMessage>
+              </a>
+            )}
             {press && (
               <a href="#press">
                 <FormattedMessage id="press"></FormattedMessage>
@@ -64,9 +71,6 @@ const Artist = ({ data }) => {
                 <FormattedMessage id="video"></FormattedMessage>
               </a>
             )}
-            <a href="#publications">
-              <FormattedMessage id="publications"></FormattedMessage>
-            </a>
           </div>
         </div>
         {artworksCarousel && (
@@ -121,6 +125,20 @@ const Artist = ({ data }) => {
                   artistPage={true}
                 ></ExhibitionTile>
               ))}
+            </div>
+          </>
+        )}
+        {publications && (
+          <>
+            <p className={styles.artistSectionHeading}>
+              <FormattedMessage id="publications"></FormattedMessage>
+            </p>
+            <div id="publications" className={styles.pressContainer}>
+              <Pagination
+                type="product"
+                data={publications}
+                showNum={6}
+              ></Pagination>
             </div>
           </>
         )}
@@ -185,7 +203,7 @@ const Artist = ({ data }) => {
 }
 
 export const query = graphql`
-  query getSingleArtist($slug: String) {
+  query getSingleArtist($slug: String, $name: String) {
     contentfulArtist(slug: { eq: $slug }) {
       slug
       name
@@ -291,6 +309,33 @@ export const query = graphql`
           width
           height
         }
+      }
+    }
+    allShopifyProduct(
+      filter: {
+        collections: { elemMatch: { title: { eq: "Publications" } } }
+        metafields: {
+          elemMatch: { key: { eq: "artist" }, value: { eq: $name } }
+        }
+      }
+    ) {
+      nodes {
+        featuredImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        handle
+        id
+        title
+        priceRangeV2 {
+          minVariantPrice {
+            amount
+          }
+        }
+        totalInventory
       }
     }
   }

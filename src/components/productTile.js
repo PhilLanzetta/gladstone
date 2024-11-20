@@ -9,12 +9,8 @@ const ProductTile = ({ product }) => {
     featuredImage,
     totalInventory,
     priceRangeV2,
-    metafields,
     title,
   } = product
-
-  const artist = metafields.filter(metafield => metafield.key === "artist")[0]
-    ?.value
 
   return (
     <div className={styles.productTile}>
@@ -40,12 +36,6 @@ const ProductTile = ({ product }) => {
               </p>
             )}
           </div>
-          {totalInventory < 1 && (
-            <div className={styles.soldOutSticker}>
-              Sold <br />
-              Out
-            </div>
-          )}
       </Link>
     </div>
   )

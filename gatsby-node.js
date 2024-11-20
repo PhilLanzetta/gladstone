@@ -21,6 +21,7 @@ exports.createPages = async ({ actions, graphql }) => {
         edges {
           node {
             slug
+            name
           }
         }
       }
@@ -84,7 +85,7 @@ exports.createPages = async ({ actions, graphql }) => {
     createPage({
       path: `/artist/${artistSlug}`,
       component: require.resolve("./src/templates/artist-template.js"),
-      context: { slug: artistSlug },
+      context: { slug: artistSlug, name: node.name },
     })
   })
 
