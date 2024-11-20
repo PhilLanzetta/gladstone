@@ -17,7 +17,7 @@ exports.createPages = async ({ actions, graphql }) => {
   }
   const result = await graphql(`
     query GetData {
-      allContentfulArtist {
+      allContentfulArtist(filter: { isGladstoneArtist: { eq: true } }) {
         edges {
           node {
             slug

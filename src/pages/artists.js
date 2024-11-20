@@ -6,9 +6,6 @@ import { Link, FormattedMessage } from "gatsby-plugin-intl"
 
 const Artists = ({ data }) => {
   const { nodes } = data.allContentfulArtist
-  const alphabeticNames = nodes.sort((a, b) =>
-    a.name.split(" ").pop().localeCompare(b.name.split(" ").pop())
-  )
 
   const [view, setView] = useState()
 
@@ -131,7 +128,7 @@ const Artists = ({ data }) => {
       </div>
       {view === "grid" && (
         <div className={styles.artistContainer}>
-          {alphabeticNames.map(artist => (
+          {nodes.map(artist => (
             <Link
               key={artist.id}
               to={`/artist/${artist.slug}`}
@@ -151,7 +148,7 @@ const Artists = ({ data }) => {
       )}
       {view === "list" && (
         <div className={styles.listContainer}>
-          {alphabeticNames.map(artist => (
+          {nodes.map(artist => (
             <Link
               key={artist.id}
               to={`/artist/${artist.slug}`}
@@ -168,7 +165,10 @@ const Artists = ({ data }) => {
 
 export const query = graphql`
   query {
-    allContentfulArtist(filter: { node_locale: { eq: "en-US" } }) {
+    allContentfulArtist(
+      filter: { node_locale: { eq: "en-US" }, isGladstoneArtist: { eq: true } }
+      sort: { lastName: ASC }
+    ) {
       nodes {
         name
         id
