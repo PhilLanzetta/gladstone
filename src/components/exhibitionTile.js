@@ -57,8 +57,17 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
               </p>
             )}
             <p className={styles.date}>
-              {moment(startDate).format("MMMM D")} &mdash;{" "}
-              {moment(endDate).format("MMMM D, YYYY")}{" "}
+              {moment(startDate).year() === moment(endDate).year() ? (
+                <span>
+                  {moment(startDate).format("MMMM D")} &mdash;
+                  {moment(endDate).format("MMMM D, YYYY")}
+                </span>
+              ) : (
+                <span>
+                  {moment(startDate).format("MMMM D, YYYY")} &mdash;{" "}
+                  {moment(endDate).format("MMMM D, YYYY")}
+                </span>
+              )}
             </p>
           </div>
           {!mobilePast && (

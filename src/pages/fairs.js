@@ -65,7 +65,9 @@ const Fairs = ({ data }) => {
       setChange(prev => prev + 1)
     } else if (category === "year") {
       const filterByYear = allPast.filter(
-        exhibit => moment(exhibit.startDate).year() === value
+        exhibit =>
+          moment(exhibit.startDate).year() === value ||
+          moment(exhibit.endDate).year() === value
       )
       setPast(filterByYear)
       setYearOpen(false)
