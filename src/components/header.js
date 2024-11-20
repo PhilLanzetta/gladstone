@@ -76,7 +76,7 @@ const Header = ({ isHome }) => {
                 hidden ? styles.hideLogo : styles.showLogo
               }`}
             >
-              <Link to="/">
+              <Link to="/" onClick={() => setIsOpen(false)}>
                 <img
                   src={isOpen ? bigLogoBlack : bigLogo}
                   alt="Gladstone Gallery Logo"
@@ -86,7 +86,7 @@ const Header = ({ isHome }) => {
           )}
           {!isHome && (
             <div className={styles.smallLogo}>
-              <Link to="/">
+              <Link to="/" onClick={() => setIsOpen(false)}>
                 <img src={smallLogo} alt="Gladstone Gallery Logo"></img>
               </Link>
             </div>
@@ -120,25 +120,49 @@ const Header = ({ isHome }) => {
                   : styles.desktopSecondaryMenu
               }
             >
-              <Link to="/artists" className={styles.headerLink}>
+              <Link
+                to="/artists"
+                className={styles.headerLink}
+                onClick={() => setIsOpen(false)}
+              >
                 <FormattedMessage id="artists"></FormattedMessage>
               </Link>
-              <Link to="/exhibitions" className={styles.headerLink}>
+              <Link
+                to="/exhibitions"
+                className={styles.headerLink}
+                onClick={() => setIsOpen(false)}
+              >
                 <FormattedMessage id="exhibitions"></FormattedMessage>
               </Link>
-              <Link to="/fairs" className={styles.headerLink}>
+              <Link
+                to="/fairs"
+                className={styles.headerLink}
+                onClick={() => setIsOpen(false)}
+              >
                 <FormattedMessage id="fairs"></FormattedMessage>
               </Link>
-              <Link to="/news" className={styles.headerLink}>
+              <Link
+                to="/news"
+                className={styles.headerLink}
+                onClick={() => setIsOpen(false)}
+              >
                 <FormattedMessage id="news_events"></FormattedMessage>
               </Link>
-              <Link to="/about" className={styles.headerLink}>
+              <Link
+                to="/about"
+                className={styles.headerLink}
+                onClick={() => setIsOpen(false)}
+              >
                 <FormattedMessage id="about"></FormattedMessage>
               </Link>
-              <Link to="/shop" className={styles.headerLink}>
+              <Link
+                to="/shop"
+                className={styles.headerLink}
+                onClick={() => setIsOpen(false)}
+              >
                 <FormattedMessage id="shop"></FormattedMessage>
               </Link>
-              <Link to="/search">
+              <Link to="/search" onClick={() => setIsOpen(false)}>
                 <FormattedMessage id="search"></FormattedMessage>
               </Link>
               {isMobile && (

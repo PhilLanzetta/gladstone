@@ -15,16 +15,22 @@ const Layout = ({ children, location }) => {
     start: { opacity: 0 },
   }
 
-  const homeContainer = {
-    out: { opacity: 0, transition: { duration: 0.5 } },
-    in: { opacity: 1, transition: { duration: 2 } },
-    start: { opacity: 1 },
-  }
-
   return (
     <>
       <Header isHome={isHome}></Header>
-        <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait">
+        {isHome ? (
+          <motion.main
+            key={isHome}
+            variants={container}
+            initial="start"
+            animate="in"
+            exit="out"
+          >
+            {children}
+            <Footer></Footer>
+          </motion.main>
+        ) : (
           <motion.main
             key={location.pathname}
             variants={container}
@@ -35,7 +41,8 @@ const Layout = ({ children, location }) => {
             {children}
             <Footer></Footer>
           </motion.main>
-        </AnimatePresence>
+        )}
+      </AnimatePresence>
     </>
   )
 }
