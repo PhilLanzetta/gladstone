@@ -39,22 +39,22 @@
   "seoul": {
     "heading": "Seoul",
     "address_1": "760, Samseong-ro, Gangnam-gu",
-    "adress_2": "Seoul, 06070, Republic of Korea"
+    "address_2": "Seoul, 06070, Republic of Korea"
   },
   "new_york_24": {
     "heading": "New York: 24th Street",
     "address_1": "515 West 24th Street",
-    "adress_2": "New York, NY 10011"
+    "address_2": "New York, NY 10011"
   },
   "new_york_21": {
     "heading": "New York: 21st Street",
     "address_1": "530 West 21st Street",
-    "adress_2": "New York, NY 10011"
+    "address_2": "New York, NY 10011"
   },
   "new_york_64": {
     "heading": "New York: 64th Street",
     "address_1": "130 East 64th Street",
-    "adress_2": "New York, NY 10065"
+    "address_2": "New York, NY 10065"
   },
   "view_article": "View Article",
   "view_more": "View More +",
