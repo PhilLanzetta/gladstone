@@ -59,28 +59,22 @@
 
 .locationLink {
   position: relative;
-  filter: grayscale(100%);
+  background: var(--dark-gray);
+  aspect-ratio: 140 / 97;
+  overflow: hidden;
+}
+
+.locationImage {
+  mix-blend-mode: luminosity;
+  transition: all 400ms;
 }
 
 .locationLink:hover {
   opacity: 1;
-  filter: none;
 }
 
-.locationLink::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--dark-gray);
-  opacity: 0.5;
-  transition: all 400ms;
-}
-
-.locationLink:hover::after {
-  opacity: 0;
+.locationLink:hover .locationImage {
+  mix-blend-mode: normal;
   transition: all 400ms;
 }
 
@@ -135,8 +129,8 @@
     width: 100%;
   }
 
-  .locationLink:hover::after {
-    opacity: 0.5;
+  .locationLink:hover .locationImage {
+    mix-blend-mode: luminosity;
     transition: all 400ms;
   }
 

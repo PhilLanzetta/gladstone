@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
-import Layout from "../components/layout"
-import { Link, graphql } from "gatsby"
+import React, { useState } from "react"
+import { graphql } from "gatsby"
+import { FormattedMessage } from "gatsby-plugin-intl"
 import * as styles from "../components/exhibitions.module.css"
 import moment from "moment"
 import ExhibitionTile from "../components/exhibitionTile"
@@ -74,242 +74,252 @@ const Fairs = ({ data }) => {
   }
 
   return (
-      <div className="pageContainer">
-        <div className={styles.exhibitionsHeader}>
-          <div className="pageHeading">Fairs</div>
-          <div className={styles.headerLinkContainer}>
-            <a href="#current" className={styles.landingLink}>
-              Current
-            </a>
-            <a href="#upcoming">Upcoming</a>
-            <a href="#past">Past</a>
-          </div>
+    <div className="pageContainer">
+      <div className={styles.exhibitionsHeader}>
+        <div className="pageHeading">
+          <FormattedMessage id="fairs"></FormattedMessage>
         </div>
-        <div id="current" className={styles.currentContainer}>
-          {current.length > 0 &&
-            current.map(exhibit => (
-              <ExhibitionTile
-                key={exhibit.id}
-                content={exhibit}
-                fair={true}
-              ></ExhibitionTile>
-            ))}
+        <div className={styles.headerLinkContainer}>
+          <a href="#current" className={styles.landingLink}>
+            <FormattedMessage id="current"></FormattedMessage>
+          </a>
+          <a href="#upcoming">
+            <FormattedMessage id="upcoming"></FormattedMessage>
+          </a>
+          <a href="#past">
+            <FormattedMessage id="past"></FormattedMessage>
+          </a>
         </div>
-        <p className={styles.exhibitSectionHeading}>Upcoming</p>
-        <div id="upcoming" className={styles.upcomingContainer}>
-          {" "}
-          {upcoming.length > 0 &&
-            upcoming.map(exhibit => (
-              <ExhibitionTile
-                key={exhibit.id}
-                content={exhibit}
-                fair={true}
-              ></ExhibitionTile>
-            ))}
-        </div>
-        <div
-          id="past"
-          className={`${styles.pastHeading} ${styles.exhibitSectionHeading}`}
-        >
-          <p>Past</p>
-          <div className={styles.filterContainer}>
-            <p>Filter:</p>
-            <div className={styles.filterRelative}>
-              <button
-                onClick={() => setArtistOpen(!artistOpen)}
-                className={styles.filterButton}
-              >
-                Artist
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 14.43 7.922"
-                  className={
-                    artistOpen ? styles.filterOpen : styles.filterClosed
-                  }
-                >
-                  <g
-                    id="Component_2_1"
-                    data-name="Component 2 – 1"
-                    transform="translate(0.354 0.707)"
-                  >
-                    <path
-                      id="Path_9"
-                      data-name="Path 9"
-                      d="M24.628,597.393l6.861-6.861,6.861,6.861"
-                      transform="translate(-24.628 -590.532)"
-                      fill="none"
-                      stroke="#000"
-                      stroke-width="1"
-                    />
-                  </g>
-                </svg>
-              </button>
-              <AnimatePresence>
-                {artistOpen && (
-                  <motion.div
-                    key="artists"
-                    initial={{ opacity: 0, maxHeight: 0 }}
-                    animate={{ opacity: 1, maxHeight: "300px" }}
-                    exit={{ opacity: 0, maxHeight: 0 }}
-                    className={styles.artistDropdown}
-                  >
-                    <button
-                      onClick={() => {
-                        setPast(allPast)
-                        setArtistOpen(false)
-                        setChange(prev => prev + 1)
-                      }}
-                      className={styles.dropdownButton}
-                    >
-                      All Artists
-                    </button>
-                    {allArtists.map((artist, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleFilter("artist", artist)}
-                        className={styles.dropdownButton}
-                      >
-                        {artist}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-            <div className={styles.filterRelative}>
-              <button
-                onClick={() => setLocationOpen(!locationOpen)}
-                className={styles.filterButton}
-              >
-                Location
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 14.43 7.922"
-                  className={
-                    locationOpen ? styles.filterOpen : styles.filterClosed
-                  }
-                >
-                  <g
-                    id="Component_2_1"
-                    data-name="Component 2 – 1"
-                    transform="translate(0.354 0.707)"
-                  >
-                    <path
-                      id="Path_9"
-                      data-name="Path 9"
-                      d="M24.628,597.393l6.861-6.861,6.861,6.861"
-                      transform="translate(-24.628 -590.532)"
-                      fill="none"
-                      stroke="#000"
-                      stroke-width="1"
-                    />
-                  </g>
-                </svg>
-              </button>
-              <AnimatePresence>
-                {locationOpen && (
-                  <motion.div
-                    key="locations"
-                    initial={{ opacity: 0, maxHeight: 0 }}
-                    animate={{ opacity: 1, maxHeight: "300px" }}
-                    exit={{ opacity: 0, maxHeight: 0 }}
-                    className={styles.artistDropdown}
-                  >
-                    <button
-                      onClick={() => {
-                        setPast(allPast)
-                        setLocationOpen(false)
-                        setChange(prev => prev + 1)
-                      }}
-                      className={styles.dropdownButton}
-                    >
-                      All Locations
-                    </button>
-                    {allLocations.map((location, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleFilter("location", location)}
-                        className={styles.dropdownButton}
-                      >
-                        {location}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-            <div className={styles.filterRelative}>
-              <button
-                onClick={() => setYearOpen(!yearOpen)}
-                className={styles.filterButton}
-              >
-                Year
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 14.43 7.922"
-                  className={yearOpen ? styles.filterOpen : styles.filterClosed}
-                >
-                  <g
-                    id="Component_2_1"
-                    data-name="Component 2 – 1"
-                    transform="translate(0.354 0.707)"
-                  >
-                    <path
-                      id="Path_9"
-                      data-name="Path 9"
-                      d="M24.628,597.393l6.861-6.861,6.861,6.861"
-                      transform="translate(-24.628 -590.532)"
-                      fill="none"
-                      stroke="#000"
-                      stroke-width="1"
-                    />
-                  </g>
-                </svg>
-              </button>
-              <AnimatePresence>
-                {yearOpen && (
-                  <motion.div
-                    key="years"
-                    initial={{ opacity: 0, maxHeight: 0 }}
-                    animate={{ opacity: 1, maxHeight: "300px" }}
-                    exit={{ opacity: 0, maxHeight: 0 }}
-                    className={styles.artistDropdown}
-                  >
-                    <button
-                      onClick={() => {
-                        setPast(allPast)
-                        setYearOpen(false)
-                        setChange(prev => prev + 1)
-                      }}
-                      className={styles.dropdownButton}
-                    >
-                      All Years
-                    </button>
-                    {allYears.map((year, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleFilter("year", year)}
-                        className={styles.dropdownButton}
-                      >
-                        {year}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
-        {past.length && (
-          <Pagination
-            type="exhibit"
-            data={past}
-            showNum={6}
-            key={change}
-            fair={true}
-          ></Pagination>
-        )}
       </div>
+      <div id="current" className={styles.currentContainer}>
+        {current.length > 0 &&
+          current.map(exhibit => (
+            <ExhibitionTile
+              key={exhibit.id}
+              content={exhibit}
+              fair={true}
+            ></ExhibitionTile>
+          ))}
+      </div>
+      <p className={styles.exhibitSectionHeading}>
+        <FormattedMessage id="upcoming"></FormattedMessage>
+      </p>
+      <div id="upcoming" className={styles.upcomingContainer}>
+        {" "}
+        {upcoming.length > 0 &&
+          upcoming.map(exhibit => (
+            <ExhibitionTile
+              key={exhibit.id}
+              content={exhibit}
+              fair={true}
+            ></ExhibitionTile>
+          ))}
+      </div>
+      <div
+        id="past"
+        className={`${styles.pastHeading} ${styles.exhibitSectionHeading}`}
+      >
+        <p>
+          <FormattedMessage id="past"></FormattedMessage>
+        </p>
+        <div className={styles.filterContainer}>
+          <p>
+            <FormattedMessage id="filter"></FormattedMessage>:
+          </p>
+          <div className={styles.filterRelative}>
+            <button
+              onClick={() => setArtistOpen(!artistOpen)}
+              className={styles.filterButton}
+            >
+              <FormattedMessage id="artist"></FormattedMessage>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 14.43 7.922"
+                className={artistOpen ? styles.filterOpen : styles.filterClosed}
+              >
+                <g
+                  id="Component_2_1"
+                  data-name="Component 2 – 1"
+                  transform="translate(0.354 0.707)"
+                >
+                  <path
+                    id="Path_9"
+                    data-name="Path 9"
+                    d="M24.628,597.393l6.861-6.861,6.861,6.861"
+                    transform="translate(-24.628 -590.532)"
+                    fill="none"
+                    stroke="#000"
+                    stroke-width="1"
+                  />
+                </g>
+              </svg>
+            </button>
+            <AnimatePresence>
+              {artistOpen && (
+                <motion.div
+                  key="artists"
+                  initial={{ opacity: 0, maxHeight: 0 }}
+                  animate={{ opacity: 1, maxHeight: "300px" }}
+                  exit={{ opacity: 0, maxHeight: 0 }}
+                  className={styles.artistDropdown}
+                >
+                  <button
+                    onClick={() => {
+                      setPast(allPast)
+                      setArtistOpen(false)
+                      setChange(prev => prev + 1)
+                    }}
+                    className={styles.dropdownButton}
+                  >
+                    <FormattedMessage id="all_artists"></FormattedMessage>
+                  </button>
+                  {allArtists.map((artist, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleFilter("artist", artist)}
+                      className={styles.dropdownButton}
+                    >
+                      {artist}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <div className={styles.filterRelative}>
+            <button
+              onClick={() => setLocationOpen(!locationOpen)}
+              className={styles.filterButton}
+            >
+              <FormattedMessage id="location"></FormattedMessage>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 14.43 7.922"
+                className={
+                  locationOpen ? styles.filterOpen : styles.filterClosed
+                }
+              >
+                <g
+                  id="Component_2_1"
+                  data-name="Component 2 – 1"
+                  transform="translate(0.354 0.707)"
+                >
+                  <path
+                    id="Path_9"
+                    data-name="Path 9"
+                    d="M24.628,597.393l6.861-6.861,6.861,6.861"
+                    transform="translate(-24.628 -590.532)"
+                    fill="none"
+                    stroke="#000"
+                    stroke-width="1"
+                  />
+                </g>
+              </svg>
+            </button>
+            <AnimatePresence>
+              {locationOpen && (
+                <motion.div
+                  key="locations"
+                  initial={{ opacity: 0, maxHeight: 0 }}
+                  animate={{ opacity: 1, maxHeight: "300px" }}
+                  exit={{ opacity: 0, maxHeight: 0 }}
+                  className={styles.artistDropdown}
+                >
+                  <button
+                    onClick={() => {
+                      setPast(allPast)
+                      setLocationOpen(false)
+                      setChange(prev => prev + 1)
+                    }}
+                    className={styles.dropdownButton}
+                  >
+                    <FormattedMessage id="all_locations"></FormattedMessage>
+                  </button>
+                  {allLocations.map((location, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleFilter("location", location)}
+                      className={styles.dropdownButton}
+                    >
+                      {location}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <div className={styles.filterRelative}>
+            <button
+              onClick={() => setYearOpen(!yearOpen)}
+              className={styles.filterButton}
+            >
+              <FormattedMessage id="year"></FormattedMessage>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 14.43 7.922"
+                className={yearOpen ? styles.filterOpen : styles.filterClosed}
+              >
+                <g
+                  id="Component_2_1"
+                  data-name="Component 2 – 1"
+                  transform="translate(0.354 0.707)"
+                >
+                  <path
+                    id="Path_9"
+                    data-name="Path 9"
+                    d="M24.628,597.393l6.861-6.861,6.861,6.861"
+                    transform="translate(-24.628 -590.532)"
+                    fill="none"
+                    stroke="#000"
+                    stroke-width="1"
+                  />
+                </g>
+              </svg>
+            </button>
+            <AnimatePresence>
+              {yearOpen && (
+                <motion.div
+                  key="years"
+                  initial={{ opacity: 0, maxHeight: 0 }}
+                  animate={{ opacity: 1, maxHeight: "300px" }}
+                  exit={{ opacity: 0, maxHeight: 0 }}
+                  className={styles.artistDropdown}
+                >
+                  <button
+                    onClick={() => {
+                      setPast(allPast)
+                      setYearOpen(false)
+                      setChange(prev => prev + 1)
+                    }}
+                    className={styles.dropdownButton}
+                  >
+                    <FormattedMessage id="all_years"></FormattedMessage>
+                  </button>
+                  {allYears.map((year, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleFilter("year", year)}
+                      className={styles.dropdownButton}
+                    >
+                      {year}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+      {past.length && (
+        <Pagination
+          type="exhibit"
+          data={past}
+          showNum={6}
+          key={change}
+          fair={true}
+        ></Pagination>
+      )}
+    </div>
   )
 }
 

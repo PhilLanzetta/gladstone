@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { graphql, Link } from "gatsby"
-import Layout from "../components/layout"
+import { graphql } from "gatsby"
+import { Link, FormattedMessage } from "gatsby-plugin-intl"
 import moment from "moment"
 import * as styles from "../components/exhibitPage.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -97,75 +97,76 @@ const Fair = ({ data }) => {
   const isMobile = width < 700
 
   return (
-      <div className="pageContainer">
-        <Link to="/fairs" className={styles.pageHeading}>
-          Fairs
-        </Link>
-        <div className={styles.aboveTheFold}>
-          <div className={styles.aboveLeft}>
-            <p className={styles.aboveHeading}>{title}</p>
+    <div className="pageContainer">
+      <Link to="/fairs" className={styles.pageHeading}>
+        <FormattedMessage id="fairs"></FormattedMessage>
+      </Link>
+      <div className={styles.aboveTheFold}>
+        <div className={styles.aboveLeft}>
+          <p className={styles.aboveHeading}>{title}</p>
+          <p className={styles.aboveInfo}>
+            {moment(startDate).format("MMMM D")} &mdash;{" "}
+            {moment(endDate).format("MMMM D, YYYY")}{" "}
+          </p>
+          {openingReception && (
             <p className={styles.aboveInfo}>
-              {moment(startDate).format("MMMM D")} &mdash;{" "}
-              {moment(endDate).format("MMMM D, YYYY")}{" "}
+              <FormattedMessage id="opening_reception"></FormattedMessage>{" "}
+              {openingReception}
             </p>
-            {openingReception && (
-              <p className={styles.aboveInfo}>
-                Opening Reception: {openingReception}
-              </p>
-            )}
-            {location && (
-              <p
-                className={styles.aboveInfo}
-                dangerouslySetInnerHTML={{
-                  __html: location.childMarkdownRemark.html,
-                }}
-              ></p>
-            )}
-            {fairDescription && (
-              <div
-                className={styles.aboveDescription}
-                dangerouslySetInnerHTML={{
-                  __html: fairDescription.childMarkdownRemark.html,
-                }}
-              ></div>
-            )}
-            <div className={styles.downloadContainer}>
-              {aboutLinks &&
-                aboutLinks.map(item => (
-                  <PdfDownload
-                    key={item.id}
-                    content={item}
-                    external={true}
-                  ></PdfDownload>
-                ))}
-              {aboutDownloads &&
-                aboutDownloads.map(item => (
-                  <PdfDownload key={item.id} content={item}></PdfDownload>
-                ))}
-            </div>
-          </div>
-          <div className={styles.fairAboveRight}>
-            <Slider {...settings}>
-              {featuredImages.map(featuredImage => (
-                <div key={featuredImage.id}>
-                  <div className={styles.fairSlide}>
-                    <GatsbyImage
-                      image={featuredImage.image.gatsbyImageData}
-                      alt={featuredImage.image.description}
-                      className={styles.fairImage}
-                    ></GatsbyImage>
-                  </div>
-                </div>
+          )}
+          {location && (
+            <p
+              className={styles.aboveInfo}
+              dangerouslySetInnerHTML={{
+                __html: location.childMarkdownRemark.html,
+              }}
+            ></p>
+          )}
+          {fairDescription && (
+            <div
+              className={styles.aboveDescription}
+              dangerouslySetInnerHTML={{
+                __html: fairDescription.childMarkdownRemark.html,
+              }}
+            ></div>
+          )}
+          <div className={styles.downloadContainer}>
+            {aboutLinks &&
+              aboutLinks.map(item => (
+                <PdfDownload
+                  key={item.id}
+                  content={item}
+                  external={true}
+                ></PdfDownload>
               ))}
-            </Slider>
-            {featuredImages?.length > 1 && (
-              <div className={styles.slideCount}>
-                {Math.round(activeSlide + 1)} / {featuredImages.length}
-              </div>
-            )}
+            {aboutDownloads &&
+              aboutDownloads.map(item => (
+                <PdfDownload key={item.id} content={item}></PdfDownload>
+              ))}
           </div>
         </div>
+        <div className={styles.fairAboveRight}>
+          <Slider {...settings}>
+            {featuredImages.map(featuredImage => (
+              <div key={featuredImage.id}>
+                <div className={styles.fairSlide}>
+                  <GatsbyImage
+                    image={featuredImage.image.gatsbyImageData}
+                    alt={featuredImage.image.description}
+                    className={styles.fairImage}
+                  ></GatsbyImage>
+                </div>
+              </div>
+            ))}
+          </Slider>
+          {featuredImages?.length > 1 && (
+            <div className={styles.slideCount}>
+              {Math.round(activeSlide + 1)} / {featuredImages.length}
+            </div>
+          )}
+        </div>
       </div>
+    </div>
   )
 }
 

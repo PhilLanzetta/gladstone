@@ -1,6 +1,6 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
-import Layout from "../../components/layout"
+import { graphql } from "gatsby"
+import { FormattedMessage, Link } from "gatsby-plugin-intl"
 import * as styles from "../../components/shop.module.css"
 import slugify from "slugify"
 import ShopHeading from "../../components/shopHeading"
@@ -17,7 +17,7 @@ const Artists = ({ data }) => {
   return (
       <div className="pageContainer">
         <ShopHeading></ShopHeading>
-        <div className={styles.shopSectionHeadingArtists}>Browse by Artist</div>
+        <div className={styles.shopSectionHeadingArtists}><FormattedMessage id="artist_browse"></FormattedMessage></div>
         <div className={styles.artistListing}>
           {artists.map((artist, index) => (
             <Link

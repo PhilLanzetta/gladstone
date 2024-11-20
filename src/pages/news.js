@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
-import Layout from "../components/layout"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import * as styles from "../components/newsItem.module.css"
 import NewsItem from "../components/newsItem"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
 const News = ({ data }) => {
   const allNews = data.allContentfulNewsEntry.nodes
@@ -22,77 +22,77 @@ const News = ({ data }) => {
   }, [filter])
 
   return (
-      <div className="pageContainer">
-        <div className={styles.newsHeader}>
+    <div className="pageContainer">
+      <div className={styles.newsHeader}>
+        <button
+          className={`pageHeading ${styles.allNewsBtn}`}
+          onClick={() => setFilter()}
+        >
+          <FormattedMessage id="news"></FormattedMessage>
+        </button>
+        <div className={styles.headerLinkContainer}>
           <button
-            className={`pageHeading ${styles.allNewsBtn}`}
             onClick={() => setFilter()}
+            className={filter ? styles.buttonInactive : styles.buttonActive}
           >
-            News
+            <FormattedMessage id="all"></FormattedMessage>
           </button>
-          <div className={styles.headerLinkContainer}>
-            <button
-              onClick={() => setFilter()}
-              className={filter ? styles.buttonInactive : styles.buttonActive}
-            >
-              All
-            </button>
-            <button
-              onClick={() =>
-                filter === "Featured" ? setFilter() : setFilter("Featured")
-              }
-              className={
-                filter === "Featured"
-                  ? styles.buttonActive
-                  : styles.buttonInactive
-              }
-            >
-              Featured
-            </button>
-            <button
-              onClick={() =>
-                filter === "Exhibition" ? setFilter() : setFilter("Exhibition")
-              }
-              className={
-                filter === "Exhibition"
-                  ? styles.buttonActive
-                  : styles.buttonInactive
-              }
-            >
-              Museum Exhibitions
-            </button>
-            <button
-              onClick={() =>
-                filter === "Event" ? setFilter() : setFilter("Event")
-              }
-              className={
-                filter === "Event" ? styles.buttonActive : styles.buttonInactive
-              }
-            >
-              Events
-            </button>
-            <button
-              onClick={() =>
-                filter === "Announcement"
-                  ? setFilter()
-                  : setFilter("Announcement")
-              }
-              className={
-                filter === "Announcement"
-                  ? styles.buttonActive
-                  : styles.buttonInactive
-              }
-            >
-              Announcements
-            </button>
-          </div>
-        </div>
-        <div className={styles.newsContainer}>
-          {newsItems.map(item => (
-            <NewsItem key={item.id} content={item}></NewsItem>
-          ))}
+          <button
+            onClick={() =>
+              filter === "Featured" ? setFilter() : setFilter("Featured")
+            }
+            className={
+              filter === "Featured"
+                ? styles.buttonActive
+                : styles.buttonInactive
+            }
+          >
+            <FormattedMessage id="featured"></FormattedMessage>
+          </button>
+          <button
+            onClick={() =>
+              filter === "Exhibition" ? setFilter() : setFilter("Exhibition")
+            }
+            className={
+              filter === "Exhibition"
+                ? styles.buttonActive
+                : styles.buttonInactive
+            }
+          >
+            <FormattedMessage id="museum_exhibitions"></FormattedMessage>
+          </button>
+          <button
+            onClick={() =>
+              filter === "Event" ? setFilter() : setFilter("Event")
+            }
+            className={
+              filter === "Event" ? styles.buttonActive : styles.buttonInactive
+            }
+          >
+            <FormattedMessage id="events"></FormattedMessage>
+          </button>
+          <button
+            onClick={() =>
+              filter === "Announcement"
+                ? setFilter()
+                : setFilter("Announcement")
+            }
+            className={
+              filter === "Announcement"
+                ? styles.buttonActive
+                : styles.buttonInactive
+            }
+          >
+            <FormattedMessage id="announcements"></FormattedMessage>
+          </button>
         </div>
       </div>
+      <div className={styles.newsContainer}>
+        {newsItems.map(item => (
+          <NewsItem key={item.id} content={item}></NewsItem>
+        ))}
+      </div>
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
-import Layout from "../components/layout"
+import { graphql } from "gatsby"
+import { Link, FormattedMessage } from "gatsby-plugin-intl"
 import moment from "moment"
 import * as styles from "../components/exhibitPage.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -31,146 +31,153 @@ const Exhibit = ({ data }) => {
   const isMobile = width < 700
 
   return (
-      <div className="pageContainer">
-        <Link to="/exhibitions" className={styles.pageHeading}>
-          Exhibitions
-        </Link>
-        <div className={styles.aboveTheFold}>
-          <div className={styles.aboveLeft}>
-            {artists?.map(artist => (
-              <p key={artist.id} className={styles.aboveHeading}>
-                {artist.name !== title && artist.name}
-              </p>
-            ))}
-            <p className={styles.aboveHeading}>
-              <em>{title}</em>
+    <div className="pageContainer">
+      <Link to="/exhibitions" className={styles.pageHeading}>
+        <FormattedMessage id="exhibitions"></FormattedMessage>
+      </Link>
+      <div className={styles.aboveTheFold}>
+        <div className={styles.aboveLeft}>
+          {artists?.map(artist => (
+            <p key={artist.id} className={styles.aboveHeading}>
+              {artist.name !== title && artist.name}
             </p>
+          ))}
+          <p className={styles.aboveHeading}>
+            <em>{title}</em>
+          </p>
+          <p className={styles.aboveInfo}>
+            {moment(startDate).format("MMMM D")} &mdash;{" "}
+            {moment(endDate).format("MMMM D, YYYY")}{" "}
+          </p>
+          {openingReception && (
             <p className={styles.aboveInfo}>
-              {moment(startDate).format("MMMM D")} &mdash;{" "}
-              {moment(endDate).format("MMMM D, YYYY")}{" "}
+              <FormattedMessage id="opening_reception"></FormattedMessage>:{" "}
+              {openingReception}
             </p>
-            {openingReception && (
-              <p className={styles.aboveInfo}>
-                Opening Reception: {openingReception}
-              </p>
-            )}
-            <p className={styles.aboveInfo}>{location}</p>
-            {exhibitionDescription && (
-              <div
-                className={styles.aboveDescription}
-                dangerouslySetInnerHTML={{
-                  __html: exhibitionDescription.childMarkdownRemark.html,
-                }}
-              ></div>
-            )}
-            {aboutDownloads && (
-              <div className={styles.downloadContainer}>
-                {aboutDownloads.map(item => (
-                  <PdfDownload key={item.id} content={item}></PdfDownload>
-                ))}
+          )}
+          <p className={styles.aboveInfo}>{location}</p>
+          {exhibitionDescription && (
+            <div
+              className={styles.aboveDescription}
+              dangerouslySetInnerHTML={{
+                __html: exhibitionDescription.childMarkdownRemark.html,
+              }}
+            ></div>
+          )}
+          {aboutDownloads && (
+            <div className={styles.downloadContainer}>
+              {aboutDownloads.map(item => (
+                <PdfDownload key={item.id} content={item}></PdfDownload>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className={styles.aboveRight}>
+          <GatsbyImage
+            image={featuredImage.image.gatsbyImageData}
+            alt={featuredImage.image.description}
+          ></GatsbyImage>
+        </div>
+      </div>
+      {installationMedia && (
+        <div className={styles.carouselHolder}>
+          <p className={styles.sectionHeading}>
+            <FormattedMessage id="installation"></FormattedMessage>
+          </p>
+          {isMobile ? (
+            <SimpleCarousel
+              images={installationMedia}
+              slideCount={1.15}
+            ></SimpleCarousel>
+          ) : (
+            <MediaCarousel media={installationMedia}></MediaCarousel>
+          )}
+        </div>
+      )}
+      {workMedia && (
+        <div className={styles.carouselHolder}>
+          <p className={styles.sectionHeading}>
+            <FormattedMessage id="work"></FormattedMessage>
+          </p>
+          {isMobile ? (
+            <SimpleCarousel
+              images={workMedia}
+              slideCount={1.15}
+            ></SimpleCarousel>
+          ) : (
+            <MediaCarousel media={workMedia}></MediaCarousel>
+          )}
+        </div>
+      )}
+      {artists && artists.length > 0 && (
+        <>
+          <p className={styles.sectionHeading}>
+            <FormattedMessage id="about"></FormattedMessage>
+          </p>
+          {artists.map(artist => (
+            <div key={artist.id} className={styles.artistContainer}>
+              <GatsbyImage
+                image={artist.headshot?.image?.gatsbyImageData}
+                alt={artist.headshot?.image?.description}
+                className={styles.artistImage}
+              ></GatsbyImage>
+              <div className={styles.artistBio}>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: artist.featuredBiography?.childMarkdownRemark.html,
+                  }}
+                ></div>
+                <Link
+                  to={`/artist/${artist.slug}`}
+                  className={styles.artistLink}
+                >
+                  <FormattedMessage id="view_artist_page"></FormattedMessage>{" "}
+                  <span>&rarr;</span>
+                </Link>
               </div>
-            )}
-          </div>
-          <div className={styles.aboveRight}>
-            <GatsbyImage
-              image={featuredImage.image.gatsbyImageData}
-              alt={featuredImage.image.description}
-            ></GatsbyImage>
+            </div>
+          ))}
+        </>
+      )}
+      {relatedContent && (
+        <div>
+          <p className={styles.sectionHeading}>{relatedHeading}</p>
+          <div className={styles.relatedContainer}>
+            {relatedContent.map(content => {
+              if (content.artistId) {
+                const { artistId, slug, featuredImage, name } = content
+                return (
+                  <div key={artistId}>
+                    <Link
+                      to={`/artist/${slug}`}
+                      className={styles.relatedArtistLink}
+                    >
+                      <div className={styles.artistTile}>
+                        <GatsbyImage
+                          image={featuredImage?.image.gatsbyImageData}
+                          alt={featuredImage?.description}
+                          className={styles.relatedTileImage}
+                        ></GatsbyImage>
+                        <p className={styles.relatedInfoText}>{name}</p>
+                      </div>
+                    </Link>
+                  </div>
+                )
+              } else if (content.exhibitId) {
+                return (
+                  <ExhibitionTile
+                    key={content.exhibitId}
+                    content={content}
+                  ></ExhibitionTile>
+                )
+              } else {
+                return <div>Unknown Content</div>
+              }
+            })}
           </div>
         </div>
-        {installationMedia && (
-          <div className={styles.carouselHolder}>
-            <p className={styles.sectionHeading}>Installation</p>
-            {isMobile ? (
-              <SimpleCarousel
-                images={installationMedia}
-                slideCount={1.15}
-              ></SimpleCarousel>
-            ) : (
-              <MediaCarousel media={installationMedia}></MediaCarousel>
-            )}
-          </div>
-        )}
-        {workMedia && (
-          <div className={styles.carouselHolder}>
-            <p className={styles.sectionHeading}>Work</p>
-            {isMobile ? (
-              <SimpleCarousel
-                images={workMedia}
-                slideCount={1.15}
-              ></SimpleCarousel>
-            ) : (
-              <MediaCarousel media={workMedia}></MediaCarousel>
-            )}
-          </div>
-        )}
-        {artists && artists.length > 0 && (
-          <>
-            <p className={styles.sectionHeading}>About</p>
-            {artists.map(artist => (
-              <div key={artist.id} className={styles.artistContainer}>
-                <GatsbyImage
-                  image={artist.headshot?.image?.gatsbyImageData}
-                  alt={artist.headshot?.image?.description}
-                  className={styles.artistImage}
-                ></GatsbyImage>
-                <div className={styles.artistBio}>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        artist.featuredBiography?.childMarkdownRemark.html,
-                    }}
-                  ></div>
-                  <Link
-                    to={`/artist/${artist.slug}`}
-                    className={styles.artistLink}
-                  >
-                    View Artist Page <span>&rarr;</span>
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </>
-        )}
-        {relatedContent && (
-          <div>
-            <p className={styles.sectionHeading}>{relatedHeading}</p>
-            <div className={styles.relatedContainer}>
-              {relatedContent.map(content => {
-                if (content.artistId) {
-                  const { artistId, slug, featuredImage, name } = content
-                  return (
-                    <div key={artistId}>
-                      <Link
-                        to={`/artist/${slug}`}
-                        className={styles.relatedArtistLink}
-                      >
-                        <div className={styles.artistTile}>
-                          <GatsbyImage
-                            image={featuredImage?.image.gatsbyImageData}
-                            alt={featuredImage?.description}
-                            className={styles.relatedTileImage}
-                          ></GatsbyImage>
-                          <p className={styles.relatedInfoText}>{name}</p>
-                        </div>
-                      </Link>
-                    </div>
-                  )
-                } else if (content.exhibitId) {
-                  return (
-                    <ExhibitionTile
-                      key={content.exhibitId}
-                      content={content}
-                    ></ExhibitionTile>
-                  )
-                } else {
-                  return <div>Unknown Content</div>
-                }
-              })}
-            </div>
-          </div>
-        )}
-      </div>
+      )}
+    </div>
   )
 }
 

@@ -3,7 +3,7 @@ import moment from "moment"
 import * as styles from "./pagination.module.css"
 import ProductTile from "./productTile"
 import ExhibitionTile from "./exhibitionTile"
-import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
 const Pagination = ({ type, data, showNum, fair }) => {
   const [allData, setAllData] = useState(data)
@@ -92,4 +92,4 @@ const Pagination = ({ type, data, showNum, fair }) => {
   )
 }
 
-export default injectIntl(Pagination)
+export default Pagination

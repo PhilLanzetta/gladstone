@@ -10,7 +10,7 @@ import {
 import smallLogo from "../images/Gladstone_Small.svg"
 import bigLogo from "../images/Gladstone_Big.svg"
 import bigLogoBlack from "../images/Gladstone_Big_Black.svg"
-import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
+import { Link, FormattedMessage } from "gatsby-plugin-intl"
 import Language from "./language"
 
 const Header = ({ isHome }) => {
@@ -210,4 +210,4 @@ const Header = ({ isHome }) => {
   )
 }
 
-export default injectIntl(Header)
+export default Header

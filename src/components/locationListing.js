@@ -1,6 +1,6 @@
 import React from "react"
 import * as styles from "./locationListing.module.css"
-import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
 const LocationListing = () => {
   return (
@@ -59,4 +59,4 @@ const LocationListing = () => {
   )
 }
 
-export default injectIntl(LocationListing)
+export default LocationListing

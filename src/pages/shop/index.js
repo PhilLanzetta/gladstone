@@ -1,6 +1,6 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
-import Layout from "../../components/layout"
+import { graphql } from "gatsby"
+import { FormattedMessage, Link } from "gatsby-plugin-intl"
 import * as styles from "../../components/shop.module.css"
 import Slider from "react-slick"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -105,63 +105,73 @@ const Shop = ({ data }) => {
   }
 
   return (
-      <div className="pageContainer">
-        <ShopHeading></ShopHeading>
-        <Slider {...settings} className={styles.sliderContainer}>
-          {featured.map(slide => (
-            <div key={slide.id} className={styles.featuredSlide}>
-              <GatsbyImage
-                image={slide.image.gatsbyImageData}
-                alt={slide.image.description}
-                className={styles.carouselImg}
-              ></GatsbyImage>
-              <Link
-                to={`/shop/${slide.productHandle}`}
-                className={styles.featuredSlideInfo}
-                dangerouslySetInnerHTML={{
-                  __html: slide.tileText.childMarkdownRemark.html,
-                }}
-              ></Link>
-            </div>
-          ))}
-        </Slider>
-        <div className={styles.shopSectionHeading}>New Releases</div>
-        <Pagination
-          type="product"
-          data={newProducts.products}
-          showNum={3}
-        ></Pagination>
-        <div className={styles.shopSectionHeading}>Publications</div>
-        <Pagination
-          type="product"
-          data={publications.products}
-          showNum={9}
-        ></Pagination>
-        <div className={styles.shopSectionHeading}>Ephemera</div>
-        <Pagination
-          type="product"
-          data={ephemera.products}
-          showNum={3}
-        ></Pagination>
-        <div className={styles.shopSectionHeading}>Clothing</div>
-        <Pagination
-          type="product"
-          data={clothing.products}
-          showNum={3}
-        ></Pagination>
-        <div className={styles.shopSectionHeading}>Browse by Artist</div>
-        <div className={styles.artistListing}>
-          {artists.map((artist, index) => (
+    <div className="pageContainer">
+      <ShopHeading></ShopHeading>
+      <Slider {...settings} className={styles.sliderContainer}>
+        {featured.map(slide => (
+          <div key={slide.id} className={styles.featuredSlide}>
+            <GatsbyImage
+              image={slide.image.gatsbyImageData}
+              alt={slide.image.description}
+              className={styles.carouselImg}
+            ></GatsbyImage>
             <Link
-              key={index}
-              to={`/shop/${slugify(artist, { lower: true })}`}
-              className={styles.artistLink}
-            >
-              {artist}
-            </Link>
-          ))}
-        </div>
+              to={`/shop/${slide.productHandle}`}
+              className={styles.featuredSlideInfo}
+              dangerouslySetInnerHTML={{
+                __html: slide.tileText.childMarkdownRemark.html,
+              }}
+            ></Link>
+          </div>
+        ))}
+      </Slider>
+      <div className={styles.shopSectionHeading}>
+        <FormattedMessage id="new_releases"></FormattedMessage>
       </div>
+      <Pagination
+        type="product"
+        data={newProducts.products}
+        showNum={3}
+      ></Pagination>
+      <div className={styles.shopSectionHeading}>
+        <FormattedMessage id="publications"></FormattedMessage>
+      </div>
+      <Pagination
+        type="product"
+        data={publications.products}
+        showNum={9}
+      ></Pagination>
+      <div className={styles.shopSectionHeading}>
+        <FormattedMessage id="ephemera"></FormattedMessage>
+      </div>
+      <Pagination
+        type="product"
+        data={ephemera.products}
+        showNum={3}
+      ></Pagination>
+      <div className={styles.shopSectionHeading}>
+        <FormattedMessage id="clothing"></FormattedMessage>
+      </div>
+      <Pagination
+        type="product"
+        data={clothing.products}
+        showNum={3}
+      ></Pagination>
+      <div className={styles.shopSectionHeading}>
+        <FormattedMessage id="artist_browse"></FormattedMessage>
+      </div>
+      <div className={styles.artistListing}>
+        {artists.map((artist, index) => (
+          <Link
+            key={index}
+            to={`/shop/${slugify(artist, { lower: true })}`}
+            className={styles.artistLink}
+          >
+            {artist}
+          </Link>
+        ))}
+      </div>
+    </div>
   )
 }
 

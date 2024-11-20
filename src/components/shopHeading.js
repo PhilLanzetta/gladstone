@@ -3,7 +3,7 @@ import * as styles from "./shop.module.css"
 import Cart from "./cart"
 import { AnimatePresence } from "framer-motion"
 import useStore from "../context/StoreContext"
-import { Link } from "gatsby"
+import { FormattedMessage, Link } from "gatsby-plugin-intl"
 
 const ShopHeading = () => {
   const [isCartOpen, setIsCartOpen] = useState(false)
@@ -17,33 +17,35 @@ const ShopHeading = () => {
       </AnimatePresence>
       <div className={styles.exhibitionsHeader}>
         <Link className="pageHeading" to="/shop">
-          Shop
+          <FormattedMessage id="shop"></FormattedMessage>
         </Link>
         <div className={styles.headerLinkContainer}>
           <Link to="/shop/featured" activeClassName={styles.activeLink}>
-            Featured
+            <FormattedMessage id="featured"></FormattedMessage>
           </Link>
           <Link to="/shop/new-releases" activeClassName={styles.activeLink}>
-            New Releases
+            <FormattedMessage id="new_releases"></FormattedMessage>
           </Link>
           <Link to="/shop/publications" activeClassName={styles.activeLink}>
-            Publications
+            <FormattedMessage id="publications"></FormattedMessage>
           </Link>
           <Link to="/shop/ephemera" activeClassName={styles.activeLink}>
-            Ephemera
+            <FormattedMessage id="ephemera"></FormattedMessage>
           </Link>
           <Link to="/shop/clothing" activeClassName={styles.activeLink}>
-            Clothing
+            <FormattedMessage id="clothing"></FormattedMessage>
           </Link>
           <Link to="/shop/artists" activeClassName={styles.activeLink}>
-            Artists
+            <FormattedMessage id="artists"></FormattedMessage>
           </Link>
           {cart.length > 0 && (
             <button
               onClick={() => setIsCartOpen(!isCartOpen)}
               className={styles.shopBagButton}
             >
-              <span className={styles.cartText}>Cart</span>
+              <span className={styles.cartText}>
+                <FormattedMessage id="cart"></FormattedMessage>
+              </span>
               {cart.length > 0 ? (
                 <span className={styles.cartNumber}>
                   {cart

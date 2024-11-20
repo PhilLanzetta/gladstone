@@ -2,6 +2,7 @@ import React from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 import useStore from "../context/StoreContext"
 import * as styles from "./cart.module.css"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
 const ProductRow = ({ item }) => {
   const { product, quantity, variantIndex } = item
@@ -18,7 +19,9 @@ const ProductRow = ({ item }) => {
   return (
     <div className={styles.productRowContainer}>
       <div className={styles.productSection}>
-        <p className={styles.heading}>Product</p>
+        <p className={styles.heading}>
+          <FormattedMessage id="product"></FormattedMessage>
+        </p>
         <div className={styles.productInfo}>
           <GatsbyImage
             image={
@@ -34,13 +37,17 @@ const ProductRow = ({ item }) => {
       </div>
       <div className={styles.rowRight}>
         <div className={styles.priceContainer}>
-          <p className={styles.heading}>Price</p>
+          <p className={styles.heading}>
+            <FormattedMessage id="price"></FormattedMessage>
+          </p>
           <p>
             <span>{`$${product.priceRangeV2.minVariantPrice.amount}`}</span>
           </p>
         </div>
         <div className={styles.quantityContainer}>
-          <p className={styles.heading}>Quantity</p>
+          <p className={styles.heading}>
+            <FormattedMessage id="quantity"></FormattedMessage>
+          </p>
           <div className={styles.quantityButtons}>
             <button
               className={styles.quantityBtn}
@@ -75,12 +82,14 @@ const ProductRow = ({ item }) => {
               }
               className={styles.remove}
             >
-              Remove
+              <FormattedMessage id="remove"></FormattedMessage>
             </button>
           </div>
         </div>
         <div className={styles.rowTotalContainer}>
-          <p className={styles.heading}>Total</p>
+          <p className={styles.heading}>
+            <FormattedMessage id="total"></FormattedMessage>
+          </p>
           <p>
             <span>{`$${
               product.priceRangeV2.minVariantPrice.amount * quantity

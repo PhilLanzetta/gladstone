@@ -3,7 +3,7 @@ import useStore from "../context/StoreContext"
 import ProductRow from "./productRow"
 import { motion } from "framer-motion"
 import * as styles from './cart.module.css'
-import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
 const Cart = ({ toggleCart }) => {
   const { cart, checkout } = useStore()
@@ -64,4 +64,4 @@ const Cart = ({ toggleCart }) => {
   )
 }
 
-export default injectIntl(Cart)
+export default Cart

@@ -2,7 +2,7 @@ import React from "react"
 import * as styles from "./footer.module.css"
 import MailForm from "./mailForm"
 import logo from "../images/Gladstone_Small.svg"
-import { injectIntl, Link, FormattedMessage } from "gatsby-plugin-intl"
+import { Link, FormattedMessage } from "gatsby-plugin-intl"
 
 const Footer = () => {
   return (
@@ -89,4 +89,4 @@ const Footer = () => {
   )
 }
 
-export default injectIntl(Footer)
+export default Footer

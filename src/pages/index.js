@@ -2,10 +2,9 @@ import React from "react"
 import { graphql } from "gatsby"
 import HomeTile from "../components/homeTile"
 import * as styles from "../components/index.module.css"
-import Layout from "../components/layout"
 import LocationListing from "../components/locationListing"
 
-const Index = ({ data, location }) => {
+const Index = ({ data }) => {
   const { homeTiles } = data.contentfulHomePage
   return (
       <div className={styles.homeContainer}>

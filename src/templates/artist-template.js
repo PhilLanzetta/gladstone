@@ -1,8 +1,8 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
+import { Link, FormattedMessage } from "gatsby-plugin-intl"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo"
-import Layout from "../components/layout"
 import * as styles from "../components/artistPage.module.css"
 import ExhibitionTile from "../components/exhibitionTile"
 import MediaCarousel from "../components/mediaCarousel"
@@ -38,15 +38,35 @@ const Artist = ({ data }) => {
           <div className={styles.headerLinkContainer}>
             {artworksCarousel && (
               <a href="#art" className={styles.landingLink}>
-                Artwork
+                <FormattedMessage id="artwork"></FormattedMessage>
               </a>
             )}
-            <a href="#about">About</a>
-            {exhibitions && <a href="#exhibitions">Exhibitions</a>}
-            {press && <a href="#press">Press</a>}
-            {studioVisit && <a href="#studio">Studio Visit</a>}
-            {videos && <a href="#video">Video</a>}
-            <a href="#publications">Publications</a>
+            <a href="#about">
+              <FormattedMessage id="about"></FormattedMessage>
+            </a>
+            {exhibitions && (
+              <a href="#exhibitions">
+                <FormattedMessage id="exhibitions"></FormattedMessage>
+              </a>
+            )}
+            {press && (
+              <a href="#press">
+                <FormattedMessage id="press"></FormattedMessage>
+              </a>
+            )}
+            {studioVisit && (
+              <a href="#studio">
+                <FormattedMessage id="studio_visit"></FormattedMessage>
+              </a>
+            )}
+            {videos && (
+              <a href="#video">
+                <FormattedMessage id="video"></FormattedMessage>
+              </a>
+            )}
+            <a href="#publications">
+              <FormattedMessage id="publications"></FormattedMessage>
+            </a>
           </div>
         </div>
         {artworksCarousel && (
@@ -61,7 +81,9 @@ const Artist = ({ data }) => {
             )}
           </div>
         )}
-        <p className={styles.artistSectionHeading}>About</p>{" "}
+        <p className={styles.artistSectionHeading}>
+          <FormattedMessage id="about"></FormattedMessage>
+        </p>{" "}
         <div className={styles.aboutContainer} id="about">
           <div className={styles.artistImage}>
             <GatsbyImage
@@ -85,7 +107,9 @@ const Artist = ({ data }) => {
         </div>
         {exhibitions && (
           <>
-            <p className={styles.artistSectionHeading}>Exhibitions</p>{" "}
+            <p className={styles.artistSectionHeading}>
+              <FormattedMessage id="exhibitions"></FormattedMessage>
+            </p>{" "}
             <div id="exhibitions" className={styles.exhibitionContainer}>
               {" "}
               {exhibitions.map(exhibit => (
@@ -100,7 +124,9 @@ const Artist = ({ data }) => {
         )}
         {press && (
           <>
-            <p className={styles.artistSectionHeading}>Press</p>
+            <p className={styles.artistSectionHeading}>
+              <FormattedMessage id="press"></FormattedMessage>
+            </p>
             <div id="press" className={styles.pressContainer}>
               <Pagination type="press" data={press} showNum={8}></Pagination>
             </div>
@@ -108,7 +134,9 @@ const Artist = ({ data }) => {
         )}
         {studioVisit && (
           <>
-            <p className={styles.artistSectionHeading}>Studio Visit</p>
+            <p className={styles.artistSectionHeading}>
+              <FormattedMessage id="studio_visit"></FormattedMessage>
+            </p>
             <div id="studio" className={styles.studioContainer}>
               {isMobile ? (
                 <SimpleCarousel
@@ -123,7 +151,9 @@ const Artist = ({ data }) => {
         )}
         {videos && (
           <>
-            <p className={styles.artistSectionHeading}>Video</p>
+            <p className={styles.artistSectionHeading}>
+              <FormattedMessage id="video"></FormattedMessage>
+            </p>
             <div id="video">
               <SimpleCarousel
                 videos={videos}
@@ -140,13 +170,13 @@ const Artist = ({ data }) => {
               }}
             ></h2>
             <a href={`mailto:${callToActionEmail}`} className={styles.ctaLink}>
-              Inquire here
+              <FormattedMessage id="inquire_here"></FormattedMessage>
             </a>
           </div>
         )}
       </div>
       <Link to="/artists" className={styles.explore}>
-        Explore Gladstone Artists
+        <FormattedMessage id="explore"></FormattedMessage>
       </Link>
     </>
   )

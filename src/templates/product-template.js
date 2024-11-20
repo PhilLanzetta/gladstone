@@ -1,14 +1,11 @@
 import React, { useState } from "react"
-import Layout from "../components/layout"
 import { graphql} from "gatsby"
+import { FormattedMessage } from "gatsby-plugin-intl"
 import { GatsbyImage } from "gatsby-plugin-image"
-import useWindowSize from "../utils/useWindowSize"
 import useStore from "../context/StoreContext"
 import Seo from "../components/seo"
 import Slider from "react-slick"
 import * as styles from "../components/shop.module.css"
-import Cart from "../components/cart"
-import { AnimatePresence } from "framer-motion"
 import ShopHeading from "../components/shopHeading"
 
 function NextArrow(props) {
@@ -71,8 +68,7 @@ function PrevArrow(props) {
   )
 }
 
-const ProductPage = ({ location, data }) => {
-  const { width } = useWindowSize()
+const ProductPage = ({ data }) => {
   const [variantIndex, setVariantIndex] = useState(0)
   const {
     media,
@@ -170,7 +166,7 @@ const ProductPage = ({ location, data }) => {
                   }
                   className={styles.addToCartBtn}
                 >
-                  Add to Cart
+                  <FormattedMessage id="add_to_cart"></FormattedMessage>
                 </button>
               </>
             )}
