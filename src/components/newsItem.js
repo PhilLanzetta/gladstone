@@ -1,7 +1,6 @@
 import React from "react"
 import * as styles from "./newsItem.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { FormattedMessage } from "gatsby-plugin-intl"
 
 const NewsItem = ({ content }) => {
   const { isFeatured, link, newsImage, newsText, download } = content
@@ -31,11 +30,11 @@ const NewsItem = ({ content }) => {
         {link && (
           <a
             className={styles.downloadLink}
-            href={link}
+            href={link.url}
             target="_blank"
             rel="noreferrer"
           >
-            <FormattedMessage id="view_article"></FormattedMessage> &#8599;
+            {link.label} &#8599;
           </a>
         )}
       </div>

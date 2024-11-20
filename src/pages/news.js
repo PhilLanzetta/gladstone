@@ -106,7 +106,10 @@ export const query = graphql`
         category
         id
         isFeatured
-        link
+        link {
+          label
+          url
+        }
         newsImage {
           gatsbyImageData(layout: FULL_WIDTH)
           description
