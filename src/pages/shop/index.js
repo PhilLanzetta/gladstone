@@ -133,7 +133,7 @@ const Shop = ({ data }) => {
         data={newProducts.products}
         showNum={3}
       ></Pagination>
-      <div className={styles.shopSectionHeading}>
+      {/* <div className={styles.shopSectionHeading}>
         <FormattedMessage id="publications"></FormattedMessage>
       </div>
       <Pagination
@@ -156,7 +156,7 @@ const Shop = ({ data }) => {
         type="product"
         data={clothing.products}
         showNum={3}
-      ></Pagination>
+      ></Pagination> */}
       <div className={styles.shopSectionHeading}>
         <FormattedMessage id="artist_browse"></FormattedMessage>
       </div>

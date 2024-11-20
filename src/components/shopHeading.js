@@ -29,12 +29,12 @@ const ShopHeading = () => {
           <Link to="/shop/publications" activeClassName={styles.activeLink}>
             <FormattedMessage id="publications"></FormattedMessage>
           </Link>
-          <Link to="/shop/ephemera" activeClassName={styles.activeLink}>
+          {/* <Link to="/shop/ephemera" activeClassName={styles.activeLink}>
             <FormattedMessage id="ephemera"></FormattedMessage>
           </Link>
           <Link to="/shop/clothing" activeClassName={styles.activeLink}>
             <FormattedMessage id="clothing"></FormattedMessage>
-          </Link>
+          </Link> */}
           <Link to="/shop/artists" activeClassName={styles.activeLink}>
             <FormattedMessage id="artists"></FormattedMessage>
           </Link>
