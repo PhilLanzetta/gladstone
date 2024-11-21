@@ -70,27 +70,32 @@ const Header = ({ isHome }) => {
               {!isMobile && <FormattedMessage id="menu"></FormattedMessage>}
             </button>
           </div>
-          {isHome && (
-            <div
-              className={`${styles.logo} ${
-                hidden ? styles.hideLogo : styles.showLogo
-              }`}
-            >
-              <Link to="/" onClick={() => setIsOpen(false)}>
-                <img
-                  src={isOpen ? bigLogoBlack : bigLogo}
-                  alt="Gladstone Gallery Logo"
-                ></img>
-              </Link>
-            </div>
-          )}
-          {!isHome && (
-            <div className={styles.smallLogo}>
-              <Link to="/" onClick={() => setIsOpen(false)}>
-                <img src={smallLogo} alt="Gladstone Gallery Logo"></img>
-              </Link>
-            </div>
-          )}
+          <AnimatePresence>
+            {isHome && (
+              <motion.div
+                initial={{ maxHeight: "10px" }}
+                animate={{ maxHeight: "400px" }}
+                exit={{ maxHeight: "10px" }}
+                className={`${styles.logo} ${
+                  hidden ? styles.hideLogo : styles.showLogo
+                }`}
+              >
+                <Link to="/" onClick={() => setIsOpen(false)}>
+                  <img
+                    src={isOpen ? bigLogoBlack : bigLogo}
+                    alt="Gladstone Gallery Logo"
+                  ></img>
+                </Link>
+              </motion.div>
+            )}
+            {!isHome && (
+              <motion.div className={styles.smallLogo}>
+                <Link to="/" onClick={() => setIsOpen(false)}>
+                  <img src={smallLogo} alt="Gladstone Gallery Logo"></img>
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <div>
             <div className={styles.language}>
               <Language></Language>

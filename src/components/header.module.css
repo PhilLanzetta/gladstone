@@ -54,6 +54,7 @@ header {
   display: flex;
   position: relative;
   justify-content: center;
+  align-items: center;
 }
 
 .logo a {
