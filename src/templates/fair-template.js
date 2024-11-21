@@ -93,6 +93,7 @@ const Fair = ({ data }) => {
     nextArrow: <NextArrow addClassName={styles.nextArrow} />,
     prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
     afterChange: current => setActiveSlide(current),
+    adaptiveHeight: true,
   }
 
   const { width } = useWindowSize()
@@ -105,47 +106,57 @@ const Fair = ({ data }) => {
       </Link>
       <div className={styles.aboveTheFold}>
         <div className={styles.aboveLeft}>
-          <p className={styles.aboveHeading}>{title}</p>
-          <p className={styles.aboveInfo}>
-            {moment(startDate).format("MMMM D")} &mdash;{" "}
-            {moment(endDate).format("MMMM D, YYYY")}{" "}
-          </p>
-          {openingReception && (
+          <div className={styles.info}>
+            <p className={styles.aboveHeading}>{title}</p>
             <p className={styles.aboveInfo}>
-              <FormattedMessage id="opening_reception"></FormattedMessage>{" "}
-              {openingReception}
+              {moment(startDate).format("MMMM D")} &mdash;{" "}
+              {moment(endDate).format("MMMM D, YYYY")}{" "}
             </p>
-          )}
-          {location && (
-            <p
-              className={styles.aboveInfo}
-              dangerouslySetInnerHTML={{
-                __html: location.childMarkdownRemark.html,
-              }}
-            ></p>
-          )}
-          {fairDescription && (
-            <div
-              className={styles.aboveDescription}
-              dangerouslySetInnerHTML={{
-                __html: fairDescription.childMarkdownRemark.html,
-              }}
-            ></div>
-          )}
-          <div className={styles.downloadContainer}>
-            {aboutLinks &&
-              aboutLinks.map(item => (
-                <PdfDownload
-                  key={item.id}
-                  content={item}
-                  external={true}
-                ></PdfDownload>
-              ))}
-            {aboutDownloads &&
-              aboutDownloads.map(item => (
-                <PdfDownload key={item.id} content={item}></PdfDownload>
-              ))}
+            {openingReception && (
+              <p className={styles.aboveInfo}>
+                <FormattedMessage id="opening_reception"></FormattedMessage>{" "}
+                {openingReception}
+              </p>
+            )}
+            {location && (
+              <p
+                className={styles.aboveInfo}
+                dangerouslySetInnerHTML={{
+                  __html: location.childMarkdownRemark.html,
+                }}
+              ></p>
+            )}
+            {fairDescription && (
+              <div
+                className={styles.aboveDescription}
+                dangerouslySetInnerHTML={{
+                  __html: fairDescription.childMarkdownRemark.html,
+                }}
+              ></div>
+            )}
+            <div className={styles.downloadContainer}>
+              {aboutLinks &&
+                aboutLinks.map(item => (
+                  <PdfDownload
+                    key={item.id}
+                    content={item}
+                    external={true}
+                  ></PdfDownload>
+                ))}
+              {aboutDownloads &&
+                aboutDownloads.map(item => (
+                  <PdfDownload key={item.id} content={item}></PdfDownload>
+                ))}
+            </div>
           </div>
+          {viewingRoomPreview && (
+            <div>
+              <Link to={`/fair/${slug}/viewing-room`} className={styles.viewLink}>
+                <FormattedMessage id="viewing-room-preview"></FormattedMessage>{" "}
+                →
+              </Link>
+            </div>
+          )}
         </div>
         <div className={styles.fairAboveRight}>
           <Slider {...settings}>
@@ -168,13 +179,6 @@ const Fair = ({ data }) => {
           )}
         </div>
       </div>
-      {viewingRoomPreview && (
-        <div>
-          <Link to={`/fair/${slug}/viewing-room`}>
-            <FormattedMessage id="viewing-room-preview"></FormattedMessage> →
-          </Link>
-        </div>
-      )}
     </div>
   )
 }

@@ -1,0 +1,122 @@
+.exhibitionsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--medium-padding);
+}
+
+.headerLinkContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.headerLinkContainer a {
+  white-space: nowrap;
+  color: var(--dark-gray);
+}
+
+.headerLinkContainer a:hover {
+  color: #000;
+}
+
+.headerLinkContainer .landingLink {
+  color: #000;
+}
+
+.title {
+  font-size: var(--title);
+  font-style: italic;
+  padding-bottom: var(--medium-padding);
+}
+
+.featuredArtistsContainer {
+  margin-top: var(--medium-padding);
+}
+
+.featuredHeading {
+  font-size: var(--title);
+  margin-bottom: 20px;
+}
+
+.featuredArtists {
+  column-count: 4;
+  font-size: var(--body-text);
+  margin-bottom: var(--medium-padding);
+}
+
+.listArtistLink {
+  display: block;
+  padding-bottom: 5px;
+}
+
+.fullWidthImg {
+  width: calc(100% + (var(--medium-padding) * 2));
+  margin-left: calc(var(--medium-padding) * -1);
+  padding-bottom: var(--medium-padding);
+}
+
+.leftCarousel,
+.rightCarousel {
+  display: flex;
+  padding-bottom: var(--medium-padding);
+}
+
+.rightCarousel {
+  flex-direction: row-reverse;
+}
+
+.sliderContainer {
+  width: 60%;
+  position: relative;
+}
+
+.nextArrow,
+.previousArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+  width: 13px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.nextArrow {
+  right: 0;
+}
+
+.carouselSVG {
+  height: 100%;
+  width: 100%;
+}
+
+.imageContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carouselImage {
+  width: 90%;
+}
+
+.imageInfo {
+ width: 40%;
+}
+
+.inquire {
+  display: inline-block;
+  border: 1px solid #000;
+  padding: 10px 20px 5px 20px;
+  border-radius: 30px;
+  margin-top: var(--medium-padding);
+  transition: all 400ms;
+}
+
+.inquire:hover {
+  color: var(--dark-gray);
+  transition: all 400ms;
+}
