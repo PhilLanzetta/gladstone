@@ -70,12 +70,8 @@ const Header = ({ isHome }) => {
               {!isMobile && <FormattedMessage id="menu"></FormattedMessage>}
             </button>
           </div>
-          <AnimatePresence>
             {isHome && (
-              <motion.div
-                initial={{ maxHeight: "10px" }}
-                animate={{ maxHeight: "400px" }}
-                exit={{ maxHeight: "10px" }}
+              <div
                 className={`${styles.logo} ${
                   hidden ? styles.hideLogo : styles.showLogo
                 }`}
@@ -86,16 +82,15 @@ const Header = ({ isHome }) => {
                     alt="Gladstone Gallery Logo"
                   ></img>
                 </Link>
-              </motion.div>
+              </div>
             )}
             {!isHome && (
-              <motion.div className={styles.smallLogo}>
+              <div className={styles.smallLogo}>
                 <Link to="/" onClick={() => setIsOpen(false)}>
                   <img src={smallLogo} alt="Gladstone Gallery Logo"></img>
                 </Link>
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
           <div>
             <div className={styles.language}>
               <Language></Language>
