@@ -120,3 +120,26 @@
   color: var(--dark-gray);
   transition: all 400ms;
 }
+
+.callToActionContainer {
+  margin-top: calc((var(--medium-padding) * 2) + 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+.callToActionContainer h2 {
+  font-size: var(--headline);
+  font-weight: normal;
+  padding: 0 8vw;
+}
+
+.ctaLink {
+  font-size: var(--subtext);
+  padding: 10px 30px;
+  border: 1px solid #000;
+  border-radius: 80px;
+}

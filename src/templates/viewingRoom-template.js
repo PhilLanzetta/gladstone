@@ -76,6 +76,18 @@ const ViewingRoom = ({ data }) => {
           } else return null
         })}
       </div>
+      {callToActionText && (
+        <div className={styles.callToActionContainer}>
+          <h2
+            dangerouslySetInnerHTML={{
+              __html: callToActionText.childMarkdownRemark.html,
+            }}
+          ></h2>
+          <a href={`mailto:${callToActionEmail}`} className={styles.ctaLink}>
+            <FormattedMessage id="inquire_here"></FormattedMessage>
+          </a>
+        </div>
+      )}
     </div>
   )
 }
