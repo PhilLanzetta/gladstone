@@ -53,7 +53,7 @@ const Header = ({ isHome }) => {
             isOpen ? styles.primaryMenuOpen : styles.primaryMenuClosed
           }`}
         >
-          <div>
+          <div className={styles.hamburger}>
             <button
               className={styles.menuButton}
               onClick={() => setIsOpen(!isOpen)}
@@ -91,7 +91,7 @@ const Header = ({ isHome }) => {
                 </Link>
               </div>
             )}
-          <div>
+          <div className={styles.languageContainer}>
             <div className={styles.language}>
               <Language></Language>
             </div>

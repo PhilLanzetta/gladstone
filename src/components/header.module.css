@@ -43,10 +43,12 @@ header {
 
 .primaryMenu .logo {
   width: 50%;
+  margin-left: 25%;
 }
 
 .primaryMenu .smallLogo {
   width: 33.3%;
+  margin-left: 33.3%;
 }
 
 .logo,
@@ -83,6 +85,17 @@ header {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+}
+
+.hamburger {
+  position: absolute;
+  top: var(--medium-padding);
+}
+
+.languageContainer {
+  position: absolute;
+  top: var(--medium-padding);
+  right: var(--medium-padding);
 }
 
 #nav-icon {
@@ -268,10 +281,12 @@ header {
 
   .primaryMenu .logo {
     width: 70%;
+    margin-left: 15%;
   }
 
   .primaryMenu .smallLogo {
     width: 70%;
+    margin-left: 15%;
   }
 
   .mobileLanguage {
