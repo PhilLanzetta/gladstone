@@ -5,7 +5,6 @@ import ProductTile from "../components/productTile"
 import Seo from "../components/seo"
 import * as styles from "../components/shop.module.css"
 import { AnimatePresence, motion } from "framer-motion"
-import ShopHeading from "../components/shopHeading"
 
 const CollectionTemplate = ({ data, location }) => {
   const allProducts = data.shopifyCollection.products

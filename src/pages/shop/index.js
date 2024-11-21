@@ -6,7 +6,6 @@ import Slider from "react-slick"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Pagination from "../../components/pagination"
 import slugify from "slugify"
-import ShopHeading from "../../components/shopHeading"
 
 function NextArrow(props) {
   const { onClick } = props

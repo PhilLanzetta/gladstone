@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import { FormattedMessage, Link } from "gatsby-plugin-intl"
 import * as styles from "../../components/shop.module.css"
 import slugify from "slugify"
-import ShopHeading from "../../components/shopHeading"
 
 const Artists = ({ data }) => {
   function onlyUnique(value, index, array) {

@@ -6,7 +6,6 @@ import useStore from "../context/StoreContext"
 import Seo from "../components/seo"
 import Slider from "react-slick"
 import * as styles from "../components/shop.module.css"
-import ShopHeading from "../components/shopHeading"
 
 function NextArrow(props) {
   const { onClick } = props
