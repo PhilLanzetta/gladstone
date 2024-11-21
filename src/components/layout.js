@@ -3,12 +3,14 @@ import "./global.css"
 import Header from "./header"
 import Footer from "./footer"
 import { AnimatePresence, motion } from "framer-motion"
+import ShopHeading from "./shopHeading"
 
 const Layout = ({ children, location }) => {
   const isHome =
     location?.pathname === "/en/" ||
     location?.pathname === "/zh/" ||
     location?.pathname === "/ko/"
+  const isShop = location?.pathname.includes('shop')
   const container = {
     out: { opacity: 0, transition: { duration: 0.5 } },
     in: { opacity: 1, transition: { duration: 2 } },
@@ -18,6 +20,7 @@ const Layout = ({ children, location }) => {
   return (
     <>
       <Header isHome={isHome}></Header>
+      {isShop && <ShopHeading></ShopHeading>}
       <AnimatePresence mode="wait">
         {isHome ? (
           <motion.main

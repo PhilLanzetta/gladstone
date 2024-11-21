@@ -9,7 +9,7 @@ const ShopHeading = () => {
   const [isCartOpen, setIsCartOpen] = useState(false)
   const { cart } = useStore()
   return (
-    <>
+    <div className="pageContainer">
       <AnimatePresence>
         {isCartOpen && (
           <Cart toggleCart={() => setIsCartOpen(!isCartOpen)}></Cart>
@@ -87,7 +87,7 @@ const ShopHeading = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

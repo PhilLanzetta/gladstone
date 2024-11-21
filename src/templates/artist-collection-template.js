@@ -24,8 +24,7 @@ const ArtistCollectionTemplate = ({ data, location }) => {
   const [products, setProducts] = useState(allProducts)
 
   return (
-    <div className="pageContainer">
-      <ShopHeading></ShopHeading>
+    <div className="shopPageContainer">
       <div className={styles.filterContainer}>
         <button
           onClick={() => setFilterOpen(!filterOpen)}

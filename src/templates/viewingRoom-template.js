@@ -5,6 +5,7 @@ import * as styles from "../components/viewingRoom.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import useWindowSize from "../utils/useWindowSize"
 import Slider from "react-slick"
+import slugify from "slugify"
 
 const ViewingRoom = ({ data }) => {
   const {

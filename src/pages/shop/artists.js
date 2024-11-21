@@ -15,8 +15,7 @@ const Artists = ({ data }) => {
     .filter(onlyUnique)
     .sort((a, b) => a.split(" ").pop().localeCompare(b.split(" ").pop()))
   return (
-      <div className="pageContainer">
-        <ShopHeading></ShopHeading>
+      <div className="shopPageContainer">
         <div className={styles.shopSectionHeadingArtists}><FormattedMessage id="artist_browse"></FormattedMessage></div>
         <div className={styles.artistListing}>
           {artists.map((artist, index) => (

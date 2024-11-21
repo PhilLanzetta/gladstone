@@ -105,8 +105,7 @@ const Shop = ({ data }) => {
   }
 
   return (
-    <div className="pageContainer">
-      <ShopHeading></ShopHeading>
+    <div className="shopPageContainer">
       <Slider {...settings} className={styles.sliderContainer}>
         {featured.map(slide => (
           <div key={slide.id} className={styles.featuredSlide}>

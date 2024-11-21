@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: var(--medium-padding);
 }
 
 .headerLinkContainer {
@@ -271,5 +270,4 @@
   .cartText {
     padding-top: 2px;
   }
-
 }

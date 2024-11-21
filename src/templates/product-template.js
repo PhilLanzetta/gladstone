@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { graphql} from "gatsby"
+import { graphql } from "gatsby"
 import { FormattedMessage } from "gatsby-plugin-intl"
 import { GatsbyImage } from "gatsby-plugin-image"
 import useStore from "../context/StoreContext"
@@ -111,68 +111,67 @@ const ProductPage = ({ data }) => {
   }
 
   return (
-      <div className="pageContainer">
-        <ShopHeading></ShopHeading>
-        <div className={styles.productContainer}>
-          <div className={styles.productLeft}>
-            <Slider {...settings}>
-              {media.map(image => (
-                <div key={image.id}>
-                  <div className={styles.productMediaContainer}>
-                    <GatsbyImage
-                      image={
-                        image.image?.localFile?.childImageSharp?.gatsbyImageData
-                      }
-                      alt=""
-                      className={styles.mediaImage}
-                    ></GatsbyImage>
-                  </div>
+    <div className="shopPageContainer">
+      <div className={styles.productContainer}>
+        <div className={styles.productLeft}>
+          <Slider {...settings}>
+            {media.map(image => (
+              <div key={image.id}>
+                <div className={styles.productMediaContainer}>
+                  <GatsbyImage
+                    image={
+                      image.image?.localFile?.childImageSharp?.gatsbyImageData
+                    }
+                    alt=""
+                    className={styles.mediaImage}
+                  ></GatsbyImage>
                 </div>
-              ))}
-            </Slider>
-          </div>
-          <div className={styles.productRight}>
-            <h1 className={styles.productTitle}>{title}</h1>
-            {priceRangeV2.minVariantPrice.amount > 0 && totalInventory > 0 && (
-              <p className={styles.productPrice}>
-                ${priceRangeV2.minVariantPrice.amount}
-              </p>
-            )}
-            <div
-              className={styles.productDescription}
-              dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-            ></div>
-            {totalInventory > 0 && (
-              <>
-                {sizes?.length > 0 && (
-                  <div className={styles.productSizeContainer}>
-                    <p>Size</p>
-                    <p>-</p>
-                    <select
-                      className={styles.productSizeSelect}
-                      onChange={e => setVariantIndex(e.target.value * 1)}
-                    >
-                      {sizes.map((size, index) => (
-                        <option key={index} value={index}>
-                          {size.value}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                )}
-                <button
-                  onClick={() =>
-                    addVariantToCart(data.shopifyProduct, variantIndex, 1)
-                  }
-                  className={styles.addToCartBtn}
-                >
-                  <FormattedMessage id="add_to_cart"></FormattedMessage>
-                </button>
-              </>
-            )}
-          </div>
+              </div>
+            ))}
+          </Slider>
+        </div>
+        <div className={styles.productRight}>
+          <h1 className={styles.productTitle}>{title}</h1>
+          {priceRangeV2.minVariantPrice.amount > 0 && totalInventory > 0 && (
+            <p className={styles.productPrice}>
+              ${priceRangeV2.minVariantPrice.amount}
+            </p>
+          )}
+          <div
+            className={styles.productDescription}
+            dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+          ></div>
+          {totalInventory > 0 && (
+            <>
+              {sizes?.length > 0 && (
+                <div className={styles.productSizeContainer}>
+                  <p>Size</p>
+                  <p>-</p>
+                  <select
+                    className={styles.productSizeSelect}
+                    onChange={e => setVariantIndex(e.target.value * 1)}
+                  >
+                    {sizes.map((size, index) => (
+                      <option key={index} value={index}>
+                        {size.value}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+              <button
+                onClick={() =>
+                  addVariantToCart(data.shopifyProduct, variantIndex, 1)
+                }
+                className={styles.addToCartBtn}
+              >
+                <FormattedMessage id="add_to_cart"></FormattedMessage>
+              </button>
+            </>
+          )}
         </div>
       </div>
+    </div>
   )
 }
 
