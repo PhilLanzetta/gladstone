@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import * as styles from "./viewingRoom.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Slider from "react-slick"
-import slugify from "slugify"
 import { AnimatePresence, motion } from "framer-motion"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
@@ -29,7 +28,7 @@ function NextArrow(props) {
           transform="translate(12.389 0.325) rotate(90)"
           fill="none"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
         />
       </svg>
     </div>
@@ -59,7 +58,7 @@ function PrevArrow(props) {
           transform="translate(0.659 28.346) rotate(-90)"
           fill="none"
           stroke="#000"
-          stroke-width="1"
+          strokeWidth="1"
         />
       </svg>
     </div>
@@ -77,13 +76,14 @@ const ViewingRoomCarousel = ({ item }) => {
     adaptiveHeight: true,
     nextArrow: <NextArrow addClassName={styles.nextArrow} />,
     prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
-    afterChange: current => setCurrentIndex(current),
+    beforeChange: (current, next) => {
+      setCurrentIndex(next)
+    },
   }
 
   return (
     <div
-      id={slugify(item.artist, { lower: true })}
-      key={item.carouselId}
+      id={item.artist.slug}
       className={
         item.carouselAlignment === "Left"
           ? styles.leftCarousel
@@ -92,8 +92,8 @@ const ViewingRoomCarousel = ({ item }) => {
     >
       <div className={styles.sliderContainer}>
         <Slider {...settings}>
-          {item.slides.map((slide, index) => (
-            <div key={index}>
+          {item.slides.map(slide => (
+            <div key={slide.id}>
               <div className={styles.imageContainer}>
                 <GatsbyImage
                   image={slide.image.gatsbyImageData}

@@ -1,22 +1,19 @@
-import React, { useState } from "react"
+import React from "react"
 import { graphql } from "gatsby"
-import { Link, FormattedMessage } from "gatsby-plugin-intl"
+import { FormattedMessage } from "gatsby-plugin-intl"
 import * as styles from "../components/viewingRoom.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
-import slugify from "slugify"
 import ViewingRoomCarousel from "../components/viewingRoomCarousel"
 
 const ViewingRoom = ({ data }) => {
-  const {
-    title,
-    featuredArtists,
-    callToActionEmail,
-    callToActionText,
-    content,
-  } = data.contentfulViewingRoom
+  const { title, callToActionEmail, callToActionText, content, fair } =
+    data.contentfulViewingRoom
 
   const featuredImage = content[0]
   const remainingContent = content.slice(1)
+  const featuredArtists = fair[0].artists?.sort(
+    (a, b) => a.lastName - b.lastName
+  )
 
   return (
     <div className="pageContainer">
@@ -25,36 +22,42 @@ const ViewingRoom = ({ data }) => {
           <FormattedMessage id="viewing-room-preview"></FormattedMessage>
         </div>
         <div className={styles.headerLinkContainer}>
-          <a href="#featured-artists" className={styles.landingLink}>
-            <FormattedMessage id="featured_artists"></FormattedMessage>
-          </a>
+          {featuredArtists && (
+            <a href="#featured-artists" className={styles.landingLink}>
+              <FormattedMessage id="featured_artists"></FormattedMessage>
+            </a>
+          )}
           <a href="#featured-art">
             <FormattedMessage id="featured_art"></FormattedMessage>
           </a>
         </div>
       </div>
       <div className={styles.title}>{title}</div>
-      <div id="featured-artists" className={styles.featuredArtistsContainer}>
-        <div className={styles.featuredHeading}>
-          <FormattedMessage id="featured_artists"></FormattedMessage>
+      {featuredArtists && (
+        <div id="featured-artists" className={styles.featuredArtistsContainer}>
+          <div className={styles.featuredHeading}>
+            <FormattedMessage id="featured_artists"></FormattedMessage>
+          </div>
+          <div className={styles.featuredArtists}>
+            {featuredArtists.map(artist => (
+              <a
+                className={styles.listArtistLink}
+                href={`#${artist.slug}`}
+                key={artist.id}
+              >
+                {artist.name}
+              </a>
+            ))}
+          </div>
         </div>
-        <div className={styles.featuredArtists}>
-          {featuredArtists.map(artist => (
-            <a
-              className={styles.listArtistLink}
-              href={`#${slugify(artist, { lower: true })}`}
-            >
-              {artist}
-            </a>
-          ))}
-        </div>
-      </div>
+      )}
       <div className={styles.fullWidthImg}>
         <GatsbyImage
           image={featuredImage.image.gatsbyImageData}
           alt={featuredImage.image.description}
         ></GatsbyImage>
       </div>
+
       <div id="featured-art" className={styles.featuredArtistsContainer}>
         <div className={styles.featuredHeading}>
           <FormattedMessage id="featured_art"></FormattedMessage>
@@ -72,7 +75,12 @@ const ViewingRoom = ({ data }) => {
               </div>
             )
           } else if (item.carouselId) {
-            return <ViewingRoomCarousel item={item}></ViewingRoomCarousel>
+            return (
+              <ViewingRoomCarousel
+                item={item}
+                key={item.carouselId}
+              ></ViewingRoomCarousel>
+            )
           } else return null
         })}
       </div>
@@ -96,11 +104,18 @@ export const query = graphql`
   query getSingleViewingRoom($slug: String) {
     contentfulViewingRoom(fair: { elemMatch: { slug: { eq: $slug } } }) {
       title
-      featuredArtists
       callToActionEmail
       callToActionText {
         childMarkdownRemark {
           html
+        }
+      }
+      fair {
+        artists {
+          id
+          name
+          lastName
+          slug
         }
       }
       content {
@@ -118,7 +133,10 @@ export const query = graphql`
         }
         ... on ContentfulViewingRoomCarousel {
           carouselId: id
-          artist
+          artist {
+            name
+            slug
+          }
           callToActionEmail
           carouselAlignment
           slides {
