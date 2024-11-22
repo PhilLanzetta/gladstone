@@ -47,7 +47,7 @@ const Layout = ({ children, location }) => {
           </motion.main>
         )}
       </AnimatePresence>
-      <CookieConsent
+      {/* <CookieConsent
         location="bottom"
         enableDeclineButton
         buttonText="Accept"
@@ -63,7 +63,7 @@ const Layout = ({ children, location }) => {
         declineButtonClasses="cookiesDecline"
       >
         This website uses cookies to enhance the user experience.
-      </CookieConsent>
+      </CookieConsent> */}
     </>
   )
 }
