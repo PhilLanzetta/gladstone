@@ -110,8 +110,12 @@ const ViewingRoomCarousel = ({ item }) => {
           <motion.div
             key={currentIndex}
             dangerouslySetInnerHTML={{
-              __html:
-                item.slides[currentIndex].caption.childMarkdownRemark.html,
+              __html: item.slides[
+                currentIndex
+              ].caption.childMarkdownRemark.html.replace(
+                /\b(\d+)\/(\d+)/g,
+                "<sup>$1</sup>&frasl;<sub>$2</sub>"
+              ),
             }}
           ></motion.div>
         </AnimatePresence>

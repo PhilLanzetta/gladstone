@@ -104,6 +104,64 @@ p {
   display: none;
 }
 
+.flexPageContent {
+  margin: var(--medium-padding) 0;
+}
+
+.flexPageContent p {
+  margin-bottom: var(--medium-padding);
+}
+
+.cookiesContainer {
+  bottom: 0px;
+  align-items: baseline;
+  background: #fff;
+  color: #000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  left: 0px;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+  padding: 0 var(--medium-padding);
+}
+
+.cookiesContent {
+  margin: 15px 5px 5px 0;
+}
+
+.cookiesBtn {
+  border: 1px solid var(--dark-gray);
+  border-radius: 0px;
+  box-shadow: none;
+  color: black;
+  cursor: pointer;
+  padding: 10px 20px 5px 20px;
+  margin: 15px;
+  margin-left: 0;
+}
+
+.cookiesDecline {
+  border: 1px solid var(--dark-gray);
+  background: var(--dark-gray);
+  border-radius: 0px;
+  box-shadow: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 20px 5px 20px;
+  margin: 15px 0;
+}
+
+.cookiesBtn:hover {
+  color: var(--dark-gray);
+}
+
+.cookiesDecline:hover {
+  background: var(--mid-gray);
+  color: #000;
+}
+
 @media screen and (max-width: 1000px) {
   :root {
     --medium-padding: 30px;

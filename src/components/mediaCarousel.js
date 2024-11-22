@@ -128,7 +128,11 @@ const MediaCarousel = ({ media }) => {
                   <figcaption
                     className={styles.mainCaption}
                     dangerouslySetInnerHTML={{
-                      __html: mediaElement.caption?.childMarkdownRemark.html,
+                      __html:
+                        mediaElement.caption?.childMarkdownRemark.html.replace(
+                          /\b(\d+)\/(\d+)/g,
+                          "<sup>$1</sup>&frasl;<sub>$2</sub>"
+                        ),
                     }}
                     style={{ width: `${imgWidth}vh` }}
                   ></figcaption>

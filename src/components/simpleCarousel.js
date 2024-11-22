@@ -95,7 +95,10 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
                     ></GatsbyImage>
                     <figcaption
                       dangerouslySetInnerHTML={{
-                        __html: image.caption?.childMarkdownRemark.html,
+                        __html: image.caption?.childMarkdownRemark.html.replace(
+                          /\b(\d+)\/(\d+)/g,
+                          "<sup>$1</sup>&frasl;<sub>$2</sub>"
+                        ),
                       }}
                     ></figcaption>
                   </figure>

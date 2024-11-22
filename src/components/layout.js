@@ -4,6 +4,7 @@ import Header from "./header"
 import Footer from "./footer"
 import { AnimatePresence, motion } from "framer-motion"
 import ShopHeading from "./shopHeading"
+import CookieConsent from "react-cookie-consent"
 
 const Layout = ({ children, location }) => {
   const isHome =
@@ -46,6 +47,23 @@ const Layout = ({ children, location }) => {
           </motion.main>
         )}
       </AnimatePresence>
+      <CookieConsent
+        location="bottom"
+        enableDeclineButton
+        buttonText="Accept"
+        declineButtonText="Decline"
+        cookieName="gatsby-gdpr-google-analytics"
+        acceptOnScroll={true}
+        acceptOnScrollPercentage={50}
+        flipButtons
+        disableStyles={true}
+        buttonClasses="cookiesBtn"
+        containerClasses="cookiesContainer"
+        contentClasses="cookiesContent"
+        declineButtonClasses="cookiesDecline"
+      >
+        This website uses cookies to enhance the user experience.
+      </CookieConsent>
     </>
   )
 }

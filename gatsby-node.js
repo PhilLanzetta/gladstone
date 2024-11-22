@@ -71,6 +71,13 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
       }
+      allContentfulFlexPage {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
     }
   `)
 
@@ -79,6 +86,8 @@ exports.createPages = async ({ actions, graphql }) => {
   const exhibits = result.data.allContentfulExhibition.edges
 
   const fairs = result.data.allContentfulFair.edges
+
+  const flex = result.data.allContentfulFlexPage.edges
 
   const viewingRooms = result.data.allContentfulViewingRoom.edges
 
@@ -115,6 +124,15 @@ exports.createPages = async ({ actions, graphql }) => {
       path: `/fair/${fairSlug}`,
       component: require.resolve("./src/templates/fair-template.js"),
       context: { slug: fairSlug },
+    })
+  })
+
+  flex.forEach(({ node }) => {
+    const flexSlug = node.slug
+    createPage({
+      path: `/${flexSlug}`,
+      component: require.resolve("./src/templates/flex-template.js"),
+      context: { slug: flexSlug },
     })
   })
 

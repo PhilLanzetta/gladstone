@@ -30,13 +30,13 @@ const Footer = () => {
             <Link to="/about/#staff">
               <FormattedMessage id="staff"></FormattedMessage>
             </Link>
-            <Link to="/about">
+            <Link to="/careers">
               <FormattedMessage id="careers"></FormattedMessage>
             </Link>
-            <Link to="/about">
+            <Link to="/privacy">
               <FormattedMessage id="privacy"></FormattedMessage>
             </Link>
-            <Link to="/about">
+            <Link to="/accessibility">
               <FormattedMessage id="accessibility"></FormattedMessage>
             </Link>
           </div>
