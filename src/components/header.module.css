@@ -37,10 +37,6 @@ header {
   z-index: 200;
 }
 
-.primaryMenu > div {
-  width: 33.3%;
-}
-
 .primaryMenu .logo {
   width: 50%;
   margin-left: 25%;
@@ -75,10 +71,12 @@ header {
 
 .hideLogo {
   animation: fadeAway 400ms forwards;
+  width: 100%;
 }
 
 .showLogo {
   animation: fadeOn 400ms forwards;
+  width: 100%;
 }
 
 .language {
@@ -213,6 +211,8 @@ header {
   justify-content: center;
   gap: 40px;
   font-family: var(--font-primary);
+  padding: 30px var(--medium-padding) 10px var(--medium-padding);
+  margin-bottom: calc(var(--medium-padding) * -1);
   padding-top: 30px;
   font-size: var(--subtext);
 }
@@ -262,7 +262,8 @@ header {
   gap: 20px;
 }
 
-.headerSocial, .mobileHeaderSocial {
+.headerSocial,
+.mobileHeaderSocial {
   font-family: var(--font-secondary);
   font-variant-numeric: normal;
   justify-content: flex-end;

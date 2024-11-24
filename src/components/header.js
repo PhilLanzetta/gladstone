@@ -67,31 +67,28 @@ const Header = ({ isHome }) => {
             </button>
           </div>
           {isHome && (
-            <div
-              className={`${isOpen ? styles.smallLogo : styles.logo} ${
-                hidden ? styles.hideLogo : styles.showLogo
-              }`}
-            >
+            <div className={hidden ? styles.hideLogo : styles.showLogo}>
               <Link to="/" onClick={() => setIsOpen(false)}>
-                <img
-                  src={
-                    isOpen ? (isMobile ? smallLogo : smallLogoWhite) : bigLogo
-                  }
-                  alt="Gladstone Gallery Logo"
-                ></img>
+                {isOpen && (
+                  <img
+                    src={isMobile ? smallLogo : smallLogoWhite}
+                    className={styles.smallLogo}
+                    alt="Gladstone Gallery Logo"
+                  ></img>
+                )}
+                {!isOpen && (
+                  <img
+                    src={bigLogo}
+                    className={styles.logo}
+                    alt="Gladstone Gallery Logo"
+                  ></img>
+                )}
               </Link>
             </div>
           )}
           {!isHome && (
             <div className={styles.smallLogo}>
-              <Link
-                to="/"
-                onClick={
-                  isHome
-                    ? () => setTimeout(() => setIsOpen(false), 100)
-                    : () => setIsOpen(false)
-                }
-              >
+              <Link to="/" onClick={() => setIsOpen(false)}>
                 <img src={smallLogo} alt="Gladstone Gallery Logo"></img>
               </Link>
             </div>
@@ -111,10 +108,6 @@ const Header = ({ isHome }) => {
                   ? { opacity: 0, maxHeight: 0 }
                   : {
                       opacity: 0,
-                      maxHeight: 0,
-                      padding: 0,
-                      overflow: "hidden",
-                      marginBottom: "0",
                     }
               }
               animate={
@@ -122,23 +115,9 @@ const Header = ({ isHome }) => {
                   ? { opacity: 1, maxHeight: "100vh" }
                   : {
                       opacity: 1,
-                      maxHeight: "100px",
-                      padding:
-                        "30px var(--medium-padding) 10px var(--medium-padding)",
-                      marginBottom: "calc(var(--medium-padding) * -1)",
                     }
               }
-              exit={
-                isMobile
-                  ? { opacity: 0, maxHeight: 0 }
-                  : {
-                      opacity: 0,
-                      maxHeight: 0,
-                      padding: 0,
-                      overflow: "hidden",
-                      marginBottom: "0",
-                    }
-              }
+              exit={isMobile ? { opacity: 0, maxHeight: 0 } : {}}
               className={
                 isMobile ? styles.secondaryMenu : styles.desktopSecondaryMenu
               }
