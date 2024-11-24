@@ -130,6 +130,7 @@
 
   .newsItem {
     flex-direction: row;
+    align-items: flex-start;
     width: 100%;
     gap: 10px;
   }

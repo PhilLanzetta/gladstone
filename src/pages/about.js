@@ -46,6 +46,7 @@ const About = ({ data }) => {
                   alt={location.image.description}
                   className={styles.locationImage}
                 ></GatsbyImage>
+                <div className={styles.grayBackground}></div>
               </a>
               <div
                 className={styles.address}
@@ -80,6 +81,7 @@ const About = ({ data }) => {
                   alt={location.image.description}
                   className={styles.locationImage}
                 ></GatsbyImage>
+                <div className={styles.grayBackground}></div>
               </a>
               <div
                 className={styles.address}
@@ -114,6 +116,7 @@ const About = ({ data }) => {
                   alt={location.image.description}
                   className={styles.locationImage}
                 ></GatsbyImage>
+                <div className={styles.grayBackground}></div>
               </a>
               <div
                 className={styles.address}

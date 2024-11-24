@@ -60,12 +60,20 @@
 
 .locationLink {
   position: relative;
-  background: var(--dark-gray);
   aspect-ratio: 140 / 97;
   overflow: hidden;
 }
 
+.grayBackground {
+  background: var(--dark-gray);
+  height: 100%;
+  width: 100%;
+}
+
 .locationImage {
+  position: absolute;
+  height: 100%;
+  width: 100%;
   mix-blend-mode: luminosity;
   transition: all 400ms;
 }

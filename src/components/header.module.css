@@ -312,6 +312,7 @@ header {
 
   .mobileHeaderSocial {
     justify-content: space-between;
+    color: var(--dark-gray);
   }
 
   #nav-icon {

@@ -37,7 +37,17 @@ const Header = ({ isHome }) => {
 
   return (
     <header className={isHome ? styles.homeHeader : styles.pageHeader}>
-      <div className={isHome ? styles.homeHeader : styles.pagePrimary}>
+      <div
+        className={
+          isHome
+            ? isMobile
+              ? isOpen
+                ? styles.pagePrimary
+                : styles.homeHeader
+              : styles.homeHeader
+            : styles.pagePrimary
+        }
+      >
         <div className={styles.primaryMenu}>
           <div className={styles.hamburger}>
             <button
@@ -64,7 +74,9 @@ const Header = ({ isHome }) => {
             >
               <Link to="/" onClick={() => setIsOpen(false)}>
                 <img
-                  src={isOpen ? smallLogoWhite : bigLogo}
+                  src={
+                    isOpen ? (isMobile ? smallLogo : smallLogoWhite) : bigLogo
+                  }
                   alt="Gladstone Gallery Logo"
                 ></img>
               </Link>
@@ -128,11 +140,7 @@ const Header = ({ isHome }) => {
                     }
               }
               className={
-                isMobile
-                  ? isHome
-                    ? styles.homeSecondaryMenu
-                    : styles.secondaryMenu
-                  : styles.desktopSecondaryMenu
+                isMobile ? styles.secondaryMenu : styles.desktopSecondaryMenu
               }
             >
               <Link
