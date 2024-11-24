@@ -3,6 +3,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
@@ -10,6 +11,8 @@
   display: flex;
   gap: 20px;
   justify-content: flex-end;
+  white-space: nowrap;
+  overflow-x: scroll;
 }
 
 .buttonInactive {
@@ -37,11 +40,11 @@
 }
 
 .featuredNewsItem {
-  display: flex;
+  display: grid;
+  grid-template-columns: 60% 40%;
   gap: 20px;
   width: 100%;
   margin-bottom: var(--medium-padding);
-  justify-content: center;
 }
 
 .newsItem {
@@ -53,10 +56,17 @@
 
 .newsImage {
   width: 100%;
+  aspect-ratio: 4 / 3;
 }
 
 .featuredNewsImage {
-  width: 50%;
+  width: 80%;
+  justify-self: right;
+  aspect-ratio: 4 / 3;
+}
+
+.featuredNewsText {
+  width: 100%;
 }
 
 .allNewsBtn:hover {
@@ -73,6 +83,7 @@
 .featuredNewsText .downloadLink {
   font-size: var(--sub-text);
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   color: var(--dark-gray);
 }
 
@@ -89,29 +100,23 @@
 .newsText .downloadLink {
   font-size: var(--caption);
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   color: var(--dark-gray);
 }
 
 .downloadLink {
   display: block;
+  line-height: 1.5;
 }
 
 @media screen and (max-width: 700px) {
   .headerLinkContainer {
     gap: 10px;
     justify-content: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .newsHeader > div {
-    width: 100%;
-  }
-
-  .newsHeader {
-    gap: 15px;
   }
 
   .featuredNewsItem {
+    display: flex;
     flex-direction: column;
     gap: 10px;
     width: 100%;
@@ -130,11 +135,16 @@
   }
 
   .newsImage {
-    width: 25%;
+    width: 30%;
   }
 
   .newsText {
     margin-top: 0;
-    width: 75%;
+    width: 70%;
   }
+
+  .newsText h1 {
+  font-size: var(--body-text);
+  font-weight: 400;
+}
 }

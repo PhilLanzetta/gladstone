@@ -54,6 +54,7 @@
 .hours {
   font-size: var(--sub-text);
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   color: var(--dark-gray);
 }
 

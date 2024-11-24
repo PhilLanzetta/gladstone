@@ -6,7 +6,7 @@
 .tileContainerPast {
   display: flex;
   flex-direction: column;
-  width: calc(33% - 10px);
+  width: calc(33.3% - 13.5px);
   padding-bottom: var(--medium-padding);
 }
 
@@ -33,6 +33,7 @@
 
 .date {
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   color: var(--dark-gray);
 }
 

@@ -28,7 +28,7 @@ const News = ({ data }) => {
           className={`pageHeading ${styles.allNewsBtn}`}
           onClick={() => setFilter()}
         >
-          <FormattedMessage id="news"></FormattedMessage>
+          <FormattedMessage id="news_events"></FormattedMessage>
         </button>
         <div className={styles.headerLinkContainer}>
           <button

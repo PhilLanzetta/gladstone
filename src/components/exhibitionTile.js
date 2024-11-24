@@ -34,22 +34,22 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
           <div className={styles.infoLeft}>
             {!fair &&
               artists?.map(artist => (
-                <p
+                <h2
                   key={artist.id}
                   className={
                     mobilePast ? styles.mobileHeading : styles.infoHeading
                   }
                 >
                   {artist.name}
-                </p>
+                </h2>
               ))}
-            <p
+            <h3
               className={`${
                 mobilePast ? styles.mobileHeading : styles.infoHeading
               } ${styles.title}`}
             >
               {!titleIsArtist && title}
-            </p>
+            </h3>
             {artistPage && <p className={styles.infoHeading}>{location}</p>}
             {mobilePast && (
               <p className={styles.mobileHeading}>
@@ -72,10 +72,10 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
           </div>
           {!mobilePast && (
             <div className={styles.infoRight}>
-              <p className={styles.infoHeading}>
+              <h3 className={styles.infoHeading}>
                 {!fair && region !== "Offsite" ? region : location}
                 {fair && city}
-              </p>
+              </h3>
             </div>
           )}
         </div>

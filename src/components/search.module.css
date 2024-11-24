@@ -1,13 +1,12 @@
 .searchPage {
   width: 100%;
   min-height: 95vh;
-  padding: var(--medium-padding);
-  padding-top: 250px;
 }
 
 .searchBox {
   width: 100%;
   border-bottom: 1px solid var(--dark-gray);
+  margin-top: var(--medium-padding);
 }
 
 .searchBoxForm {
@@ -60,6 +59,7 @@
   gap: 20px;
   align-items: center;
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
 }
 
 .filterLabel {

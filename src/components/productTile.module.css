@@ -12,6 +12,7 @@
 
 .price {
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
 }
 
 .productTileImage {
@@ -35,6 +36,7 @@
   padding: 8px;
   text-align: center;
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
 }
 
 @media screen and (max-width: 700px) {

@@ -12,6 +12,7 @@
 .pressSecondary {
   display: block;
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   font-size: var(--caption);
   color: var(--dark-gray);
 }
@@ -19,6 +20,7 @@
 .pressSecondaryLink {
   display: block;
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   font-size: var(--caption);
   color: var(--dark-gray);
 }

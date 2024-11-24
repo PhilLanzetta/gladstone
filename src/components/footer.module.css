@@ -2,6 +2,7 @@ footer {
   border-top: 1px solid var(--mid-gray);
   padding: var(--medium-padding);
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   background-color: var(--accent-gray);
   font-size: var(--subtext);
 }

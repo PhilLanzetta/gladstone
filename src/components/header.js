@@ -9,7 +9,7 @@ import {
 } from "framer-motion"
 import smallLogo from "../images/Gladstone_Small.svg"
 import bigLogo from "../images/Gladstone_Big.svg"
-import bigLogoBlack from "../images/Gladstone_Big_Black.svg"
+import smallLogoWhite from "../images/Gladstone_Small_White.svg"
 import { Link, FormattedMessage } from "gatsby-plugin-intl"
 import Language from "./language"
 
@@ -36,23 +36,9 @@ const Header = ({ isHome }) => {
   }, [isOpen])
 
   return (
-    <header
-      className={isMobile ? "" : isHome ? (isOpen ? styles.homeOpen : "") : ""}
-    >
-      <div
-        className={
-          isHome
-            ? isOpen
-              ? styles.primaryOpen
-              : styles.primaryClosed
-            : styles.pagePrimary
-        }
-      >
-        <div
-          className={`${styles.primaryMenu} ${
-            isOpen ? styles.primaryMenuOpen : styles.primaryMenuClosed
-          }`}
-        >
+    <header className={isHome ? styles.homeHeader : styles.pageHeader}>
+      <div className={isHome ? styles.homeHeader : styles.pagePrimary}>
+        <div className={styles.primaryMenu}>
           <div className={styles.hamburger}>
             <button
               className={styles.menuButton}
@@ -70,27 +56,34 @@ const Header = ({ isHome }) => {
               {!isMobile && <FormattedMessage id="menu"></FormattedMessage>}
             </button>
           </div>
-            {isHome && (
-              <div
-                className={`${styles.logo} ${
-                  hidden ? styles.hideLogo : styles.showLogo
-                }`}
+          {isHome && (
+            <div
+              className={`${isOpen ? styles.smallLogo : styles.logo} ${
+                hidden ? styles.hideLogo : styles.showLogo
+              }`}
+            >
+              <Link to="/" onClick={() => setIsOpen(false)}>
+                <img
+                  src={isOpen ? smallLogoWhite : bigLogo}
+                  alt="Gladstone Gallery Logo"
+                ></img>
+              </Link>
+            </div>
+          )}
+          {!isHome && (
+            <div className={styles.smallLogo}>
+              <Link
+                to="/"
+                onClick={
+                  isHome
+                    ? () => setTimeout(() => setIsOpen(false), 100)
+                    : () => setIsOpen(false)
+                }
               >
-                <Link to="/" onClick={() => setIsOpen(false)}>
-                  <img
-                    src={isOpen ? bigLogoBlack : bigLogo}
-                    alt="Gladstone Gallery Logo"
-                  ></img>
-                </Link>
-              </div>
-            )}
-            {!isHome && (
-              <div className={styles.smallLogo}>
-                <Link to="/" onClick={() => setIsOpen(false)}>
-                  <img src={smallLogo} alt="Gladstone Gallery Logo"></img>
-                </Link>
-              </div>
-            )}
+                <img src={smallLogo} alt="Gladstone Gallery Logo"></img>
+              </Link>
+            </div>
+          )}
           <div className={styles.languageContainer}>
             <div className={styles.language}>
               <Language></Language>
@@ -101,68 +94,121 @@ const Header = ({ isHome }) => {
           {isOpen && (
             <motion.div
               key="secondaryMenu"
-              initial={isMobile ? { opacity: 0, maxHeight: 0 } : { opacity: 0 }}
+              initial={
+                isMobile
+                  ? { opacity: 0, maxHeight: 0 }
+                  : {
+                      opacity: 0,
+                      maxHeight: 0,
+                      padding: 0,
+                      overflow: "hidden",
+                      marginBottom: "0",
+                    }
+              }
               animate={
-                isMobile ? { opacity: 1, maxHeight: "100vh" } : { opacity: 1 }
+                isMobile
+                  ? { opacity: 1, maxHeight: "100vh" }
+                  : {
+                      opacity: 1,
+                      maxHeight: "100px",
+                      padding:
+                        "30px var(--medium-padding) 10px var(--medium-padding)",
+                      marginBottom: "calc(var(--medium-padding) * -1)",
+                    }
               }
               exit={
                 isMobile
                   ? { opacity: 0, maxHeight: 0 }
                   : {
                       opacity: 0,
+                      maxHeight: 0,
+                      padding: 0,
+                      overflow: "hidden",
+                      marginBottom: "0",
                     }
               }
               className={
                 isMobile
-                  ? styles.secondaryMenu
-                  : isHome
-                  ? styles.homeSecondaryMenu
+                  ? isHome
+                    ? styles.homeSecondaryMenu
+                    : styles.secondaryMenu
                   : styles.desktopSecondaryMenu
               }
             >
               <Link
                 to="/artists"
                 className={styles.headerLink}
-                onClick={() => setIsOpen(false)}
+                onClick={
+                  isHome
+                    ? () => setTimeout(() => setIsOpen(false), 50)
+                    : () => setIsOpen(false)
+                }
               >
                 <FormattedMessage id="artists"></FormattedMessage>
               </Link>
               <Link
                 to="/exhibitions"
                 className={styles.headerLink}
-                onClick={() => setIsOpen(false)}
+                onClick={
+                  isHome
+                    ? () => setTimeout(() => setIsOpen(false), 50)
+                    : () => setIsOpen(false)
+                }
               >
                 <FormattedMessage id="exhibitions"></FormattedMessage>
               </Link>
               <Link
                 to="/fairs"
                 className={styles.headerLink}
-                onClick={() => setIsOpen(false)}
+                onClick={
+                  isHome
+                    ? () => setTimeout(() => setIsOpen(false), 50)
+                    : () => setIsOpen(false)
+                }
               >
                 <FormattedMessage id="fairs"></FormattedMessage>
               </Link>
               <Link
                 to="/news"
                 className={styles.headerLink}
-                onClick={() => setIsOpen(false)}
+                onClick={
+                  isHome
+                    ? () => setTimeout(() => setIsOpen(false), 50)
+                    : () => setIsOpen(false)
+                }
               >
                 <FormattedMessage id="news_events"></FormattedMessage>
               </Link>
               <Link
                 to="/about"
                 className={styles.headerLink}
-                onClick={() => setIsOpen(false)}
+                onClick={
+                  isHome
+                    ? () => setTimeout(() => setIsOpen(false), 50)
+                    : () => setIsOpen(false)
+                }
               >
                 <FormattedMessage id="about"></FormattedMessage>
               </Link>
               <Link
                 to="/shop"
                 className={styles.headerLink}
-                onClick={() => setIsOpen(false)}
+                onClick={
+                  isHome
+                    ? () => setTimeout(() => setIsOpen(false), 50)
+                    : () => setIsOpen(false)
+                }
               >
                 <FormattedMessage id="shop"></FormattedMessage>
               </Link>
-              <Link to="/search" onClick={() => setIsOpen(false)}>
+              <Link
+                to="/search"
+                onClick={
+                  isHome
+                    ? () => setTimeout(() => setIsOpen(false), 50)
+                    : () => setIsOpen(false)
+                }
+              >
                 <FormattedMessage id="search"></FormattedMessage>
               </Link>
               {isMobile && (
@@ -170,7 +216,7 @@ const Header = ({ isHome }) => {
                   <div className={styles.mobileLanguage}>
                     <Language></Language>
                   </div>
-                  <div className={styles.headerSocial}>
+                  <div className={styles.mobileHeaderSocial}>
                     <a
                       href="https://x.com/GladstoneNYC"
                       target="_blank"

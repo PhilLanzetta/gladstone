@@ -25,6 +25,7 @@
 
 .mainCaption p {
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   font-size: var(--caption);
 }
 

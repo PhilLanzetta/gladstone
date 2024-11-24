@@ -126,6 +126,7 @@
 .filterButton {
   margin-bottom: 20px;
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
 }
 
 .filterDropdown {
@@ -148,6 +149,7 @@
 .dropdownButton {
   color: var(--mid-gray);
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   transition: all 400ms;
 }
 
@@ -186,6 +188,7 @@
 
 .productPrice {
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
 }
 
 .productDescription {

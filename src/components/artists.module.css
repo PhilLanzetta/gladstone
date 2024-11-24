@@ -9,6 +9,7 @@
   display: flex;
   gap: 12px;
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   align-items: center;
 }
 

@@ -35,6 +35,7 @@
   color: var(--mid-gray);
   justify-self: flex-end;
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   transition: all 400ms;
 }
 
@@ -45,6 +46,7 @@
 
 .dates {
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
 }
 
 .searchResultImage {

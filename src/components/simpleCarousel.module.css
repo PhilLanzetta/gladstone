@@ -26,6 +26,7 @@
 
 .slideContainer figcaption p {
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
 }
 
 .slideContainer figcaption h1 {

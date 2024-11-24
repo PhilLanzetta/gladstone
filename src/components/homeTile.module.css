@@ -82,6 +82,6 @@
   }
 
   .textContainerHalf, .textContainerFull {
-    font-size: var(--body-text);
+    font-size: calc(var(--body-text) + 1px);
   }
 }

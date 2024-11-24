@@ -53,6 +53,7 @@ button:hover {
 
 html {
   font-family: var(--font-primary);
+  font-variant-numeric: var(--old-style);
   font-size: 18px;
   scroll-padding-top: 250px;
 }
@@ -62,9 +63,14 @@ main {
   overflow-x: hidden;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+
 :root {
   --font-primary: "Frame Head", serif;
   --font-secondary: "Basel Grotesk", sans-serif;
+  --old-style: oldstyle-nums;
   --headline: 60px;
   --title: 40px;
   --subtitle: 30px;
@@ -94,6 +100,7 @@ main {
 
 .pageHeading {
   font-size: var(--title);
+  white-space: nowrap;
 }
 
 p {

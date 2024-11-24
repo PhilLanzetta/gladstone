@@ -29,6 +29,7 @@
 
 .heading {
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   margin-bottom: 10px;
 }
 
@@ -99,6 +100,7 @@
 .closeCart,
 .priceDisclaimer {
   font-family: var(--font-secondary);
+  font-variant-numeric: normal;
 }
 
 .checkoutInfo {
