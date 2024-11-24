@@ -68,10 +68,12 @@
   background: var(--dark-gray);
   height: 100%;
   width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: -1;
 }
 
 .locationImage {
-  position: absolute;
   height: 100%;
   width: 100%;
   mix-blend-mode: luminosity;
