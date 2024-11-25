@@ -11,7 +11,6 @@ import ExhibitionTile from "../components/exhibitionTile"
 import PdfDownload from "../components/pdfDownload"
 
 const Exhibit = ({ data, pageContext }) => {
-  console.log(pageContext)
   const {
     title,
     artists,

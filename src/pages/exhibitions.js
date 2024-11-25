@@ -10,8 +10,6 @@ import { FormattedMessage } from "gatsby-plugin-intl"
 const Exhibitions = ({ pageContext, data }) => {
   const today = moment()
 
-  console.log(pageContext)
-
   function onlyUnique(value, index, array) {
     return array.indexOf(value) === index
   }

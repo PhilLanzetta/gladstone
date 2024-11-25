@@ -6,7 +6,7 @@ import * as styles from "../components/aboutPage.module.css"
 
 const About = ({ data }) => {
   const { aboutHeadlineText, locations, leadershipstaff } =
-    data.contentfulAboutPage.nodes[0]
+    data.allContentfulAboutPage.nodes[0]
 
   const newYorkLocations = locations.filter(location =>
     location.streetAddress.childMarkdownRemark.html.includes("New York")
