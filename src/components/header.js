@@ -68,22 +68,24 @@ const Header = ({ isHome }) => {
           </div>
           {isHome && (
             <div className={hidden ? styles.hideLogo : styles.showLogo}>
-              <Link to="/" onClick={() => setIsOpen(false)}>
                 {isOpen && (
+                  <Link to="/" onClick={() => setIsOpen(false)} className={styles.smallLogo}>
                   <img
                     src={isMobile ? smallLogo : smallLogoWhite}
-                    className={styles.smallLogo}
+                    
                     alt="Gladstone Gallery Logo"
                   ></img>
+                  </Link>
                 )}
                 {!isOpen && (
+                  <Link to="/" onClick={() => setIsOpen(false)} className={styles.logo}>
                   <img
                     src={bigLogo}
-                    className={styles.logo}
+                    
                     alt="Gladstone Gallery Logo"
                   ></img>
+                  </Link>
                 )}
-              </Link>
             </div>
           )}
           {!isHome && (
