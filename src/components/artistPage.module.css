@@ -1,8 +1,18 @@
+.pageHeading {
+  color: var(--mid-gray);
+  font-family: var(--font-secondary);
+}
+
+.pageHeading:hover {
+  color: #000;
+}
+
 .exhibitionsHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding-top: 40px;
   margin-bottom: var(--medium-padding);
 }
 
@@ -57,12 +67,12 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  gap: 3%;
+  gap: 20px;
   margin-bottom: var(--medium-padding);
 }
 
 .exhibitionContainer > div {
-  width: 30%;
+  width: calc(33% - 10px);
 }
 
 .downloadContainer {
@@ -87,14 +97,14 @@
 }
 
 .callToActionContainer h2 {
-  font-size: var(--headline);
+  font-size: var(--title);
   font-weight: normal;
   padding: 0 8vw;
 }
 
 .ctaLink {
   font-size: var(--subtext);
-  padding: 10px 30px;
+  padding: 10px 30px 5px 30px;
   border: 1px solid #000;
   border-radius: 80px;
 }

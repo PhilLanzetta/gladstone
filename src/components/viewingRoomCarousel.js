@@ -99,6 +99,7 @@ const ViewingRoomCarousel = ({ item }) => {
                   image={slide.image.gatsbyImageData}
                   alt={slide.image.description}
                   className={styles.carouselImage}
+                  imgStyle={{objectFit: "scale-down"}}
                 ></GatsbyImage>
               </div>
             </div>

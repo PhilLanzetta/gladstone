@@ -3,14 +3,10 @@ import { Link } from "gatsby-plugin-intl"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import * as styles from "./productTile.module.css"
 
-const ProductTile = ({ product }) => {
-  const {
-    handle,
-    featuredImage,
-    totalInventory,
-    priceRangeV2,
-    title,
-  } = product
+const ProductTile = ({ product, page }) => {
+  const { handle, featuredImage, totalInventory, priceRangeV2, title, metafields } = product
+
+  const artist = metafields.filter(field => field.key === "artist")[0]?.value
 
   return (
     <div className={styles.productTile}>
@@ -27,15 +23,18 @@ const ProductTile = ({ product }) => {
               alt="placeholder"
             ></StaticImage>
           )}
+        </div>
+        <div className={styles.paymentInfo}>
+          <div>
+            <p className={styles.productArtist}>{artist}</p>
+            <p className={styles.productTitle}>{title}</p>
           </div>
-          <div className={styles.paymentInfo}>
-            <p>{title}</p>
-            {totalInventory > 0 && (
-              <p className={styles.price}>
-                ${priceRangeV2.minVariantPrice.amount}
-              </p>
-            )}
-          </div>
+          {totalInventory > 0 && page !== "artist" && (
+            <p className={styles.price}>
+              ${priceRangeV2.minVariantPrice.amount}
+            </p>
+          )}
+        </div>
       </Link>
     </div>
   )

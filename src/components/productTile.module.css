@@ -4,7 +4,7 @@
 }
 
 .paymentInfo {
-  margin-top: 5px;
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -22,6 +22,17 @@
   justify-content: center;
   align-items: center;
   background: #eaeaea;
+}
+
+.productTitle {
+  font-style: italic;
+  font-size: var(--body-text);
+  line-height: normal;
+}
+
+.productArtist {
+  font-size: var(--body-text);
+  line-height: normal;
 }
 
 .soldOutSticker {
@@ -43,5 +54,10 @@
   .productTile {
     width: 100%;
     margin-bottom: 40px;
+  }
+
+  .productArtist,
+  .productTitle {
+    font-size: var(--subtitle);
   }
 }

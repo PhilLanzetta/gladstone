@@ -35,6 +35,9 @@ const Artist = ({ data }) => {
   return (
     <>
       <div className="pageContainer">
+        <Link to="/artists" className={styles.pageHeading}>
+          <FormattedMessage id="artists"></FormattedMessage>
+        </Link>
         <div className={styles.exhibitionsHeader}>
           <div className="pageHeading">{name}</div>
           <div className={styles.headerLinkContainer}>
@@ -136,6 +139,7 @@ const Artist = ({ data }) => {
             <div id="publications" className={styles.pressContainer}>
               <Pagination
                 type="product"
+                page="artist"
                 data={publications}
                 showNum={6}
               ></Pagination>
@@ -336,6 +340,10 @@ export const query = graphql`
           }
         }
         totalInventory
+        metafields {
+          key
+          value
+        }
       }
     }
   }

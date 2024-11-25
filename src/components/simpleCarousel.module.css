@@ -1,5 +1,6 @@
 .simpleContainer {
   width: calc(100% + var(--medium-padding));
+  position: relative;
 }
 
 .slideContainer {
@@ -38,20 +39,20 @@
 .nextArrow,
 .previousArrow {
   position: absolute;
-  bottom: -40px;
+  top: -50px;
   transform: translateY(-50%);
-  height: 15px;
-  width: 15px;
+  height: 20px;
+  width: 20px;
   cursor: pointer;
   z-index: 10;
 }
 
 .nextArrow {
-  left: 60px;
+  right: var(--medium-padding);
 }
 
 .previousArrow {
-  left: 0px;
+  right: calc(70px + var(--medium-padding));
 }
 
 .carouselSVG {
@@ -60,13 +61,21 @@
 }
 
 .slideCount {
-  margin-top: 20px;
+  position: absolute;
+  top: -50px;
+  transform: translateY(-50%);
+  right: calc(var(--medium-padding) + 33px);
   font-size: var(--caption);
-  margin-left: 25px;
 }
 
 @media screen and (max-width: 1000px) {
-  .nextArrow {
-    left: 55px;
+  .nextArrow,
+  .previousArrow,
+  .slideCount {
+    top: -40px;
+  }
+
+  .slideCount {
+    right: calc(var(--medium-padding) + 35px);
   }
 }

@@ -73,7 +73,7 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
     infinite: false,
     useTransform: false,
     dots: false,
-    arrows: videos ? (videos.length > 1 ? true : false) : false,
+    arrows: videos ? (videos.length > 1 ? true : false) : true,
     draggable: videos ? false : true,
     afterChange: current => setActiveSlide(current),
     nextArrow: <NextArrow addClassName={styles.nextArrow} />,
@@ -82,6 +82,16 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
 
   return (
     <div className={styles.simpleContainer}>
+      {videos && videos?.length > 1 && (
+        <div className={styles.slideCount}>
+          {Math.round(activeSlide + 1)} / {videos.length}
+        </div>
+      )}
+      {images && images?.length > 1 && (
+        <div className={styles.slideCount}>
+          {Math.round(activeSlide + 1)} / {images.length}
+        </div>
+      )}
       <Slider {...settings}>
         {images &&
           images.map(image => {
@@ -120,11 +130,6 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
             </div>
           ))}
       </Slider>
-      {videos?.length > 1 && (
-        <div className={styles.slideCount}>
-          {Math.round(activeSlide + 1)} / {videos.length}
-        </div>
-      )}
     </div>
   )
 }

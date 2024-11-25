@@ -181,8 +181,14 @@
   width: 33%;
 }
 
+.productArtist {
+  font-size: var(--subtitle);
+  font-weight: 400;
+}
+
 .productTitle {
-  font-size: var(--title);
+  font-size: var(--subtitle);
+  font-style: italic;
   font-weight: 400;
 }
 

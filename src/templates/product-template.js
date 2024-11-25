@@ -80,6 +80,8 @@ const ProductPage = ({ data }) => {
     collections,
   } = data.shopifyProduct
 
+  const artist = metafields.filter(field => field.key === "artist")[0]?.value
+  
   const { addVariantToCart } = useStore()
 
   const sizes = variants
@@ -130,7 +132,8 @@ const ProductPage = ({ data }) => {
           </Slider>
         </div>
         <div className={styles.productRight}>
-          <h1 className={styles.productTitle}>{title}</h1>
+          <h1 className={styles.productArtist}>{artist}</h1>
+          <h2 className={styles.productTitle}>{title}</h2>
           {priceRangeV2.minVariantPrice.amount > 0 && totalInventory > 0 && (
             <p className={styles.productPrice}>
               ${priceRangeV2.minVariantPrice.amount}

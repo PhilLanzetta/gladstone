@@ -5,7 +5,7 @@ import ProductTile from "./productTile"
 import ExhibitionTile from "./exhibitionTile"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
-const Pagination = ({ type, data, showNum, fair }) => {
+const Pagination = ({ type, data, showNum, fair, page }) => {
   const [allData, setAllData] = useState(data)
   const [dataList, setDataList] = useState([...allData.slice(0, showNum)])
   const [loadMoreData, setLoadMoreData] = useState(false)
@@ -72,7 +72,7 @@ const Pagination = ({ type, data, showNum, fair }) => {
         ))}
       {type === "product" &&
         dataList.map(product => (
-          <ProductTile key={product.id} product={product}></ProductTile>
+          <ProductTile key={product.id} product={product} page={page}></ProductTile>
         ))}
       {type === "exhibit" &&
         dataList.map(exhibit => (

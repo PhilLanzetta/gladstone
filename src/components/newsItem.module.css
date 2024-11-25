@@ -81,7 +81,6 @@
 
 .featuredNewsText p,
 .featuredNewsText .downloadLink {
-  font-size: var(--sub-text);
   font-family: var(--font-secondary);
   font-variant-numeric: normal;
   color: var(--dark-gray);
@@ -98,7 +97,6 @@
 
 .newsText p,
 .newsText .downloadLink {
-  font-size: var(--caption);
   font-family: var(--font-secondary);
   font-variant-numeric: normal;
   color: var(--dark-gray);

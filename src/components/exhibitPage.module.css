@@ -1,5 +1,6 @@
 .pageHeading {
   color: var(--mid-gray);
+  font-family: var(--font-secondary);
 }
 
 .pageHeading:hover {
@@ -23,7 +24,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 20px;
 }
 
 .info {
@@ -44,6 +44,7 @@
 
 .aboveHeading {
   font-size: var(--title);
+  line-height: normal;
 }
 
 .sectionHeading {
