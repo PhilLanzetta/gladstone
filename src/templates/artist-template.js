@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Link, FormattedMessage } from "gatsby-plugin-intl"
+import { Link, FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo"
 import * as styles from "../components/artistPage.module.css"
@@ -25,7 +25,7 @@ const Artist = ({ data }) => {
     callToActionText,
     callToActionEmail,
     aboutDownloads,
-  } = data.contentfulArtist
+  } = data.allContentfulArtist.nodes[0]
 
   const publications = data.allShopifyProduct.nodes
 
@@ -207,111 +207,115 @@ const Artist = ({ data }) => {
 }
 
 export const query = graphql`
-  query getSingleArtist($slug: String, $name: String) {
-    contentfulArtist(slug: { eq: $slug }) {
-      slug
-      name
-      videos {
-        id
-        caption {
-          childMarkdownRemark {
-            html
-          }
-        }
-        coverImage {
-          gatsbyImageData
-          description
-        }
-        source
-        aspectRatio
-      }
-      callToActionText {
-        childMarkdownRemark {
-          html
-        }
-      }
-      callToActionEmail
-      featuredBiography {
-        childMarkdownRemark {
-          html
-        }
-      }
-      aboutDownloads {
-        buttonText
-        pdfFile {
-          file {
-            url
-          }
-        }
-        id
-      }
-      headshot {
-        caption {
-          childMarkdownRemark {
-            html
-          }
-        }
-        image {
-          description
-          gatsbyImageData
-        }
-      }
-      press {
-        id
-        articleLink
-        date
-        articlePdf {
-          file {
-            url
-          }
-        }
-        author
-        publication
-        title
-      }
-      studioVisit {
-        image {
-          description
-          gatsbyImageData
-          height
-          width
-        }
-        caption {
-          childMarkdownRemark {
-            html
-          }
-        }
-      }
-      exhibitions {
-        artists {
-          id
-          name
-        }
-        id
-        startDate
-        endDate
-        title
+  query getSingleArtist($slug: String, $name: String, $locale: String) {
+    allContentfulArtist(
+      filter: { node_locale: { eq: $locale }, slug: { eq: $slug } }
+    ) {
+      nodes {
         slug
-        location
-        tileImage {
+        name
+        videos {
+          id
+          caption {
+            childMarkdownRemark {
+              html
+            }
+          }
+          coverImage {
+            gatsbyImageData
+            description
+          }
+          source
+          aspectRatio
+        }
+        callToActionText {
+          childMarkdownRemark {
+            html
+          }
+        }
+        callToActionEmail
+        featuredBiography {
+          childMarkdownRemark {
+            html
+          }
+        }
+        aboutDownloads {
+          buttonText
+          pdfFile {
+            file {
+              url
+            }
+          }
+          id
+        }
+        headshot {
+          caption {
+            childMarkdownRemark {
+              html
+            }
+          }
           image {
             description
             gatsbyImageData
           }
         }
-      }
-      artworksCarousel {
-        caption {
-          childMarkdownRemark {
-            html
+        press {
+          id
+          articleLink
+          date
+          articlePdf {
+            file {
+              url
+            }
+          }
+          author
+          publication
+          title
+        }
+        studioVisit {
+          image {
+            description
+            gatsbyImageData
+            height
+            width
+          }
+          caption {
+            childMarkdownRemark {
+              html
+            }
           }
         }
-        id
-        image {
+        exhibitions {
+          artists {
+            id
+            name
+          }
           id
-          gatsbyImageData
-          width
-          height
+          startDate
+          endDate
+          title
+          slug
+          location
+          tileImage {
+            image {
+              description
+              gatsbyImageData
+            }
+          }
+        }
+        artworksCarousel {
+          caption {
+            childMarkdownRemark {
+              html
+            }
+          }
+          id
+          image {
+            id
+            gatsbyImageData
+            width
+            height
+          }
         }
       }
     }
@@ -349,6 +353,6 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }) => <Seo title={data.contentfulArtist.name} />
+export const Head = ({ data }) => <Seo />
 
-export default Artist
+export default injectIntl(Artist)

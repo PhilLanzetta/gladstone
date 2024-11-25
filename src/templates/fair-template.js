@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
-import { Link, FormattedMessage } from "gatsby-plugin-intl"
+import { Link, FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 import moment from "moment"
 import * as styles from "../components/exhibitPage.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -81,7 +81,7 @@ const Fair = ({ data }) => {
     aboutLinks,
     viewingRoomPreview,
     slug,
-  } = data.contentfulFair
+  } = data.allContentfulFair.nodes[0]
 
   const [activeSlide, setActiveSlide] = useState(0)
 
@@ -151,9 +151,11 @@ const Fair = ({ data }) => {
           </div>
           {viewingRoomPreview && (
             <div>
-              <Link to={`/fair/${slug}/viewing-room`} className={styles.viewLink}>
-                <FormattedMessage id="viewing-room"></FormattedMessage>{" "}
-                →
+              <Link
+                to={`/fair/${slug}/viewing-room`}
+                className={styles.viewLink}
+              >
+                <FormattedMessage id="viewing-room"></FormattedMessage> →
               </Link>
             </div>
           )}
@@ -184,60 +186,64 @@ const Fair = ({ data }) => {
 }
 
 export const query = graphql`
-  query getSingleFair($slug: String) {
-    contentfulFair(slug: { eq: $slug }) {
-      artists {
-        id
-        name
-        slug
-        featuredBiography {
-          childMarkdownRemark {
-            html
-          }
-        }
-        headshot {
-          caption {
+  query getSingleFair($slug: String, $locale: String) {
+    allContentfulFair(
+      filter: { node_locale: { eq: $locale }, slug: { eq: $slug } }
+    ) {
+      nodes {
+        artists {
+          id
+          name
+          slug
+          featuredBiography {
             childMarkdownRemark {
               html
             }
           }
+          headshot {
+            caption {
+              childMarkdownRemark {
+                html
+              }
+            }
+            image {
+              description
+              gatsbyImageData
+            }
+          }
+        }
+        endDate
+        fairDescription {
+          childMarkdownRemark {
+            html
+          }
+        }
+        featuredImages {
+          id
           image {
             description
             gatsbyImageData
           }
         }
-      }
-      endDate
-      fairDescription {
-        childMarkdownRemark {
-          html
+        aboutLinks {
+          id
+          label
+          url
         }
-      }
-      featuredImages {
-        id
-        image {
-          description
-          gatsbyImageData
+        location {
+          childMarkdownRemark {
+            html
+          }
         }
-      }
-      aboutLinks {
-        id
-        label
-        url
-      }
-      location {
-        childMarkdownRemark {
-          html
+        startDate
+        title
+        slug
+        viewingRoomPreview {
+          id
         }
-      }
-      startDate
-      title
-      slug
-      viewingRoomPreview {
-        id
       }
     }
   }
 `
 
-export default Fair
+export default injectIntl(Fair)

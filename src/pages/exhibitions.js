@@ -7,8 +7,10 @@ import { AnimatePresence, motion } from "framer-motion"
 import Pagination from "../components/pagination"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
-const Exhibitions = ({ data }) => {
+const Exhibitions = ({ pageContext, data }) => {
   const today = moment()
+
+  console.log(pageContext)
 
   function onlyUnique(value, index, array) {
     return array.indexOf(value) === index
@@ -325,10 +327,10 @@ const Exhibitions = ({ data }) => {
 }
 
 export const query = graphql`
-  query {
+  query constentfulExhibitPage($locale: String) {
     allContentfulExhibition(
       sort: { startDate: DESC }
-      filter: { node_locale: { eq: "en-US" } }
+      filter: { node_locale: { eq: $locale } }
     ) {
       nodes {
         id

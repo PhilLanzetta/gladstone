@@ -10,6 +10,19 @@
 
 var slugify = require("slugify")
 
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage, deletePage } = actions
+  deletePage(page)
+  // You can access the variable "locale" in your page queries now
+  createPage({
+    ...page,
+    context: {
+      ...page.context,
+      locale: page.context.intl.language,
+    },
+  })
+}
+
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
   function onlyUnique(value, index, array) {
@@ -22,6 +35,7 @@ exports.createPages = async ({ actions, graphql }) => {
           node {
             slug
             name
+            node_locale
           }
         }
       }
@@ -29,6 +43,7 @@ exports.createPages = async ({ actions, graphql }) => {
         edges {
           node {
             slug
+            node_locale
           }
         }
       }
@@ -36,6 +51,7 @@ exports.createPages = async ({ actions, graphql }) => {
         edges {
           node {
             slug
+            node_locale
           }
         }
       }
@@ -44,6 +60,7 @@ exports.createPages = async ({ actions, graphql }) => {
           node {
             fair {
               slug
+              node_locale
             }
           }
         }
@@ -75,6 +92,7 @@ exports.createPages = async ({ actions, graphql }) => {
         edges {
           node {
             slug
+            node_locale
           }
         }
       }

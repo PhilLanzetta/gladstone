@@ -5,41 +5,43 @@ import * as styles from "../components/index.module.css"
 import LocationListing from "../components/locationListing"
 
 const Index = ({ data }) => {
-  const { homeTiles } = data.contentfulHomePage
+  const { homeTiles } = data.allContentfulHomePage.nodes[0]
   return (
-      <div className={styles.homeContainer}>
-        {homeTiles.map(item => (
-          <HomeTile key={item.id} tile={item}></HomeTile>
-        ))}
-        <LocationListing></LocationListing>
-      </div>
+    <div className={styles.homeContainer}>
+      {homeTiles.map(item => (
+        <HomeTile key={item.id} tile={item}></HomeTile>
+      ))}
+      <LocationListing></LocationListing>
+    </div>
   )
 }
 
 export const query = graphql`
-  query {
-    contentfulHomePage {
-      id
-      homeTiles {
-        artist
+  query contentfulHome($locale: String) {
+    allContentfulHomePage(filter: { node_locale: { eq: $locale } }) {
+      nodes {
         id
-        image {
-          description
-          gatsbyImageData(layout: FULL_WIDTH)
-        }
-        mobileImage {
-          description
-          gatsbyImageData(layout: FULL_WIDTH)
-        }
-        tileWidth
-        workTitle
-        location {
-          childMarkdownRemark {
-            html
+        homeTiles {
+          artist
+          id
+          image {
+            description
+            gatsbyImageData(layout: FULL_WIDTH)
           }
+          mobileImage {
+            description
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+          tileWidth
+          workTitle
+          location {
+            childMarkdownRemark {
+              html
+            }
+          }
+          link
+          linkIsExternal
         }
-        link
-        linkIsExternal
       }
     }
   }

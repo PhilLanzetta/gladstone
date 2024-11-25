@@ -1,13 +1,13 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { FormattedMessage } from "gatsby-plugin-intl"
+import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 import * as styles from "../components/viewingRoom.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import ViewingRoomCarousel from "../components/viewingRoomCarousel"
 
 const ViewingRoom = ({ data }) => {
   const { title, callToActionEmail, callToActionText, content, fair } =
-    data.contentfulViewingRoom
+    data.allContentfulViewingRoom.nodes[0]
 
   const featuredImage = content[0]
   const remainingContent = content.slice(1)
@@ -101,54 +101,61 @@ const ViewingRoom = ({ data }) => {
 }
 
 export const query = graphql`
-  query getSingleViewingRoom($slug: String) {
-    contentfulViewingRoom(fair: { elemMatch: { slug: { eq: $slug } } }) {
-      title
-      callToActionEmail
-      callToActionText {
-        childMarkdownRemark {
-          html
-        }
+  query getSingleViewingRoom($slug: String, $locale: String) {
+    allContentfulViewingRoom(
+      filter: {
+        node_locale: { eq: $locale }
+        fair: { elemMatch: { slug: { eq: $slug } } }
       }
-      fair {
-        artists {
-          id
-          name
-          lastName
-          slug
-        }
-      }
-      content {
-        ... on ContentfulImageWrapper {
-          fullImgId: id
-          caption {
-            childMarkdownRemark {
-              html
-            }
-          }
-          image {
-            gatsbyImageData(layout: FULL_WIDTH)
-            description
+    ) {
+      nodes {
+        title
+        callToActionEmail
+        callToActionText {
+          childMarkdownRemark {
+            html
           }
         }
-        ... on ContentfulViewingRoomCarousel {
-          carouselId: id
-          artist {
+        fair {
+          artists {
+            id
             name
+            lastName
             slug
           }
-          callToActionEmail
-          carouselAlignment
-          slides {
+        }
+        content {
+          ... on ContentfulImageWrapper {
+            fullImgId: id
             caption {
               childMarkdownRemark {
                 html
               }
             }
-            id
             image {
-              description
               gatsbyImageData(layout: FULL_WIDTH)
+              description
+            }
+          }
+          ... on ContentfulViewingRoomCarousel {
+            carouselId: id
+            artist {
+              name
+              slug
+            }
+            callToActionEmail
+            carouselAlignment
+            slides {
+              caption {
+                childMarkdownRemark {
+                  html
+                }
+              }
+              id
+              image {
+                description
+                gatsbyImageData(layout: FULL_WIDTH)
+              }
             }
           }
         }
@@ -157,4 +164,4 @@ export const query = graphql`
   }
 `
 
-export default ViewingRoom
+export default injectIntl(ViewingRoom)

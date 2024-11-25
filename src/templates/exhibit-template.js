@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Link, FormattedMessage } from "gatsby-plugin-intl"
+import { Link, FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 import moment from "moment"
 import * as styles from "../components/exhibitPage.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -10,7 +10,8 @@ import SimpleCarousel from "../components/simpleCarousel"
 import ExhibitionTile from "../components/exhibitionTile"
 import PdfDownload from "../components/pdfDownload"
 
-const Exhibit = ({ data }) => {
+const Exhibit = ({ data, pageContext }) => {
+  console.log(pageContext)
   const {
     title,
     artists,
@@ -25,7 +26,7 @@ const Exhibit = ({ data }) => {
     relatedContent,
     relatedHeading,
     aboutDownloads,
-  } = data.contentfulExhibition
+  } = data.allContentfulExhibition.nodes[0]
 
   const { width } = useWindowSize()
   const isMobile = width < 700
@@ -190,117 +191,121 @@ const Exhibit = ({ data }) => {
 }
 
 export const query = graphql`
-  query getSingleExhibit($slug: String) {
-    contentfulExhibition(slug: { eq: $slug }) {
-      artists {
-        id
-        name
-        isGladstoneArtist
-        slug
-        featuredBiography {
-          childMarkdownRemark {
-            html
-          }
-        }
-        headshot {
-          caption {
+  query getSingleExhibit($slug: String, $locale: String) {
+    allContentfulExhibition(
+      filter: { node_locale: { eq: $locale }, slug: { eq: $slug } }
+    ) {
+      nodes {
+        artists {
+          id
+          name
+          isGladstoneArtist
+          slug
+          featuredBiography {
             childMarkdownRemark {
               html
             }
           }
+          headshot {
+            caption {
+              childMarkdownRemark {
+                html
+              }
+            }
+            image {
+              description
+              gatsbyImageData
+            }
+          }
+        }
+        endDate
+        exhibitionDescription {
+          childMarkdownRemark {
+            html
+          }
+        }
+        featuredImage {
           image {
             description
             gatsbyImageData
           }
         }
-      }
-      endDate
-      exhibitionDescription {
-        childMarkdownRemark {
-          html
-        }
-      }
-      featuredImage {
-        image {
-          description
-          gatsbyImageData
-        }
-      }
-      aboutDownloads {
-        id
-        buttonText
-        pdfFile {
-          file {
-            url
-          }
-        }
-      }
-      installationMedia {
-        image {
-          description
-          gatsbyImageData
-          height
-          width
-        }
-        caption {
-          childMarkdownRemark {
-            html
-          }
-        }
-        id
-      }
-      location
-      openingReception
-      startDate
-      title
-      workMedia {
-        caption {
-          childMarkdownRemark {
-            html
-          }
-        }
-        id
-        image {
-          description
-          gatsbyImageData
-          height
-          width
-        }
-      }
-      relatedHeading
-      relatedContent {
-        ... on ContentfulArtist {
-          artistId: id
-          name
-          featuredImage {
-            image {
-              description
-              gatsbyImageData
+        aboutDownloads {
+          id
+          buttonText
+          pdfFile {
+            file {
+              url
             }
           }
-          slug
         }
-        ... on ContentfulExhibition {
-          exhibitId: id
-          slug
-          artists {
-            id
+        installationMedia {
+          image {
+            description
+            gatsbyImageData
+            height
+            width
+          }
+          caption {
+            childMarkdownRemark {
+              html
+            }
+          }
+          id
+        }
+        location
+        openingReception
+        startDate
+        title
+        workMedia {
+          caption {
+            childMarkdownRemark {
+              html
+            }
+          }
+          id
+          image {
+            description
+            gatsbyImageData
+            height
+            width
+          }
+        }
+        relatedHeading
+        relatedContent {
+          ... on ContentfulArtist {
+            artistId: id
             name
-          }
-          tileImage {
-            image {
-              description
-              gatsbyImageData
+            featuredImage {
+              image {
+                description
+                gatsbyImageData
+              }
             }
+            slug
           }
-          location
-          region
-          startDate
-          endDate
+          ... on ContentfulExhibition {
+            exhibitId: id
+            slug
+            artists {
+              id
+              name
+            }
+            tileImage {
+              image {
+                description
+                gatsbyImageData
+              }
+            }
+            location
+            region
+            startDate
+            endDate
+          }
         }
       }
     }
   }
 `
 
-export default Exhibit
+export default injectIntl(Exhibit)

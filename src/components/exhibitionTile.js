@@ -2,7 +2,7 @@ import React from "react"
 import * as styles from "./exhibitionTile.module.css"
 import moment from "moment"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { Link } from "gatsby-plugin-intl"
+import { Link, FormattedDate } from "gatsby-plugin-intl"
 import useWindowSize from "../utils/useWindowSize"
 
 const ExhibitionTile = ({ content, artistPage, past, fair }) => {

@@ -326,10 +326,10 @@ const Fairs = ({ data }) => {
 }
 
 export const query = graphql`
-  query {
+  query contentfulFairs($locale: String) {
     allContentfulFair(
       sort: { startDate: DESC }
-      filter: { node_locale: { eq: "en-US" } }
+      filter: { node_locale: { eq: $locale } }
     ) {
       nodes {
         id

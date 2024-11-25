@@ -8,6 +8,7 @@ import CookieConsent from "react-cookie-consent"
 
 const Layout = ({ children, location }) => {
   const isHome =
+    location?.pathname === "/" ||
     location?.pathname === "/en/" ||
     location?.pathname === "/zh/" ||
     location?.pathname === "/ko/"

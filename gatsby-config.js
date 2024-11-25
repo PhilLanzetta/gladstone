@@ -85,7 +85,7 @@ module.exports = {
         // language file path
         defaultLanguage: `en`,
         // option to redirect to `/en` when connecting `/`
-        redirect: true,
+        redirect: false,
       },
     },
     {

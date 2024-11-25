@@ -6,7 +6,7 @@ import * as styles from "../components/aboutPage.module.css"
 
 const About = ({ data }) => {
   const { aboutHeadlineText, locations, leadershipstaff } =
-    data.contentfulAboutPage
+    data.contentfulAboutPage.nodes[0]
 
   const newYorkLocations = locations.filter(location =>
     location.streetAddress.childMarkdownRemark.html.includes("New York")
@@ -155,39 +155,41 @@ const About = ({ data }) => {
 }
 
 export const query = graphql`
-  query {
-    contentfulAboutPage {
-      aboutHeadlineText {
-        childMarkdownRemark {
-          html
-        }
-      }
-      locations {
-        id
-        googleMapLink
-        streetAddress {
+  query contentfulAbout($locale: String) {
+    allContentfulAboutPage(filter: { node_locale: { eq: $locale } }) {
+      nodes {
+        aboutHeadlineText {
           childMarkdownRemark {
             html
           }
         }
-        telephone
-        image {
-          description
-          gatsbyImageData(layout: FULL_WIDTH)
-        }
-        hours {
-          childMarkdownRemark {
-            html
-          }
-        }
-      }
-      leadershipstaff {
-        id
-        heading
-        staffMembers {
+        locations {
           id
-          name
-          title
+          googleMapLink
+          streetAddress {
+            childMarkdownRemark {
+              html
+            }
+          }
+          telephone
+          image {
+            description
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+          hours {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
+        leadershipstaff {
+          id
+          heading
+          staffMembers {
+            id
+            name
+            title
+          }
         }
       }
     }

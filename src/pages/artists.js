@@ -164,9 +164,9 @@ const Artists = ({ data }) => {
 }
 
 export const query = graphql`
-  query {
+  query contentfulArtist($locale: String) {
     allContentfulArtist(
-      filter: { node_locale: { eq: "en-US" }, isGladstoneArtist: { eq: true } }
+      filter: { node_locale: { eq: $locale }, isGladstoneArtist: { eq: true } }
       sort: { lastName: ASC }
     ) {
       nodes {
