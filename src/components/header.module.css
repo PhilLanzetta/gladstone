@@ -283,10 +283,6 @@ header {
     display: none;
   }
 
-  .primaryMenu > div {
-    width: 15%;
-  }
-
   .primaryMenu .logo {
     width: 70%;
     margin-left: 15%;
