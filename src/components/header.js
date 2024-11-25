@@ -95,11 +95,7 @@ const Header = ({ isHome }) => {
             <div className={styles.smallLogo}>
               <Link
                 to="/"
-                onClick={
-                  isHome
-                    ? () => setTimeout(() => setIsOpen(false), 100)
-                    : () => setIsOpen(false)
-                }
+                onClick={() => setIsOpen(false)}
               >
                 <img src={smallLogo} alt="Gladstone Gallery Logo"></img>
               </Link>
