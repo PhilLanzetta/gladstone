@@ -13,10 +13,6 @@ const pagesQuery = `{
             contentDigest
           }
           slug
-          press {
-            publication
-            title
-          }
           featuredBiography {
             childMarkdownRemark {
               excerpt(pruneLength: 200, format: HTML)
