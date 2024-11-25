@@ -15,7 +15,7 @@ const pagesQuery = `{
           featuredImage {
             image {
               description
-              gatsbyImageData(width: 400)
+              gatsbyImageData(width: 300)
             }
           }
           slug
@@ -51,7 +51,7 @@ const pagesQuery = `{
           tileImage {
             image {
               description
-              gatsbyImageData(width: 400)
+              gatsbyImageData(width: 300)
             }
           }
         }
