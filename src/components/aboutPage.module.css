@@ -64,16 +64,13 @@
   overflow: hidden;
 }
 
-.grayBackground {
+.locationImage {
   background: var(--dark-gray);
   height: 100%;
   width: 100%;
-  position: absolute;
-  top: 0;
-  z-index: -1;
 }
 
-.locationImage {
+.locationImage img {
   height: 100%;
   width: 100%;
   mix-blend-mode: luminosity;
@@ -84,7 +81,7 @@
   opacity: 1;
 }
 
-.locationLink:hover .locationImage {
+.locationLink:hover .locationImage img {
   mix-blend-mode: normal;
   transition: all 400ms;
 }
@@ -140,7 +137,7 @@
     width: 100%;
   }
 
-  .locationLink:hover .locationImage {
+  .locationLink:hover .locationImage img{
     mix-blend-mode: luminosity;
     transition: all 400ms;
   }
