@@ -99,7 +99,7 @@ const ViewingRoomCarousel = ({ item }) => {
                   image={slide.image.gatsbyImageData}
                   alt={slide.image.description}
                   className={styles.carouselImage}
-                  imgStyle={{objectFit: "scale-down"}}
+                  imgStyle={{ objectFit: "scale-down" }}
                 ></GatsbyImage>
               </div>
             </div>
@@ -115,7 +115,7 @@ const ViewingRoomCarousel = ({ item }) => {
                 currentIndex
               ].caption.childMarkdownRemark.html.replace(
                 /\b(\d+)\/(\d+)/g,
-                "<sup>$1</sup>&frasl;<sub>$2</sub>"
+                "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
               ),
             }}
           ></motion.div>

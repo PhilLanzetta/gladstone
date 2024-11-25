@@ -72,6 +72,10 @@ h6 {
   font-weight: 400;
 }
 
+.fraction {
+  font-size: 70%;
+}
+
 :root {
   --font-primary: "Frame Head", serif;
   --font-secondary: "Basel Grotesk", sans-serif;

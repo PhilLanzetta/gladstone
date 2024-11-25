@@ -24,11 +24,11 @@ const ViewingRoom = ({ data }) => {
         <div className={styles.headerLinkContainer}>
           {featuredArtists && (
             <a href="#featured-artists" className={styles.landingLink}>
-              <FormattedMessage id="featured_artists"></FormattedMessage>
+              <FormattedMessage id="artists"></FormattedMessage>
             </a>
           )}
           <a href="#featured-art">
-            <FormattedMessage id="featured_art"></FormattedMessage>
+            <FormattedMessage id="artwork"></FormattedMessage>
           </a>
         </div>
       </div>
@@ -36,7 +36,7 @@ const ViewingRoom = ({ data }) => {
       {featuredArtists && (
         <div id="featured-artists" className={styles.featuredArtistsContainer}>
           <div className={styles.featuredHeading}>
-            <FormattedMessage id="featured_artists"></FormattedMessage>
+            <FormattedMessage id="artists"></FormattedMessage>
           </div>
           <div className={styles.featuredArtists}>
             {featuredArtists.map(artist => (
@@ -60,7 +60,7 @@ const ViewingRoom = ({ data }) => {
 
       <div id="featured-art" className={styles.featuredArtistsContainer}>
         <div className={styles.featuredHeading}>
-          <FormattedMessage id="featured_art"></FormattedMessage>
+          <FormattedMessage id="artwork"></FormattedMessage>
         </div>
       </div>
       <div>

@@ -104,7 +104,7 @@ const VariedWidthCarousel = ({ images, slideCount }) => {
                     dangerouslySetInnerHTML={{
                       __html: image.caption?.childMarkdownRemark.html.replace(
                         /\b(\d+)\/(\d+)/g,
-                        "<sup>$1</sup>&frasl;<sub>$2</sub>"
+                        "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
                       ),
                     }}
                   ></figcaption>

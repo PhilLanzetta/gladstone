@@ -152,7 +152,7 @@ const Fair = ({ data }) => {
           {viewingRoomPreview && (
             <div>
               <Link to={`/fair/${slug}/viewing-room`} className={styles.viewLink}>
-                <FormattedMessage id="viewing-room-preview"></FormattedMessage>{" "}
+                <FormattedMessage id="viewing-room"></FormattedMessage>{" "}
                 →
               </Link>
             </div>
