@@ -12,12 +12,6 @@ const pagesQuery = `{
           internal {
             contentDigest
           }
-          featuredImage {
-            image {
-              description
-              gatsbyImageData(width: 300)
-            }
-          }
           slug
           press {
             publication
@@ -25,7 +19,7 @@ const pagesQuery = `{
           }
           featuredBiography {
             childMarkdownRemark {
-              excerpt(pruneLength: 300, format: HTML)
+              excerpt(pruneLength: 200, format: HTML)
             }
           }
         }
@@ -39,7 +33,7 @@ const pagesQuery = `{
           }
           exhibitionDescription {
             childMarkdownRemark {
-              excerpt(format: HTML, pruneLength: 300)
+              excerpt(format: HTML, pruneLength: 200)
             }
           }
           location
@@ -48,12 +42,6 @@ const pagesQuery = `{
           startDate
           endDate
           title
-          tileImage {
-            image {
-              description
-              gatsbyImageData(width: 300)
-            }
-          }
         }
       }
     }

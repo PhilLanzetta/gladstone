@@ -11,10 +11,8 @@ const Hit = ({ hit }) => {
     searchCategory,
     name,
     artists,
-    featuredImage,
     featuredBiography,
     exhibitionDescription,
-    tileImage,
     startDate,
     endDate,
   } = hit
@@ -37,11 +35,6 @@ const Hit = ({ hit }) => {
                 </div>
                 <p className={styles.category}>{searchCategory}</p>
               </div>
-              <GatsbyImage
-                image={featuredImage?.image.gatsbyImageData}
-                alt={featuredImage?.image.description}
-                className={styles.searchResultImage}
-              ></GatsbyImage>
             </Link>
           )}{" "}
           {searchCategory === "Exhibition" && (
@@ -68,11 +61,6 @@ const Hit = ({ hit }) => {
                 </div>
                 <p className={styles.category}>{searchCategory}</p>
               </div>
-              <GatsbyImage
-                image={tileImage?.image.gatsbyImageData}
-                alt={tileImage?.image.description}
-                className={styles.searchResultImage}
-              ></GatsbyImage>
             </Link>
           )}
         </div>
