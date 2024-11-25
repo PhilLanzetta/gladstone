@@ -3,7 +3,7 @@ import * as styles from "./newsItem.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 const NewsItem = ({ content }) => {
-  const { isFeatured, link, newsImage, newsText, download } = content
+  const { isFeatured, link, newsImage, newsText, download, category } = content
   return (
     <div className={isFeatured ? styles.featuredNewsItem : styles.newsItem}>
       <GatsbyImage
@@ -12,6 +12,7 @@ const NewsItem = ({ content }) => {
         className={isFeatured ? styles.featuredNewsImage : styles.newsImage}
       ></GatsbyImage>
       <div className={isFeatured ? styles.featuredNewsText : styles.newsText}>
+        <div className={styles.category}>{category}</div>
         <div
           dangerouslySetInnerHTML={{
             __html: newsText.childMarkdownRemark.html,

@@ -15,6 +15,12 @@
   overflow-x: scroll;
 }
 
+.category {
+  color: var(--mid-gray);
+  font-family: var(--font-secondary);
+  margin-bottom: 10px;
+}
+
 .buttonInactive {
   color: var(--dark-gray);
   transition: all 400ms;
