@@ -68,29 +68,39 @@ const Header = ({ isHome }) => {
           </div>
           {isHome && (
             <div className={hidden ? styles.hideLogo : styles.showLogo}>
-                {isOpen && (
-                  <Link to="/" onClick={() => setIsOpen(false)} className={styles.smallLogo}>
+              {isOpen && (
+                <Link
+                  to="/"
+                  onClick={() => setIsOpen(false)}
+                  className={styles.smallLogo}
+                >
                   <img
                     src={isMobile ? smallLogo : smallLogoWhite}
-                    
                     alt="Gladstone Gallery Logo"
                   ></img>
-                  </Link>
-                )}
-                {!isOpen && (
-                  <Link to="/" onClick={() => setIsOpen(false)} className={styles.logo}>
-                  <img
-                    src={bigLogo}
-                    
-                    alt="Gladstone Gallery Logo"
-                  ></img>
-                  </Link>
-                )}
+                </Link>
+              )}
+              {!isOpen && (
+                <Link
+                  to="/"
+                  onClick={() => setIsOpen(false)}
+                  className={styles.logo}
+                >
+                  <img src={bigLogo} alt="Gladstone Gallery Logo"></img>
+                </Link>
+              )}
             </div>
           )}
           {!isHome && (
             <div className={styles.smallLogo}>
-              <Link to="/" onClick={() => setIsOpen(false)}>
+              <Link
+                to="/"
+                onClick={
+                  isHome
+                    ? () => setTimeout(() => setIsOpen(false), 100)
+                    : () => setIsOpen(false)
+                }
+              >
                 <img src={smallLogo} alt="Gladstone Gallery Logo"></img>
               </Link>
             </div>
