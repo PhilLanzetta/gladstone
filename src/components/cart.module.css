@@ -13,6 +13,11 @@
   font-size: var(--title);
   padding-bottom: var(--medium-padding);
   padding-left: var(--medium-padding);
+  padding-right: var(--medium-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
 }
 
 .productRowContainer {
@@ -43,6 +48,15 @@
   gap: 20px;
 }
 
+.productArtist,
+.productTitle {
+  display: block;
+}
+
+.productTitle {
+  font-style: italic;
+}
+
 .rowRight {
   width: 50%;
   display: flex;
@@ -52,6 +66,8 @@
 .quantityContainer,
 .rowTotalContainer {
   width: calc(100% / 3);
+  font-variant-numeric: normal;
+  font-family: var(--font-secondary);
 }
 
 .quantityButtons {
@@ -93,14 +109,34 @@
   display: flex;
   border-top: 1px solid var(--mid-gray);
   padding: var(--medium-padding);
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-end;
 }
 
-.closeCart,
 .priceDisclaimer {
   font-family: var(--font-secondary);
   font-variant-numeric: normal;
+}
+
+.closeCart {
+  position: relative;
+  height: 20px;
+  width: 20px;
+}
+
+.closeCart div {
+  height: 1px;
+  width: 20px;
+  background: #000;
+  position: absolute;
+}
+
+.closeCart div:first-of-type {
+  transform: rotate(45deg);
+}
+
+.closeCart div:last-of-type {
+  transform: rotate(-45deg);
 }
 
 .checkoutInfo {
@@ -112,6 +148,9 @@
 
 .checkout {
   display: flex;
+  justify-content: center;
+  font-family: var(--font-secondary);
+  font-variant-numeric: normal;
   gap: 10px;
 }
 

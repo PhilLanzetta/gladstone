@@ -157,10 +157,6 @@
 }
 
 @media screen and (max-width: 700px) {
-  .searchPage {
-    padding-top: 120px;
-  }
-
   .searchBoxIcon {
     width: 15px;
     padding: 2px;

@@ -63,7 +63,12 @@ main {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 400;
 }
 
@@ -191,10 +196,6 @@ p {
 }
 
 @media screen and (max-width: 700px) {
-  .pageContainer {
-    padding-top: 80px;
-  }
-
   html {
     scroll-padding-top: 150px;
   }
@@ -207,5 +208,9 @@ p {
 
   html {
     font-size: 12px;
+  }
+
+  .pageContainer {
+    padding-top: 80px;
   }
 }

@@ -22,6 +22,10 @@ const Cart = ({ toggleCart }) => {
     >
       <div className={styles.cartHeading}>
         <FormattedMessage id="cart"></FormattedMessage>
+        <button className={styles.closeCart} onClick={toggleCart}>
+          <div></div>
+          <div></div>
+        </button>
       </div>
       <div className={styles.cartProductsContainer}>
         {cart.length > 0 ? (
@@ -33,9 +37,6 @@ const Cart = ({ toggleCart }) => {
         )}
       </div>
       <div className={styles.cartSummary}>
-        <button className={styles.closeCart} onClick={toggleCart}>
-          <FormattedMessage id="cart_continue"></FormattedMessage>
-        </button>
         <div className={styles.checkoutInfo}>
           <div className={styles.checkout}>
             <div>

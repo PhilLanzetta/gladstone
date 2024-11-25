@@ -13,6 +13,9 @@ const ProductRow = ({ item }) => {
     )
     ?.flat()[variantIndex]
 
+  const artist = product.metafields.filter(field => field.key === "artist")[0]
+    ?.value
+
   const { removeLineItem, lowerCartItemQuantity, addCartItemQuantity } =
     useStore()
 
@@ -30,7 +33,8 @@ const ProductRow = ({ item }) => {
             className={styles.productRowImage}
           ></GatsbyImage>
           <p>
-            <span>{product.title}</span>
+            <span className={styles.productArtist}>{artist}</span>
+            <span className={styles.productTitle}>{product.title}</span>
           </p>
           {size && <p className="product-row-size">Size - {size.value}</p>}
         </div>
