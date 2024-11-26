@@ -4,7 +4,7 @@ import CustomForm from "./customForm"
 import * as styles from './mailForm.module.css'
 
 
-const MailForm = () => {
+const MailForm = ({isAfter}) => {
   const postUrl = process.env.GATSBY_MAILCHIMP_URL
 
   return (
@@ -16,6 +16,7 @@ const MailForm = () => {
             status={status}
             message={message}
             onValidated={formData => subscribe(formData)}
+            isAfter={isAfter}
           />
         )}
       />

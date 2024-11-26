@@ -19,6 +19,12 @@
   padding-top: 20px;
 }
 
+.afterName {
+  display: flex;
+  gap: 10px;
+  padding-top: 20px;
+}
+
 .name input {
   border: 1px solid var(--mid-gray);
   padding: 2px 5px;
@@ -28,14 +34,43 @@
   height: 40px;
 }
 
+.afterName input {
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 2px 5px;
+  background: transparent;
+  border-radius: 6px;
+  width: 50%;
+  height: 40px;
+}
+
+.afterName input::placeholder {
+  color: #fff;
+}
+
 .email {
   border: 1px solid var(--mid-gray);
   padding: 2px 5px;
   background: #fff;
+  color: #fff;
   border-radius: 6px;
   width: 100%;
   height: 40px;
   margin-top: 15px;
+}
+
+.afterEmail {
+  border: 1px solid #fff;
+  padding: 2px 5px;
+  background: transparent;
+  border-radius: 6px;
+  width: 100%;
+  height: 40px;
+  margin-top: 15px;
+}
+
+.afterEmail::placeholder {
+  color: #fff;
 }
 
 .mailForm form {
@@ -50,6 +85,17 @@
   background: none;
   border: 1px solid var(--mid-gray);
   color: var(--dark-gray);
+  border-radius: 6px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.afterSubmit {
+  border: none;
+  padding: 2px 15px;
+  background: none;
+  border: 1px solid #fff;
+  color: #fff;
   border-radius: 6px;
   height: 40px;
   cursor: pointer;

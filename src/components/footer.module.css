@@ -1,9 +1,19 @@
-footer {
+.footer {
   border-top: 1px solid var(--mid-gray);
   padding: var(--medium-padding);
   font-family: var(--font-secondary);
   font-variant-numeric: normal;
   background-color: var(--accent-gray);
+  font-size: var(--subtext);
+}
+
+.afterFooter {
+  border-top: 1px solid var(--light-gray);
+  padding: var(--medium-padding);
+  font-family: var(--font-secondary);
+  font-variant-numeric: normal;
+  background-color: #000;
+  color: #fff;
   font-size: var(--subtext);
 }
 
@@ -25,8 +35,17 @@ footer {
   color: var(--dark-gray);
 }
 
+.afterLinkColumn {
+  display: flex;
+  flex-direction: column;
+}
+
 .linkColumn a:hover {
   color: #000;
+}
+
+.afterLinkColumn a:hover {
+  color: var(--light-gray);
 }
 
 .lowerFooter {

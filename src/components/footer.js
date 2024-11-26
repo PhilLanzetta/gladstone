@@ -2,14 +2,15 @@ import React from "react"
 import * as styles from "./footer.module.css"
 import MailForm from "./mailForm"
 import logo from "../images/Gladstone_Small.svg"
+import whiteLogo from "../images/Gladstone_Small_White.svg"
 import { Link, FormattedMessage } from "gatsby-plugin-intl"
 
-const Footer = () => {
+const Footer = isAfter => {
   return (
-    <footer>
+    <footer className={isAfter ? styles.afterFooter : styles.footer}>
       <div className={styles.upperFooter}>
         <div className={styles.linkContainer}>
-          <div className={styles.linkColumn}>
+          <div className={isAfter ? styles.afterLinkColumn : styles.linkColumn}>
             <Link to="/artists">
               <FormattedMessage id="artists"></FormattedMessage>
             </Link>
@@ -23,7 +24,7 @@ const Footer = () => {
               <FormattedMessage id="publications"></FormattedMessage>
             </Link>
           </div>
-          <div className={styles.linkColumn}>
+          <div className={isAfter ? styles.afterLinkColumn : styles.linkColumn}>
             <Link to="/about">
               <FormattedMessage id="about"></FormattedMessage>
             </Link>
@@ -40,7 +41,7 @@ const Footer = () => {
               <FormattedMessage id="accessibility"></FormattedMessage>
             </Link>
           </div>
-          <div className={styles.linkColumn}>
+          <div className={isAfter ? styles.afterLinkColumn : styles.linkColumn}>
             <a
               href="https://x.com/GladstoneNYC"
               target="_blank"
@@ -67,11 +68,14 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <MailForm></MailForm>
+        <MailForm isAfter={isAfter}></MailForm>
       </div>
       <div className={styles.lowerFooter}>
         <Link to="/" className={styles.footerLogo}>
-          <img src={logo} alt="Gladstone Gallery logo"></img>
+          <img
+            src={isAfter ? whiteLogo : logo}
+            alt="Gladstone Gallery logo"
+          ></img>
         </Link>
         <div className={styles.lowerFooterLinks}>
           <p>

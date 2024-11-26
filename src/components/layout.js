@@ -12,6 +12,7 @@ const Layout = ({ children, location }) => {
     location?.pathname === "/en/" ||
     location?.pathname === "/zh/" ||
     location?.pathname === "/ko/"
+  const isAfter = location?.pathname.includes("after-hours")
   const isShop = location?.pathname.includes("shop")
   const container = {
     out: { opacity: 0, transition: { duration: 0.5 } },
@@ -21,7 +22,7 @@ const Layout = ({ children, location }) => {
 
   return (
     <>
-      <Header isHome={isHome}></Header>
+      <Header isHome={isHome} isAfter={isAfter}></Header>
       {isShop && <ShopHeading></ShopHeading>}
       <AnimatePresence mode="wait">
         {isHome ? (
@@ -42,9 +43,10 @@ const Layout = ({ children, location }) => {
             initial="start"
             animate="in"
             exit="out"
+            className={isAfter ? "afterMain" : ""}
           >
             {children}
-            <Footer></Footer>
+            <Footer isAfter={isAfter}></Footer>
           </motion.main>
         )}
       </AnimatePresence>

@@ -76,6 +76,12 @@ h6 {
   font-size: 70%;
 }
 
+.afterMain {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+}
+
 :root {
   --font-primary: "Frame Head", serif;
   --font-secondary: "Basel Grotesk", sans-serif;

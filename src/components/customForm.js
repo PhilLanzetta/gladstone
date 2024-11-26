@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import * as styles from "./mailForm.module.css"
 import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
 
-const CustomForm = ({ status, message, onValidated, intl }) => {
+const CustomForm = ({ status, message, onValidated, intl, isAfter }) => {
   const [email, setEmail] = useState("")
   const [first, setFirst] = useState("")
   const [last, setLast] = useState("")
@@ -44,7 +44,7 @@ const CustomForm = ({ status, message, onValidated, intl }) => {
       {status !== "success" ? (
         <form onSubmit={e => handleFormSubmit(e)}>
           <div className={styles.inputContainer}>
-            <div className={styles.name}>
+            <div className={isAfter ? styles.afterName : styles.name}>
               <input
                 type="text"
                 value={first}
@@ -69,13 +69,13 @@ const CustomForm = ({ status, message, onValidated, intl }) => {
               onChange={handleEmailChange}
               placeholder={intl.formatMessage({ id: "email" })}
               required
-              className={styles.email}
+              className={isAfter ? styles.afterEmail : styles.email}
             />
           </div>
           <input
             type="submit"
             value={intl.formatMessage({ id: "subscribe" })}
-            className={styles.submit}
+            className={isAfter ? styles.afterSubmit : styles.submit}
           />
         </form>
       ) : null}

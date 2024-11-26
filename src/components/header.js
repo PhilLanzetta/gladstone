@@ -13,7 +13,7 @@ import smallLogoWhite from "../images/Gladstone_Small_White.svg"
 import { Link, FormattedMessage } from "gatsby-plugin-intl"
 import Language from "./language"
 
-const Header = ({ isHome }) => {
+const Header = ({ isHome, isAfter }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
   const { width } = useWindowSize()
@@ -36,7 +36,9 @@ const Header = ({ isHome }) => {
   }, [isOpen])
 
   return (
-    <header className={isHome ? styles.homeHeader : styles.pageHeader}>
+    <header
+      className={isHome || isAfter ? styles.homeHeader : styles.pageHeader}
+    >
       <div
         className={
           isHome
@@ -45,6 +47,8 @@ const Header = ({ isHome }) => {
                 ? styles.pagePrimary
                 : styles.homeHeader
               : styles.homeHeader
+            : isAfter
+            ? styles.homeHeader
             : styles.pagePrimary
         }
       >
@@ -93,11 +97,8 @@ const Header = ({ isHome }) => {
           )}
           {!isHome && (
             <div className={styles.smallLogo}>
-              <Link
-                to="/"
-                onClick={() => setIsOpen(false)}
-              >
-                <img src={smallLogo} alt="Gladstone Gallery Logo"></img>
+              <Link to="/" onClick={() => setIsOpen(false)}>
+                <img src={isAfter ? smallLogoWhite : smallLogo} alt="Gladstone Gallery Logo"></img>
               </Link>
             </div>
           )}
