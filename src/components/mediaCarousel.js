@@ -155,8 +155,8 @@ const MediaCarousel = ({ media }) => {
             {media.map(mediaElement => (
               <div key={mediaElement.id} className={styles.thumbnailContainer}>
                 <GatsbyImage
-                  image={mediaElement.image.gatsbyImageData}
-                  alt={mediaElement.image.description}
+                  image={mediaElement.image?.gatsbyImageData}
+                  alt={mediaElement.image?.description}
                 ></GatsbyImage>
               </div>
             ))}
