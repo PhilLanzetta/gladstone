@@ -5,7 +5,7 @@ import useWindowSize from "../utils/useWindowSize"
 import ReactPlayer from "react-player"
 import { AnimatePresence, motion } from "framer-motion"
 
-const HomeTile = ({ tile }) => {
+const HomeTile = ({ tile, webLocation }) => {
   const {
     artist,
     image,
@@ -27,7 +27,7 @@ const HomeTile = ({ tile }) => {
     <a
       className={styles.tileContainer}
       style={isMobile ? { width: "100%" } : { width: tileWidth }}
-      href={linkIsExternal ? link : `${process.env.GATSBY_BASE_LINK}/${link}`}
+      href={linkIsExternal ? link : `${webLocation.href.slice(0, -1)}${link}`}
       target={linkIsExternal ? "_blank" : "_self"}
       rel="noreferrer"
     >

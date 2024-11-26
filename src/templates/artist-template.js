@@ -54,7 +54,7 @@ const Artist = ({ data }) => {
                 <FormattedMessage id="exhibitions"></FormattedMessage>
               </a>
             )}
-            {publications && (
+            {publications && publications.length > 0 && (
               <a href="#publications">
                 <FormattedMessage id="publications"></FormattedMessage>
               </a>
@@ -131,7 +131,7 @@ const Artist = ({ data }) => {
             </div>
           </>
         )}
-        {publications && (
+        {publications && publications.length > 0 && (
           <>
             <p className={styles.artistSectionHeading}>
               <FormattedMessage id="publications"></FormattedMessage>
