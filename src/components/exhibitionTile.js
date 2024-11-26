@@ -26,8 +26,8 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
     <div className={past ? styles.tileContainerPast : styles.tileContainer}>
       <Link to={`${fair ? "/fair/" : "/exhibit/"}${slug}`}>
         <GatsbyImage
-          image={tileImage?.image.gatsbyImageData}
-          alt={tileImage?.image.description}
+          image={tileImage?.image?.gatsbyImageData}
+          alt={tileImage?.image?.description}
           className={styles.tileImage}
         ></GatsbyImage>
         <div className={styles.exhibitInfo}>

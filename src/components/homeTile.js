@@ -5,7 +5,7 @@ import useWindowSize from "../utils/useWindowSize"
 import ReactPlayer from "react-player"
 import { AnimatePresence, motion } from "framer-motion"
 
-const HomeTile = ({ tile, webLocation, pageContext }) => {
+const HomeTile = ({ tile, pageContext }) => {
   const {
     artist,
     image,
@@ -22,8 +22,6 @@ const HomeTile = ({ tile, webLocation, pageContext }) => {
   const { width } = useWindowSize()
   const isMobile = width < 700
   const [isPlaying, setIsPlaying] = useState(false)
-
-  console.log(webLocation)
 
   return (
     <a
