@@ -120,8 +120,8 @@ const MediaCarousel = ({ media }) => {
               <div className={styles.mainImage}>
                 <figure>
                   <GatsbyImage
-                    image={mediaElement.image.gatsbyImageData}
-                    alt={mediaElement.image.description}
+                    image={mediaElement.image?.gatsbyImageData}
+                    alt={mediaElement.image?.description}
                     style={{ height: "60vh", width: `${imgWidth}vh` }}
                     className={styles.mainImageImg}
                   ></GatsbyImage>
