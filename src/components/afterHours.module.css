@@ -1,0 +1,27 @@
+.contentContainer {
+  display: flex;
+  gap: 20px;
+  padding-top: var(--medium-padding);
+  width: 100%;
+}
+
+.featuredContainer,
+.notFeaturedContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.featuredContainer {
+  width: 75%;
+}
+
+.notFeaturedContainer {
+  width: 25%;
+}
+
+.imageLink {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 10px;
+}
