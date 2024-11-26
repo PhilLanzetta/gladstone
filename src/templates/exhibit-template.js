@@ -111,7 +111,7 @@ const Exhibit = ({ data, pageContext }) => {
           )}
         </div>
       )}
-      {hasGladstoneArtist.length > 0 && (
+      {hasGladstoneArtist?.length > 0 && (
         <>
           <p className={styles.sectionHeading}>
             <FormattedMessage id="about"></FormattedMessage>
