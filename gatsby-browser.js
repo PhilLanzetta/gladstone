@@ -1,7 +1,5 @@
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import React from "react"
-import { AnimatePresence } from "framer-motion"
 import CombinedProvider from "./src/context/CombinedProvider"
 
 export const wrapRootElement = CombinedProvider
@@ -17,6 +15,7 @@ export const shouldUpdateScroll = ({
   // if it's a "normal" route
   if (location.action === "PUSH") {
     if (location.hash) {
+      console.log("option 1")
       const target = document.getElementById(location.hash.slice(1))
       const targetPosition =
         target.getBoundingClientRect().top - 250 + window.scrollY
@@ -27,11 +26,13 @@ export const shouldUpdateScroll = ({
           }),
         TRANSITION_DELAY
       )
-    } else window.setTimeout(() => window.scrollTo(0, 0), TRANSITION_DELAY)
+    } else console.log("option 2")
+    window.setTimeout(() => window.scrollTo(0, 0), TRANSITION_DELAY)
   }
   // if we used the browser's forwards or back button
   else {
     if (location.hash) {
+      console.log("option 3")
       const target = document.getElementById(location.hash.slice(1))
       const targetPosition =
         target.getBoundingClientRect().top - 250 + window.scrollY
@@ -39,7 +40,8 @@ export const shouldUpdateScroll = ({
         top: targetPosition,
       })
     } else {
-      window.setTimeout(() => window.scrollTo([0, 0]), TRANSITION_DELAY)
+      console.log("option 4")
+      window.setTimeout(() => window.scrollTo(0, 0), TRANSITION_DELAY)
     }
   }
   return false
