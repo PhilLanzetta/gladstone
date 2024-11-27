@@ -22,36 +22,22 @@ const Layout = ({ children, location }) => {
 
   return (
     <>
+      <Header isHome={isHome} isAfter={isAfter}></Header>
+      {isShop && <ShopHeading></ShopHeading>}
       <AnimatePresence mode="wait">
-        {isHome ? (
-          <motion.main
-            key={isHome}
-            variants={container}
-            initial="start"
-            animate="in"
-          >
-            <Header isHome={isHome} isAfter={isAfter}></Header>
-            {children}
-            <Footer></Footer>
-          </motion.main>
-        ) : (
-          <>
-            <Header isHome={isHome} isAfter={isAfter}></Header>
-            {isShop && <ShopHeading></ShopHeading>}
-            <motion.main
-              key={location.pathname}
-              variants={container}
-              initial="start"
-              animate="in"
-              exit="out"
-              className={isAfter ? "afterMain" : ""}
-            >
-              {children}
-              <Footer isAfter={isAfter}></Footer>
-            </motion.main>
-          </>
-        )}
+        <motion.main
+          key={location.pathname}
+          variants={container}
+          initial="start"
+          animate="in"
+          exit="out"
+          className={isAfter ? "afterMain" : ""}
+        >
+          {children}
+          <Footer isAfter={isAfter}></Footer>
+        </motion.main>
       </AnimatePresence>
+
       {/* <CookieConsent
         location="bottom"
         enableDeclineButton

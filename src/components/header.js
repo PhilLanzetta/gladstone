@@ -71,29 +71,36 @@ const Header = ({ isHome, isAfter }) => {
             </button>
           </div>
           {isHome && (
-            <div className={hidden ? styles.hideLogo : styles.showLogo}>
-              {isOpen && (
-                <Link
-                  to="/"
-                  onClick={() => setIsOpen(false)}
-                  className={styles.smallLogo}
-                >
-                  <img
-                    src={isMobile ? smallLogo : smallLogoWhite}
-                    alt="Gladstone Gallery Logo"
-                  ></img>
-                </Link>
-              )}
-              {!isOpen && (
-                <Link
-                  to="/"
-                  onClick={() => setIsOpen(false)}
-                  className={styles.logo}
-                >
-                  <img src={bigLogo} alt="Gladstone Gallery Logo"></img>
-                </Link>
-              )}
-            </div>
+            <AnimatePresence>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className={hidden ? styles.hideLogo : styles.showLogo}
+              >
+                {isOpen && (
+                  <Link
+                    to="/"
+                    onClick={() => setIsOpen(false)}
+                    className={styles.smallLogo}
+                  >
+                    <img
+                      src={isMobile ? smallLogo : smallLogoWhite}
+                      alt="Gladstone Gallery Logo"
+                    ></img>
+                  </Link>
+                )}
+                {!isOpen && (
+                  <Link
+                    to="/"
+                    onClick={() => setIsOpen(false)}
+                    className={styles.logo}
+                  >
+                    <img src={bigLogo} alt="Gladstone Gallery Logo"></img>
+                  </Link>
+                )}
+              </motion.div>
+            </AnimatePresence>
           )}
           {!isHome && (
             <div className={styles.smallLogo}>

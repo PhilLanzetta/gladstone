@@ -107,19 +107,17 @@ const ViewingRoomCarousel = ({ item }) => {
         </Slider>
       </div>
       <div className={styles.imageInfo}>
-        <AnimatePresence>
-          <motion.div
-            key={currentIndex}
-            dangerouslySetInnerHTML={{
-              __html: item.slides[
-                currentIndex
-              ].caption.childMarkdownRemark.html.replace(
-                /\b(\d+)\/(\d+)/g,
-                "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
-              ),
-            }}
-          ></motion.div>
-        </AnimatePresence>
+        <div
+          key={currentIndex}
+          dangerouslySetInnerHTML={{
+            __html: item.slides[
+              currentIndex
+            ].caption.childMarkdownRemark.html.replace(
+              /\b(\d+)\/(\d+)/g,
+              "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
+            ),
+          }}
+        ></div>
         <a
           href={item.callToActionEmail}
           className={styles.inquire}

@@ -15,12 +15,6 @@ export const shouldUpdateScroll = ({
   // * 2 for exit + enter animation
   const TRANSITION_DELAY = 0.5 * 1000
   // if it's a "normal" route
-  if (
-    prevRouterProps &&
-    prevRouterProps.location.pathname === location.pathname
-  ) {
-    return true
-  }
   if (location.action === "PUSH") {
     if (location.hash) {
       const target = document.getElementById(location.hash.slice(1))
@@ -45,11 +39,7 @@ export const shouldUpdateScroll = ({
         top: targetPosition,
       })
     } else {
-      const savedPosition = getSavedScrollPosition(location) || [0, 0]
-      window.setTimeout(
-        () => window.scrollTo(...savedPosition),
-        TRANSITION_DELAY
-      )
+      window.setTimeout(() => window.scrollTo([0, 0]), TRANSITION_DELAY)
     }
   }
   return false
