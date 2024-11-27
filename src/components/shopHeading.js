@@ -39,6 +39,7 @@ const ShopHeading = () => {
             <FormattedMessage id="artists"></FormattedMessage>
           </Link>
           {cart.length > 0 && (
+            <div className={styles.shopBagButtonContainer}>
             <button
               onClick={() => setIsCartOpen(!isCartOpen)}
               className={styles.shopBagButton}
@@ -84,6 +85,7 @@ const ShopHeading = () => {
                 </g>
               </svg>
             </button>
+            </div>
           )}
         </div>
       </div>

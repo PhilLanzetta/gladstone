@@ -81,7 +81,7 @@ const ProductPage = ({ data }) => {
   } = data.shopifyProduct
 
   const artist = metafields.filter(field => field.key === "artist")[0]?.value
-  
+
   const { addVariantToCart } = useStore()
 
   const sizes = variants
@@ -98,38 +98,38 @@ const ProductPage = ({ data }) => {
     infinite: true,
     nextArrow: <NextArrow addClassName={styles.nextArrowProduct} />,
     prevArrow: <PrevArrow addClassName={styles.previousArrowProduct} />,
-    responsive: [
-      {
-        breakpoint: 700,
-        settings: {
-          slidesToShow: 1.15,
-          arrows: false,
-          fade: false,
-          infinite: false,
-        },
-      },
-    ],
   }
-
+  
   return (
     <div className="shopPageContainer">
       <div className={styles.productContainer}>
         <div className={styles.productLeft}>
-          <Slider {...settings}>
-            {media.map(image => (
-              <div key={image.id}>
-                <div className={styles.productMediaContainer}>
-                  <GatsbyImage
-                    image={
-                      image.image?.localFile?.childImageSharp?.gatsbyImageData
-                    }
-                    alt=""
-                    className={styles.mediaImage}
-                  ></GatsbyImage>
+          {media && media.length > 1 && (
+            <Slider {...settings}>
+              {media.map(image => (
+                <div key={image.id}>
+                  <div className={styles.productMediaContainer}>
+                    <GatsbyImage
+                      image={
+                        image.image?.localFile?.childImageSharp?.gatsbyImageData
+                      }
+                      alt=""
+                      className={styles.mediaImage}
+                    ></GatsbyImage>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </Slider>
+              ))}
+            </Slider>
+          )}{" "}
+          {media && media.length === 1 && (
+            <GatsbyImage
+              image={
+                media[0].image?.localFile?.childImageSharp?.gatsbyImageData
+              }
+              alt=""
+              className={styles.mediaSingleImage}
+            ></GatsbyImage>
+          )}
         </div>
         <div className={styles.productRight}>
           <h1 className={styles.productArtist}>{artist}</h1>

@@ -263,6 +263,7 @@ export const query = graphql`
           id
           articleLink
           date
+          showDay
           articlePdf {
             file {
               url

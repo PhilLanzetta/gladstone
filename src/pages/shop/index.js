@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useRef } from "react"
 import { graphql } from "gatsby"
 import { FormattedMessage, Link } from "gatsby-plugin-intl"
 import * as styles from "../../components/shop.module.css"
@@ -7,69 +7,23 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Pagination from "../../components/pagination"
 import slugify from "slugify"
 
-function NextArrow(props) {
-  const { onClick } = props
-  return (
-    <div
-      className={props.addClassName}
-      onClick={onClick}
-      onKeyDown={onClick}
-      role="button"
-      tabIndex={0}
-      aria-label="go to next"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={styles.carouselSVG}
-        viewBox="0 0 13.047 28.672"
-      >
-        <path
-          id="Polygon_3"
-          data-name="Polygon 3"
-          d="M0,12.009,14.011,0,28.021,12.009"
-          transform="translate(12.389 0.325) rotate(90)"
-          fill="none"
-          stroke="#fff"
-          strokeWidth="1"
-        />
-      </svg>
-    </div>
-  )
-}
-
-function PrevArrow(props) {
-  const { onClick } = props
-  return (
-    <div
-      className={props.addClassName}
-      onClick={onClick}
-      onKeyDown={onClick}
-      role="button"
-      tabIndex={0}
-      aria-label="go to previous"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={styles.carouselSVG}
-        viewBox="0 0 13.047 28.672"
-      >
-        <path
-          id="Polygon_4"
-          data-name="Polygon 4"
-          d="M0,12.009,14.011,0,28.021,12.009"
-          transform="translate(0.659 28.346) rotate(-90)"
-          fill="none"
-          stroke="#fff"
-          strokeWidth="1"
-        />
-      </svg>
-    </div>
-  )
-}
-
 const Shop = ({ data }) => {
   function onlyUnique(value, index, array) {
     return array.indexOf(value) === index
+  }
+  const [activeSlide, setActiveSlide] = useState(0)
+  const sliderRef = useRef(null)
+
+  const settings = {
+    slidesToShow: 1,
+    infinite: true,
+    useTransform: false,
+    dots: false,
+    arrows: false,
+    draggable: true,
+    afterChange: current => {
+      setActiveSlide(current)
+    },
   }
 
   const collections = data.allShopifyCollection.nodes
@@ -94,35 +48,89 @@ const Shop = ({ data }) => {
     .filter(onlyUnique)
     .sort((a, b) => a.split(" ").pop().localeCompare(b.split(" ").pop()))
 
-  const settings = {
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    fade: true,
-    nextArrow: <NextArrow addClassName={styles.nextArrow} />,
-    prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
-  }
-
   return (
     <div className="shopPageContainer">
-      <Slider {...settings} className={styles.sliderContainer}>
+      <Slider {...settings} className={styles.sliderContainer} ref={sliderRef}>
         {featured.map(slide => (
           <div key={slide.id} className={styles.featuredSlide}>
-            <GatsbyImage
-              image={slide.image.gatsbyImageData}
-              alt={slide.image.description}
-              className={styles.carouselImg}
-            ></GatsbyImage>
-            <Link
-              to={`/shop/${slide.productHandle}`}
-              className={styles.featuredSlideInfo}
-              dangerouslySetInnerHTML={{
-                __html: slide.tileText.childMarkdownRemark.html,
-              }}
-            ></Link>
+            <Link to={`/shop/${slide.productHandle}`}>
+              <GatsbyImage
+                image={slide.image.gatsbyImageData}
+                alt={slide.image.description}
+                className={styles.carouselImg}
+              ></GatsbyImage>
+            </Link>
           </div>
         ))}
       </Slider>
+      <div className={styles.underCarousel}>
+        <div className={styles.figcaption}>
+          <Link
+            className={styles.featuredInfo}
+            to={`/shop/${featured[activeSlide].productHandle}`}
+            dangerouslySetInnerHTML={{
+              __html: featured[activeSlide].tileText.childMarkdownRemark.html,
+            }}
+          ></Link>
+        </div>
+        <div className={styles.slideCountContainer}>
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label="go to previous"
+            className={styles.previousArrow}
+            onClick={() => {
+              sliderRef.current.slickPrevious()
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles.carouselSVG}
+              viewBox="0 0 13.047 28.672"
+            >
+              <path
+                id="Polygon_4"
+                data-name="Polygon 4"
+                d="M0,12.009,14.011,0,28.021,12.009"
+                transform="translate(0.659 28.346) rotate(-90)"
+                fill="none"
+                stroke="#000"
+                strokeWidth="1"
+              />
+            </svg>
+          </div>
+          {featured && featured?.length > 1 && (
+            <div className={styles.slideCount}>
+              {Math.round(activeSlide + 1)} / {featured.length}
+            </div>
+          )}
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label="go to next"
+            className={styles.nextArrow}
+            onClick={() => {
+              sliderRef.current.slickNext()
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles.carouselSVG}
+              viewBox="0 0 13.047 28.672"
+            >
+              <path
+                id="Polygon_3"
+                data-name="Polygon 3"
+                d="M0,12.009,14.011,0,28.021,12.009"
+                transform="translate(12.389 0.325) rotate(90)"
+                fill="none"
+                stroke="#000"
+                strokeWidth="1"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
       <div className={styles.shopSectionHeading}>
         <FormattedMessage id="new_releases"></FormattedMessage>
       </div>

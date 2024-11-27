@@ -46,7 +46,9 @@ const Pagination = ({ type, data, showNum, fair, page }) => {
             <p>{pressItem.title}</p>
             <p>{pressItem.publication}</p>
             <p className={styles.pressSecondary}>
-              {moment(pressItem.date).format("MMMM D, YYYY")}
+              {pressItem.showDate === false
+                ? moment(pressItem.date).format("MMMM, YYYY")
+                : moment(pressItem.date).format("MMMM D, YYYY")}
             </p>
             {pressItem.articlePdf && (
               <a
@@ -72,7 +74,11 @@ const Pagination = ({ type, data, showNum, fair, page }) => {
         ))}
       {type === "product" &&
         dataList.map(product => (
-          <ProductTile key={product.id} product={product} page={page}></ProductTile>
+          <ProductTile
+            key={product.id}
+            product={product}
+            page={page}
+          ></ProductTile>
         ))}
       {type === "exhibit" &&
         dataList.map(exhibit => (

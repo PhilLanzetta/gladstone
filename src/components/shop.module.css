@@ -20,8 +20,6 @@
   color: #000;
 }
 
-.nextArrow,
-.previousArrow,
 .nextArrowProduct,
 .previousArrowProduct {
   position: absolute;
@@ -33,16 +31,8 @@
   z-index: 10;
 }
 
-.nextArrow {
-  right: var(--medium-padding);
-}
-
 .nextArrowProduct {
   right: 0;
-}
-
-.previousArrow {
-  left: var(--medium-padding);
 }
 
 .carouselSVG {
@@ -231,6 +221,31 @@
   font-size: 11px;
 }
 
+.underCarousel {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.nextArrow,
+.previousArrow {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.slideCountContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.featuredInfo {
+  font-size: var(--subtitle);
+  line-height: normal;
+}
+
 @media screen and (max-width: 700px) {
   .exhibitionsHeader {
     flex-wrap: wrap;
@@ -251,13 +266,13 @@
     font-size: var(--body-text);
   }
 
-  .mediaImage {
-    width: 100%;
-  }
-
   .productLeft,
   .productRight {
     width: 100%;
+  }
+
+  .productLeft {
+    padding-right: 0;
   }
 
   .productContainer {
@@ -278,5 +293,16 @@
 
   .cartText {
     padding-top: 2px;
+  }
+
+  .shopBagButtonContainer {
+    position: fixed;
+    z-index: 10;
+    top: 85px;
+    right: var(--medium-padding);
+  }
+
+  .featuredInfo {
+    font-size: var(--subtitle);
   }
 }
