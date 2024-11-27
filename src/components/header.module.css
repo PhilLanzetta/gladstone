@@ -172,7 +172,6 @@ header {
 
 .secondaryMenu {
   width: 100vw;
-  background: #fff;
   position: fixed;
   top: 0;
   left: 0;
@@ -188,6 +187,14 @@ header {
   padding-top: 70px;
   max-height: 100vh;
   overflow-y: scroll;
+}
+
+.white {
+  background: #fff;
+}
+
+.black {
+  background: #000;
 }
 
 .homeSecondaryMenu {

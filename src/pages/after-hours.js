@@ -10,8 +10,6 @@ import AfterHoursCarousel from "../components/afterHoursCarousel"
 const AfterHours = ({ data, pageContext }) => {
   const { entries } = data.allContentfulAfterHoursPage.nodes[0]
 
-  const [activeVideo, setActiveVideo] = useState(null)
-
   const allData = entries
   const featuredData = entries
     .filter(entry => entry.isFeatured === true)
@@ -19,6 +17,8 @@ const AfterHours = ({ data, pageContext }) => {
   const notFeaturedData = entries
     .filter(entry => entry.isFeatured === false)
     .map(entry => entry.entry)
+
+ const [activeVideo, setActiveVideo] = useState(featuredData[0].videoId)
 
   return (
     <div className="pageContainer">
@@ -32,6 +32,7 @@ const AfterHours = ({ data, pageContext }) => {
               return (
                 <VideoPlayer
                   key={index}
+                  isFirst={index === 0}
                   video={entry}
                   videoId={entry.videoId}
                   activeVideo={activeVideo}

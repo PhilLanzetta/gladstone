@@ -13,14 +13,15 @@ import play from "../images/play.svg"
 
 let count = 0
 
-const VideoPlayer = ({ video, videoId, activeVideo, setActiveVideo }) => {
+const VideoPlayer = ({ video, videoId, activeVideo, setActiveVideo, isFirst }) => {
   const videoPlayerRef = useRef(null)
   const controlRef = useRef(null)
   const fullScreenRef = useRef(null)
   const elementRef = useRef(null)
+  console.log(isFirst)
 
   const [videoState, setVideoState] = useState({
-    playing: false,
+    playing: isFirst ? true : false,
     muted: true,
     volume: 0,
     playbackRate: 1.0,

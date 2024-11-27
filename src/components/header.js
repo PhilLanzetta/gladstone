@@ -98,7 +98,10 @@ const Header = ({ isHome, isAfter }) => {
           {!isHome && (
             <div className={styles.smallLogo}>
               <Link to="/" onClick={() => setIsOpen(false)}>
-                <img src={isAfter ? smallLogoWhite : smallLogo} alt="Gladstone Gallery Logo"></img>
+                <img
+                  src={isAfter ? smallLogoWhite : smallLogo}
+                  alt="Gladstone Gallery Logo"
+                ></img>
               </Link>
             </div>
           )}
@@ -128,7 +131,11 @@ const Header = ({ isHome, isAfter }) => {
               }
               exit={isMobile ? { opacity: 0, maxHeight: 0 } : {}}
               className={
-                isMobile ? styles.secondaryMenu : styles.desktopSecondaryMenu
+                isMobile
+                  ? `${styles.secondaryMenu} ${
+                      isAfter ? styles.black : styles.white
+                    }`
+                  : styles.desktopSecondaryMenu
               }
             >
               <Link
