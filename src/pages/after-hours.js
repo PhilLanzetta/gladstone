@@ -54,13 +54,17 @@ const AfterHours = ({ data, pageContext }) => {
                         ? entry.link
                         : `${process.env.GATSBY_BASE_LINK}/${pageContext.language}${entry.link}`
                     }
+                    target={entry.isExternal ? "_blank" : "_self"}
+                    rel="noreferrer"
                   >
                     <GatsbyImage
                       image={entry.image?.gatsbyImageData}
                       alt={entry.image?.description}
                       className={styles.imageLink}
                     ></GatsbyImage>
-                    <div>{entry.title}</div>
+                    <div>
+                      {entry.title} {entry.isExternal ? "  ↗" : ""}
+                    </div>
                   </a>
                 </div>
               )
@@ -95,13 +99,17 @@ const AfterHours = ({ data, pageContext }) => {
                         ? entry.link
                         : `${process.env.GATSBY_BASE_LINK}/${pageContext.language}${entry.link}`
                     }
+                    target={entry.isExternal ? "_blank" : "_self"}
+                    rel="noreferrer"
                   >
                     <GatsbyImage
                       image={entry.image?.gatsbyImageData}
                       alt={entry.image?.description}
                       className={styles.imageLink}
                     ></GatsbyImage>
-                    <div>{entry.title}</div>
+                    <div>
+                      {entry.title} {entry.isExternal ? "  ↗" : ""}
+                    </div>
                   </a>
                 </div>
               )
