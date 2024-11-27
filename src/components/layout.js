@@ -30,7 +30,7 @@ const Layout = ({ children, location }) => {
           variants={container}
           initial="start"
           animate="in"
-          exit="out"
+          exit={location.action === "POP" ? "" : "out"}
           className={isAfter ? "afterMain" : ""}
         >
           {children}
