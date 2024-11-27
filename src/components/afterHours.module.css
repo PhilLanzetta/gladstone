@@ -20,7 +20,23 @@
   width: 25%;
 }
 
+.mobileContainer {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 40px;
+ width: 100%;
+ justify-content: center;
+}
+
 .imageLink {
   width: 100%;
   margin-bottom: 10px;
+}
+
+.mobileHalf {
+ width: calc(50% - 20px);
+}
+
+.mobileFull {
+ width: 100%;
 }
