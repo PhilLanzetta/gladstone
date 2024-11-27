@@ -214,6 +214,10 @@
     gap: 10px;
   }
 
+  .sectionHeading {
+    margin-bottom: var(--medium-padding);
+  }
+
   .aboveDescription {
     line-height: 1.75;
     font-size: var(--body-text);
@@ -222,6 +226,7 @@
   .relatedContainer {
     flex-wrap: wrap;
     gap: 40px;
+    padding-top: 0;
   }
 
   .relatedContainer > div {
