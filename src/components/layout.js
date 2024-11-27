@@ -22,17 +22,20 @@ const Layout = ({ children, location }) => {
 
   return (
     <>
-      <Header isHome={isHome} isAfter={isAfter}></Header>
-      {isShop && <ShopHeading></ShopHeading>}
+      <Header
+        isHome={isHome}
+        isAfter={isAfter}
+      ></Header>
       <AnimatePresence mode="wait">
         <motion.main
           key={location.pathname}
           variants={container}
           initial="start"
           animate="in"
-          exit={location.action === "POP" ? "" : "out"}
+          exit="out"
           className={isAfter ? "afterMain" : ""}
         >
+          {isShop && <ShopHeading></ShopHeading>}
           {children}
           <Footer isAfter={isAfter}></Footer>
         </motion.main>
