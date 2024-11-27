@@ -27,7 +27,7 @@ const AfterHours = ({ data, pageContext }) => {
       </h1>
       <div className={styles.contentContainer}>
         <div className={styles.featuredContainer}>
-          <div style="padding:56.25% 0 0 0;position:relative;">
+          <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
             <iframe
               src="https://player.vimeo.com/video/536835102?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
               frameborder="0"
