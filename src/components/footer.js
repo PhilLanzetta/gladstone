@@ -5,7 +5,7 @@ import logo from "../images/Gladstone_Small.svg"
 import whiteLogo from "../images/Gladstone_Small_White.svg"
 import { Link, FormattedMessage } from "gatsby-plugin-intl"
 
-const Footer = isAfter => {
+const Footer = ({ isAfter }) => {
   return (
     <footer className={isAfter ? styles.afterFooter : styles.footer}>
       <div className={styles.upperFooter}>
