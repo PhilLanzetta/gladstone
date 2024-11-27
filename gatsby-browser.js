@@ -6,7 +6,7 @@ export const wrapRootElement = CombinedProvider
 
 const transitionDelay = 250
 
-exports.shouldUpdateScroll = () => false
+export const shouldUpdateScroll = () => false
 
-exports.onRouteUpdate = () =>
+export const onRouteUpdate = () =>
   window.setTimeout(() => window.scrollTo(0, 0), transitionDelay)
