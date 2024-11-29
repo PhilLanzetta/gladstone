@@ -11,12 +11,16 @@ const Hit = ({ hit }) => {
     searchCategory,
     name,
     artists,
+    isGladstoneArtist,
     featuredBiography,
     exhibitionDescription,
     startDate,
     endDate,
     tileImage,
     featuredImage,
+    fairDescription,
+    handle,
+    metafield,
     newsText,
     newsImage,
     link,
@@ -26,7 +30,7 @@ const Hit = ({ hit }) => {
     <>
       {searchCategory && (
         <div>
-          {searchCategory === "Artist" && (
+          {searchCategory === "Artist" && isGladstoneArtist && (
             <Link to={`/artist/${slug}`} className={styles.searchInfoContainer}>
               <div className={styles.searchInfoText}>
                 <div className={styles.infoTextTop}>
@@ -93,7 +97,8 @@ const Hit = ({ hit }) => {
                     className={styles.searchResultTitle}
                   ></div>
                   {link && (
-                    <a href={link.url} target="_blank" rel="noreferrer">{link.label}
+                    <a href={link.url} target="_blank" rel="noreferrer">
+                      {link.label}
                     </a>
                   )}
                 </div>
@@ -107,6 +112,52 @@ const Hit = ({ hit }) => {
                 className={styles.searchResultImage}
               ></GatsbyImage>
             </div>
+          )}
+          {searchCategory === "Fair" && (
+            <Link to={`/fair/${slug}`} className={styles.searchInfoContainer}>
+              <div className={styles.searchInfoText}>
+                <div className={styles.infoTextTop}>
+                  <p className={styles.searchResultTitle}>{title}</p>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: fairDescription?.childMarkdownRemark.excerpt,
+                    }}
+                  ></div>
+                  <div className={styles.dates}>
+                    {moment(startDate).format("MMMM D")} &mdash;{" "}
+                    {moment(endDate).format("MMMM D, YYYY")}{" "}
+                  </div>
+                </div>
+                <p className={styles.category}>
+                  <FormattedMessage id="fair"></FormattedMessage>
+                </p>
+              </div>
+              <GatsbyImage
+                image={tileImage?.image.gatsbyImageData}
+                alt={tileImage?.image.description}
+                className={styles.searchResultImage}
+              ></GatsbyImage>
+            </Link>
+          )}
+          {searchCategory === "Shop" && (
+            <Link to={`/shop/${handle}`} className={styles.searchInfoContainer}>
+              <div className={styles.searchInfoText}>
+                <div className={styles.infoTextTop}>
+                  <p className={styles.searchResultTitle}>{metafield?.value}</p>
+                  <p className={styles.searchResultTitle}>{title}</p>
+                </div>
+                <p className={styles.category}>
+                  <FormattedMessage id="shop"></FormattedMessage>
+                </p>
+              </div>
+              <GatsbyImage
+                image={
+                  featuredImage?.localFile?.childImageSharp?.gatsbyImageData
+                }
+                alt=""
+                className={styles.searchResultImage}
+              ></GatsbyImage>
+            </Link>
           )}
         </div>
       )}

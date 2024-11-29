@@ -213,6 +213,7 @@ const pagesQueryZH = `{
         ... on ContentfulArtist {
           artistEntry: id
           name
+          isGladstoneArtist
           internal {
             contentDigest
           }
@@ -313,6 +314,7 @@ const shopifyQuery = `{
           contentDigest
         }
         title
+        handle
         metafield(key: "artist", namespace: "custom") {
           value
         }
