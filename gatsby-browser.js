@@ -44,6 +44,7 @@ export const shouldUpdateScroll = ({
         top: targetPosition,
       })
     } else {
+      window.history.scrollRestoration = "manual"
       window.setTimeout(
         () => window.scrollTo(0, 0),
         TRANSITION_DELAY
