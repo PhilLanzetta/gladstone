@@ -250,6 +250,10 @@
   white-space: nowrap;
 }
 
+.relatedContainer {
+  margin-bottom: var(--medium-padding);
+}
+
 @media screen and (max-width: 700px) {
   .exhibitionsHeader {
     flex-wrap: wrap;

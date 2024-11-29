@@ -6,6 +6,7 @@ import useStore from "../context/StoreContext"
 import Seo from "../components/seo"
 import Slider from "react-slick"
 import * as styles from "../components/shop.module.css"
+import RelatedProducts from "../components/relatedProducts"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -82,6 +83,13 @@ const ProductPage = ({ data }) => {
 
   const artist = metafields.filter(field => field.key === "artist")[0]?.value
 
+  console.log(metafields)
+
+  const relatedProductsHandles = JSON.parse(
+    metafields.filter(field => field.key === "related_titles")[0]?.value ||
+      "null"
+  )
+
   const { addVariantToCart } = useStore()
 
   const sizes = variants
@@ -99,7 +107,7 @@ const ProductPage = ({ data }) => {
     nextArrow: <NextArrow addClassName={styles.nextArrowProduct} />,
     prevArrow: <PrevArrow addClassName={styles.previousArrowProduct} />,
   }
-  
+
   return (
     <div className="shopPageContainer">
       <div className={styles.productContainer}>
@@ -173,6 +181,11 @@ const ProductPage = ({ data }) => {
           )}
         </div>
       </div>
+      {relatedProductsHandles?.length > 0 && (
+        <RelatedProducts
+          productHandles={relatedProductsHandles}
+        ></RelatedProducts>
+      )}
     </div>
   )
 }
