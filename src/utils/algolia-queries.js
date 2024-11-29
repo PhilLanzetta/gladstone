@@ -1,5 +1,5 @@
 const pagesQueryEN = `{
-  allContentfulEntry(filter: {node_locale: {eq: "en"}}) {
+  allContentfulEntry(filter: { node_locale: { eq: "en" } }) {
     edges {
       node {
         id
@@ -18,12 +18,12 @@ const pagesQueryEN = `{
               excerpt(pruneLength: 200, format: HTML)
             }
           }
-            featuredImage {
-          image {
-            description
-            gatsbyImageData(width: 300)
+          featuredImage {
+            image {
+              description
+              gatsbyImageData(width: 300)
+            }
           }
-        }
         }
         ... on ContentfulExhibition {
           exhibitEntry: id
@@ -38,12 +38,12 @@ const pagesQueryEN = `{
               excerpt(format: HTML, pruneLength: 200)
             }
           }
-            tileImage {
-          image {
-            description
-            gatsbyImageData(width: 300)
+          tileImage {
+            image {
+              description
+              gatsbyImageData(width: 300)
+            }
           }
-        }
           location
           region
           slug
@@ -51,57 +51,57 @@ const pagesQueryEN = `{
           endDate
           title
         }
-          ... on ContentfulFair {
-        fairEntry: id
-        artists {
-          name
-        }
-        internal {
-          contentDigest
-        }
-        fairDescription {
-          childMarkdownRemark {
-            excerpt(format: HTML, pruneLength: 200)
+        ... on ContentfulFair {
+          fairEntry: id
+          artists {
+            name
           }
+          internal {
+            contentDigest
+          }
+          fairDescription {
+            childMarkdownRemark {
+              excerpt(format: HTML, pruneLength: 200)
+            }
+          }
+          slug
+          startDate
+          tileImage {
+            image {
+              description
+              gatsbyImageData(width: 300)
+            }
+          }
+          title
+          endDate
         }
-        slug
-        startDate
-        tileImage {
-          image {
+        ... on ContentfulNewsEntry {
+          newsEntry: id
+          newsImage {
             description
             gatsbyImageData(width: 300)
           }
-        }
-        title
-        endDate
-      }
-        ... on ContentfulNewsEntry {
-        newsEntry: id
-        newsImage {
-          description
-          gatsbyImageData(width: 300)
-        }
-        newsText {
-          childMarkdownRemark {
-            excerpt(format: HTML, pruneLength: 200)
+          newsText {
+            childMarkdownRemark {
+              excerpt(format: HTML, pruneLength: 200)
+            }
           }
+          internal {
+            contentDigest
+          }
+          link {
+            url
+            title
+          }
+          date
         }
-        internal {
-          contentDigest
-        }
-        link {
-          url
-          title
-        }
-        date
-      }
       }
     }
   }
 }`
 
 const pagesQueryKO = `{
-  allContentfulEntry(filter: {node_locale: {eq: "ko"}}) {
+  allContentfulEntry(filter: { node_locale: { eq: "ko" } }) {
     edges {
       node {
         id
@@ -120,12 +120,12 @@ const pagesQueryKO = `{
               excerpt(pruneLength: 200, format: HTML)
             }
           }
-            featuredImage {
-          image {
-            description
-            gatsbyImageData(layout: FULL_WIDTH)
+          featuredImage {
+            image {
+              description
+              gatsbyImageData(width: 300)
+            }
           }
-        }
         }
         ... on ContentfulExhibition {
           exhibitEntry: id
@@ -140,12 +140,12 @@ const pagesQueryKO = `{
               excerpt(format: HTML, pruneLength: 200)
             }
           }
-            tileImage {
-          image {
-            description
-            gatsbyImageData
+          tileImage {
+            image {
+              description
+              gatsbyImageData(width: 300)
+            }
           }
-        }
           location
           region
           slug
@@ -153,57 +153,57 @@ const pagesQueryKO = `{
           endDate
           title
         }
-          ... on ContentfulFair {
-        fairEntry: id
-        artists {
-          name
-        }
-        internal {
-          contentDigest
-        }
-        fairDescription {
-          childMarkdownRemark {
-            excerpt(format: HTML, pruneLength: 200)
+        ... on ContentfulFair {
+          fairEntry: id
+          artists {
+            name
           }
-        }
-        slug
-        startDate
-        tileImage {
-          image {
-            description
-            gatsbyImageData
+          internal {
+            contentDigest
           }
-        }
-        title
-        endDate
-      }
-        ... on ContentfulNewsEntry {
-        newsEntry: id
-        newsImage {
-          description
-          gatsbyImageData
-        }
-        newsText {
-          childMarkdownRemark {
-            excerpt(format: HTML, pruneLength: 200)
+          fairDescription {
+            childMarkdownRemark {
+              excerpt(format: HTML, pruneLength: 200)
+            }
           }
-        }
-        internal {
-          contentDigest
-        }
-        link {
-          url
+          slug
+          startDate
+          tileImage {
+            image {
+              description
+              gatsbyImageData(width: 300)
+            }
+          }
           title
+          endDate
         }
-        date
-      }
+        ... on ContentfulNewsEntry {
+          newsEntry: id
+          newsImage {
+            description
+            gatsbyImageData(width: 300)
+          }
+          newsText {
+            childMarkdownRemark {
+              excerpt(format: HTML, pruneLength: 200)
+            }
+          }
+          internal {
+            contentDigest
+          }
+          link {
+            url
+            title
+          }
+          date
+        }
       }
     }
   }
 }`
 
 const pagesQueryZH = `{
-  allContentfulEntry(filter: {node_locale: {eq: "zh"}}) {
+  allContentfulEntry(filter: { node_locale: { eq: "zh" } }) {
     edges {
       node {
         id
@@ -222,12 +222,12 @@ const pagesQueryZH = `{
               excerpt(pruneLength: 200, format: HTML)
             }
           }
-            featuredImage {
-          image {
-            description
-            gatsbyImageData(layout: FULL_WIDTH)
+          featuredImage {
+            image {
+              description
+              gatsbyImageData(width: 300)
+            }
           }
-        }
         }
         ... on ContentfulExhibition {
           exhibitEntry: id
@@ -242,12 +242,12 @@ const pagesQueryZH = `{
               excerpt(format: HTML, pruneLength: 200)
             }
           }
-            tileImage {
-          image {
-            description
-            gatsbyImageData
+          tileImage {
+            image {
+              description
+              gatsbyImageData(width: 300)
+            }
           }
-        }
           location
           region
           slug
@@ -255,57 +255,82 @@ const pagesQueryZH = `{
           endDate
           title
         }
-          ... on ContentfulFair {
-        fairEntry: id
-        artists {
-          name
+        ... on ContentfulFair {
+          fairEntry: id
+          artists {
+            name
+          }
+          internal {
+            contentDigest
+          }
+          fairDescription {
+            childMarkdownRemark {
+              excerpt(format: HTML, pruneLength: 200)
+            }
+          }
+          slug
+          startDate
+          tileImage {
+            image {
+              description
+              gatsbyImageData(width: 300)
+            }
+          }
+          title
+          endDate
         }
+        ... on ContentfulNewsEntry {
+          newsEntry: id
+          newsImage {
+            description
+            gatsbyImageData(width: 300)
+          }
+          newsText {
+            childMarkdownRemark {
+              excerpt(format: HTML, pruneLength: 200)
+            }
+          }
+          internal {
+            contentDigest
+          }
+          link {
+            url
+            title
+          }
+          date
+        }
+      }
+    }
+  }
+}`
+
+const shopifyQuery = `{
+  allShopifyProduct {
+    edges {
+      node {
+        id
         internal {
           contentDigest
-        }
-        fairDescription {
-          childMarkdownRemark {
-            excerpt(format: HTML, pruneLength: 200)
-          }
-        }
-        slug
-        startDate
-        tileImage {
-          image {
-            description
-            gatsbyImageData
-          }
         }
         title
-        endDate
-      }
-        ... on ContentfulNewsEntry {
-        newsEntry: id
-        newsImage {
-          description
-          gatsbyImageData
+        metafield(key: "artist", namespace: "custom") {
+          value
         }
-        newsText {
-          childMarkdownRemark {
-            excerpt(format: HTML, pruneLength: 200)
+        featuredImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 300)
+            }
           }
         }
-        internal {
-          contentDigest
-        }
-        link {
-          url
-          title
-        }
-        date
-      }
       }
     }
   }
 }`
 
 const pageToAlgoliaRecord = edge => {
-  const { artistEntry, exhibitEntry, fairEntry, newsEntry, id, ...rest } = edge.node
+  const { artistEntry, exhibitEntry, fairEntry, newsEntry, id, ...rest } =
+    edge.node
 
   if (artistEntry) {
     return {
@@ -414,6 +439,39 @@ const zhPageToAlgoliaRecord = edge => {
   }
 }
 
+const productToAlgoliaRecord = edge => {
+  const { id, ...rest } = edge.node
+
+  return {
+    objectID: id,
+    searchCategory: "Shop",
+    searchCategoryDisplay: "Shop",
+    ...rest,
+  }
+}
+
+const zhProductToAlgoliaRecord = edge => {
+  const { id, ...rest } = edge.node
+
+  return {
+    objectID: id,
+    searchCategory: "Shop",
+    searchCategoryDisplay: "店铺",
+    ...rest,
+  }
+}
+
+const koProductToAlgoliaRecord = edge => {
+  const { id, ...rest } = edge.node
+
+  return {
+    objectID: id,
+    searchCategory: "Shop",
+    searchCategoryDisplay: "가게",
+    ...rest,
+  }
+}
+
 const queries = [
   {
     query: pagesQueryEN,
@@ -432,6 +490,24 @@ const queries = [
     transformer: ({ data }) =>
       data.allContentfulEntry.edges.map(edge => zhPageToAlgoliaRecord(edge)),
     indexName: `Chinese Pages`,
+  },
+  {
+    query: shopifyQuery,
+    transformer: ({ data }) =>
+      data.allShopifyProduct.edges.map(edge => zhProductToAlgoliaRecord(edge)),
+    indexName: `Chinese Pages`,
+  },
+  {
+    query: shopifyQuery,
+    transformer: ({ data }) =>
+      data.allShopifyProduct.edges.map(edge => koProductToAlgoliaRecord(edge)),
+    indexName: `Korean Pages`,
+  },
+  {
+    query: shopifyQuery,
+    transformer: ({ data }) =>
+      data.allShopifyProduct.edges.map(edge => productToAlgoliaRecord(edge)),
+    indexName: `Pages`,
   },
 ]
 
