@@ -178,13 +178,13 @@ const pageToAlgoliaRecord = edge => {
   if (artistEntry) {
     return {
       objectID: id,
-      searchCategory: "Artist",
+      searchCategory: "artist",
       ...rest,
     }
   } else if (exhibitEntry) {
     return {
       objectID: id,
-      searchCategory: "Exhibition",
+      searchCategory: "exhibition",
       ...rest,
     }
   } else {

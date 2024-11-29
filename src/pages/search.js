@@ -54,7 +54,7 @@ function EmptyQueryBoundary({ children, fallback }) {
   return children
 }
 
-const Search = ({ intl }) => {
+const Search = ({ intl, pageContext }) => {
   const searchClient = useMemo(
     () =>
       algoliasearch(
@@ -64,6 +64,16 @@ const Search = ({ intl }) => {
     []
   )
 
+  let pageIndex = "Pages"
+
+  if (pageContext.language === "ko") {
+    pageIndex = "Korean Pages"
+  } else if (pageContext.language === "zh") {
+    pageIndex = "Chinese Pages"
+  } else {
+    pageIndex = "Pages"
+  }
+
   return (
     <div className="pageContainer">
       <div className={styles.searchPage}>
@@ -72,7 +82,7 @@ const Search = ({ intl }) => {
         </div>
         <InstantSearch
           searchClient={searchClient}
-          indexName="Pages"
+          indexName={pageIndex}
           routing={true}
         >
           <SearchBox
