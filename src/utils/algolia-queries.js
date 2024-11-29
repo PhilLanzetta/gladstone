@@ -178,13 +178,59 @@ const pageToAlgoliaRecord = edge => {
   if (artistEntry) {
     return {
       objectID: id,
-      searchCategory: "artist",
+      searchCategory: "Artist",
+      searchCategoryDisplay: "Artist",
       ...rest,
     }
   } else if (exhibitEntry) {
     return {
       objectID: id,
-      searchCategory: "exhibition",
+      searchCategory: "Exhibition",
+      searchCategoryDisplay: "Exhibition",
+      ...rest,
+    }
+  } else {
+    return { objectID: id, ...rest }
+  }
+}
+
+const koPageToAlgoliaRecord = edge => {
+  const { artistEntry, exhibitEntry, id, ...rest } = edge.node
+
+  if (artistEntry) {
+    return {
+      objectID: id,
+      searchCategory: "Artist",
+      searchCategoryDisplay: "아티스트",
+      ...rest,
+    }
+  } else if (exhibitEntry) {
+    return {
+      objectID: id,
+      searchCategory: "Exhibition",
+      searchCategoryDisplay: "전시회",
+      ...rest,
+    }
+  } else {
+    return { objectID: id, ...rest }
+  }
+}
+
+const zhPageToAlgoliaRecord = edge => {
+  const { artistEntry, exhibitEntry, id, ...rest } = edge.node
+
+  if (artistEntry) {
+    return {
+      objectID: id,
+      searchCategory: "Artist",
+      searchCategoryDisplay: "艺术家",
+      ...rest,
+    }
+  } else if (exhibitEntry) {
+    return {
+      objectID: id,
+      searchCategory: "Exhibition",
+      searchCategoryDisplay: "展览",
       ...rest,
     }
   } else {
@@ -202,13 +248,13 @@ const queries = [
   {
     query: pagesQueryKO,
     transformer: ({ data }) =>
-      data.allContentfulEntry.edges.map(edge => pageToAlgoliaRecord(edge)),
+      data.allContentfulEntry.edges.map(edge => koPageToAlgoliaRecord(edge)),
     indexName: `Korean Pages`,
   },
   {
     query: pagesQueryZH,
     transformer: ({ data }) =>
-      data.allContentfulEntry.edges.map(edge => pageToAlgoliaRecord(edge)),
+      data.allContentfulEntry.edges.map(edge => zhPageToAlgoliaRecord(edge)),
     indexName: `Chinese Pages`,
   },
 ]
