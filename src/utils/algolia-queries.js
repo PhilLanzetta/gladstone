@@ -1,5 +1,5 @@
-const pagesQuery = `{
-  allContentfulEntry {
+const pagesQueryEN = `{
+  allContentfulEntry(filter: {node_locale: {eq: "en"}}) {
     edges {
       node {
         id
@@ -18,6 +18,12 @@ const pagesQuery = `{
               excerpt(pruneLength: 200, format: HTML)
             }
           }
+            featuredImage {
+          image {
+            description
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+        }
         }
         ... on ContentfulExhibition {
           exhibitEntry: id
@@ -32,6 +38,128 @@ const pagesQuery = `{
               excerpt(format: HTML, pruneLength: 200)
             }
           }
+            tileImage {
+          image {
+            description
+            gatsbyImageData
+          }
+        }
+          location
+          region
+          slug
+          startDate
+          endDate
+          title
+        }
+      }
+    }
+  }
+}`
+
+const pagesQueryKO = `{
+  allContentfulEntry(filter: {node_locale: {eq: "ko"}}) {
+    edges {
+      node {
+        id
+        internal {
+          contentDigest
+        }
+        ... on ContentfulArtist {
+          artistEntry: id
+          name
+          internal {
+            contentDigest
+          }
+          slug
+          featuredBiography {
+            childMarkdownRemark {
+              excerpt(pruneLength: 200, format: HTML)
+            }
+          }
+            featuredImage {
+          image {
+            description
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+        }
+        }
+        ... on ContentfulExhibition {
+          exhibitEntry: id
+          artists {
+            name
+          }
+          internal {
+            contentDigest
+          }
+          exhibitionDescription {
+            childMarkdownRemark {
+              excerpt(format: HTML, pruneLength: 200)
+            }
+          }
+            tileImage {
+          image {
+            description
+            gatsbyImageData
+          }
+        }
+          location
+          region
+          slug
+          startDate
+          endDate
+          title
+        }
+      }
+    }
+  }
+}`
+
+const pagesQueryZH = `{
+  allContentfulEntry(filter: {node_locale: {eq: "zh"}}) {
+    edges {
+      node {
+        id
+        internal {
+          contentDigest
+        }
+        ... on ContentfulArtist {
+          artistEntry: id
+          name
+          internal {
+            contentDigest
+          }
+          slug
+          featuredBiography {
+            childMarkdownRemark {
+              excerpt(pruneLength: 200, format: HTML)
+            }
+          }
+            featuredImage {
+          image {
+            description
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+        }
+        }
+        ... on ContentfulExhibition {
+          exhibitEntry: id
+          artists {
+            name
+          }
+          internal {
+            contentDigest
+          }
+          exhibitionDescription {
+            childMarkdownRemark {
+              excerpt(format: HTML, pruneLength: 200)
+            }
+          }
+            tileImage {
+          image {
+            description
+            gatsbyImageData
+          }
+        }
           location
           region
           slug
@@ -66,10 +194,22 @@ const pageToAlgoliaRecord = edge => {
 
 const queries = [
   {
-    query: pagesQuery,
+    query: pagesQueryEN,
     transformer: ({ data }) =>
       data.allContentfulEntry.edges.map(edge => pageToAlgoliaRecord(edge)),
     indexName: `Pages`,
+  },
+  {
+    query: pagesQueryKO,
+    transformer: ({ data }) =>
+      data.allContentfulEntry.edges.map(edge => pageToAlgoliaRecord(edge)),
+    indexName: `Korean Pages`,
+  },
+  {
+    query: pagesQueryZH,
+    transformer: ({ data }) =>
+      data.allContentfulEntry.edges.map(edge => pageToAlgoliaRecord(edge)),
+    indexName: `Chinese Pages`,
   },
 ]
 
