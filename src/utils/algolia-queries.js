@@ -295,7 +295,7 @@ const pagesQueryZH = `{
           }
           link {
             url
-            title
+            label
           }
           date
         }

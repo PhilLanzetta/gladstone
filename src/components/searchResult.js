@@ -93,7 +93,7 @@ const Hit = ({ hit }) => {
                     className={styles.searchResultTitle}
                   ></div>
                   {link && (
-                    <a href={link.url} target="_blank" rel="noreferrer">
+                    <a href={link.url} target="_blank" rel="noreferrer">{link.label}
                     </a>
                   )}
                 </div>
