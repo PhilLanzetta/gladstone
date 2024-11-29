@@ -13,7 +13,7 @@ import smallLogoWhite from "../images/Gladstone_Small_White.svg"
 import { Link, FormattedMessage } from "gatsby-plugin-intl"
 import Language from "./language"
 
-const Header = ({ isHome, isAfter, setGoingHome }) => {
+const Header = ({ isHome, isAfter }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
   const { width } = useWindowSize()
@@ -67,7 +67,7 @@ const Header = ({ isHome, isAfter, setGoingHome }) => {
                 <span></span>
                 <span></span>
               </div>
-              {!isMobile && <FormattedMessage id="menu"></FormattedMessage>}
+              {!isMobile && <FormattedMessage id="menu" className={styles.menuLabel}></FormattedMessage>}
             </button>
           </div>
           {isHome && (

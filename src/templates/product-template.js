@@ -83,8 +83,6 @@ const ProductPage = ({ data }) => {
 
   const artist = metafields.filter(field => field.key === "artist")[0]?.value
 
-  console.log(metafields)
-
   const relatedProductsHandles = JSON.parse(
     metafields.filter(field => field.key === "related_titles")[0]?.value ||
       "null"

@@ -18,7 +18,6 @@ const VideoPlayer = ({ video, videoId, activeVideo, setActiveVideo, isFirst }) =
   const controlRef = useRef(null)
   const fullScreenRef = useRef(null)
   const elementRef = useRef(null)
-  console.log(isFirst)
 
   const [videoState, setVideoState] = useState({
     playing: isFirst ? true : false,

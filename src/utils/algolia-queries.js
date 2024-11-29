@@ -21,7 +21,7 @@ const pagesQueryEN = `{
             featuredImage {
           image {
             description
-            gatsbyImageData(layout: FULL_WIDTH)
+            gatsbyImageData(width: 300)
           }
         }
         }
@@ -41,7 +41,7 @@ const pagesQueryEN = `{
             tileImage {
           image {
             description
-            gatsbyImageData
+            gatsbyImageData(width: 300)
           }
         }
           location
@@ -51,6 +51,50 @@ const pagesQueryEN = `{
           endDate
           title
         }
+          ... on ContentfulFair {
+        fairEntry: id
+        artists {
+          name
+        }
+        internal {
+          contentDigest
+        }
+        fairDescription {
+          childMarkdownRemark {
+            excerpt(format: HTML, pruneLength: 200)
+          }
+        }
+        slug
+        startDate
+        tileImage {
+          image {
+            description
+            gatsbyImageData(width: 300)
+          }
+        }
+        title
+        endDate
+      }
+        ... on ContentfulNewsEntry {
+        newsEntry: id
+        newsImage {
+          description
+          gatsbyImageData(width: 300)
+        }
+        newsText {
+          childMarkdownRemark {
+            excerpt(format: HTML, pruneLength: 200)
+          }
+        }
+        internal {
+          contentDigest
+        }
+        link {
+          url
+          title
+        }
+        date
+      }
       }
     }
   }
@@ -109,6 +153,50 @@ const pagesQueryKO = `{
           endDate
           title
         }
+          ... on ContentfulFair {
+        fairEntry: id
+        artists {
+          name
+        }
+        internal {
+          contentDigest
+        }
+        fairDescription {
+          childMarkdownRemark {
+            excerpt(format: HTML, pruneLength: 200)
+          }
+        }
+        slug
+        startDate
+        tileImage {
+          image {
+            description
+            gatsbyImageData
+          }
+        }
+        title
+        endDate
+      }
+        ... on ContentfulNewsEntry {
+        newsEntry: id
+        newsImage {
+          description
+          gatsbyImageData
+        }
+        newsText {
+          childMarkdownRemark {
+            excerpt(format: HTML, pruneLength: 200)
+          }
+        }
+        internal {
+          contentDigest
+        }
+        link {
+          url
+          title
+        }
+        date
+      }
       }
     }
   }
@@ -167,13 +255,57 @@ const pagesQueryZH = `{
           endDate
           title
         }
+          ... on ContentfulFair {
+        fairEntry: id
+        artists {
+          name
+        }
+        internal {
+          contentDigest
+        }
+        fairDescription {
+          childMarkdownRemark {
+            excerpt(format: HTML, pruneLength: 200)
+          }
+        }
+        slug
+        startDate
+        tileImage {
+          image {
+            description
+            gatsbyImageData
+          }
+        }
+        title
+        endDate
+      }
+        ... on ContentfulNewsEntry {
+        newsEntry: id
+        newsImage {
+          description
+          gatsbyImageData
+        }
+        newsText {
+          childMarkdownRemark {
+            excerpt(format: HTML, pruneLength: 200)
+          }
+        }
+        internal {
+          contentDigest
+        }
+        link {
+          url
+          title
+        }
+        date
+      }
       }
     }
   }
 }`
 
 const pageToAlgoliaRecord = edge => {
-  const { artistEntry, exhibitEntry, id, ...rest } = edge.node
+  const { artistEntry, exhibitEntry, fairEntry, newsEntry, id, ...rest } = edge.node
 
   if (artistEntry) {
     return {
@@ -189,13 +321,28 @@ const pageToAlgoliaRecord = edge => {
       searchCategoryDisplay: "Exhibition",
       ...rest,
     }
+  } else if (fairEntry) {
+    return {
+      objectID: id,
+      searchCategory: "Fair",
+      searchCategoryDisplay: "Fair",
+      ...rest,
+    }
+  } else if (newsEntry) {
+    return {
+      objectID: id,
+      searchCategory: "News",
+      searchCategoryDisplay: "News",
+      ...rest,
+    }
   } else {
     return { objectID: id, ...rest }
   }
 }
 
 const koPageToAlgoliaRecord = edge => {
-  const { artistEntry, exhibitEntry, id, ...rest } = edge.node
+  const { artistEntry, exhibitEntry, fairEntry, newsEntry, id, ...rest } =
+    edge.node
 
   if (artistEntry) {
     return {
@@ -211,13 +358,28 @@ const koPageToAlgoliaRecord = edge => {
       searchCategoryDisplay: "전시회",
       ...rest,
     }
+  } else if (fairEntry) {
+    return {
+      objectID: id,
+      searchCategory: "Fair",
+      searchCategoryDisplay: "박람회",
+      ...rest,
+    }
+  } else if (newsEntry) {
+    return {
+      objectID: id,
+      searchCategory: "News",
+      searchCategoryDisplay: "소식",
+      ...rest,
+    }
   } else {
     return { objectID: id, ...rest }
   }
 }
 
 const zhPageToAlgoliaRecord = edge => {
-  const { artistEntry, exhibitEntry, id, ...rest } = edge.node
+  const { artistEntry, exhibitEntry, fairEntry, newsEntry, id, ...rest } =
+    edge.node
 
   if (artistEntry) {
     return {
@@ -231,6 +393,20 @@ const zhPageToAlgoliaRecord = edge => {
       objectID: id,
       searchCategory: "Exhibition",
       searchCategoryDisplay: "展览",
+      ...rest,
+    }
+  } else if (fairEntry) {
+    return {
+      objectID: id,
+      searchCategory: "Fair",
+      searchCategoryDisplay: "博览会",
+      ...rest,
+    }
+  } else if (newsEntry) {
+    return {
+      objectID: id,
+      searchCategory: "News",
+      searchCategoryDisplay: "消息",
       ...rest,
     }
   } else {

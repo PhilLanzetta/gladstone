@@ -23,7 +23,7 @@ const Hit = ({ hit }) => {
     <>
       {searchCategory && (
         <div>
-          {searchCategory === "artist" && (
+          {searchCategory === "Artist" && (
             <Link to={`/artist/${slug}`} className={styles.searchInfoContainer}>
               <div className={styles.searchInfoText}>
                 <div className={styles.infoTextTop}>
@@ -46,7 +46,7 @@ const Hit = ({ hit }) => {
               ></GatsbyImage>
             </Link>
           )}{" "}
-          {searchCategory === "exhibition" && (
+          {searchCategory === "Exhibition" && (
             <Link
               to={`/exhibit/${slug}`}
               className={styles.searchInfoContainer}
