@@ -17,6 +17,9 @@ const Hit = ({ hit }) => {
     endDate,
     tileImage,
     featuredImage,
+    newsText,
+    newsImage,
+    link,
   } = hit
 
   return (
@@ -78,6 +81,32 @@ const Hit = ({ hit }) => {
                 className={styles.searchResultImage}
               ></GatsbyImage>
             </Link>
+          )}
+          {searchCategory === "News" && (
+            <div className={styles.searchInfoContainer}>
+              <div className={styles.searchInfoText}>
+                <div className={styles.infoTextTop}>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: newsText?.childMarkdownRemark.excerpt,
+                    }}
+                    className={styles.searchResultTitle}
+                  ></div>
+                  {link && (
+                    <a href={link.url} target="_blank" rel="noreferrer">
+                    </a>
+                  )}
+                </div>
+                <p className={styles.category}>
+                  <FormattedMessage id="news_events"></FormattedMessage>
+                </p>
+              </div>
+              <GatsbyImage
+                image={newsImage?.gatsbyImageData}
+                alt={newsImage?.description}
+                className={styles.searchResultImage}
+              ></GatsbyImage>
+            </div>
           )}
         </div>
       )}

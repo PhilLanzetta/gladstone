@@ -27,8 +27,10 @@
   gap: 20px;
 }
 
-.searchResultTitle {
+.searchResultTitle, .searchResultTitle h1, .searchResultTitle p, .searchResultTitle h2, .searchResultTitle h3 {
   font-size: var(--subtitle);
+  font-weight: 400;
+  line-height: normal;
 }
 
 .category {

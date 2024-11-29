@@ -64,14 +64,14 @@ const Search = ({ intl, pageContext }) => {
     []
   )
 
-  let pageIndex = "Pages"
+  let pageIndex = "Page"
 
   if (pageContext.language === "ko") {
-    pageIndex = "Korean Pages"
+    pageIndex = "Korean Page"
   } else if (pageContext.language === "zh") {
-    pageIndex = "Chinese Pages"
+    pageIndex = "Chinese Page"
   } else {
-    pageIndex = "Pages"
+    pageIndex = "Page"
   }
 
   return (
@@ -142,7 +142,7 @@ const Search = ({ intl, pageContext }) => {
               <div className={styles.searchOptionsBar}>
                 <p className={styles.filterLabel}>Filter:</p>
                 <RefinementList
-                  attribute="searchCategory"
+                  attribute="searchCategoryDisplay"
                   classNames={{
                     root: styles.refinementContainer,
                     checkbox: styles.refinementCheck,
