@@ -479,37 +479,37 @@ const queries = [
     query: pagesQueryEN,
     transformer: ({ data }) =>
       data.allContentfulEntry.edges.map(edge => pageToAlgoliaRecord(edge)),
-    indexName: `Page`,
+    indexName: `Pages`,
   },
   {
     query: pagesQueryKO,
     transformer: ({ data }) =>
       data.allContentfulEntry.edges.map(edge => koPageToAlgoliaRecord(edge)),
-    indexName: `Korean Page`,
+    indexName: `Korean Pages`,
   },
   {
     query: pagesQueryZH,
     transformer: ({ data }) =>
       data.allContentfulEntry.edges.map(edge => zhPageToAlgoliaRecord(edge)),
-    indexName: `Chinese Page`,
+    indexName: `Chinese Pages`,
   },
   {
     query: shopifyQuery,
     transformer: ({ data }) =>
       data.allShopifyProduct.edges.map(edge => zhProductToAlgoliaRecord(edge)),
-    indexName: `Chinese Page`,
+    indexName: `Chinese Pages`,
   },
   {
     query: shopifyQuery,
     transformer: ({ data }) =>
       data.allShopifyProduct.edges.map(edge => koProductToAlgoliaRecord(edge)),
-    indexName: `Korean Page`,
+    indexName: `Korean Pages`,
   },
   {
     query: shopifyQuery,
     transformer: ({ data }) =>
       data.allShopifyProduct.edges.map(edge => productToAlgoliaRecord(edge)),
-    indexName: `Page`,
+    indexName: `Pages`,
   },
 ]
 

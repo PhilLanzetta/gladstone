@@ -64,14 +64,14 @@ const Search = ({ intl, pageContext }) => {
     []
   )
 
-  let pageIndex = "Page"
+  let pageIndex = "Pages"
 
   if (pageContext.language === "ko") {
-    pageIndex = "Korean Page"
+    pageIndex = "Korean Pages"
   } else if (pageContext.language === "zh") {
-    pageIndex = "Chinese Page"
+    pageIndex = "Chinese Pages"
   } else {
-    pageIndex = "Page"
+    pageIndex = "Pages"
   }
 
   return (
