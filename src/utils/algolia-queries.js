@@ -9,6 +9,7 @@ const pagesQueryEN = `{
         ... on ContentfulArtist {
           artistEntry: id
           name
+          isGladstoneArtist
           internal {
             contentDigest
           }
@@ -111,6 +112,7 @@ const pagesQueryKO = `{
         ... on ContentfulArtist {
           artistEntry: id
           name
+          isGladstoneArtist
           internal {
             contentDigest
           }
