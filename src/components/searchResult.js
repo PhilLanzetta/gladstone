@@ -30,7 +30,7 @@ const Hit = ({ hit }) => {
     <>
       {searchCategory && (
         <div>
-          {searchCategory === "Artist" && isGladstoneArtist && (
+          {searchCategory === "Artist" && isGladstoneArtist !== false && (
             <Link to={`/artist/${slug}`} className={styles.searchInfoContainer}>
               <div className={styles.searchInfoText}>
                 <div className={styles.infoTextTop}>
