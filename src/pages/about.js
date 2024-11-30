@@ -11,16 +11,25 @@ const About = ({ data }) => {
   const { aboutHeadlineText, locations, leadershipstaff } =
     data.allContentfulAboutPage.nodes[0]
 
-  const newYorkLocations = locations.filter(location =>
-    location.streetAddress.childMarkdownRemark.html.includes("New York")
+  const newYorkLocations = locations.filter(
+    location =>
+      location.streetAddress.childMarkdownRemark.html.includes("New York") ||
+      location.streetAddress.childMarkdownRemark.html.includes("纽约") ||
+      location.streetAddress.childMarkdownRemark.html.includes("뉴욕")
   )
 
-  const brusselsLocations = locations.filter(location =>
-    location.streetAddress.childMarkdownRemark.html.includes("Brussels")
+  const brusselsLocations = locations.filter(
+    location =>
+      location.streetAddress.childMarkdownRemark.html.includes("Brussels") ||
+      location.streetAddress.childMarkdownRemark.html.includes("브뤼셀") ||
+      location.streetAddress.childMarkdownRemark.html.includes("布鲁塞尔")
   )
 
-  const seoulLocations = locations.filter(location =>
-    location.streetAddress.childMarkdownRemark.html.includes("Seoul")
+  const seoulLocations = locations.filter(
+    location =>
+      location.streetAddress.childMarkdownRemark.html.includes("Seoul") ||
+      location.streetAddress.childMarkdownRemark.html.includes("汉城") ||
+      location.streetAddress.childMarkdownRemark.html.includes("서울")
   )
 
   return (

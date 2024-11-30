@@ -9,7 +9,7 @@ const languageName = {
 }
 
 const Language = () => (
-  <div>
+  <>
     <IntlContextConsumer>
       {({ languages, language: currentLocale }) =>
         languages.map(language => (
@@ -23,7 +23,7 @@ const Language = () => (
         ))
       }
     </IntlContextConsumer>
-  </div>
+  </>
 )
 
 export default Language

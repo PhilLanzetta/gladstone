@@ -87,6 +87,7 @@ header {
 .language {
   display: flex;
   justify-content: flex-end;
+  flex-direction: row-reverse;
   gap: 10px;
 }
 
@@ -229,8 +230,8 @@ header {
   font-size: var(--subtext);
 }
 
-.language a,
-.mobileLanguage a {
+.language button,
+.mobileLanguage button {
   border-radius: 15px;
   border-width: 1px;
   border-style: solid;
@@ -239,8 +240,8 @@ header {
   cursor: pointer;
 }
 
-.language a.activeLanguage,
-.mobileLanguage a.activeLanguage {
+.language button.activeLanguage,
+.mobileLanguage button.activeLanguage {
   border-color: currentColor;
 }
 
@@ -302,10 +303,8 @@ header {
 
   .mobileLanguage {
     display: flex;
-    flex-direction: row-reverse;
     gap: 10px;
     font-size: var(--subtext);
-    justify-content: flex-end;
     font-family: var(--font-secondary);
     font-variant-numeric: normal;
     margin-bottom: var(--medium-padding);
