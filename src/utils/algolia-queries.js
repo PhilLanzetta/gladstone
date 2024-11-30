@@ -91,7 +91,7 @@ const pagesQueryEN = `{
           }
           link {
             url
-            title
+            label
           }
           date
         }
@@ -193,7 +193,7 @@ const pagesQueryKO = `{
           }
           link {
             url
-            title
+            label
           }
           date
         }
