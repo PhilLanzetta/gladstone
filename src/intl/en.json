@@ -105,5 +105,8 @@
   "featured_art": "Featured Artwork",
   "inquire": "Inquire",
   "after_hours": "After Hours",
-  "related_titles": "Related Titles"
+  "related_titles": "Related Titles",
+  "404": "404: Not Found",
+  "not_found": "Content at that URL no longer exists.",
+  "return_home": "RETURN HOME"
 }

@@ -134,6 +134,14 @@ p {
   margin-bottom: var(--medium-padding);
 }
 
+.notFound {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .cookiesContainer {
   bottom: 0px;
   align-items: baseline;

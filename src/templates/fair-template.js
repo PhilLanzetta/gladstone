@@ -4,7 +4,6 @@ import { Link, FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 import moment from "moment"
 import * as styles from "../components/exhibitPage.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
-import useWindowSize from "../utils/useWindowSize"
 import PdfDownload from "../components/pdfDownload"
 import Slider from "react-slick"
 
@@ -95,9 +94,7 @@ const Fair = ({ data }) => {
     afterChange: current => setActiveSlide(current),
     adaptiveHeight: true,
   }
-
-  const { width } = useWindowSize()
-  const isMobile = width < 700
+  
 
   return (
     <div className="pageContainer">
@@ -168,7 +165,6 @@ const Fair = ({ data }) => {
                   <GatsbyImage
                     image={featuredImage.image.gatsbyImageData}
                     alt={featuredImage.image.description}
-                    className={styles.fairImage}
                   ></GatsbyImage>
                 </div>
               </div>

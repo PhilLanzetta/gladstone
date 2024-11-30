@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import * as styles from "./viewingRoom.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Slider from "react-slick"
-import { AnimatePresence, motion } from "framer-motion"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
 function NextArrow(props) {

@@ -6,7 +6,6 @@ import Seo from "../components/seo"
 import * as styles from "../components/shop.module.css"
 import { AnimatePresence, motion } from "framer-motion"
 import slugify from "slugify"
-import ShopHeading from "../components/shopHeading"
 
 const ArtistCollectionTemplate = ({ data, location }) => {
   function onlyUnique(value, index, array) {

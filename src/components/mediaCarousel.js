@@ -81,7 +81,6 @@ const MediaCarousel = ({ media }) => {
     slidesToScroll: 1,
     arrows: true,
     fade: true,
-    asNavFor: styles.sliderNav,
     nextArrow: <NextArrow addClassName={styles.nextArrow} />,
     prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
   }
@@ -92,7 +91,6 @@ const MediaCarousel = ({ media }) => {
     slidesToShow: media.length > slideNumber ? slideNumber : media.length,
     slidesToScroll: 1,
     infinite: false,
-    asNavFor: styles.sliderFor,
     swipeToSlide: true,
     focusOnSelect: true,
     arrows: media.length > slideNumber ? true : false,

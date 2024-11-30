@@ -19,8 +19,6 @@ const Control = forwardRef((props, controlRef) => {
     onVolumeChangeHandler,
     onVolumeSeekUp,
     volume,
-    mute,
-    onMute,
     duration,
     currentTime,
     onMouseSeekDown,
@@ -28,7 +26,7 @@ const Control = forwardRef((props, controlRef) => {
 
   return (
     <div className={styles.videoControls} ref={controlRef}>
-      <div className={styles.progressBar}>
+      <div>
         <Slider
           min={0}
           max={100}
@@ -65,20 +63,20 @@ const Control = forwardRef((props, controlRef) => {
           {currentTime} / {duration}
         </div>
         <div className={styles.seekAndPlayControls}>
-          <img src={back} alt="seek back" onClick={onRewind}></img>
+          <button onClick={onRewind} aria-label="seek back">
+            <img src={back} alt="seek back"></img>
+          </button>
           <div className={styles.playPause}>
-            <img
-              src={play}
-              alt="play"
-              onClick={playing ? null : onPlayPause}
-            ></img>
-            <img
-              src={pause}
-              alt="pause"
-              onClick={playing ? onPlayPause : null}
-            ></img>
+            <button aria-label="play" onClick={playing ? null : onPlayPause}>
+              <img src={play} alt="play"></img>
+            </button>
+            <button aria-label="pause" onClick={playing ? onPlayPause : null}>
+              <img src={pause} alt="pause"></img>
+            </button>
           </div>
-          <img src={forward} alt="seek forward" onClick={onForward}></img>
+          <button onClick={onForward} aria-label="seek forward">
+            <img src={forward} alt="seek forward"></img>
+          </button>
         </div>
         <div className={styles.soundContainer}>
           <img src={sound} alt="sound icon"></img>

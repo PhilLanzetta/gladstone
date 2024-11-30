@@ -39,7 +39,6 @@ const Hit = ({ hit }) => {
                     dangerouslySetInnerHTML={{
                       __html: featuredBiography?.childMarkdownRemark.excerpt,
                     }}
-                    className={styles.artistBio}
                   ></div>
                 </div>
                 <p className={styles.category}>

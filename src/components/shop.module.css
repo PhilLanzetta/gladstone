@@ -254,6 +254,22 @@
   margin-bottom: var(--medium-padding);
 }
 
+.productSizeContainer {
+  display: flex;
+  border: 1px solid var(--dark-gray);
+  padding: 10px;
+  gap: 10px;
+}
+
+.productSizeSelect {
+  border: none;
+  outline: none;
+  display: flex;
+  flex-grow: 1;
+  font-family: var(--font-secondary);
+  font-size: var(--caption);
+}
+
 @media screen and (max-width: 700px) {
   .exhibitionsHeader {
     flex-wrap: wrap;

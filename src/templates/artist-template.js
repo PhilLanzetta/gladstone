@@ -151,7 +151,7 @@ const Artist = ({ data }) => {
             <p className={styles.artistSectionHeading}>
               <FormattedMessage id="press"></FormattedMessage>
             </p>
-            <div id="press" className={styles.pressContainer}>
+            <div id="press">
               <Pagination type="press" data={press} showNum={8}></Pagination>
             </div>
           </>

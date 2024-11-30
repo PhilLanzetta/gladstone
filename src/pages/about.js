@@ -3,8 +3,11 @@ import { graphql } from "gatsby"
 import { FormattedMessage } from "gatsby-plugin-intl"
 import { GatsbyImage } from "gatsby-plugin-image"
 import * as styles from "../components/aboutPage.module.css"
+import useWindowSize from "../utils/useWindowSize"
 
 const About = ({ data }) => {
+  const {width} = useWindowSize()
+  const isMobile = width < 701
   const { aboutHeadlineText, locations, leadershipstaff } =
     data.allContentfulAboutPage.nodes[0]
 
@@ -42,11 +45,14 @@ const About = ({ data }) => {
                 rel="noreferrer"
               >
                 <GatsbyImage
-                  image={location.image.gatsbyImageData}
+                  image={
+                    isMobile
+                      ? location.mobileImage?.gatsbyImageData
+                      : location.image?.gatsbyImageData
+                  }
                   alt={location.image.description}
                   className={styles.locationImage}
                 ></GatsbyImage>
-                <div className={styles.grayBackground}></div>
               </a>
               <div
                 className={styles.address}
@@ -77,11 +83,14 @@ const About = ({ data }) => {
                 rel="noreferrer"
               >
                 <GatsbyImage
-                  image={location.image.gatsbyImageData}
+                  image={
+                    isMobile
+                      ? location.mobileImage?.gatsbyImageData
+                      : location.image?.gatsbyImageData
+                  }
                   alt={location.image.description}
                   className={styles.locationImage}
                 ></GatsbyImage>
-                <div className={styles.grayBackground}></div>
               </a>
               <div
                 className={styles.address}
@@ -112,11 +121,14 @@ const About = ({ data }) => {
                 rel="noreferrer"
               >
                 <GatsbyImage
-                  image={location.image.gatsbyImageData}
+                  image={
+                    isMobile
+                      ? location.mobileImage?.gatsbyImageData
+                      : location.image?.gatsbyImageData
+                  }
                   alt={location.image.description}
                   className={styles.locationImage}
                 ></GatsbyImage>
-                <div className={styles.grayBackground}></div>
               </a>
               <div
                 className={styles.address}
@@ -174,6 +186,9 @@ export const query = graphql`
           telephone
           image {
             description
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+          mobileImage {
             gatsbyImageData(layout: FULL_WIDTH)
           }
           hours {

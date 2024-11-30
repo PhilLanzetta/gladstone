@@ -158,9 +158,8 @@ const Exhibit = ({ data, pageContext }) => {
                   <div key={artistId}>
                     <Link
                       to={`/artist/${slug}`}
-                      className={styles.relatedArtistLink}
                     >
-                      <div className={styles.artistTile}>
+                      <div>
                         <GatsbyImage
                           image={featuredImage?.image.gatsbyImageData}
                           alt={featuredImage?.description}

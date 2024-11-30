@@ -31,17 +31,17 @@ const Shop = ({ data }) => {
   const newProducts = collections.filter(
     collection => collection.handle === "new-releases"
   )[0]
-  const publications = collections.filter(
-    collection => collection.handle === "publications"
-  )[0]
+  // const publications = collections.filter(
+  //   collection => collection.handle === "publications"
+  // )[0]
 
-  const ephemera = collections.filter(
-    collection => collection.handle === "ephemera"
-  )[0]
+  // const ephemera = collections.filter(
+  //   collection => collection.handle === "ephemera"
+  // )[0]
 
-  const clothing = collections.filter(
-    collection => collection.handle === "clothing"
-  )[0]
+  // const clothing = collections.filter(
+  //   collection => collection.handle === "clothing"
+  // )[0]
 
   const artists = data.allShopifyMetafield.nodes
     .map(node => node.value)
@@ -64,7 +64,7 @@ const Shop = ({ data }) => {
         ))}
       </Slider>
       <div className={styles.underCarousel}>
-        <div className={styles.figcaption}>
+        <div>
           <Link
             className={styles.featuredInfo}
             to={`/shop/${featured[activeSlide].productHandle}`}
@@ -74,9 +74,7 @@ const Shop = ({ data }) => {
           ></Link>
         </div>
         <div className={styles.slideCountContainer}>
-          <div
-            role="button"
-            tabIndex={0}
+          <button
             aria-label="go to previous"
             className={styles.previousArrow}
             onClick={() => {
@@ -98,15 +96,13 @@ const Shop = ({ data }) => {
                 strokeWidth="1"
               />
             </svg>
-          </div>
+          </button>
           {featured && featured?.length > 1 && (
             <div className={styles.slideCount}>
               {Math.round(activeSlide + 1)} / {featured.length}
             </div>
           )}
-          <div
-            role="button"
-            tabIndex={0}
+          <button
             aria-label="go to next"
             className={styles.nextArrow}
             onClick={() => {
@@ -128,7 +124,7 @@ const Shop = ({ data }) => {
                 strokeWidth="1"
               />
             </svg>
-          </div>
+          </button>
         </div>
       </div>
       <div className={styles.shopSectionHeading}>

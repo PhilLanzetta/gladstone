@@ -6,7 +6,7 @@ import ExhibitionTile from "./exhibitionTile"
 import { FormattedMessage } from "gatsby-plugin-intl"
 
 const Pagination = ({ type, data, showNum, fair, page }) => {
-  const [allData, setAllData] = useState(data)
+  const allData = data
   const [dataList, setDataList] = useState([...allData.slice(0, showNum)])
   const [loadMoreData, setLoadMoreData] = useState(false)
   const [hasMoreData, setHasMoreData] = useState(allData?.length > showNum)
@@ -14,10 +14,6 @@ const Pagination = ({ type, data, showNum, fair, page }) => {
   const handleLoadMore = () => {
     setLoadMoreData(true)
   }
-
-  useEffect(() => {
-    setDataList([...allData.slice(0, showNum)])
-  }, [allData])
 
   useEffect(() => {
     if (loadMoreData && hasMoreData) {
@@ -29,7 +25,7 @@ const Pagination = ({ type, data, showNum, fair, page }) => {
       setDataList([...dataList, ...nextResults])
       setLoadMoreData(false)
     }
-  }, [loadMoreData, hasMoreData, allData, dataList])
+  }, [loadMoreData, hasMoreData, allData, dataList, showNum])
 
   //Check if there is more
   useEffect(() => {

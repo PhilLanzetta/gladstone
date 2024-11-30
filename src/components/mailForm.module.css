@@ -101,7 +101,7 @@
   cursor: pointer;
 }
 
-.success {
+.success, .error {
   margin-top: var(--medium-padding);
 }
 

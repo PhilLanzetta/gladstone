@@ -145,7 +145,6 @@ const Search = ({ intl, pageContext }) => {
                   attribute="searchCategoryDisplay"
                   classNames={{
                     root: styles.refinementContainer,
-                    checkbox: styles.refinementCheck,
                     list: styles.refinementList,
                     item: styles.refinementItem,
                     labelText: styles.refinementText,
@@ -188,7 +187,6 @@ const Search = ({ intl, pageContext }) => {
                   nextPageItemAriaLabel: "Go to next page",
                 }}
                 classNames={{
-                  root: styles.paginationRoot,
                   list: styles.paginationList,
                   pageItem: styles.paginationPage,
                   disabledItem: styles.paginationDisabled,

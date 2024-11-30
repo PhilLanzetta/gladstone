@@ -19,7 +19,7 @@ const News = ({ data }) => {
     } else {
       setNewsItems(allNews)
     }
-  }, [filter])
+  }, [filter, allNews])
 
   return (
     <div className="pageContainer">

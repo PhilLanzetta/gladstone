@@ -78,7 +78,6 @@ const ProductPage = ({ data }) => {
     priceRangeV2,
     totalInventory,
     variants,
-    collections,
   } = data.shopifyProduct
 
   const artist = metafields.filter(field => field.key === "artist")[0]?.value
@@ -133,7 +132,6 @@ const ProductPage = ({ data }) => {
                 media[0].image?.localFile?.childImageSharp?.gatsbyImageData
               }
               alt=""
-              className={styles.mediaSingleImage}
             ></GatsbyImage>
           )}
         </div>

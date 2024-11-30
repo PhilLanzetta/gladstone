@@ -4,7 +4,7 @@ import Header from "./header"
 import Footer from "./footer"
 import { AnimatePresence, motion } from "framer-motion"
 import ShopHeading from "./shopHeading"
-import CookieConsent from "react-cookie-consent"
+// import CookieConsent from "react-cookie-consent"
 
 const Layout = ({ children, location }) => {
   const isHome =

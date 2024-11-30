@@ -13,7 +13,13 @@ import play from "../images/play.svg"
 
 let count = 0
 
-const VideoPlayer = ({ video, videoId, activeVideo, setActiveVideo, isFirst }) => {
+const VideoPlayer = ({
+  video,
+  videoId,
+  activeVideo,
+  setActiveVideo,
+  isFirst,
+}) => {
   const videoPlayerRef = useRef(null)
   const controlRef = useRef(null)
   const fullScreenRef = useRef(null)
@@ -142,7 +148,7 @@ const VideoPlayer = ({ video, videoId, activeVideo, setActiveVideo, isFirst }) =
 
   useEffect(() => {
     if (activeVideo !== videoId && videoPlayerRef.current) {
-      setVideoState({ ...videoState, playing: false })
+      setVideoState(prevVideoState => ({ ...prevVideoState, playing: false }))
     }
   }, [activeVideo, videoId])
 
@@ -191,11 +197,12 @@ const VideoPlayer = ({ video, videoId, activeVideo, setActiveVideo, isFirst }) =
           )}
         </AnimatePresence>
         {!isMobile && (
-          <div
+          <button
             className={styles.overlay}
             onMouseMove={isMobile ? null : mouseMoveHandler}
             onClick={playPauseHandler}
-          ></div>
+            aria-label="play or pause"
+          ></button>
         )}
         <ReactPlayer
           url={video.source}

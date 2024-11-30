@@ -96,7 +96,7 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
         {images &&
           images.map(image => {
             return (
-              <div key={image.id} className={styles.slide}>
+              <div key={image.id}>
                 <div className={styles.slideContainer}>
                   <figure>
                     <GatsbyImage
@@ -118,7 +118,7 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
           })}
         {videos &&
           videos.map(video => (
-            <div key={video.id} className={styles.slide}>
+            <div key={video.id}>
               <div className={styles.slideContainer}>
                 <VideoPlayer
                   video={video}

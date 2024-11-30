@@ -27,7 +27,7 @@ const Cart = ({ toggleCart }) => {
           <div></div>
         </button>
       </div>
-      <div className={styles.cartProductsContainer}>
+      <div>
         {cart.length > 0 ? (
           cart.map((item, index) => <ProductRow key={index} item={item} />)
         ) : (

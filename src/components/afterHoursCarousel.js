@@ -14,7 +14,7 @@ const AfterHoursCarousel = ({ images }) => {
     dots: false,
     arrows: false,
     draggable: true,
-    afterChange: (current) => {
+    afterChange: current => {
       setActiveSlide(current)
     },
   }
@@ -25,7 +25,7 @@ const AfterHoursCarousel = ({ images }) => {
         {images &&
           images.map(image => {
             return (
-              <div key={image.id} className={styles.slide}>
+              <div key={image.id}>
                 <div className={styles.slideContainer}>
                   <figure>
                     <GatsbyImage
@@ -57,9 +57,12 @@ const AfterHoursCarousel = ({ images }) => {
             tabIndex={0}
             aria-label="go to previous"
             className={styles.previousArrow}
-            onClick={() => {
-              sliderRef.current.slickPrevious()
-            }}
+            onClick={() => sliderRef.current.slickPrevious()}
+            onKeyDown={e =>
+              e.code === "Enter" || e.code === "Space"
+                ? sliderRef.current.slickPrevious()
+                : null
+            }
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -87,9 +90,12 @@ const AfterHoursCarousel = ({ images }) => {
             tabIndex={0}
             aria-label="go to next"
             className={styles.nextArrow}
-            onClick={() => {
-              sliderRef.current.slickNext()
-            }}
+            onClick={() => sliderRef.current.slickNext()}
+            onKeyDown={e =>
+              e.code === "Enter" || e.code === "Space"
+                ? sliderRef.current.slickNext()
+                : null
+            }
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
