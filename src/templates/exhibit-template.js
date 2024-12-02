@@ -183,6 +183,34 @@ const Exhibit = ({ data, pageContext }) => {
                     fair={true}
                   ></ExhibitionTile>
                 )
+              } else if (content.linkId) {
+                return (
+                  <div key={content.linkId}>
+                    {content.isExternal ? (
+                      <a href={content.link} target="_blank" rel="noreferrer">
+                        <GatsbyImage
+                          image={content.image?.gatsbyImageData}
+                          alt={content.image?.description}
+                          className={styles.relatedTileImage}
+                        ></GatsbyImage>
+                        <div className={styles.relatedInfoText}>
+                          {content.title}↗
+                        </div>
+                      </a>
+                    ) : (
+                      <Link to={content.link}>
+                        <GatsbyImage
+                          image={content.image?.gatsbyImageData}
+                          alt={content.image?.description}
+                          className={styles.relatedTileImage}
+                        ></GatsbyImage>
+                        <div className={styles.relatedInfoText}>
+                          {content.title}
+                        </div>
+                      </Link>
+                    )}
+                  </div>
+                )
               } else {
                 return <div>Unknown Content</div>
               }
@@ -317,6 +345,16 @@ export const query = graphql`
             }
             endDate
             startDate
+            title
+          }
+          ... on ContentfulLinkWithImage {
+            linkId: id
+            image {
+              description
+              gatsbyImageData
+            }
+            isExternal
+            link
             title
           }
         }

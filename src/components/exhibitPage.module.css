@@ -122,11 +122,13 @@
 
 .relatedTileImage {
   aspect-ratio: 5 / 4;
+  width: 100%;
 }
 
 .relatedInfoText {
   margin-top: 10px;
   font-size: var(--body-text);
+  line-height: normal;
 }
 
 .downloadContainer {
