@@ -46,7 +46,7 @@ const Exhibit = ({ data, pageContext }) => {
             </p>
           ))}
           <p className={styles.aboveHeading}>
-            <em>{title}</em>
+            <em dangerouslySetInnerHTML={{__html: title}}></em>
           </p>
           <p className={styles.aboveInfo}>
             {moment(startDate).format("MMMM D")} &mdash;{" "}

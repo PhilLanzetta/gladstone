@@ -48,7 +48,9 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
                 mobilePast ? styles.mobileHeading : styles.infoHeading
               } ${styles.title}`}
             >
-              {!titleIsArtist && title}
+              {!titleIsArtist && (
+                <span dangerouslySetInnerHTML={{ __html: title }}></span>
+              )}
             </h3>
             {artistPage && <p className={styles.infoHeading}>{location}</p>}
             {mobilePast && (
