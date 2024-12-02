@@ -9,6 +9,7 @@ import useWindowSize from "../utils/useWindowSize"
 import SimpleCarousel from "../components/simpleCarousel"
 import ExhibitionTile from "../components/exhibitionTile"
 import PdfDownload from "../components/pdfDownload"
+import NewsItem from "../components/newsItem"
 
 const Exhibit = ({ data, pageContext }) => {
   const {
@@ -187,7 +188,11 @@ const Exhibit = ({ data, pageContext }) => {
                 return (
                   <div key={content.linkId}>
                     {content.isExternal ? (
-                      <a href={content.link} target="_blank" rel="noreferrer">
+                      <a
+                        href={content.linkImgLink}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         <GatsbyImage
                           image={content.image?.gatsbyImageData}
                           alt={content.image?.description}
@@ -198,7 +203,7 @@ const Exhibit = ({ data, pageContext }) => {
                         </div>
                       </a>
                     ) : (
-                      <Link to={content.link}>
+                      <Link to={content.linkImgLink}>
                         <GatsbyImage
                           image={content.image?.gatsbyImageData}
                           alt={content.image?.description}
@@ -210,6 +215,14 @@ const Exhibit = ({ data, pageContext }) => {
                       </Link>
                     )}
                   </div>
+                )
+              } else if (content.newsId) {
+                return (
+                  <NewsItem
+                    key={content.newsId}
+                    content={content}
+                    related={true}
+                  ></NewsItem>
                 )
               } else {
                 return <div>Unknown Content</div>
@@ -354,8 +367,32 @@ export const query = graphql`
               gatsbyImageData
             }
             isExternal
-            link
+            linkImgLink: link
             title
+          }
+          ... on ContentfulNewsEntry {
+            newsId: id
+            newsImage {
+              description
+              gatsbyImageData
+            }
+            newsText {
+              childMarkdownRemark {
+                html
+              }
+            }
+            link {
+              label
+              url
+            }
+            download {
+              buttonText
+              pdfFile {
+                file {
+                  url
+                }
+              }
+            }
           }
         }
       }

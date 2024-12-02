@@ -2,16 +2,34 @@ import React from "react"
 import * as styles from "./newsItem.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-const NewsItem = ({ content }) => {
+const NewsItem = ({ content, related }) => {
   const { isFeatured, link, newsImage, newsText, download, category } = content
   return (
-    <div className={isFeatured ? styles.featuredNewsItem : styles.newsItem}>
+    <div
+      className={
+        related ? "" : isFeatured ? styles.featuredNewsItem : styles.newsItem
+      }
+    >
       <GatsbyImage
         image={newsImage.gatsbyImageData}
         alt={newsImage.description}
-        className={isFeatured ? styles.featuredNewsImage : styles.newsImage}
+        className={
+          related
+            ? styles.relatedTileImage
+            : isFeatured
+            ? styles.featuredNewsImage
+            : styles.newsImage
+        }
       ></GatsbyImage>
-      <div className={isFeatured ? styles.featuredNewsText : styles.newsText}>
+      <div
+        className={
+          related
+            ? styles.relatedInfoText
+            : isFeatured
+            ? styles.featuredNewsText
+            : styles.newsText
+        }
+      >
         <div className={styles.category}>{category}</div>
         <div
           dangerouslySetInnerHTML={{

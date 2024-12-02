@@ -113,6 +113,28 @@
   line-height: 1.5;
 }
 
+.relatedTileImage {
+  aspect-ratio: 5 / 4;
+  width: 100%;
+}
+
+.relatedInfoText {
+  margin-top: 10px;
+}
+
+.relatedInfoText h1 {
+  font-size: var(--body-text);
+  line-height: normal;
+}
+
+.relatedInfoText p,
+.relatedInfoText .downloadLink {
+  font-family: var(--font-secondary);
+  font-variant-numeric: normal;
+  color: var(--dark-gray);
+  font-size: var(--sub-text);
+}
+
 @media screen and (max-width: 700px) {
   .headerLinkContainer {
     gap: 10px;
@@ -149,7 +171,11 @@
   }
 
   .newsText h1 {
-  font-size: var(--body-text);
-  font-weight: 400;
-}
+    font-size: var(--body-text);
+    font-weight: 400;
+  }
+
+  .relatedInfoText h1 {
+    font-size: var(--subtitle);
+  }
 }
