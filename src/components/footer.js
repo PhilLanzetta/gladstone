@@ -82,10 +82,10 @@ const Footer = ({ isAfter }) => {
             <FormattedMessage id="new_york"></FormattedMessage>
           </p>
           <p>
-            <FormattedMessage id="brussels.heading"></FormattedMessage>
+            <FormattedMessage id="brussels"></FormattedMessage>
           </p>
           <p>
-            <FormattedMessage id="seoul.heading"></FormattedMessage>
+            <FormattedMessage id="seoul"></FormattedMessage>
           </p>
         </div>
       </div>

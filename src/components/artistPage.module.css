@@ -60,6 +60,12 @@
   width: 40%;
 }
 
+.artistImgCaption {
+  font-size: var(--caption);
+  margin-top: 10px;
+  font-family: var(--font-secondary);
+}
+
 .artistBio p,
 .artistBioFull p {
   margin-bottom: 20px;

@@ -91,6 +91,12 @@
   width: 40%;
 }
 
+.artistImgCaption {
+  font-size: var(--caption);
+  margin-top: 10px;
+  font-family: var(--font-secondary);
+}
+
 .artistLink {
   display: inline-block;
   margin-top: var(--medium-padding);

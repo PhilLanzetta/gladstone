@@ -33,12 +33,14 @@
   "email": "Email",
   "subscribe": "Subscribe",
   "new_york": "New York",
-  "brussels": {
+  "brussels": "Brussels",
+  "brussels_location": {
     "heading": "Brussels",
     "address_1": "Grote Hertstraat 12 Rue du Grand Cerf",
     "address_2": "Brussels, Belgium 1000"
   },
-  "seoul": {
+  "seoul": "Seoul",
+  "seoul_location": {
     "heading": "Seoul",
     "address_1": "760, Samseong-ro, Gangnam-gu",
     "address_2": "Seoul, 06070, Republic of Korea"

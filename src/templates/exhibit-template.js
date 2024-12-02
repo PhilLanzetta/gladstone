@@ -46,7 +46,7 @@ const Exhibit = ({ data, pageContext }) => {
             </p>
           ))}
           <p className={styles.aboveHeading}>
-            <em dangerouslySetInnerHTML={{__html: title}}></em>
+            <em dangerouslySetInnerHTML={{ __html: title }}></em>
           </p>
           <p className={styles.aboveInfo}>
             {moment(startDate).format("MMMM D")} &mdash;{" "}
@@ -120,11 +120,19 @@ const Exhibit = ({ data, pageContext }) => {
           {hasGladstoneArtist.map(artist => (
             <div key={artist.id} className={styles.artistContainer}>
               {artist.headshot && (
-                <GatsbyImage
-                  image={artist.headshot?.image?.gatsbyImageData}
-                  alt={artist.headshot?.image?.description}
-                  className={styles.artistImage}
-                ></GatsbyImage>
+                <div className={styles.artistImage}>
+                  <GatsbyImage
+                    image={artist.headshot?.image?.gatsbyImageData}
+                    alt={artist.headshot?.image?.description}
+                  ></GatsbyImage>
+                  <figcaption
+                    className={styles.artistImgCaption}
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        artist.headshot?.caption?.childMarkdownRemark.html,
+                    }}
+                  ></figcaption>
+                </div>
               )}
               <div
                 className={
@@ -259,7 +267,7 @@ export const query = graphql`
             }
             image {
               description
-              gatsbyImageData
+              gatsbyImageData(layout: FULL_WIDTH)
             }
           }
         }

@@ -33,12 +33,14 @@
   "email": "电子邮件",
   "subscribe": "订阅",
   "new_york": "纽约",
-  "brussels": {
+  "brussels": "布鲁塞尔",
+  "brussels_location": {
     "heading": "布鲁塞尔",
     "address_1": "Grote Hertstraat 大瑟夫街 12 号",
     "address_2": "比利时布鲁塞尔 1000"
   },
-  "seoul": {
+  "seoul": "汉城",
+  "seoul_location": {
     "heading": "汉城",
     "address_1": "江南区三成路760",
     "address_2": "首尔, 06070, 韩国"

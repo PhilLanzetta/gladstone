@@ -37,22 +37,22 @@ const LocationListing = () => {
       </a>
       <a href="https://google.com" target="_blank" rel="noreferrer">
         <p className={styles.locationHeading}>
-          <FormattedMessage id="brussels.heading"></FormattedMessage>
+          <FormattedMessage id="brussels_location.heading"></FormattedMessage>
         </p>
         <p>
-          <FormattedMessage id="brussels.address_1"></FormattedMessage>
+          <FormattedMessage id="brussels_location.address_1"></FormattedMessage>
           <br></br>
-          <FormattedMessage id="brussels.address_2"></FormattedMessage>
+          <FormattedMessage id="brussels_location.address_2"></FormattedMessage>
         </p>
       </a>
       <a href="https://google.com" target="_blank" rel="noreferrer">
         <p className={styles.locationHeading}>
-          <FormattedMessage id="seoul.heading"></FormattedMessage>
+          <FormattedMessage id="seoul_location.heading"></FormattedMessage>
         </p>
         <p>
-          <FormattedMessage id="seoul.address_1"></FormattedMessage>
+          <FormattedMessage id="seoul_location.address_1"></FormattedMessage>
           <br></br>
-          <FormattedMessage id="seoul.address_2"></FormattedMessage>
+          <FormattedMessage id="seoul_location.address_2"></FormattedMessage>
         </p>
       </a>
     </div>

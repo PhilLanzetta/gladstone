@@ -2,7 +2,7 @@ import React from "react"
 import * as styles from "./exhibitionTile.module.css"
 import moment from "moment"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { Link } from "gatsby-plugin-intl"
+import { FormattedMessage, Link } from "gatsby-plugin-intl"
 import useWindowSize from "../utils/useWindowSize"
 
 const ExhibitionTile = ({ content, artistPage, past, fair }) => {
@@ -55,7 +55,13 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
             {artistPage && <p className={styles.infoHeading}>{location}</p>}
             {mobilePast && (
               <p className={styles.mobileHeading}>
-                {region !== "Offsite" ? region : location}
+                {region && region !== "Offsite" ? (
+                  <FormattedMessage
+                    id={region.toLowerCase().replace(" ", "_")}
+                  ></FormattedMessage>
+                ) : (
+                  location
+                )}
               </p>
             )}
             <p className={styles.date}>
@@ -75,7 +81,15 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
           {!mobilePast && (
             <div className={styles.infoRight}>
               <h3 className={styles.infoHeading}>
-                {!fair && region !== "Offsite" ? region : location}
+                {!fair &&
+                  region &&
+                  (region !== "Offsite" ? (
+                    <FormattedMessage
+                      id={region.toLowerCase().replace(" ", "_")}
+                    ></FormattedMessage>
+                  ) : (
+                    location
+                  ))}
                 {fair && city}
               </h3>
             </div>

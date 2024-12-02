@@ -102,8 +102,12 @@ const Artist = ({ data }) => {
               <GatsbyImage
                 image={headshot?.image?.gatsbyImageData}
                 alt={headshot?.image?.description}
-                className={styles.artistImageImg}
               ></GatsbyImage>
+              <figcaption className={styles.artistImgCaption}
+                dangerouslySetInnerHTML={{
+                  __html: headshot?.caption?.childMarkdownRemark.html,
+                }}
+              ></figcaption>
             </div>
           )}
           <div className={headshot ? styles.artistBio : styles.artistBioFull}>
@@ -178,7 +182,9 @@ const Artist = ({ data }) => {
                   slideCount={1.15}
                 ></SimpleCarousel>
               ) : (
-                <VariedWidthCarousel content={studioVisit}></VariedWidthCarousel>
+                <VariedWidthCarousel
+                  content={studioVisit}
+                ></VariedWidthCarousel>
               )}
             </div>
           </>

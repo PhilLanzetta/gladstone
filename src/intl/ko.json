@@ -33,12 +33,14 @@
   "email": "이메일",
   "subscribe": "구독하다",
   "new_york": "뉴욕",
-  "brussels": {
+  "brussels": "브뤼셀",
+  "brussels_location": {
     "heading": "브뤼셀",
     "address_1": "Grote Hertstraat 12 Rue du Grand Cerf",
     "address_2": "브뤼셀, 벨기에 1000"
   },
-  "seoul": {
+  "seoul": "서울",
+  "seoul_location": {
     "heading": "서울",
     "address_1": "강남구 삼성로 760",
     "address_2": "대한민국 서울, 06070"
