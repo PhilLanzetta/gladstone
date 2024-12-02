@@ -43,6 +43,7 @@
 
 .aboutContainer {
   display: flex;
+  align-items: flex-start;
   gap: 60px;
   margin-bottom: var(--medium-padding);
 }

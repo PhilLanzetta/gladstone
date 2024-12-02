@@ -102,6 +102,7 @@ const Artist = ({ data }) => {
               <GatsbyImage
                 image={headshot?.image?.gatsbyImageData}
                 alt={headshot?.image?.description}
+                className={styles.artistImageImg}
               ></GatsbyImage>
             </div>
           )}
@@ -265,7 +266,7 @@ export const query = graphql`
           }
           image {
             description
-            gatsbyImageData
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
         press {
