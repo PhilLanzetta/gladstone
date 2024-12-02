@@ -156,9 +156,7 @@ const Exhibit = ({ data, pageContext }) => {
                 const { artistId, slug, featuredImage, name } = content
                 return (
                   <div key={artistId}>
-                    <Link
-                      to={`/artist/${slug}`}
-                    >
+                    <Link to={`/artist/${slug}`}>
                       <div>
                         <GatsbyImage
                           image={featuredImage?.image.gatsbyImageData}
@@ -175,6 +173,14 @@ const Exhibit = ({ data, pageContext }) => {
                   <ExhibitionTile
                     key={content.exhibitId}
                     content={content}
+                  ></ExhibitionTile>
+                )
+              } else if (content.fairId) {
+                return (
+                  <ExhibitionTile
+                    key={content.fairId}
+                    content={content}
+                    fair={true}
                   ></ExhibitionTile>
                 )
               } else {
@@ -299,6 +305,19 @@ export const query = graphql`
             region
             startDate
             endDate
+          }
+          ... on ContentfulFair {
+            fairId: id
+            slug
+            tileImage {
+              image {
+                gatsbyImageData
+                description
+              }
+            }
+            endDate
+            startDate
+            title
           }
         }
       }
