@@ -64,7 +64,7 @@ function PrevArrow(props) {
   )
 }
 
-const SimpleCarousel = ({ images, slideCount, videos }) => {
+const SimpleCarousel = ({ images, slideCount, videos, content }) => {
   const [activeSlide, setActiveSlide] = useState(0)
   const [activeVideo, setActiveVideo] = useState(null)
 
@@ -90,6 +90,11 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
       {images && images?.length > 1 && (
         <div className={styles.slideCount}>
           {Math.round(activeSlide + 1)} / {images.length}
+        </div>
+      )}
+      {content && content?.length > 1 && (
+        <div className={styles.slideCount}>
+          {Math.round(activeSlide + 1)} / {content.length}
         </div>
       )}
       <Slider {...settings}>
@@ -129,6 +134,45 @@ const SimpleCarousel = ({ images, slideCount, videos }) => {
               </div>
             </div>
           ))}
+        {content &&
+          content.map(item => {
+            if (item.studioImgId) {
+              const { image, caption, studioImgId } = item
+              return (
+                <div key={studioImgId}>
+                  <div className={styles.slideContainer}>
+                    <figure>
+                      <GatsbyImage
+                        image={image?.gatsbyImageData}
+                        alt={image?.description}
+                      ></GatsbyImage>
+                      <figcaption
+                        dangerouslySetInnerHTML={{
+                          __html: caption?.childMarkdownRemark.html.replace(
+                            /\b(\d+)\/(\d+)/g,
+                            "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
+                          ),
+                        }}
+                      ></figcaption>
+                    </figure>
+                  </div>
+                </div>
+              )
+            } else if (item.studioVideoId) {
+              return (
+                <div key={item.studioVideoId}>
+                  <div className={styles.slideContainer}>
+                    <VideoPlayer
+                      video={item}
+                      videoId={item.studioVideoId}
+                      activeVideo={activeVideo}
+                      setActiveVideo={setActiveVideo}
+                    ></VideoPlayer>
+                  </div>
+                </div>
+              )
+            } else return null
+          })}
       </Slider>
     </div>
   )

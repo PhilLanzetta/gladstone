@@ -19,6 +19,8 @@ const VideoPlayer = ({
   activeVideo,
   setActiveVideo,
   isFirst,
+  varied,
+  variedWidth,
 }) => {
   const videoPlayerRef = useRef(null)
   const controlRef = useRef(null)
@@ -153,11 +155,16 @@ const VideoPlayer = ({
   }, [activeVideo, videoId])
 
   return (
-    <div className={styles.videoPlayerContainer}>
+    <div
+      className={styles.videoPlayerContainer}
+      style={{ height: varied ? "50vh" : "auto" }}
+    >
       <div
         className={styles.videoPlayer}
         style={{
           aspectRatio: video.aspectRatio ? video.aspectRatio : "16 / 9",
+          height: varied ? "100%" : "auto",
+          width: variedWidth ? `${variedWidth}vh` : "100%",
         }}
         id={videoId}
         key={isMobile}

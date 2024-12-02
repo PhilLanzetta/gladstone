@@ -2,6 +2,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
 import Slider from "react-slick"
 import * as styles from "./variedWidthCarousel.module.css"
+import VideoPlayer from "./videoPlayer"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -63,8 +64,9 @@ function PrevArrow(props) {
   )
 }
 
-const VariedWidthCarousel = ({ images, slideCount }) => {
+const VariedWidthCarousel = ({ images, content }) => {
   const [activeSlide, setActiveSlide] = useState(0)
+  const [activeVideo, setActiveVideo] = useState(false)
 
   const settings = {
     slidesToShow: 1,
@@ -84,8 +86,13 @@ const VariedWidthCarousel = ({ images, slideCount }) => {
           {Math.round(activeSlide + 1)} / {images.length}
         </div>
       )}
+      {content?.length > 1 && (
+        <div className={styles.slideCount}>
+          {Math.round(activeSlide + 1)} / {content.length}
+        </div>
+      )}
       <Slider {...settings}>
-        {images.map(image => {
+        {images?.map(image => {
           const imgWidth = (image.image?.width * 50) / image.image?.height
           return (
             <div
@@ -112,6 +119,56 @@ const VariedWidthCarousel = ({ images, slideCount }) => {
               </div>
             </div>
           )
+        })}
+        {content?.map(item => {
+          if (item.studioImgId) {
+            const { image, caption, studioImgId } = item
+            const imgWidth = (image?.width * 50) / image?.height
+            return (
+              <div
+                key={studioImgId}
+                style={{ width: `calc(${imgWidth}vh + 20px)` }}
+                className={styles.slide}
+              >
+                <div className={styles.slideContainer}>
+                  <figure>
+                    <GatsbyImage
+                      image={image?.gatsbyImageData}
+                      alt={image?.description}
+                      style={{ height: "50vh", width: `${imgWidth}vh` }}
+                    ></GatsbyImage>
+                    <figcaption
+                      dangerouslySetInnerHTML={{
+                        __html: caption?.childMarkdownRemark.html.replace(
+                          /\b(\d+)\/(\d+)/g,
+                          "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
+                        ),
+                      }}
+                    ></figcaption>
+                  </figure>
+                </div>
+              </div>
+            )
+          } else if (item.studioVideoId) {
+            const aspectRatioToNum = item.aspectRatio?.split(" / ").map(Number)
+            const imgWidth = (aspectRatioToNum[0] * 50) / aspectRatioToNum[1]
+            return (
+              <div
+                key={item.studioVideoId}
+                style={{width: `calc(${imgWidth}vh + 20px)`}}
+                className={styles.slide}
+              >
+                <VideoPlayer
+                  video={item}
+                  videoId={item.studioVideoId}
+                  activeVideo={activeVideo}
+                  setActiveVideo={setActiveVideo}
+                  varied={true}
+                  variedWidth={imgWidth}
+                ></VideoPlayer>
+              </div>
+            )
+          } else return null
         })}
       </Slider>
     </div>

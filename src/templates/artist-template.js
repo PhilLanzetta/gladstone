@@ -24,6 +24,7 @@ const Artist = ({ data }) => {
     videos,
     callToActionText,
     callToActionEmail,
+    flexSectionTitle,
     aboutDownloads,
   } = data.allContentfulArtist.nodes[0]
 
@@ -66,7 +67,11 @@ const Artist = ({ data }) => {
             )}
             {studioVisit && (
               <a href="#studio">
-                <FormattedMessage id="studio_visit"></FormattedMessage>
+                {flexSectionTitle ? (
+                  flexSectionTitle
+                ) : (
+                  <FormattedMessage id="studio_visit"></FormattedMessage>
+                )}
               </a>
             )}
             {videos && (
@@ -159,16 +164,20 @@ const Artist = ({ data }) => {
         {studioVisit && (
           <>
             <p className={styles.artistSectionHeading}>
-              <FormattedMessage id="studio_visit"></FormattedMessage>
+              {flexSectionTitle ? (
+                flexSectionTitle
+              ) : (
+                <FormattedMessage id="studio_visit"></FormattedMessage>
+              )}
             </p>
             <div id="studio" className={styles.studioContainer}>
               {isMobile ? (
                 <SimpleCarousel
-                  images={studioVisit}
+                  content={studioVisit}
                   slideCount={1.15}
                 ></SimpleCarousel>
               ) : (
-                <VariedWidthCarousel images={studioVisit}></VariedWidthCarousel>
+                <VariedWidthCarousel content={studioVisit}></VariedWidthCarousel>
               )}
             </div>
           </>
@@ -273,17 +282,35 @@ export const query = graphql`
           publication
           title
         }
+        flexSectionTitle
         studioVisit {
-          image {
-            description
-            gatsbyImageData
-            height
-            width
-          }
-          caption {
-            childMarkdownRemark {
-              html
+          ... on ContentfulImageWrapper {
+            studioImgId: id
+            image {
+              description
+              gatsbyImageData
+              height
+              width
             }
+            caption {
+              childMarkdownRemark {
+                html
+              }
+            }
+          }
+          ... on ContentfulVideoWrapper {
+            studioVideoId: id
+            caption {
+              childMarkdownRemark {
+                html
+              }
+            }
+            coverImage {
+              gatsbyImageData
+              description
+            }
+            source
+            aspectRatio
           }
         }
         exhibitions {
