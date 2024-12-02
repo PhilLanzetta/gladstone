@@ -69,6 +69,7 @@
 .artistContainer {
   margin-top: calc(var(--medium-padding) / 2);
   display: flex;
+  align-items: flex-start;
   gap: 60px;
   padding-bottom: calc(var(--medium-padding) * 2);
 }
