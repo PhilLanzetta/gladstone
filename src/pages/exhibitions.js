@@ -243,7 +243,7 @@ const Exhibitions = ({ pageContext, data }) => {
                       onClick={() => handleFilter("location", location)}
                       className={styles.dropdownButton}
                     >
-                      {location}
+                      <FormattedMessage id={location.toLowerCase().replace(" ", "_")}></FormattedMessage>
                     </button>
                   ))}
                 </motion.div>
