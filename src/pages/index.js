@@ -23,6 +23,8 @@ export const query = graphql`
         id
         homeTiles {
           artist
+          mobileVideo
+          video
           id
           image {
             description
