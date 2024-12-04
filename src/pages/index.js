@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import HomeTile from "../components/homeTile"
 import * as styles from "../components/index.module.css"
 import LocationListing from "../components/locationListing"
+import Seo from "../components/seo"
 
 const Index = ({ data, pageContext }) => {
   const { homeTiles } = data.allContentfulHomePage.nodes[0]

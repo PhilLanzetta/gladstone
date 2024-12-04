@@ -19,7 +19,7 @@ const ProductTile = ({ product, page }) => {
             ></GatsbyImage>
           ) : (
             <StaticImage
-              src="../images/placeholder.png"
+              src="../../static/place_holder.png"
               alt="placeholder"
             ></StaticImage>
           )}
