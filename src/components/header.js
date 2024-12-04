@@ -57,6 +57,7 @@ const Header = ({ isHome, isAfter }) => {
             <button
               className={styles.menuButton}
               onClick={() => setIsOpen(!isOpen)}
+              aria-label="menu"
             >
               <div
                 id={styles.navIcon}
@@ -67,7 +68,7 @@ const Header = ({ isHome, isAfter }) => {
                 <span></span>
                 <span></span>
               </div>
-              {!isMobile && <FormattedMessage id="menu" className={styles.menuLabel}></FormattedMessage>}
+              {/* {!isMobile && <FormattedMessage id="menu" className={styles.menuLabel}></FormattedMessage>} */}
             </button>
           </div>
           {isHome && (
