@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { injectIntl } from "gatsby-plugin-intl"
+import Seo from "../components/seo"
 
 
 const Flex = ({ data }) => {
@@ -32,5 +33,9 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = ({ data }) => (
+  <Seo title={data.allContentfulFlexPage.nodes[0].title} />
+)
 
 export default injectIntl(Flex)

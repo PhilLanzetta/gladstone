@@ -10,6 +10,7 @@ import SimpleCarousel from "../components/simpleCarousel"
 import ExhibitionTile from "../components/exhibitionTile"
 import PdfDownload from "../components/pdfDownload"
 import NewsItem from "../components/newsItem"
+import Seo from "../components/seo"
 
 const Exhibit = ({ data, pageContext }) => {
   const {
@@ -26,6 +27,7 @@ const Exhibit = ({ data, pageContext }) => {
     relatedContent,
     relatedHeading,
     aboutDownloads,
+    additionalLocations,
   } = data.allContentfulExhibition.nodes[0]
 
   const { width } = useWindowSize()
@@ -59,6 +61,12 @@ const Exhibit = ({ data, pageContext }) => {
             </p>
           )}
           <p className={styles.aboveInfo}>{location}</p>
+          {additionalLocations &&
+            additionalLocations.map((entry, index) => (
+              <p className={styles.aboveInfo} key={index}>
+                {entry}
+              </p>
+            ))}
           {exhibitionDescription && (
             <div
               className={styles.aboveDescription}
@@ -307,6 +315,7 @@ export const query = graphql`
           id
         }
         location
+        additionalLocations
         openingReception
         startDate
         title
@@ -407,5 +416,9 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = ({ data }) => (
+  <Seo title={data.allContentfulExhibition.nodes[0].title} />
+)
 
 export default injectIntl(Exhibit)

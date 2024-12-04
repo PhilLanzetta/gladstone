@@ -6,6 +6,7 @@ import Slider from "react-slick"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Pagination from "../../components/pagination"
 import slugify from "slugify"
+import Seo from "../../components/seo"
 
 const Shop = ({ data }) => {
   function onlyUnique(value, index, array) {
@@ -233,5 +234,7 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <Seo title="Shop" />
 
 export default Shop

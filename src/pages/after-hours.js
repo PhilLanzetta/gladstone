@@ -6,6 +6,7 @@ import { FormattedMessage } from "gatsby-plugin-intl"
 import VideoPlayer from "../components/videoPlayer"
 import AfterHoursCarousel from "../components/afterHoursCarousel"
 import useWindowSize from "../utils/useWindowSize"
+import Seo from "../components/seo"
 
 const AfterHours = ({ data, pageContext }) => {
   const { entries } = data.allContentfulAfterHoursPage.nodes[0]
@@ -128,7 +129,12 @@ const AfterHours = ({ data, pageContext }) => {
             {allData.map((item, index) => {
               if (item.entry.videoId) {
                 return (
-                  <div key={index} className={item.isFeatured ? styles.mobileFull : styles.mobileHalf}>
+                  <div
+                    key={index}
+                    className={
+                      item.isFeatured ? styles.mobileFull : styles.mobileHalf
+                    }
+                  >
                     <VideoPlayer
                       isFirst={index === 0}
                       video={item.entry}
@@ -241,5 +247,7 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <Seo title="After Hours" />
 
 export default AfterHours

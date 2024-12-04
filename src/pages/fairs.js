@@ -6,6 +6,7 @@ import moment from "moment"
 import ExhibitionTile from "../components/exhibitionTile"
 import { AnimatePresence, motion } from "framer-motion"
 import Pagination from "../components/pagination"
+import Seo from "../components/seo"
 
 const Fairs = ({ data }) => {
   const today = moment()
@@ -354,5 +355,7 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <Seo title="Fairs" />
 
 export default Fairs

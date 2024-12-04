@@ -3,6 +3,7 @@ import * as styles from "../components/artists.module.css"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link, FormattedMessage } from "gatsby-plugin-intl"
+import Seo from "../components/seo"
 
 const Artists = ({ data }) => {
   const { nodes } = data.allContentfulArtist
@@ -183,5 +184,7 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <Seo title="Artists" />
 
 export default Artists

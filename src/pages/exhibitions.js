@@ -6,6 +6,7 @@ import ExhibitionTile from "../components/exhibitionTile"
 import { AnimatePresence, motion } from "framer-motion"
 import Pagination from "../components/pagination"
 import { FormattedMessage } from "gatsby-plugin-intl"
+import Seo from "../components/seo"
 
 const Exhibitions = ({ pageContext, data }) => {
   const today = moment()
@@ -243,7 +244,9 @@ const Exhibitions = ({ pageContext, data }) => {
                       onClick={() => handleFilter("location", location)}
                       className={styles.dropdownButton}
                     >
-                      <FormattedMessage id={location.toLowerCase().replace(" ", "_")}></FormattedMessage>
+                      <FormattedMessage
+                        id={location.toLowerCase().replace(" ", "_")}
+                      ></FormattedMessage>
                     </button>
                   ))}
                 </motion.div>
@@ -352,5 +355,7 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <Seo title="Exhibitions" />
 
 export default Exhibitions

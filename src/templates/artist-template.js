@@ -103,7 +103,8 @@ const Artist = ({ data }) => {
                 image={headshot?.image?.gatsbyImageData}
                 alt={headshot?.image?.description}
               ></GatsbyImage>
-              <figcaption className={styles.artistImgCaption}
+              <figcaption
+                className={styles.artistImgCaption}
                 dangerouslySetInnerHTML={{
                   __html: headshot?.caption?.childMarkdownRemark.html,
                 }}
@@ -388,6 +389,8 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }) => <Seo />
+export const Head = ({ data }) => (
+  <Seo title={data.allContentfulArtist.nodes[0].name} />
+)
 
 export default injectIntl(Artist)

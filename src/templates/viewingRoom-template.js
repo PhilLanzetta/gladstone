@@ -4,6 +4,7 @@ import { FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 import * as styles from "../components/viewingRoom.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import ViewingRoomCarousel from "../components/viewingRoomCarousel"
+import Seo from "../components/seo"
 
 const ViewingRoom = ({ data }) => {
   const { title, callToActionEmail, callToActionText, content, fair } =
@@ -163,5 +164,7 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <Seo title="Viewing Room" />
 
 export default injectIntl(ViewingRoom)

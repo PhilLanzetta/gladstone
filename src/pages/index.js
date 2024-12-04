@@ -9,7 +9,11 @@ const Index = ({ data, pageContext }) => {
   return (
     <div className={styles.homeContainer}>
       {homeTiles.map(item => (
-        <HomeTile key={item.id} tile={item} pageContext={pageContext}></HomeTile>
+        <HomeTile
+          key={item.id}
+          tile={item}
+          pageContext={pageContext}
+        ></HomeTile>
       ))}
       <LocationListing></LocationListing>
     </div>
@@ -48,5 +52,7 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <Seo />
 
 export default Index

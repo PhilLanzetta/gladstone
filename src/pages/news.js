@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import * as styles from "../components/newsItem.module.css"
 import NewsItem from "../components/newsItem"
 import { FormattedMessage } from "gatsby-plugin-intl"
+import Seo from "../components/seo"
 
 const News = ({ data }) => {
   const allNews = data.allContentfulNewsEntry.nodes
@@ -132,5 +133,7 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <Seo title="News" />
 
 export default News

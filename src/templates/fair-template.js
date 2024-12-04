@@ -6,6 +6,7 @@ import * as styles from "../components/exhibitPage.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import PdfDownload from "../components/pdfDownload"
 import Slider from "react-slick"
+import Seo from "../components/seo"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -241,5 +242,9 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = ({ data }) => (
+  <Seo title={data.allContentfulFair.nodes[0].title} />
+)
 
 export default injectIntl(Fair)

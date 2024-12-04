@@ -4,9 +4,10 @@ import { FormattedMessage } from "gatsby-plugin-intl"
 import { GatsbyImage } from "gatsby-plugin-image"
 import * as styles from "../components/aboutPage.module.css"
 import useWindowSize from "../utils/useWindowSize"
+import Seo from "../components/seo"
 
 const About = ({ data }) => {
-  const {width} = useWindowSize()
+  const { width } = useWindowSize()
   const isMobile = width < 701
   const { aboutHeadlineText, locations, leadershipstaff } =
     data.allContentfulAboutPage.nodes[0]
@@ -219,5 +220,7 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = () => <Seo title="About" />
 
 export default About
