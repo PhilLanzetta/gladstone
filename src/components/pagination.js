@@ -38,9 +38,9 @@ const Pagination = ({ type, data, showNum, fair, page }) => {
       {type === "press" &&
         dataList.map(pressItem => (
           <div key={pressItem.id} className={styles.pressItem}>
-            <p>{pressItem.author}</p>
             <p>{pressItem.title}</p>
             <p>{pressItem.publication}</p>
+            <p>{pressItem.author}</p>
             <p className={styles.pressSecondary}>
               {pressItem.showDate === false
                 ? moment(pressItem.date).format("MMMM, YYYY")
