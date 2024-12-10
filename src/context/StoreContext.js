@@ -72,6 +72,7 @@ export const StoreProvider = ({ children }) => {
       } else {
         const newCheckout = await client.checkout.create()
         setCheckoutItem(newCheckout)
+        setCart([])
       }
     }
 

@@ -103,7 +103,10 @@ const ArtistCollectionTemplate = ({ data, location }) => {
 export const query = graphql`
   query getSingleCollection($artist: String) {
     allShopifyProduct(
-      filter: { metafields: { elemMatch: { value: { eq: $artist } } } }
+      filter: {
+        metafields: { elemMatch: { value: { eq: $artist } } }
+        totalInventory: { gt: 0 }
+      }
     ) {
       nodes {
         featuredImage {

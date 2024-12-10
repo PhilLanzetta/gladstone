@@ -7,7 +7,9 @@ import * as styles from "../components/shop.module.css"
 import { AnimatePresence, motion } from "framer-motion"
 
 const CollectionTemplate = ({ data, location }) => {
-  const allProducts = data.shopifyCollection.products
+  const allProducts = data.shopifyCollection.products.filter(
+    product => product.totalInventory > 0
+  )
   const [filterOpen, setFilterOpen] = useState(false)
   const [products, setProducts] = useState(allProducts)
 
