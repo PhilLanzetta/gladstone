@@ -70,12 +70,12 @@
   margin-top: calc(var(--medium-padding) / 2);
   display: flex;
   align-items: flex-start;
-  gap: 60px;
+  gap: 10%;
   padding-bottom: calc(var(--medium-padding) * 2);
 }
 
 .artistBio {
-  width: 60%;
+  width: 70%;
 }
 
 .artistBioFull {
@@ -88,7 +88,7 @@
 }
 
 .artistImage {
-  width: 40%;
+  width: 30%;
 }
 
 .artistImgCaption {

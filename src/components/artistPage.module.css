@@ -44,12 +44,12 @@
 .aboutContainer {
   display: flex;
   align-items: flex-start;
-  gap: 60px;
+  gap: 10%;
   margin-bottom: var(--medium-padding);
 }
 
 .artistBio {
-  width: 60%;
+  width: 70%;
 }
 
 .artistBioFull {
@@ -57,7 +57,7 @@
 }
 
 .artistImage {
-  width: 40%;
+  width: 30%;
 }
 
 .artistImgCaption {
