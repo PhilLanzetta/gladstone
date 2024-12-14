@@ -85,10 +85,13 @@ const Header = ({ isHome, isAfter }) => {
                     onClick={() => setIsOpen(false)}
                     className={styles.smallLogo}
                   >
-                    <img
+                    <motion.img
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
                       src={isMobile ? smallLogo : smallLogoWhite}
                       alt="Gladstone Gallery Logo"
-                    ></img>
+                    ></motion.img>
                   </Link>
                 )}
                 {!isOpen && (
@@ -97,7 +100,13 @@ const Header = ({ isHome, isAfter }) => {
                     onClick={() => setIsOpen(false)}
                     className={styles.logo}
                   >
-                    <img src={bigLogo} alt="Gladstone Gallery Logo"></img>
+                    <motion.img
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      src={bigLogo}
+                      alt="Gladstone Gallery Logo"
+                    ></motion.img>
                   </Link>
                 )}
               </motion.div>
