@@ -70,8 +70,10 @@ const SimpleCarousel = ({ images, slideCount, videos, content }) => {
 
   const settings = {
     slidesToShow: slideCount,
-    infinite: false,
+    infinite: videos ? (videos.length > 1 ? true : false) : false,
     useTransform: false,
+    centerMode: videos ? (videos.length > 1 ? true : false) : false,
+    centerPadding: "15%",
     dots: false,
     arrows: videos ? (videos.length > 1 ? true : false) : true,
     draggable: videos ? false : true,
@@ -122,8 +124,13 @@ const SimpleCarousel = ({ images, slideCount, videos, content }) => {
             )
           })}
         {videos &&
-          videos.map(video => (
-            <div key={video.id}>
+          videos.map((video, index) => (
+            <div
+              key={video.id}
+              className={
+                index === activeSlide ? styles.activeSlide : styles.dormantSlide
+              }
+            >
               <div className={styles.slideContainer}>
                 <VideoPlayer
                   video={video}

@@ -1,7 +1,7 @@
 .videoPlayerContainer {
   display: block;
   width: 100%;
-  margin-right: 20px;
+  margin: 0 20px;
 }
 
 .videoPlayer {
@@ -64,4 +64,10 @@
   top: 10px;
   right: 10px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .videoPlayerContainer {
+    margin: 0 10px;
+  }
 }

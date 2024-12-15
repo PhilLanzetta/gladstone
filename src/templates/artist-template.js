@@ -35,8 +35,6 @@ const Artist = ({ data }) => {
     allPublications?.filter(pub => pub.handle === handle)
   ).flat()
 
-  console.log(orderedPublications)
-
   const { width } = useWindowSize()
   const isMobile = width < 700
 
@@ -202,7 +200,7 @@ const Artist = ({ data }) => {
             <div id="video">
               <SimpleCarousel
                 videos={videos}
-                slideCount={isMobile ? 1.15 : 1.5}
+                slideCount={1}
               ></SimpleCarousel>
             </div>
           </>

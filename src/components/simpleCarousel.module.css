@@ -68,6 +68,20 @@
   font-size: var(--caption);
 }
 
+.dormantSlide {
+  position: relative;
+}
+
+.dormantSlide {
+  filter: brightness(25%);
+  transition: all 400ms;
+}
+
+.activeSlide {
+  filter: brightness(1);
+  transition: all 400ms;
+}
+
 @media screen and (max-width: 1000px) {
   .nextArrow,
   .previousArrow,
