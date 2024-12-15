@@ -99,9 +99,6 @@ const Fair = ({ data }) => {
 
   return (
     <div className="pageContainer">
-      <Link to="/fairs" className={styles.pageHeading}>
-        <FormattedMessage id="fairs"></FormattedMessage>
-      </Link>
       <div className={styles.aboveTheFold}>
         <div className={styles.aboveLeft}>
           <div className={styles.info}>

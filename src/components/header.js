@@ -127,7 +127,41 @@ const Header = ({ isHome, isAfter }) => {
             </div>
           )}
           <div className={styles.languageContainer}>
-            <div className={styles.language}></div>
+            <Link to="/search" className={styles.search}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 15.28 17.233"
+                className={styles.searchIcon}
+              >
+                <g
+                  id="Group_139"
+                  data-name="Group 139"
+                  transform="translate(-31.534 -30.777)"
+                >
+                  <line
+                    id="Line_150"
+                    data-name="Line 150"
+                    y1="5.862"
+                    x2="5.073"
+                    transform="translate(32.102 41.657)"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                  />
+                  <g
+                    id="Ellipse_8"
+                    data-name="Ellipse 8"
+                    transform="translate(34.639 30.777)"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                  >
+                    <circle cx="6.088" cy="6.088" r="6.088" stroke="none" />
+                    <circle cx="6.088" cy="6.088" r="5.338" fill="none" />
+                  </g>
+                </g>
+              </svg>
+            </Link>
           </div>
         </div>
         <AnimatePresence>
@@ -222,16 +256,6 @@ const Header = ({ isHome, isAfter }) => {
                 }
               >
                 <FormattedMessage id="shop"></FormattedMessage>
-              </Link>
-              <Link
-                to="/search"
-                onClick={
-                  isHome
-                    ? () => setTimeout(() => setIsOpen(false), 50)
-                    : () => setIsOpen(false)
-                }
-              >
-                <FormattedMessage id="search"></FormattedMessage>
               </Link>
               {isMobile && (
                 <div className={styles.secondaryBottom}>

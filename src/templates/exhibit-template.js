@@ -37,9 +37,6 @@ const Exhibit = ({ data, pageContext }) => {
 
   return (
     <div className="pageContainer">
-      <Link to="/exhibitions" className={styles.pageHeading}>
-        <FormattedMessage id="exhibitions"></FormattedMessage>
-      </Link>
       <div className={styles.aboveTheFold}>
         <div className={styles.aboveLeft}>
           {artists?.map(artist => (

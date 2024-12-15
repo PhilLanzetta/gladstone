@@ -188,7 +188,7 @@ exports.createPages = async ({ actions, graphql }) => {
   artistProducts.forEach(node => {
     const artist = node
     createPage({
-      path: `/shop/${slugify(artist, { lower: true })}`,
+      path: `/shop/artist/${slugify(artist, { lower: true })}`,
       component: require.resolve(
         "./src/templates/artist-collection-template.js"
       ),

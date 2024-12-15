@@ -84,11 +84,19 @@ header {
   width: 100%;
 }
 
-.language {
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: row-reverse;
-  gap: 10px;
+.search {
+  width: 30px;
+  height: 20px;
+  display: block;
+}
+
+.search:hover {
+  color: currentColor;
+}
+
+.searchIcon {
+  height: 100%;
+  width: 100%;
 }
 
 .hamburger {
@@ -323,7 +331,7 @@ header {
     color: var(--dark-gray);
   }
 
-  #nav-icon {
+  #nav-icon, .search {
     width: 20px;
     height: 15px;
   }

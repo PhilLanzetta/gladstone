@@ -36,9 +36,6 @@ const Artist = ({ data }) => {
   return (
     <>
       <div className="pageContainer">
-        <Link to="/artists" className={styles.pageHeading}>
-          <FormattedMessage id="artists"></FormattedMessage>
-        </Link>
         <div className={styles.exhibitionsHeader}>
           <div className="pageHeading">{name}</div>
           <div className={styles.headerLinkContainer}>
