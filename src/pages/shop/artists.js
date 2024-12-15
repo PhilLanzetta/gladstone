@@ -23,7 +23,7 @@ const Artists = ({ data }) => {
         {artists.map((artist, index) => (
           <Link
             key={index}
-            to={`/shop/${slugify(artist, { lower: true })}`}
+            to={`/shop/artist/${slugify(artist, { lower: true })}`}
             className={styles.artistLink}
           >
             {artist}
