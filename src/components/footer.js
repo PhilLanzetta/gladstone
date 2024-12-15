@@ -4,12 +4,19 @@ import MailForm from "./mailForm"
 import logo from "../images/Gladstone_Small.svg"
 import whiteLogo from "../images/Gladstone_Small_White.svg"
 import { Link, FormattedMessage } from "gatsby-plugin-intl"
+import Language from "./language"
 
 const Footer = ({ isAfter }) => {
   return (
     <footer className={isAfter ? styles.afterFooter : styles.footer}>
       <div className={styles.upperFooter}>
         <div className={styles.linkContainer}>
+          <div className={isAfter ? styles.afterLinkColumn : styles.linkColumn}>
+            <div className={styles.languages}>
+              <FormattedMessage id="language"></FormattedMessage>
+              <Language></Language>
+            </div>
+          </div>
           <div className={isAfter ? styles.afterLinkColumn : styles.linkColumn}>
             <Link to="/artists">
               <FormattedMessage id="artists"></FormattedMessage>

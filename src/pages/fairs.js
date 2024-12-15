@@ -332,7 +332,10 @@ export const query = graphql`
   query contentfulFairs($locale: String) {
     allContentfulFair(
       sort: { startDate: DESC }
-      filter: { node_locale: { eq: $locale } }
+      filter: {
+        node_locale: { eq: $locale }
+        title: { ne: "Placeholder (does not appear on site, do not delete)" }
+      }
     ) {
       nodes {
         id

@@ -47,7 +47,11 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
       }
-      allContentfulFair {
+      allContentfulFair(
+        filter: {
+          title: { ne: "Placeholder (does not appear on site, do not delete)" }
+        }
+      ) {
         edges {
           node {
             slug

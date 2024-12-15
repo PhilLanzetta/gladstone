@@ -1,11 +1,11 @@
 import React from "react"
 import { IntlContextConsumer, changeLocale } from "gatsby-plugin-intl"
-import * as styles from "./header.module.css"
+import * as styles from "./footer.module.css"
 
 const languageName = {
   zh: "中文",
   ko: "한국인",
-  en: "En",
+  en: "English",
 }
 
 const Language = () => (

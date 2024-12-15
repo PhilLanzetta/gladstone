@@ -67,6 +67,16 @@
   font-family: var(--font-primary);
 }
 
+.languages {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.activeLanguage {
+  color: #000;
+}
+
 @media screen and (max-width: 1000px) {
   .upperFooter {
     flex-direction: column;
@@ -81,7 +91,7 @@
     padding: var(--medium-padding) 0 var(--large-padding) 0;
   }
 
-  .linkColumn {
+  .linkColumn, .languages {
     gap: 5px;
   }
 
@@ -100,4 +110,5 @@
   footer {
     border-top: none;
   }
+
 }

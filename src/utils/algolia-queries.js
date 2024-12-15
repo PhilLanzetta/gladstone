@@ -308,7 +308,7 @@ const pagesQueryZH = `{
 }`
 
 const shopifyQuery = `{
-  allShopifyProduct {
+  allShopifyProduct(filter: {status: {eq: ACTIVE}}) {
     edges {
       node {
         id

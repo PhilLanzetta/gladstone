@@ -11,7 +11,6 @@ import smallLogo from "../images/Gladstone_Small.svg"
 import bigLogo from "../images/Gladstone_Big.svg"
 import smallLogoWhite from "../images/Gladstone_Small_White.svg"
 import { Link, FormattedMessage } from "gatsby-plugin-intl"
-import Language from "./language"
 
 const Header = ({ isHome, isAfter }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -128,9 +127,7 @@ const Header = ({ isHome, isAfter }) => {
             </div>
           )}
           <div className={styles.languageContainer}>
-            <div className={styles.language}>
-              <Language></Language>
-            </div>
+            <div className={styles.language}></div>
           </div>
         </div>
         <AnimatePresence>
@@ -238,9 +235,7 @@ const Header = ({ isHome, isAfter }) => {
               </Link>
               {isMobile && (
                 <div className={styles.secondaryBottom}>
-                  <div className={styles.mobileLanguage}>
-                    <Language></Language>
-                  </div>
+                  <div className={styles.mobileLanguage}></div>
                   <div className={styles.mobileHeaderSocial}>
                     <a
                       href="https://x.com/GladstoneNYC"
