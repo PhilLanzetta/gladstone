@@ -26,9 +26,16 @@ const Artist = ({ data }) => {
     callToActionEmail,
     flexSectionTitle,
     aboutDownloads,
+    publications,
   } = data.allContentfulArtist.nodes[0]
 
-  const publications = data.allShopifyProduct.nodes
+  const allPublications = data.allShopifyProduct.nodes
+
+  const orderedPublications = publications?.map(handle =>
+    allPublications?.filter(pub => pub.handle === handle)
+  ).flat()
+
+  console.log(orderedPublications)
 
   const { width } = useWindowSize()
   const isMobile = width < 700
@@ -52,7 +59,7 @@ const Artist = ({ data }) => {
                 <FormattedMessage id="exhibitions"></FormattedMessage>
               </a>
             )}
-            {publications && publications.length > 0 && (
+            {publications && (
               <a href="#publications">
                 <FormattedMessage id="publications"></FormattedMessage>
               </a>
@@ -139,7 +146,7 @@ const Artist = ({ data }) => {
             </div>
           </>
         )}
-        {publications && publications.length > 0 && (
+        {publications && (
           <>
             <p className={styles.artistSectionHeading}>
               <FormattedMessage id="publications"></FormattedMessage>
@@ -148,7 +155,7 @@ const Artist = ({ data }) => {
               <Pagination
                 type="product"
                 page="artist"
-                data={publications}
+                data={orderedPublications}
                 showNum={6}
               ></Pagination>
             </div>
@@ -287,6 +294,7 @@ export const query = graphql`
           publication
           title
         }
+        publications
         flexSectionTitle
         studioVisit {
           ... on ContentfulImageWrapper {
