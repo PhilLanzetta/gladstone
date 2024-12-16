@@ -13,7 +13,6 @@ const Footer = ({ isAfter }) => {
         <div className={styles.linkContainer}>
           <div className={isAfter ? styles.afterLinkColumn : styles.linkColumn}>
             <div className={styles.languages}>
-              <FormattedMessage id="language"></FormattedMessage>
               <Language></Language>
             </div>
           </div>

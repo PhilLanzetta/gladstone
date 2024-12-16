@@ -1,14 +1,13 @@
 .headlineText {
-  font-size: var(--title);
-  height: 60vh;
+  font-size: var(--subtitle);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: var(--large-padding);
 }
 
 .headlineText p {
-  margin-top: -10vh;
-  width: clamp(200px, 100%, 900px);
+  width: 90%;
 }
 
 .aboutSectionHeading {
@@ -104,12 +103,6 @@
   color: var(--dark-gray);
 }
 
-@media screen and (max-width: 1000px) {
-  .headlineText p {
-    width: clamp(200px, 75%, 900px);
-  }
-}
-
 @media screen and (max-width: 700px) {
   .worldLocationContainer {
     width: 100%;
@@ -125,19 +118,18 @@
   }
 
   .headlineText {
-    font-size: var(--title);
-    height: 70vh;
+    font-size: var(--subtitle);
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .headlineText p {
-    margin-top: 0;
+    margin-top: var(--large-padding);
     width: 100%;
   }
 
-  .locationLink:hover .locationImage img{
+  .locationLink:hover .locationImage img {
     mix-blend-mode: luminosity;
     transition: all 400ms;
   }

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { graphql } from "gatsby"
 import { Link, FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 import moment from "moment"
@@ -7,66 +7,6 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import PdfDownload from "../components/pdfDownload"
 import Slider from "react-slick"
 import Seo from "../components/seo"
-
-function NextArrow(props) {
-  const { onClick } = props
-  return (
-    <div
-      className={props.addClassName}
-      onClick={onClick}
-      onKeyDown={onClick}
-      role="button"
-      tabIndex={0}
-      aria-label="go to next"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={styles.carouselSVG}
-        viewBox="0 0 13.047 28.672"
-      >
-        <path
-          id="Polygon_3"
-          data-name="Polygon 3"
-          d="M0,12.009,14.011,0,28.021,12.009"
-          transform="translate(12.389 0.325) rotate(90)"
-          fill="none"
-          stroke="#000"
-          stroke-width="1"
-        />
-      </svg>
-    </div>
-  )
-}
-
-function PrevArrow(props) {
-  const { onClick } = props
-  return (
-    <div
-      className={props.addClassName}
-      onClick={onClick}
-      onKeyDown={onClick}
-      role="button"
-      tabIndex={0}
-      aria-label="go to previous"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className={styles.carouselSVG}
-        viewBox="0 0 13.047 28.672"
-      >
-        <path
-          id="Polygon_4"
-          data-name="Polygon 4"
-          d="M0,12.009,14.011,0,28.021,12.009"
-          transform="translate(0.659 28.346) rotate(-90)"
-          fill="none"
-          stroke="#000"
-          stroke-width="1"
-        />
-      </svg>
-    </div>
-  )
-}
 
 const Fair = ({ data }) => {
   const {
@@ -84,18 +24,18 @@ const Fair = ({ data }) => {
   } = data.allContentfulFair.nodes[0]
 
   const [activeSlide, setActiveSlide] = useState(0)
+  const sliderRef = useRef(null)
 
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
+    arrows: false,
     fade: true,
-    nextArrow: <NextArrow addClassName={styles.nextArrow} />,
-    prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
-    afterChange: current => setActiveSlide(current),
+    beforeChange: (current, next) => {
+      setActiveSlide(next)
+    },
     adaptiveHeight: true,
   }
-  
 
   return (
     <div className="pageContainer">
@@ -156,7 +96,7 @@ const Fair = ({ data }) => {
           )}
         </div>
         <div className={styles.fairAboveRight}>
-          <Slider {...settings}>
+          <Slider {...settings} ref={sliderRef}>
             {featuredImages.map(featuredImage => (
               <div key={featuredImage.id}>
                 <div className={styles.fairSlide}>
@@ -168,11 +108,82 @@ const Fair = ({ data }) => {
               </div>
             ))}
           </Slider>
-          {featuredImages?.length > 1 && (
-            <div className={styles.slideCount}>
-              {Math.round(activeSlide + 1)} / {featuredImages.length}
+          <div className={styles.underCarousel}>
+            <div
+              className={styles.figcaption}
+              dangerouslySetInnerHTML={{
+                __html: featuredImages[
+                  activeSlide
+                ].caption.childMarkdownRemark.html.replace(
+                  /\b(\d+)\/(\d+)/g,
+                  "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
+                ),
+              }}
+            ></div>
+            <div className={styles.fairSlideCountContainer}>
+              <div
+                role="button"
+                tabIndex={0}
+                aria-label="go to previous"
+                className={styles.fairPreviousArrow}
+                onClick={() => sliderRef.current.slickPrevious()}
+                onKeyDown={e =>
+                  e.code === "Enter" || e.code === "Space"
+                    ? sliderRef.current.slickPrevious()
+                    : null
+                }
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={styles.carouselSVG}
+                  viewBox="0 0 13.047 28.672"
+                >
+                  <path
+                    id="Polygon_4"
+                    data-name="Polygon 4"
+                    d="M0,12.009,14.011,0,28.021,12.009"
+                    transform="translate(0.659 28.346) rotate(-90)"
+                    fill="none"
+                    stroke="#000"
+                    strokeWidth="1"
+                  />
+                </svg>
+              </div>
+              {featuredImages && featuredImages?.length > 1 && (
+                <div className={styles.fairSlideCount}>
+                  {Math.round(activeSlide + 1)} / {featuredImages.length}
+                </div>
+              )}
+              <div
+                role="button"
+                tabIndex={0}
+                aria-label="go to next"
+                className={styles.fairNextArrow}
+                onClick={() => sliderRef.current.slickNext()}
+                onKeyDown={e =>
+                  e.code === "Enter" || e.code === "Space"
+                    ? sliderRef.current.slickNext()
+                    : null
+                }
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={styles.carouselSVG}
+                  viewBox="0 0 13.047 28.672"
+                >
+                  <path
+                    id="Polygon_3"
+                    data-name="Polygon 3"
+                    d="M0,12.009,14.011,0,28.021,12.009"
+                    transform="translate(12.389 0.325) rotate(90)"
+                    fill="none"
+                    stroke="#000"
+                    strokeWidth="1"
+                  />
+                </svg>
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
@@ -217,6 +228,11 @@ export const query = graphql`
           image {
             description
             gatsbyImageData
+          }
+          caption {
+            childMarkdownRemark {
+              html
+            }
           }
         }
         aboutLinks {
