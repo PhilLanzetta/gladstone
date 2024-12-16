@@ -415,7 +415,7 @@ export const query = graphql`
 `
 
 export const Head = ({ data }) => (
-  <Seo title={data.allContentfulExhibition.nodes[0].title} />
+  <Seo title={data.allContentfulExhibition.nodes[0].title.replace('<br>', ' | ')} />
 )
 
 export default injectIntl(Exhibit)
