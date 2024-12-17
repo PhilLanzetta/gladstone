@@ -114,7 +114,7 @@ const Fair = ({ data }) => {
               dangerouslySetInnerHTML={{
                 __html: featuredImages[
                   activeSlide
-                ].caption.childMarkdownRemark.html.replace(
+                ].caption?.childMarkdownRemark.html.replace(
                   /\b(\d+)\/(\d+)/g,
                   "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
                 ),
