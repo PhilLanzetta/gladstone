@@ -361,19 +361,6 @@ export const query = graphql`
             startDate
             endDate
           }
-          // ... on ContentfulFair {
-          //   fairId: id
-          //   slug
-          //   tileImage {
-          //     image {
-          //       gatsbyImageData
-          //       description
-          //     }
-          //   }
-          //   endDate
-          //   startDate
-          //   title
-          // }
           ... on ContentfulLinkWithImage {
             linkId: id
             image {
