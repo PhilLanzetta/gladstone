@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { graphql } from "gatsby"
 import { Link, FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -11,6 +11,8 @@ import useWindowSize from "../utils/useWindowSize"
 import SimpleCarousel from "../components/simpleCarousel"
 import PdfDownload from "../components/pdfDownload"
 import Pagination from "../components/pagination"
+import moment from "moment"
+import { AnimatePresence, motion } from "framer-motion"
 
 const Artist = ({ data }) => {
   const {
@@ -31,12 +33,32 @@ const Artist = ({ data }) => {
 
   const allPublications = data.allShopifyProduct.nodes
 
-  const orderedPublications = publications?.map(handle =>
-    allPublications?.filter(pub => pub.handle === handle)
-  ).flat()
+  const orderedPublications = publications
+    ?.map(handle => allPublications?.filter(pub => pub.handle === handle))
+    .flat()
+
+  const initialPress = press.slice(0, 8)
+  const morePress = press.length > 8
 
   const { width } = useWindowSize()
   const isMobile = width < 700
+
+  const [pressOpen, setPressOpen] = useState(false)
+
+  useEffect(() => {
+    if (pressOpen === true) {
+      const scrollY = window.scrollY
+      const body = document.body
+      body.style.position = "fixed"
+      body.style.top = `-${scrollY}px`
+    } else {
+      const body = document.body
+      const scrollY = body.style.top
+      body.style.position = ""
+      body.style.top = ""
+      window.scrollTo(0, parseInt(scrollY || "0") * -1)
+    }
+  }, [pressOpen])
 
   return (
     <>
@@ -164,9 +186,110 @@ const Artist = ({ data }) => {
             <p className={styles.artistSectionHeading}>
               <FormattedMessage id="press"></FormattedMessage>
             </p>
-            <div id="press">
-              <Pagination type="press" data={press} showNum={8}></Pagination>
+            <div id="press" className={styles.paginationContainer}>
+              {initialPress.map(pressItem => (
+                <div key={pressItem.id} className={styles.pressItem}>
+                  <p>{pressItem.title}</p>
+                  {pressItem.articleLink ? (
+                    <a
+                      href={pressItem.articleLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.pressPub}
+                    >
+                      <em>{pressItem.publication}</em> &#8599;
+                    </a>
+                  ) : (
+                    <p className={styles.pressPub}>
+                      <em>{pressItem.publication}</em>
+                    </p>
+                  )}
+                  <p className={styles.pressPub}>{pressItem.author}</p>
+                  <p className={styles.pressSecondary}>
+                    {pressItem.showDate === false
+                      ? moment(pressItem.date).format("MMMM, YYYY")
+                      : moment(pressItem.date).format("MMMM D, YYYY")}
+                  </p>
+                  {pressItem.articlePdf && (
+                    <a
+                      className={styles.pressSecondaryLink}
+                      href={pressItem.articlePdf.file.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <FormattedMessage id="download_pdf"></FormattedMessage>{" "}
+                      &darr;
+                    </a>
+                  )}
+                </div>
+              ))}
+              {morePress && (
+                <button
+                  onClick={() => setPressOpen(true)}
+                  className={styles.loadMoreBtn}
+                >
+                  <FormattedMessage id="view_more"></FormattedMessage>
+                </button>
+              )}
             </div>
+            <AnimatePresence>
+              {pressOpen && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className={styles.pressPopUp}
+                >
+                  <p className={styles.artistPressSectionHeading}>
+                    <FormattedMessage id="press"></FormattedMessage>
+                    <button
+                      className={styles.closePress}
+                      onClick={() => setPressOpen(false)}
+                    >
+                      ×
+                    </button>
+                  </p>
+                  <div id="press" className={styles.paginationContainer}>
+                    {press.map(pressItem => (
+                      <div key={pressItem.id} className={styles.pressItem}>
+                        <p>{pressItem.title}</p>
+                        {pressItem.articleLink ? (
+                          <a
+                            href={pressItem.articleLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={styles.pressPub}
+                          >
+                            <em>{pressItem.publication}</em> &#8599;
+                          </a>
+                        ) : (
+                          <p className={styles.pressPub}>
+                            <em>{pressItem.publication}</em>
+                          </p>
+                        )}
+                        <p className={styles.pressPub}>{pressItem.author}</p>
+                        <p className={styles.pressSecondary}>
+                          {pressItem.showDate === false
+                            ? moment(pressItem.date).format("MMMM, YYYY")
+                            : moment(pressItem.date).format("MMMM D, YYYY")}
+                        </p>
+                        {pressItem.articlePdf && (
+                          <a
+                            className={styles.pressSecondaryLink}
+                            href={pressItem.articlePdf.file.url}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <FormattedMessage id="download_pdf"></FormattedMessage>{" "}
+                            &darr;
+                          </a>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </>
         )}
         {studioVisit && (
@@ -198,10 +321,7 @@ const Artist = ({ data }) => {
               <FormattedMessage id="video"></FormattedMessage>
             </p>
             <div id="video">
-              <SimpleCarousel
-                videos={videos}
-                slideCount={1}
-              ></SimpleCarousel>
+              <SimpleCarousel videos={videos} slideCount={1}></SimpleCarousel>
             </div>
           </>
         )}
