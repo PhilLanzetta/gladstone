@@ -38,7 +38,7 @@ const Artist = ({ data }) => {
     .flat()
 
   const initialPress = press?.slice(0, 8)
-  const morePress = press.length > 8
+  const morePress = press?.length > 8
 
   const { width } = useWindowSize()
   const isMobile = width < 700
