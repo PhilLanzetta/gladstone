@@ -159,7 +159,7 @@ exports.createPages = async ({ actions, graphql }) => {
   })
 
   viewingRooms.forEach(({ node }) => {
-    const fairSlug = node.fair[0].slug
+    const fairSlug = node.fair && node.fair[0].slug
     createPage({
       path: `/fair/${fairSlug}/viewing-room`,
       component: require.resolve("./src/templates/viewingRoom-template.js"),
