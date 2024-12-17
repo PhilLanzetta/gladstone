@@ -95,6 +95,12 @@ const ProductPage = ({ data }) => {
     )
     .flat()
 
+  const covers = variants
+    .filter(variant =>
+      variant.selectedOptions?.map(option => option.name === "Cover Image")
+    )
+    .flat()
+
   const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -165,6 +171,29 @@ const ProductPage = ({ data }) => {
                   </select>
                 </div>
               )}
+              {covers?.length > 0 && (
+                <>
+                  <p className={styles.coverHeading}>Cover</p>
+                  <div className={styles.productCoverContainer}>
+                    {covers.map((cover, index) => (
+                      <button
+                        className={`${styles.coverButton} ${
+                          index === variantIndex ? styles.activeCover : ""
+                        }`}
+                        key={index}
+                        onClick={() => setVariantIndex(index)}
+                      >
+                        <GatsbyImage
+                          image={
+                            cover.image?.localFile.childImageSharp
+                              .gatsbyImageData
+                          }
+                        ></GatsbyImage>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
               <button
                 onClick={() =>
                   addVariantToCart(data.shopifyProduct, variantIndex, 1)
@@ -220,6 +249,13 @@ export const query = graphql`
       totalInventory
       variants {
         shopifyId
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
         selectedOptions {
           name
           value
