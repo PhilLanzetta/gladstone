@@ -37,7 +37,7 @@ const Artist = ({ data }) => {
     ?.map(handle => allPublications?.filter(pub => pub.handle === handle))
     .flat()
 
-  const initialPress = press.slice(0, 8)
+  const initialPress = press?.slice(0, 8)
   const morePress = press.length > 8
 
   const { width } = useWindowSize()
