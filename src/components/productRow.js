@@ -7,6 +7,7 @@ import { FormattedMessage } from "gatsby-plugin-intl"
 const ProductRow = ({ item }) => {
   const { product, quantity, variantIndex } = item
 
+  console.log(product)
   const size = product.variants
     .map(variant =>
       variant.selectedOptions.filter(option => option.name === "Size")
@@ -28,13 +29,26 @@ const ProductRow = ({ item }) => {
         <div className={styles.productInfo}>
           <GatsbyImage
             image={
-              product.media[0]?.image.localFile.childImageSharp.gatsbyImageData
+              product.variants[variantIndex].image?.localFile.childImageSharp
+                .gatsbyImageData
             }
             className={styles.productRowImage}
           ></GatsbyImage>
           <p>
             <span className={styles.productArtist}>{artist}</span>
             <span className={styles.productTitle}>{product.title}</span>
+            {product.variants[variantIndex].selectedOptions && (
+              <span className={styles.productTitle}>
+                {" "}
+                {product.variants[variantIndex].selectedOptions.map(
+                  (item, index) => (
+                    <p key={index}>
+                      {item.name}: {item.value}
+                    </p>
+                  )
+                )}
+              </span>
+            )}
           </p>
           {size && <p className="product-row-size">Size - {size.value}</p>}
         </div>

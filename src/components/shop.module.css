@@ -272,13 +272,10 @@
 
 .productCoverContainer {
   margin-top: 10px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
   flex-wrap: wrap;
-}
-
-.coverButton {
-  width: calc(33% - 10px);
 }
 
 .coverHeading {
