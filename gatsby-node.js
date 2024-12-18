@@ -39,7 +39,11 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
       }
-      allContentfulExhibition {
+      allContentfulExhibition(
+        filter: {
+          title: { ne: "Placeholder (does not show on site, do not delete)" }
+        }
+      ) {
         edges {
           node {
             slug

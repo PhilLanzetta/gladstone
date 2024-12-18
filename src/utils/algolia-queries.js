@@ -1,5 +1,5 @@
 const pagesQueryEN = `{
-  allContentfulEntry(filter: { node_locale: { eq: "en" }, contentful_id: {ne: "uC942hXE8PzJdEnGrsc1N"} }) {
+  allContentfulEntry(filter: { node_locale: { eq: "en" }, contentful_id: {nin: ["uC942hXE8PzJdEnGrsc1N", "6NpF313v6WrZRPg5ORbKej"]} }) {
     edges {
       node {
         id
@@ -102,7 +102,7 @@ const pagesQueryEN = `{
 }`
 
 const pagesQueryKO = `{
-  allContentfulEntry(filter: { node_locale: { eq: "ko" }, contentful_id: {ne: "uC942hXE8PzJdEnGrsc1N"} }) {
+  allContentfulEntry(filter: { node_locale: { eq: "ko" }, contentful_id: {nin: ["uC942hXE8PzJdEnGrsc1N", "6NpF313v6WrZRPg5ORbKej"]} }) {
     edges {
       node {
         id
@@ -205,7 +205,7 @@ const pagesQueryKO = `{
 }`
 
 const pagesQueryZH = `{
-  allContentfulEntry(filter: { node_locale: { eq: "zh" }, contentful_id: {ne: "uC942hXE8PzJdEnGrsc1N"} }) {
+  allContentfulEntry(filter: { node_locale: { eq: "zh" }, contentful_id: {nin: ["uC942hXE8PzJdEnGrsc1N", "6NpF313v6WrZRPg5ORbKej"]} }) {
     edges {
       node {
         id

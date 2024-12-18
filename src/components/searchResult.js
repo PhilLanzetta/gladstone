@@ -61,7 +61,7 @@ const Hit = ({ hit }) => {
                 <div className={styles.infoTextTop}>
                   <p className={styles.searchResultTitle}>
                     {artists && artists[0].name + " — "}
-                    {title}
+                    <span dangerouslySetInnerHTML={{__html: title}}></span>
                   </p>
                   <div
                     dangerouslySetInnerHTML={{
