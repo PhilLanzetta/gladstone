@@ -30,9 +30,11 @@ const ProductRow = ({ item }) => {
           <GatsbyImage
             image={
               product.variants[variantIndex].image?.localFile.childImageSharp
-                .gatsbyImageData
+                .gatsbyImageData ||
+              product.media[0].image.localFile.childImageSharp.gatsbyImageData
             }
             className={styles.productRowImage}
+            alt="product image"
           ></GatsbyImage>
           <p>
             <span className={styles.productArtist}>{artist}</span>
@@ -43,7 +45,11 @@ const ProductRow = ({ item }) => {
                 {product.variants[variantIndex].selectedOptions.map(
                   (item, index) => (
                     <p key={index}>
-                      {item.name}: {item.value}
+                      {item.name !== "Title" && (
+                        <span>
+                          {item.name}: {item.value}
+                        </span>
+                      )}
                     </p>
                   )
                 )}

@@ -96,9 +96,15 @@ const ProductPage = ({ data }) => {
     .flat()
 
   const covers = variants
-    .filter(variant =>
-      variant.selectedOptions?.map(option => option.name === "Cover Image")
-    )
+    .map(variant => {
+      if (
+        variant.selectedOptions?.filter(option => option.name === "Cover Image")
+          .length > 0
+      ) {
+        return variant
+      } else return false
+    })
+    .filter(item => item !== false)
     .flat()
 
   const settings = {
@@ -173,7 +179,7 @@ const ProductPage = ({ data }) => {
               )}
               {covers?.length > 0 && (
                 <>
-                  <p className={styles.coverHeading}>Cover</p>
+                  <p className={styles.coverHeading}>Cover Image:</p>
                   <div className={styles.productCoverContainer}>
                     {covers.map((cover, index) => (
                       <button
