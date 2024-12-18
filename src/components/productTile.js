@@ -16,6 +16,7 @@ const ProductTile = ({ product, page }) => {
             <GatsbyImage
               image={featuredImage?.localFile.childImageSharp.gatsbyImageData}
               alt={title}
+              className={styles.productTileImageImg}
             ></GatsbyImage>
           ) : (
             <StaticImage
