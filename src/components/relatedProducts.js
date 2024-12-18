@@ -12,7 +12,7 @@ const RelatedProducts = ({ productHandles }) => {
           featuredImage {
             localFile {
               childImageSharp {
-                gatsbyImageData(width: 600)
+                gatsbyImageData(layout: FULL_WIDTH)
               }
             }
           }
