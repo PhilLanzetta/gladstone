@@ -192,6 +192,28 @@ p {
   color: #000;
 }
 
+.captionOverflow {
+  position: relative;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.captionOverflow p {
+  padding-right: 10px;
+}
+
+.captionOverflow::after {
+  content: "↓";
+  position: sticky;
+  bottom: 0;
+  right: 0;
+  float: right;
+}
+
+.captionOverflow::-webkit-scrollbar {
+  display: none;
+}
+
 @media screen and (max-width: 1000px) {
   :root {
     --medium-padding: 30px;
