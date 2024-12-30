@@ -76,13 +76,15 @@ const MediaCarousel = ({ media }) => {
     setNav2(slider2)
   }, [slider1, slider2])
 
-  const captionDivs = document.getElementsByClassName("captionDiv")
+  useEffect(() => {
+    const captionDivs = document.getElementsByClassName("captionDiv")
 
-  for (let i = 0; i < captionDivs.length; i++) {
-    if (captionDivs[i].offsetHeight === 100) {
-      captionDivs[i].classList.add("captionOverflow")
+    for (let i = 0; i < captionDivs.length; i++) {
+      if (captionDivs[i].offsetHeight === 100) {
+        captionDivs[i].classList.add("captionOverflow")
+      }
     }
-  }
+  }, [])
 
   const settingsMain = {
     slidesToShow: 1,
