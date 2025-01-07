@@ -105,7 +105,7 @@ export const query = graphql`
     allShopifyProduct(
       filter: {
         metafields: { elemMatch: { value: { eq: $artist } } }
-        status: { eq: ACTIVE }
+        totalInventory: {gt: 0}
       }
     ) {
       nodes {
