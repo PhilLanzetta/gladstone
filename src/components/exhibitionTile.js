@@ -67,7 +67,7 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
             <p className={styles.date}>
               {moment(startDate).year() === moment(endDate).year() ? (
                 <span>
-                  {moment(startDate).format("MMMM D")} &mdash;
+                  {moment(startDate).format("MMMM D")} &mdash;{" "}
                   {moment(endDate).format("MMMM D, YYYY")}
                 </span>
               ) : (

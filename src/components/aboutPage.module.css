@@ -1,8 +1,8 @@
 .headlineText {
-  font-size: var(--subtitle);
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 50vh;
   margin-bottom: var(--large-padding);
 }
 
@@ -118,15 +118,14 @@
   }
 
   .headlineText {
-    font-size: var(--subtitle);
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .headlineText p {
-    margin-top: var(--large-padding);
     width: 100%;
+    font-size: var(--body-text);
   }
 
   .locationLink:hover .locationImage img {
