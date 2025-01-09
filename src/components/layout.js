@@ -12,7 +12,7 @@ const Layout = ({ children, location }) => {
     location?.pathname === "/en/" ||
     location?.pathname === "/zh/" ||
     location?.pathname === "/ko/"
-  const isAfter = location?.pathname.includes("after-hours")
+  const isAfter = location?.pathname.includes("office-party")
   const isShop = location?.pathname.includes("shop")
   const container = {
     out: { opacity: 0, transition: { duration: 0.5 } },
