@@ -12,7 +12,11 @@ const ArtistCollectionTemplate = ({ data, location }) => {
     return array.indexOf(value) === index
   }
 
-  const allProducts = data.allShopifyProduct.nodes
+  const allProducts = data.allShopifyProduct.nodes.sort(
+    (a, b) =>
+      b.metafields.filter(item => item.key === "publication_date")[0]?.value -
+      a.metafields.filter(item => item.key === "publication_date")[0]?.value
+  )
 
   const artists = data.allShopifyMetafield.nodes
     .map(node => node.value)
@@ -105,7 +109,7 @@ export const query = graphql`
     allShopifyProduct(
       filter: {
         metafields: { elemMatch: { value: { eq: $artist } } }
-        totalInventory: {gt: 0}
+        totalInventory: { gt: 0 }
       }
     ) {
       nodes {

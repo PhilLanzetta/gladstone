@@ -14,7 +14,7 @@ const ProductTile = ({ product, page }) => {
         <div className={styles.productTileImage}>
           {featuredImage ? (
             <GatsbyImage
-              image={featuredImage?.localFile.childImageSharp.gatsbyImageData}
+              image={featuredImage?.localFile?.childImageSharp.gatsbyImageData}
               alt={title}
               className={styles.productTileImageImg}
             ></GatsbyImage>
