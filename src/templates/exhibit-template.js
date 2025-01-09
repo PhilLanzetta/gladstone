@@ -386,14 +386,6 @@ export const query = graphql`
               label
               url
             }
-            download {
-              buttonText
-              pdfFile {
-                file {
-                  url
-                }
-              }
-            }
           }
         }
       }
