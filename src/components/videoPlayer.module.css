@@ -4,6 +4,11 @@
   margin: 0 20px;
 }
 
+.officeVideoPlayerContainer {
+  display: block;
+  width: 100%;
+}
+
 .videoPlayer {
   position: relative;
   aspect-ratio: 16 / 9;

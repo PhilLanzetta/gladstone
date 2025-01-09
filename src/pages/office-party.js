@@ -42,6 +42,7 @@ const OfficeParty = ({ data, pageContext }) => {
                       videoId={entry.videoId}
                       activeVideo={activeVideo}
                       setActiveVideo={setActiveVideo}
+                      officeParty={true}
                     ></VideoPlayer>
                   )
                 } else if (entry.carouselId) {
@@ -87,6 +88,7 @@ const OfficeParty = ({ data, pageContext }) => {
                       videoId={entry.videoId}
                       activeVideo={activeVideo}
                       setActiveVideo={setActiveVideo}
+                      officeParty={true}
                     ></VideoPlayer>
                   )
                 } else if (entry.carouselId) {

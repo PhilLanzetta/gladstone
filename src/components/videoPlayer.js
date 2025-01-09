@@ -21,6 +21,7 @@ const VideoPlayer = ({
   isFirst,
   varied,
   variedWidth,
+  officeParty
 }) => {
   const videoPlayerRef = useRef(null)
   const controlRef = useRef(null)
@@ -156,7 +157,7 @@ const VideoPlayer = ({
 
   return (
     <div
-      className={styles.videoPlayerContainer}
+      className={officeParty ? styles.officeVideoPlayerContainer : styles.videoPlayerContainer}
       style={{ height: varied ? "50vh" : "auto" }}
     >
       <div
