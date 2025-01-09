@@ -165,7 +165,7 @@ const About = ({ data }) => {
               {section.staffMembers.map(staff => (
                 <div key={staff.id} className={styles.staff}>
                   <p>{staff.name}</p>
-                  <p className={styles.title}>{staff.title}</p>
+                  <p className={styles.title} dangerouslySetInnerHTML={{__html: staff.title}}></p>
                 </div>
               ))}
             </div>
