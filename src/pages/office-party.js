@@ -8,7 +8,7 @@ import AfterHoursCarousel from "../components/afterHoursCarousel"
 import useWindowSize from "../utils/useWindowSize"
 import Seo from "../components/seo"
 
-const AfterHours = ({ data, pageContext }) => {
+const OfficeParty = ({ data, pageContext }) => {
   const { entries } = data.allContentfulAfterHoursPage.nodes[0]
   const { width } = useWindowSize()
   const isMobile = width < 701
@@ -248,6 +248,6 @@ export const query = graphql`
   }
 `
 
-export const Head = () => <Seo title="After Hours" />
+export const Head = () => <Seo title="Office Party" />
 
-export default AfterHours
+export default OfficeParty
