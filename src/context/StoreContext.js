@@ -65,6 +65,8 @@ export const StoreProvider = ({ children }) => {
           if (!existingCheckout.completedAt) {
             setCheckoutItem(existingCheckout)
             return
+          } else {
+            setCart([])
           }
         } catch (e) {
           localStorage.setItem(localStorageKey, null)
