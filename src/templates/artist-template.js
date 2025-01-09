@@ -240,52 +240,54 @@ const Artist = ({ data }) => {
                   exit={{ opacity: 0 }}
                   className={styles.pressPopUp}
                 >
-                  <p className={styles.artistPressSectionHeading}>
-                    <FormattedMessage id="press"></FormattedMessage>
-                    <button
-                      className={styles.closePress}
-                      onClick={() => setPressOpen(false)}
-                    >
-                      ×
-                    </button>
-                  </p>
-                  <div id="press" className={styles.paginationContainer}>
-                    {press.map(pressItem => (
-                      <div key={pressItem.id} className={styles.pressItem}>
-                        <p>{pressItem.title}</p>
-                        {pressItem.articleLink ? (
-                          <a
-                            href={pressItem.articleLink}
-                            target="_blank"
-                            rel="noreferrer"
-                            className={styles.pressPub}
-                          >
-                            <em>{pressItem.publication}</em> &#8599;
-                          </a>
-                        ) : (
-                          <p className={styles.pressPub}>
-                            <em>{pressItem.publication}</em>
+                  <div className={styles.paginationOuter}>
+                    <p className={styles.artistPressSectionHeading}>
+                      <FormattedMessage id="press"></FormattedMessage>
+                      <button
+                        className={styles.closePress}
+                        onClick={() => setPressOpen(false)}
+                      >
+                        ×
+                      </button>
+                    </p>
+                    <div id="press" className={styles.paginationContainer}>
+                      {press.map(pressItem => (
+                        <div key={pressItem.id} className={styles.pressItem}>
+                          <p>{pressItem.title}</p>
+                          {pressItem.articleLink ? (
+                            <a
+                              href={pressItem.articleLink}
+                              target="_blank"
+                              rel="noreferrer"
+                              className={styles.pressPub}
+                            >
+                              <em>{pressItem.publication}</em> &#8599;
+                            </a>
+                          ) : (
+                            <p className={styles.pressPub}>
+                              <em>{pressItem.publication}</em>
+                            </p>
+                          )}
+                          <p className={styles.pressPub}>{pressItem.author}</p>
+                          <p className={styles.pressSecondary}>
+                            {pressItem.showDate === false
+                              ? moment(pressItem.date).format("MMMM, YYYY")
+                              : moment(pressItem.date).format("MMMM D, YYYY")}
                           </p>
-                        )}
-                        <p className={styles.pressPub}>{pressItem.author}</p>
-                        <p className={styles.pressSecondary}>
-                          {pressItem.showDate === false
-                            ? moment(pressItem.date).format("MMMM, YYYY")
-                            : moment(pressItem.date).format("MMMM D, YYYY")}
-                        </p>
-                        {pressItem.articlePdf && (
-                          <a
-                            className={styles.pressSecondaryLink}
-                            href={pressItem.articlePdf.file.url}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <FormattedMessage id="download_pdf"></FormattedMessage>{" "}
-                            &darr;
-                          </a>
-                        )}
-                      </div>
-                    ))}
+                          {pressItem.articlePdf && (
+                            <a
+                              className={styles.pressSecondaryLink}
+                              href={pressItem.articlePdf.file.url}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <FormattedMessage id="download_pdf"></FormattedMessage>{" "}
+                              &darr;
+                            </a>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               )}
