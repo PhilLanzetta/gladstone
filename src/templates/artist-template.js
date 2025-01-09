@@ -247,7 +247,14 @@ const Artist = ({ data }) => {
                         className={styles.closePress}
                         onClick={() => setPressOpen(false)}
                       >
-                        ×
+                        <svg
+                          viewBox="0 0 32 32"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M1 31L31 1" stroke="black" />
+                          <path d="M1 1L31 31" stroke="black" />
+                        </svg>
                       </button>
                     </p>
                     <div id="press" className={styles.paginationContainer}>
