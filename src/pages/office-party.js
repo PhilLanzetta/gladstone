@@ -26,7 +26,7 @@ const OfficeParty = ({ data, pageContext }) => {
   return (
     <div className="pageContainer">
       <h1 className="pageHeading">
-        <FormattedMessage id="after_hours"></FormattedMessage>
+        <FormattedMessage id="office_party"></FormattedMessage>
       </h1>
       <div className={styles.contentContainer}>
         {!isMobile && (
