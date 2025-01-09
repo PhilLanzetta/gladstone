@@ -120,15 +120,6 @@ export const query = graphql`
             html
           }
         }
-        download {
-          buttonText
-          id
-          pdfFile {
-            file {
-              url
-            }
-          }
-        }
       }
     }
   }
