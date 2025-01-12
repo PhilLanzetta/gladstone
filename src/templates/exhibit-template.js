@@ -11,6 +11,7 @@ import ExhibitionTile from "../components/exhibitionTile"
 import PdfDownload from "../components/pdfDownload"
 import NewsItem from "../components/newsItem"
 import Seo from "../components/seo"
+import ProductTile from "../components/productTile"
 
 const Exhibit = ({ data, pageContext }) => {
   const {
@@ -161,7 +162,7 @@ const Exhibit = ({ data, pageContext }) => {
           ))}
         </>
       )}
-      {relatedContent && (
+      {relatedContent && relatedContent.length > 0 && (
         <div>
           <p className={styles.sectionHeading}>{relatedHeading}</p>
           <div className={styles.relatedContainer}>
@@ -236,6 +237,15 @@ const Exhibit = ({ data, pageContext }) => {
                     content={content}
                     related={true}
                   ></NewsItem>
+                )
+              } else if (content.publicationId) {
+                return (
+                  <ProductTile
+                    key={content.publicationId}
+                    product={content}
+                    page="artist"
+                    related={true}
+                  ></ProductTile>
                 )
               } else {
                 return <div>Unknown Content</div>
@@ -387,6 +397,16 @@ export const query = graphql`
               url
             }
           }
+          ... on ContentfulRelatedPublication {
+            publicationId: id
+            title
+            name: artist
+            handle
+            tileImage {
+              gatsbyImageData
+              description
+            }
+          }
         }
       }
     }
@@ -394,7 +414,9 @@ export const query = graphql`
 `
 
 export const Head = ({ data }) => (
-  <Seo title={data.allContentfulExhibition.nodes[0].title.replace('<br>', ' | ')} />
+  <Seo
+    title={data.allContentfulExhibition.nodes[0].title.replace("<br>", " | ")}
+  />
 )
 
 export default injectIntl(Exhibit)

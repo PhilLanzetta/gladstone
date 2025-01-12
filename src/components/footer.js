@@ -1,12 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import * as styles from "./footer.module.css"
 import MailForm from "./mailForm"
 import logo from "../images/Gladstone_Small.svg"
 import whiteLogo from "../images/Gladstone_Small_White.svg"
 import { Link, FormattedMessage } from "gatsby-plugin-intl"
 import Language from "./language"
+import weChat from "../images/wechat_qr.png"
+import { AnimatePresence, motion } from "framer-motion"
 
 const Footer = ({ isAfter }) => {
+  const [wechatOpen, setwechatOpen] = useState(false)
   return (
     <footer className={isAfter ? styles.afterFooter : styles.footer}>
       <div className={styles.upperFooter}>
@@ -69,9 +72,12 @@ const Footer = ({ isAfter }) => {
             >
               Facebook
             </a>
-            <a href="https://www.google.com" target="_blank" rel="noreferrer">
+            <button
+              onClick={() => setwechatOpen(true)}
+              className={styles.chatButton}
+            >
               WeChat
-            </a>
+            </button>
           </div>
         </div>
         <MailForm isAfter={isAfter}></MailForm>
@@ -95,6 +101,36 @@ const Footer = ({ isAfter }) => {
           </p>
         </div>
       </div>
+      <AnimatePresence>
+        {wechatOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={styles.wechatOuter}
+          >
+            <div className={styles.wechatContainer}>
+              <button
+                className={styles.wechatClose}
+                onClick={() => setwechatOpen(false)}
+              >
+                <svg
+                  viewBox="0 0 32 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M1 31L31 1" stroke="black" />
+                  <path d="M1 1L31 31" stroke="black" />
+                </svg>
+              </button>
+              <div className={styles.wechatInfo}>
+                <img src={weChat} alt="wechat qr code"></img>
+                <p>WeChat ID: gladstonegallery</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </footer>
   )
 }

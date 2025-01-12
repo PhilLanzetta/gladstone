@@ -55,6 +55,15 @@
   font-variant-numeric: normal;
 }
 
+.relatedProductImage {
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eaeaea;
+}
+
 @media screen and (max-width: 700px) {
   .productTile {
     width: 100%;

@@ -3,19 +3,40 @@ import { Link } from "gatsby-plugin-intl"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import * as styles from "./productTile.module.css"
 
-const ProductTile = ({ product, page }) => {
-  const { handle, featuredImage, totalInventory, priceRangeV2, title, metafields } = product
+const ProductTile = ({ product, page, related }) => {
+  const {
+    handle,
+    featuredImage,
+    totalInventory,
+    priceRangeV2,
+    title,
+    metafields,
+    name,
+    tileImage,
+  } = product
 
-  const artist = metafields.filter(field => field.key === "artist")[0]?.value
+  const artist = related
+    ? name
+    : metafields.filter(field => field.key === "artist")[0]?.value
 
   return (
     <div className={styles.productTile}>
       <Link to={`/shop/${handle}`}>
-        <div className={styles.productTileImage}>
+        <div
+          className={
+            related ? styles.relatedProductImage : styles.productTileImage
+          }
+        >
           {featuredImage ? (
             <GatsbyImage
               image={featuredImage?.localFile?.childImageSharp.gatsbyImageData}
               alt={title}
+              className={styles.productTileImageImg}
+            ></GatsbyImage>
+          ) : tileImage ? (
+            <GatsbyImage
+              image={tileImage.gatsbyImageData}
+              alt={tileImage.description}
               className={styles.productTileImageImg}
             ></GatsbyImage>
           ) : (

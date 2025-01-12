@@ -60,7 +60,7 @@ const Hit = ({ hit }) => {
               <div className={styles.searchInfoText}>
                 <div className={styles.infoTextTop}>
                   <p className={styles.searchResultTitle}>
-                    {artists && artists[0].name + " — "}
+                    {artists && typeof artists === 'object' && artists[0].name + " — "}
                     <span dangerouslySetInnerHTML={{__html: title}}></span>
                   </p>
                   <div
