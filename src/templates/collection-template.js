@@ -38,7 +38,7 @@ const CollectionTemplate = ({ data, location }) => {
                 className={styles.dropdownButton}
                 onClick={() => {
                   setProducts(
-                    allProducts.sort(
+                    allProducts.slice().sort(
                       (a, b) =>
                         a.priceRangeV2?.minVariantPrice?.amount -
                         b.priceRangeV2?.minVariantPrice?.amount
@@ -53,7 +53,7 @@ const CollectionTemplate = ({ data, location }) => {
                 className={styles.dropdownButton}
                 onClick={() => {
                   setProducts(
-                    allProducts.sort(
+                    allProducts.slice().sort(
                       (a, b) =>
                         b.priceRangeV2?.minVariantPrice?.amount -
                         a.priceRangeV2?.minVariantPrice?.amount

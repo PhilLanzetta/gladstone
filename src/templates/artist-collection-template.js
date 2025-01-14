@@ -14,7 +14,7 @@ const ArtistCollectionTemplate = ({ data, location }) => {
 
   const allProducts = data.allShopifyProduct.nodes
 
-  const initialProducts = data.allShopifyProduct.nodes.sort((a, b) => {
+  const initialProducts = allProducts.slice().sort((a, b) => {
     const dateOne = a.metafields.filter(
       item => item.key === "publication_date"
     )[0]?.value
@@ -42,13 +42,13 @@ const ArtistCollectionTemplate = ({ data, location }) => {
     }
   })
 
+  const [filterOpen, setFilterOpen] = useState(false)
+  const [products, setProducts] = useState(initialProducts)
+
   const artists = data.allShopifyMetafield.nodes
     .map(node => node.value)
     .filter(onlyUnique)
     .sort((a, b) => a.split(" ").pop().localeCompare(b.split(" ").pop()))
-
-  const [filterOpen, setFilterOpen] = useState(false)
-  const [products, setProducts] = useState(initialProducts)
 
   return (
     <div className="shopPageContainer">
@@ -75,7 +75,7 @@ const ArtistCollectionTemplate = ({ data, location }) => {
                 className={styles.dropdownButton}
                 onClick={() => {
                   setProducts(
-                    allProducts.sort(
+                    allProducts.slice().sort(
                       (a, b) =>
                         a.priceRangeV2?.minVariantPrice?.amount -
                         b.priceRangeV2?.minVariantPrice?.amount
@@ -90,7 +90,7 @@ const ArtistCollectionTemplate = ({ data, location }) => {
                 className={styles.dropdownButton}
                 onClick={() => {
                   setProducts(
-                    allProducts.sort(
+                    allProducts.slice().sort(
                       (a, b) =>
                         b.priceRangeV2?.minVariantPrice?.amount -
                         a.priceRangeV2?.minVariantPrice?.amount
