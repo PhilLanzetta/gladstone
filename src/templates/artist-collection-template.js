@@ -6,14 +6,15 @@ import Seo from "../components/seo"
 import * as styles from "../components/shop.module.css"
 import { AnimatePresence, motion } from "framer-motion"
 import slugify from "slugify"
-import moment from "moment"
 
 const ArtistCollectionTemplate = ({ data, location }) => {
   function onlyUnique(value, index, array) {
     return array.indexOf(value) === index
   }
 
-  const allProducts = data.allShopifyProduct.nodes.sort((a, b) => {
+  const allProducts = data.allShopifyProduct.nodes
+
+  const initialProducts = data.allShopifyProduct.nodes.sort((a, b) => {
     const dateOne = a.metafields.filter(
       item => item.key === "publication_date"
     )[0]?.value
@@ -25,23 +26,18 @@ const ArtistCollectionTemplate = ({ data, location }) => {
       dateTwo !== undefined &&
       new Date(dateOne) < new Date(dateTwo)
     ) {
-      console.log(new Date(dateOne))
       return 1
     } else if (
       dateOne !== undefined &&
       dateTwo !== undefined &&
       new Date(dateOne) > new Date(dateTwo)
     ) {
-      console.log(new Date(dateTwo))
       return -1
     } else if (dateOne === undefined && dateTwo !== undefined) {
-      console.log("dateOne undefined")
       return 1
     } else if (dateOne !== undefined && dateTwo === undefined) {
-      console.log("date two undefined")
       return -1
     } else {
-      console.log("zero ran")
       return 0
     }
   })
@@ -52,7 +48,7 @@ const ArtistCollectionTemplate = ({ data, location }) => {
     .sort((a, b) => a.split(" ").pop().localeCompare(b.split(" ").pop()))
 
   const [filterOpen, setFilterOpen] = useState(false)
-  const [products, setProducts] = useState(allProducts)
+  const [products, setProducts] = useState(initialProducts)
 
   return (
     <div className="shopPageContainer">
