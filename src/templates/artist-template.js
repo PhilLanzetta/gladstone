@@ -438,6 +438,7 @@ export const query = graphql`
               }
             }
           }
+        }
         exhibitions {
           artists {
             id
