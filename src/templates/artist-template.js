@@ -438,21 +438,6 @@ export const query = graphql`
               }
             }
           }
-          ... on ContentfulVideoWrapper {
-            studioVideoId: id
-            caption {
-              childMarkdownRemark {
-                html
-              }
-            }
-            coverImage {
-              gatsbyImageData
-              description
-            }
-            source
-            aspectRatio
-          }
-        }
         exhibitions {
           artists {
             id
