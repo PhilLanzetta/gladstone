@@ -15,6 +15,11 @@
   padding-bottom: 20px;
 }
 
+.aboutSectionHeadingSub {
+  font-size: var(--subtitle);
+  padding-bottom: 20px;
+}
+
 .locationsOuterContainer {
   display: flex;
   flex-wrap: wrap;
@@ -86,16 +91,17 @@
 }
 
 .staffOuterContainer {
-  margin-bottom: var(--large-padding);
+  margin-bottom: var(--medium-padding);
 }
 
 .staffContainer {
-  column-count: 3;
-  column-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: calc(var(--large-padding) / 1.5);
 }
 
 .staff {
-  break-inside: avoid;
   margin-bottom: var(--medium-padding);
 }
 
@@ -134,7 +140,6 @@
   }
 
   .staffContainer {
-    column-count: 2;
-    column-gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
   }
 }

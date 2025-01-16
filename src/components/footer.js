@@ -26,7 +26,7 @@ const Footer = ({ isAfter }) => {
             <Link to="/exhibitions">
               <FormattedMessage id="exhibitions"></FormattedMessage>
             </Link>
-            <Link to="/events">
+            <Link to="/news">
               <FormattedMessage id="events"></FormattedMessage>
             </Link>
             <Link to="/shop/publications">

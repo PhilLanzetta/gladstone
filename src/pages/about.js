@@ -158,19 +158,119 @@ const About = ({ data }) => {
         </div>
       </div>
       <div id="staff">
-        {leadershipstaff.map(section => (
-          <div key={section.id} className={styles.staffOuterContainer}>
-            <p className={styles.aboutSectionHeading}>{section.heading}</p>
-            <div className={styles.staffContainer}>
-              {section.staffMembers.map(staff => (
-                <div key={staff.id} className={styles.staff}>
-                  <p>{staff.name}</p>
-                  <p className={styles.title} dangerouslySetInnerHTML={{__html: staff.title}}></p>
-                </div>
-              ))}
+        <div className={styles.staffOuterContainer}>
+          <p className={styles.aboutSectionHeading}>Staff</p>
+          <div className={styles.staffContainer}>
+            <div className={styles.staff}>
+              <p>Max Falkenstein</p>
+              <p className={styles.title}>Senior Partner</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Gavin Brown</p>
+              <p className={styles.title}>Partner</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Caroline Luce</p>
+              <p className={styles.title}>Partner</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Paula Tsai</p>
+              <p className={styles.title}>Partner</p>
             </div>
           </div>
-        ))}
+        </div>
+        <div className={styles.staffOuterContainer}>
+          <p className={styles.aboutSectionHeadingSub}>Sales</p>
+          <div className={styles.staffContainer}>
+            <div className={styles.staff}>
+              <p>Trina Gordon</p>
+              <p className={styles.title}>Senior Director</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Aaron Baldinger</p>
+              <p className={styles.title}>Director</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Emily Bates</p>
+              <p className={styles.title}>Director</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Alissa Bennett</p>
+              <p className={styles.title}>Director</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Maia Gianakos</p>
+              <p className={styles.title}>Director</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Cooke Maroney</p>
+              <p className={styles.title}>Director</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Frederick Schampers</p>
+              <p className={styles.title}>Director</p>
+            </div>
+          </div>
+          <div className={styles.staffContainer}>
+            <div className={styles.staff}>
+              <p>Erik Savercool</p>
+              <p className={styles.title}>Associate Director</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Caressa Yan</p>
+              <p className={styles.title}>Associate Director</p>
+            </div>
+          </div>
+          <div className={styles.staffContainer}>
+            <div className={styles.staff}>
+              <p>Gael Diercxsens</p>
+              <p className={styles.title}>Senior Director, Brussels</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Maxime de la Brousse</p>
+              <p className={styles.title}>Director, Brussels</p>
+            </div>
+          </div>
+          <div className={styles.staffContainer}>
+            <div className={styles.staff}>
+              <p>Jiwoong Jeong</p>
+              <p className={styles.title}>Associate Director, Seoul</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Qinrui Hua</p>
+              <p className={styles.title}>Associate Director, Beijing</p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.staffOuterContainer}>
+          <p className={styles.aboutSectionHeading}>Contact</p>
+          <div className={styles.staffContainer}>
+            <div className={styles.staff}>
+              <p>Sales Inquiries</p>
+              <p className={styles.title}>
+                <a href="mailto:sales@gladstonegallery.com">
+                  sales@gladstonegallery.com
+                </a>
+              </p>
+            </div>
+            <div className={styles.staff}>
+              <p>Press Inquiries</p>
+              <p className={styles.title}>
+                <a href="mailto:press@gladstonegallery.com">
+                  press@gladstonegallery.com
+                </a>
+              </p>
+            </div>
+            <div className={styles.staff}>
+              <p>General</p>
+              <p className={styles.title}>
+                <a href="mailto:info@gladstonegallery.com">
+                  info@gladstonegallery.com
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
