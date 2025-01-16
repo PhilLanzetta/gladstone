@@ -159,7 +159,7 @@ const About = ({ data }) => {
       </div>
       <div id="staff">
         <div className={styles.staffOuterContainer}>
-          <p className={styles.aboutSectionHeading}>Staff</p>
+          <p className={styles.aboutSectionHeading}>Leadership</p>
           <div className={styles.staffContainer}>
             <div className={styles.staff}>
               <p>Max Falkenstein</p>
