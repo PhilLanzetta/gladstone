@@ -43,7 +43,11 @@ const Exhibit = ({ data, pageContext }) => {
         <div className={styles.aboveLeft}>
           {artists?.map(artist => (
             <p key={artist.id} className={styles.aboveHeading}>
-              {artist.name !== title && artist.name}
+              {artist.name !== title && artist.isGladstoneArtist ? (
+                <Link to={`/artist/${artist.slug}`}>{artist.name}</Link>
+              ) : (
+                <span>{artist.name}</span>
+              )}
             </p>
           ))}
           <p className={styles.aboveHeading}>
