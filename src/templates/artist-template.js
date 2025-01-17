@@ -242,7 +242,7 @@ const Artist = ({ data }) => {
                 >
                   <div className={styles.paginationOuter}>
                     <p className={styles.artistPressSectionHeading}>
-                      <FormattedMessage id="press"></FormattedMessage>
+                      <FormattedMessage id="featured_press"></FormattedMessage>
                       <button
                         className={styles.closePress}
                         onClick={() => setPressOpen(false)}
