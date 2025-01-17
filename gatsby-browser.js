@@ -4,7 +4,6 @@ import CombinedProvider from "./src/context/CombinedProvider"
 
 export const wrapRootElement = CombinedProvider
 
-
 export const shouldUpdateScroll = ({
   routerProps: { location },
   prevRouterProps,
@@ -25,6 +24,7 @@ export const shouldUpdateScroll = ({
       const target = document.getElementById(location.hash.slice(1))
       const targetPosition =
         target.getBoundingClientRect().top - 250 + window.scrollY
+      window.history.scrollRestoration = "manual"
       window.setTimeout(
         () =>
           window.scrollTo({
@@ -36,19 +36,16 @@ export const shouldUpdateScroll = ({
   }
   // if we used the browser's forwards or back button
   else {
+    //reload, forward
     if (location.hash) {
       const target = document.getElementById(location.hash.slice(1))
       const targetPosition =
         target.getBoundingClientRect().top - 250 + window.scrollY
-      window.scrollTo({
-        top: targetPosition,
-      })
+      window.history.scrollRestoration = "manual"
+      window.setTimeout(() => window.scrollTo({ top: targetPosition }), 10)
     } else {
       window.history.scrollRestoration = "manual"
-      window.setTimeout(
-        () => window.scrollTo(0, 0),
-        TRANSITION_DELAY
-      )
+      window.setTimeout(() => window.scrollTo(0, 0), TRANSITION_DELAY)
     }
   }
   return false
