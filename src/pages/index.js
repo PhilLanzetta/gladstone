@@ -40,6 +40,7 @@ export const query = graphql`
             gatsbyImageData(layout: FULL_WIDTH)
           }
           tileWidth
+          fontColor
           workTitle
           location {
             childMarkdownRemark {

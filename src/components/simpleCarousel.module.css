@@ -97,4 +97,9 @@
   .slideCount {
     right: calc(var(--medium-padding) + 35px);
   }
+
+  .simpleContainerOne {
+    width: 100%;
+    margin: 0 auto;
+  }
 }

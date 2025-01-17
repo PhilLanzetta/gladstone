@@ -17,6 +17,7 @@ const HomeTile = ({ tile, pageContext }) => {
     mobileVideo,
     mobileImage,
     linkIsExternal,
+    fontColor
   } = tile
 
   const { width } = useWindowSize()
@@ -25,7 +26,7 @@ const HomeTile = ({ tile, pageContext }) => {
 
   return (
     <a
-      className={styles.tileContainer}
+      className={fontColor === 'Black' ? styles.tileContainer : styles.tileContainerWhite}
       style={isMobile ? { width: "100%" } : { width: tileWidth }}
       href={
         linkIsExternal
