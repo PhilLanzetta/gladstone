@@ -89,9 +89,19 @@ const News = ({ data }) => {
         </div>
       </div>
       <div className={styles.newsContainer}>
-        {newsItems.map(item => (
-          <NewsItem key={item.id} content={item}></NewsItem>
-        ))}
+        {newsItems.map((item, index) => {
+          let newLine
+          if (
+            !item.isFeatured &&
+            index < newsItems.length - 1 &&
+            item.category !== newsItems[index + 1].category
+          ) {
+            newLine = true
+          }
+          return (
+            <NewsItem key={item.id} content={item} newLine={newLine}></NewsItem>
+          )
+        })}
       </div>
     </div>
   )
