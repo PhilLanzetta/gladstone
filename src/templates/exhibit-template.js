@@ -29,6 +29,7 @@ const Exhibit = ({ data, pageContext }) => {
     relatedHeading,
     aboutDownloads,
     additionalLocations,
+    videos,
   } = data.allContentfulExhibition.nodes[0]
 
   const { width } = useWindowSize()
@@ -116,6 +117,16 @@ const Exhibit = ({ data, pageContext }) => {
           ) : (
             <MediaCarousel media={workMedia}></MediaCarousel>
           )}
+        </div>
+      )}
+      {videos && (
+        <div className={styles.carouselHolder}>
+          <p className={styles.sectionHeading}>
+            <FormattedMessage id="video"></FormattedMessage>
+          </p>
+          <div id="video">
+            <SimpleCarousel videos={videos} slideCount={1}></SimpleCarousel>
+          </div>
         </div>
       )}
       {hasGladstoneArtist?.length > 0 && (
@@ -339,6 +350,20 @@ export const query = graphql`
             height
             width
           }
+        }
+        videos {
+          id
+          caption {
+            childMarkdownRemark {
+              html
+            }
+          }
+          coverImage {
+            gatsbyImageData
+            description
+          }
+          source
+          aspectRatio
         }
         relatedHeading
         relatedContent {

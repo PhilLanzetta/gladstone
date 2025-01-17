@@ -3,6 +3,11 @@
   position: relative;
 }
 
+.simpleContainerOne {
+  width: calc(100vw * 9 / 16);
+  margin: 0 auto;
+}
+
 .slideContainer {
   display: flex;
   margin-right: 20px;

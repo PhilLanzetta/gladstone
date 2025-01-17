@@ -82,8 +82,15 @@ const SimpleCarousel = ({ images, slideCount, videos, content }) => {
     prevArrow: <PrevArrow addClassName={styles.previousArrow} />,
   }
 
+  const onlyOne =
+    (videos && videos?.length === 1) ||
+    (images && images?.length === 1) ||
+    (content && content.length === 1)
+
   return (
-    <div className={styles.simpleContainer}>
+    <div
+      className={onlyOne ? styles.simpleContainerOne : styles.simpleContainer}
+    >
       {videos && videos?.length > 1 && (
         <div className={styles.slideCount}>
           {Math.round(activeSlide + 1)} / {videos.length}

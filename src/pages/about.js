@@ -9,8 +9,7 @@ import Seo from "../components/seo"
 const About = ({ data }) => {
   const { width } = useWindowSize()
   const isMobile = width < 701
-  const { aboutHeadlineText, locations, leadershipstaff } =
-    data.allContentfulAboutPage.nodes[0]
+  const { aboutHeadlineText, locations } = data.allContentfulAboutPage.nodes[0]
 
   const newYorkLocations = locations.filter(
     location =>
