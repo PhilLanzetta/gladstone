@@ -158,7 +158,8 @@ const About = ({ data }) => {
       </div>
       <div id="staff">
         <div className={styles.staffOuterContainer}>
-          <p className={styles.aboutSectionHeading}>Leadership</p>
+          <p className={styles.aboutSectionHeading}>Staff</p>
+          <p className={styles.aboutSectionHeadingSub}>Leadership</p>
           <div className={styles.staffContainer}>
             <div className={styles.staff}>
               <p>Max Falkenstein</p>
@@ -179,7 +180,7 @@ const About = ({ data }) => {
           </div>
         </div>
         <div className={styles.staffOuterContainer}>
-          <p className={styles.aboutSectionHeadingSub}>Sales</p>
+          <p className={`${styles.aboutSectionHeadingSub} ${styles.extraSpace}`}>Sales</p>
           <div className={styles.staffContainer}>
             <div className={styles.staff}>
               <p>Trina Gordon</p>
@@ -242,7 +243,7 @@ const About = ({ data }) => {
           </div>
         </div>
         <div className={styles.staffOuterContainer}>
-          <p className={styles.aboutSectionHeading}>Contact</p>
+          <p className={`${styles.aboutSectionHeading} ${styles.extraSpace}`}>Contact</p>
           <div className={styles.staffContainer}>
             <div className={styles.staff}>
               <p>Sales Inquiries</p>

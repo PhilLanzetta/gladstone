@@ -90,15 +90,11 @@
   transition: all 400ms;
 }
 
-.staffOuterContainer {
-  margin-bottom: var(--medium-padding);
-}
 
 .staffContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin-bottom: calc(var(--large-padding) / 1.5);
 }
 
 .staff {
@@ -107,6 +103,10 @@
 
 .title {
   color: var(--dark-gray);
+}
+
+.extraSpace {
+  padding-top: var(--medium-padding);
 }
 
 @media screen and (max-width: 700px) {

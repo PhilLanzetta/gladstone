@@ -46,9 +46,9 @@ const Footer = ({ isAfter }) => {
             <Link to="/privacy">
               <FormattedMessage id="privacy"></FormattedMessage>
             </Link>
-            <Link to="/accessibility">
+            {/* <Link to="/accessibility">
               <FormattedMessage id="accessibility"></FormattedMessage>
-            </Link>
+            </Link> */}
           </div>
           <div className={isAfter ? styles.afterLinkColumn : styles.linkColumn}>
             <a

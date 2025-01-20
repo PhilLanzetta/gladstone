@@ -194,66 +194,42 @@ const Header = ({ isHome, isAfter }) => {
               <Link
                 to="/artists"
                 className={styles.headerLink}
-                onClick={
-                  isHome
-                    ? () => setTimeout(() => setIsOpen(false), 50)
-                    : () => setIsOpen(false)
-                }
+                onClick={isMobile ? () => setIsOpen(false) : null}
               >
                 <FormattedMessage id="artists"></FormattedMessage>
               </Link>
               <Link
                 to="/exhibitions"
                 className={styles.headerLink}
-                onClick={
-                  isHome
-                    ? () => setTimeout(() => setIsOpen(false), 50)
-                    : () => setIsOpen(false)
-                }
+                onClick={isMobile ? () => setIsOpen(false) : null}
               >
                 <FormattedMessage id="exhibitions"></FormattedMessage>
               </Link>
               <Link
                 to="/fairs"
                 className={styles.headerLink}
-                onClick={
-                  isHome
-                    ? () => setTimeout(() => setIsOpen(false), 50)
-                    : () => setIsOpen(false)
-                }
+                onClick={isMobile ? () => setIsOpen(false) : null}
               >
                 <FormattedMessage id="fairs"></FormattedMessage>
               </Link>
               <Link
                 to="/news"
                 className={styles.headerLink}
-                onClick={
-                  isHome
-                    ? () => setTimeout(() => setIsOpen(false), 50)
-                    : () => setIsOpen(false)
-                }
+                onClick={isMobile ? () => setIsOpen(false) : null}
               >
                 <FormattedMessage id="news_events"></FormattedMessage>
               </Link>
               <Link
                 to="/about"
                 className={styles.headerLink}
-                onClick={
-                  isHome
-                    ? () => setTimeout(() => setIsOpen(false), 50)
-                    : () => setIsOpen(false)
-                }
+                onClick={isMobile ? () => setIsOpen(false) : null}
               >
                 <FormattedMessage id="about"></FormattedMessage>
               </Link>
               <Link
                 to="/shop"
                 className={styles.headerLink}
-                onClick={
-                  isHome
-                    ? () => setTimeout(() => setIsOpen(false), 50)
-                    : () => setIsOpen(false)
-                }
+                onClick={isMobile ? () => setIsOpen(false) : null}
               >
                 <FormattedMessage id="shop"></FormattedMessage>
               </Link>
