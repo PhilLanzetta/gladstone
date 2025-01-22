@@ -49,6 +49,8 @@ export const query = graphql`
           }
           link
           linkIsExternal
+          videoAspectRatio
+          mobileVideoAspectRatio
         }
       }
     }

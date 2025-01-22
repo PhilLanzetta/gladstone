@@ -17,16 +17,39 @@ const HomeTile = ({ tile, pageContext }) => {
     mobileVideo,
     mobileImage,
     linkIsExternal,
-    fontColor
+    fontColor,
+    videoAspectRatio,
+    mobileVideoAspectRatio,
   } = tile
 
   const { width } = useWindowSize()
   const isMobile = width < 700
   const [isPlaying, setIsPlaying] = useState(false)
 
+  let aspectMultiplier = 9 / 16
+  let mobileAspectMultiplier = 16 / 9
+
+  const formattedVideoAspect = videoAspectRatio?.split(" ").reverse()
+
+  if (formattedVideoAspect) {
+    aspectMultiplier = Number(
+      formattedVideoAspect[0] / Number(formattedVideoAspect[2])
+    )
+  }
+
+  const formattedMobileAspect = mobileVideoAspectRatio?.split(" ").reverse()
+
+  if (formattedMobileAspect) {
+    mobileAspectMultiplier = Number(
+      formattedMobileAspect[0] / Number(formattedMobileAspect[2])
+    )
+  }
+
   return (
     <a
-      className={fontColor === 'Black' ? styles.tileContainer : styles.tileContainerWhite}
+      className={
+        fontColor === "Black" ? styles.tileContainer : styles.tileContainerWhite
+      }
       style={isMobile ? { width: "100%" } : { width: tileWidth }}
       href={
         linkIsExternal
@@ -89,8 +112,20 @@ const HomeTile = ({ tile, pageContext }) => {
                 ? video
                 : mobileVideo
             }
-            width={"100%"}
-            height={"100%"}
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              objectFit: "cover",
+              opacity: 1,
+            }}
+            width={"100vw"}
+            height={
+              isMobile
+                ? `calc(100vw * ${mobileAspectMultiplier})`
+                : `calc(100vw * ${aspectMultiplier})`
+            }
             playing={true}
             playsinline
             muted={true}
