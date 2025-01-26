@@ -475,7 +475,6 @@ export const query = graphql`
     }
     allShopifyProduct(
       filter: {
-        collections: { elemMatch: { title: { eq: "Publications" } } }
         metafields: {
           elemMatch: { key: { eq: "artist" }, value: { eq: $name } }
         }
