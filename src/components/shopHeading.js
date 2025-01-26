@@ -25,9 +25,9 @@ const ShopHeading = () => {
     }
   `)
 
-  const orderedCollections = data.allShopifyCollection.nodes.sort(
-    (a, b) => a.metafields[0].value - b.metafields[0].value
-  )
+  const orderedCollections = data.allShopifyCollection.nodes
+    .sort((a, b) => a.metafields[0].value - b.metafields[0].value)
+    .filter(node => node.metafields[0].value < 100)
 
   return (
     <div className="pageContainer">
@@ -51,7 +51,7 @@ const ShopHeading = () => {
             </Link>
           ))}
           <Link to="/shop/artists" activeClassName={styles.activeLink}>
-            <FormattedMessage id="artists"></FormattedMessage>
+            <FormattedMessage id="artist_browse"></FormattedMessage>
           </Link>
           {cart.length > 0 && (
             <div className={styles.shopBagButtonContainer}>

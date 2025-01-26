@@ -129,7 +129,7 @@ const Shop = ({ data }) => {
         </div>
       </div>
       <div className={styles.shopSectionHeading}>
-        <FormattedMessage id="new_releases"></FormattedMessage>
+        <FormattedMessage id="featured"></FormattedMessage>
       </div>
       <Pagination
         type="product"
