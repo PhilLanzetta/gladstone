@@ -104,7 +104,9 @@
   width: 100vw;
   padding: var(--medium-padding);
   display: flex;
-  justify-content: space-between;
+  flex-direction: column-reverse;
+  gap: var(--medium-padding);
+  align-items: flex-end;
   z-index: 25;
 }
 
