@@ -184,7 +184,7 @@ const Artist = ({ data }) => {
         {press && (
           <>
             <p className={styles.artistSectionHeading}>
-              <FormattedMessage id="press"></FormattedMessage>
+              <FormattedMessage id="featured_press"></FormattedMessage>
             </p>
             <div id="press" className={styles.paginationContainer}>
               {initialPress.map(pressItem => (
@@ -242,7 +242,7 @@ const Artist = ({ data }) => {
                 >
                   <div className={styles.paginationOuter}>
                     <p className={styles.artistPressSectionHeading}>
-                      <FormattedMessage id="featured_press"></FormattedMessage>
+                      <FormattedMessage id="press"></FormattedMessage>
                       <button
                         className={styles.closePress}
                         onClick={() => setPressOpen(false)}
