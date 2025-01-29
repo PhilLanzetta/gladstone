@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import Slider from "react-slick"
 import * as styles from "./mediaCarousel.module.css"
 import useWindowSize from "../utils/useWindowSize"
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -69,6 +70,7 @@ const MediaCarousel = ({ media }) => {
   const [nav2, setNav2] = useState(null)
   const [slider1, setSlider1] = useState(null)
   const [slider2, setSlider2] = useState(null)
+  const [popUp, setPopUp] = useState(-1)
   const { width } = useWindowSize()
 
   useEffect(() => {
@@ -85,6 +87,21 @@ const MediaCarousel = ({ media }) => {
       }
     }
   }, [])
+
+  useEffect(() => {
+      if (popUp >= 0) {
+        const scrollY = window.scrollY
+        const body = document.body
+        body.style.position = "fixed"
+        body.style.top = `-${scrollY}px`
+      } else {
+        const body = document.body
+        const scrollY = body.style.top
+        body.style.position = ""
+        body.style.top = ""
+        window.scrollTo(0, parseInt(scrollY || "0") * -1)
+      }
+    }, [popUp])
 
   const settingsMain = {
     slidesToShow: 1,
@@ -120,19 +137,21 @@ const MediaCarousel = ({ media }) => {
         asNavFor={nav2}
         ref={slider => setSlider1(slider)}
       >
-        {media.map(mediaElement => {
+        {media.map((mediaElement, index) => {
           const imgWidth =
             (mediaElement.image?.width * 60) / mediaElement.image?.height
           return (
             <div key={mediaElement.id}>
               <div className={styles.mainImage}>
                 <figure>
-                  <GatsbyImage
-                    image={mediaElement.image?.gatsbyImageData}
-                    alt={mediaElement.image?.description}
-                    style={{ height: "60vh", width: `${imgWidth}vh` }}
-                    className={styles.mainImageImg}
-                  ></GatsbyImage>
+                  <button onClick={() => setPopUp(index)}>
+                    <GatsbyImage
+                      image={mediaElement.image?.gatsbyImageData}
+                      alt={mediaElement.image?.description}
+                      style={{ height: "60vh", width: `${imgWidth}vh` }}
+                      className={styles.mainImageImg}
+                    ></GatsbyImage>
+                  </button>
                   <figcaption
                     className={`captionDiv ${styles.mainCaption}`}
                     dangerouslySetInnerHTML={{
@@ -150,6 +169,75 @@ const MediaCarousel = ({ media }) => {
           )
         })}
       </Slider>
+      {popUp >= 0 && (
+        <div className={styles.imagePopUpContainer}>
+          <button className={styles.closePopUp} onClick={() => setPopUp(-1)}>
+            <svg
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M1 31L31 1" stroke="black" />
+              <path d="M1 1L31 31" stroke="black" />
+            </svg>
+          </button>
+          <TransformWrapper initialScale={1} centerOnInit={true}>
+            {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+              <>
+                <TransformComponent
+                  wrapperStyle={{
+                    position: "relative",
+                    height: "100vh",
+                    width: "100vw",
+                  }}
+                >
+                  <GatsbyImage
+                    image={media[popUp].image?.gatsbyImageData}
+                    alt={media[popUp].image?.description}
+                    className={styles.popUpImageImg}
+                    style={{
+                      height: "80vh",
+                      width: `${
+                        (media[popUp].image?.width * 80) /
+                        media[popUp].image?.height
+                      }vh`,
+                    }}
+                  ></GatsbyImage>
+                </TransformComponent>
+                <div className={styles.popUpControls}>
+                  <button
+                    className={styles.popUpControlsBtn}
+                    onClick={() => zoomOut()}
+                  >
+                    <svg
+                      viewBox="0 0 35 35"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="17.5" cy="17.5" r="16.5" stroke="black" />
+                      <line x1="7" y1="17.5" x2="28" y2="17.5" stroke="black" />
+                    </svg>
+                  </button>
+                  <button
+                    className={styles.popUpControlsBtn}
+                    onClick={() => zoomIn()}
+                  >
+                    <svg
+                      viewBox="0 0 35 35"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="17.5" cy="17.5" r="16.5" stroke="black" />
+                      <line x1="17.5" y1="7" x2="17.5" y2="28" stroke="black" />
+                      <line x1="7" y1="17.5" x2="28" y2="17.5" stroke="black" />
+                    </svg>
+                  </button>
+                </div>
+              </>
+            )}
+          </TransformWrapper>
+        </div>
+      )}
       {media.length > 1 && (
         <div
           className={styles.thumbSliderWrapper}

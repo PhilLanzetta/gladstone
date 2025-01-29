@@ -1,8 +1,9 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Slider from "react-slick"
 import * as styles from "./simpleCarousel.module.css"
 import VideoPlayer from "./videoPlayer"
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -67,6 +68,22 @@ function PrevArrow(props) {
 const SimpleCarousel = ({ images, slideCount, videos, content }) => {
   const [activeSlide, setActiveSlide] = useState(0)
   const [activeVideo, setActiveVideo] = useState(null)
+  const [popUp, setPopUp] = useState(-1)
+
+  useEffect(() => {
+    if (popUp >= 0) {
+      const scrollY = window.scrollY
+      const body = document.body
+      body.style.position = "fixed"
+      body.style.top = `-${scrollY}px`
+    } else {
+      const body = document.body
+      const scrollY = body.style.top
+      body.style.position = ""
+      body.style.top = ""
+      window.scrollTo(0, parseInt(scrollY || "0") * -1)
+    }
+  }, [popUp])
 
   const settings = {
     slidesToShow: slideCount,
@@ -75,7 +92,13 @@ const SimpleCarousel = ({ images, slideCount, videos, content }) => {
     centerMode: videos ? (videos.length > 1 ? true : false) : false,
     centerPadding: "15%",
     dots: false,
-    arrows: videos ? (videos.length > 1 ? true : false) : true,
+    arrows: videos
+      ? videos.length > 1
+        ? true
+        : false
+      : images?.length > 1
+      ? true
+      : false,
     draggable: videos ? false : true,
     afterChange: current => setActiveSlide(current),
     nextArrow: <NextArrow addClassName={styles.nextArrow} />,
@@ -108,15 +131,17 @@ const SimpleCarousel = ({ images, slideCount, videos, content }) => {
       )}
       <Slider {...settings}>
         {images &&
-          images.map(image => {
+          images.map((image, index) => {
             return (
               <div key={image.id}>
                 <div className={styles.slideContainer}>
                   <figure>
-                    <GatsbyImage
-                      image={image.image?.gatsbyImageData}
-                      alt={image.image?.description}
-                    ></GatsbyImage>
+                    <button onClick={() => setPopUp(index)}>
+                      <GatsbyImage
+                        image={image.image?.gatsbyImageData}
+                        alt={image.image?.description}
+                      ></GatsbyImage>
+                    </button>
                     <figcaption
                       dangerouslySetInnerHTML={{
                         __html: image.caption?.childMarkdownRemark.html.replace(
@@ -188,6 +213,68 @@ const SimpleCarousel = ({ images, slideCount, videos, content }) => {
             } else return null
           })}
       </Slider>
+      {popUp >= 0 && (
+        <div className={styles.imagePopUpContainer}>
+          <button className={styles.closePopUp} onClick={() => setPopUp(-1)}>
+            <svg
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M1 31L31 1" stroke="black" />
+              <path d="M1 1L31 31" stroke="black" />
+            </svg>
+          </button>
+          <TransformWrapper initialScale={1} centerOnInit={true}>
+            {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+              <>
+                <TransformComponent
+                  wrapperStyle={{
+                    position: "relative",
+                    height: "100vh",
+                    width: "100vw",
+                  }}
+                >
+                  <GatsbyImage
+                    image={images[popUp].image?.gatsbyImageData}
+                    alt={images[popUp].image?.description}
+                    className={styles.popUpImageImg}
+                  ></GatsbyImage>
+                </TransformComponent>
+                <div className={styles.popUpControls}>
+                  <button
+                    className={styles.popUpControlsBtn}
+                    onClick={() => zoomOut()}
+                  >
+                    <svg
+                      viewBox="0 0 35 35"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="17.5" cy="17.5" r="16.5" stroke="black" />
+                      <line x1="7" y1="17.5" x2="28" y2="17.5" stroke="black" />
+                    </svg>
+                  </button>
+                  <button
+                    className={styles.popUpControlsBtn}
+                    onClick={() => zoomIn()}
+                  >
+                    <svg
+                      viewBox="0 0 35 35"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="17.5" cy="17.5" r="16.5" stroke="black" />
+                      <line x1="17.5" y1="7" x2="17.5" y2="28" stroke="black" />
+                      <line x1="7" y1="17.5" x2="28" y2="17.5" stroke="black" />
+                    </svg>
+                  </button>
+                </div>
+              </>
+            )}
+          </TransformWrapper>
+        </div>
+      )}
     </div>
   )
 }
