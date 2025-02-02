@@ -1,5 +1,5 @@
 const pagesQueryEN = `{
-  allContentfulEntry(filter: { node_locale: { eq: "en" }, contentful_id: {nin: ["uC942hXE8PzJdEnGrsc1N", "6NpF313v6WrZRPg5ORbKej"]} }) {
+  allContentfulEntry(filter: { node_locale: { eq: "en" }, contentful_id: {nin: ["uC942hXE8PzJdEnGrsc1N", "6NpF313v6WrZRPg5ORbKej", "5tpnWLOPKdNG5ryFHClMZ4"]} }) {
     edges {
       node {
         id
