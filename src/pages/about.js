@@ -180,7 +180,11 @@ const About = ({ data }) => {
           </div>
         </div>
         <div className={styles.staffOuterContainer}>
-          <p className={`${styles.aboutSectionHeadingSub} ${styles.extraSpace}`}>Sales</p>
+          <p
+            className={`${styles.aboutSectionHeadingSub} ${styles.extraSpace}`}
+          >
+            Sales
+          </p>
           <div className={styles.staffContainer}>
             <div className={styles.staff}>
               <p>Trina Gordon</p>
@@ -243,13 +247,15 @@ const About = ({ data }) => {
           </div>
         </div>
         <div className={styles.staffOuterContainer}>
-          <p className={`${styles.aboutSectionHeading} ${styles.extraSpace}`}>Contact</p>
+          <p className={`${styles.aboutSectionHeading} ${styles.extraSpace}`}>
+            Contact
+          </p>
           <div className={styles.staffContainer}>
             <div className={styles.staff}>
               <p>Sales Inquiries</p>
               <p className={styles.title}>
-                <a href="mailto:sales@gladstonegallery.com">
-                  sales@gladstonegallery.com
+                <a href="mailto:gg_sales@gladstonegallery.com">
+                  gg_sales@gladstonegallery.com
                 </a>
               </p>
             </div>
