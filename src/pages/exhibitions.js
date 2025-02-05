@@ -91,12 +91,16 @@ const Exhibitions = ({ pageContext, data }) => {
           <FormattedMessage id="exhibitions"></FormattedMessage>
         </div>
         <div className={styles.headerLinkContainer}>
-          <a href="#current" className={styles.landingLink}>
-            <FormattedMessage id="current"></FormattedMessage>
-          </a>
-          <a href="#upcoming">
-            <FormattedMessage id="upcoming"></FormattedMessage>
-          </a>
+          {current?.length > 0 && (
+            <a href="#current" className={styles.landingLink}>
+              <FormattedMessage id="current"></FormattedMessage>
+            </a>
+          )}
+          {upcoming?.length > 0 && (
+            <a href="#upcoming">
+              <FormattedMessage id="upcoming"></FormattedMessage>
+            </a>
+          )}
           <a href="#past">
             <FormattedMessage id="past"></FormattedMessage>
           </a>
@@ -108,16 +112,21 @@ const Exhibitions = ({ pageContext, data }) => {
             <ExhibitionTile key={exhibit.id} content={exhibit}></ExhibitionTile>
           ))}
       </div>
-      <p className={styles.exhibitSectionHeading}>
-        <FormattedMessage id="upcoming"></FormattedMessage>
-      </p>
-      <div id="upcoming" className={styles.upcomingContainer}>
-        {" "}
-        {upcoming.length > 0 &&
-          upcoming.map(exhibit => (
-            <ExhibitionTile key={exhibit.id} content={exhibit}></ExhibitionTile>
-          ))}
-      </div>
+      {upcoming?.length > 0 && (
+        <>
+          <p className={styles.exhibitSectionHeading}>
+            <FormattedMessage id="upcoming"></FormattedMessage>
+          </p>
+          <div id="upcoming" className={styles.upcomingContainer}>
+            {upcoming.map(exhibit => (
+              <ExhibitionTile
+                key={exhibit.id}
+                content={exhibit}
+              ></ExhibitionTile>
+            ))}
+          </div>
+        </>
+      )}
       <div
         id="past"
         className={`${styles.pastHeading} ${styles.exhibitSectionHeading}`}
