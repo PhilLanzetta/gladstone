@@ -30,7 +30,7 @@ const Shop = ({ data }) => {
   const collections = data.allShopifyCollection.nodes
   const featured = data.contentfulFeaturedShopCarousel.slides
   const newProducts = collections.filter(
-    collection => collection.handle === "new-releases"
+    collection => collection.handle === "featured"
   )[0]
   // const publications = collections.filter(
   //   collection => collection.handle === "publications"
