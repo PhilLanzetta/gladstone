@@ -26,6 +26,12 @@
   overflow-y: scroll;
 }
 
+.mainCaption::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .mainCaption p {
   font-family: var(--font-secondary);
   font-variant-numeric: normal;

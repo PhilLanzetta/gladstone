@@ -13,6 +13,12 @@
   justify-content: flex-end;
   white-space: nowrap;
   overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.headerLinkContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .category {

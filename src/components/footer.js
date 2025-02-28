@@ -37,9 +37,9 @@ const Footer = ({ isAfter }) => {
             <Link to="/about">
               <FormattedMessage id="about"></FormattedMessage>
             </Link>
-            <Link to="/about/#staff">
+            <a href="https://gladstone-dev.netlify.app/about/#staff">
               <FormattedMessage id="staff"></FormattedMessage>
-            </Link>
+            </a>
             <Link to="/careers">
               <FormattedMessage id="careers"></FormattedMessage>
             </Link>
