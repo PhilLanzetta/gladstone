@@ -25,7 +25,7 @@ const Exhibitions = ({ pageContext, data }) => {
 
   const upcoming = exhibitions.filter(exhibition =>
     moment(exhibition.startDate).isAfter(today)
-  )
+  ).reverse()
 
   const allPast = exhibitions.filter(exhibition =>
     moment(exhibition.endDate).isBefore(today)
