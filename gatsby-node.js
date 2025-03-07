@@ -81,13 +81,9 @@ exports.createPages = async ({ actions, graphql }) => {
         }
       }
       artistProduct: allShopifyProduct {
-        edges {
-          node {
-            metafield(key: "artist", namespace: "custom") {
-              value
-            }
+          nodes {
+            tags
           }
-        }
       }
       allShopifyCollection {
         edges {
@@ -121,10 +117,12 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const collections = result.data.allShopifyCollection.edges
 
-  const artistProducts = result.data.artistProduct.edges
-    .map(edge => edge.node.metafield?.value)
-    .filter(node => node !== undefined)
-    .filter(onlyUnique)
+  const artistProducts = result.data.artistProduct.nodes.reduce(
+    (accumulator, object) => {
+      return accumulator.concat(object.tags)
+    },
+    []
+  ).filter(onlyUnique)
 
   artists.forEach(({ node }) => {
     const artistSlug = node.slug

@@ -44,8 +44,10 @@ const Shop = ({ data }) => {
   //   collection => collection.handle === "clothing"
   // )[0]
 
-  const artists = data.allShopifyMetafield.nodes
-    .map(node => node.value)
+  const artists = data.artistProduct.nodes
+    .reduce((accumulator, object) => {
+      return accumulator.concat(object.tags)
+    }, [])
     .filter(onlyUnique)
     .sort((a, b) => a.split(" ").pop().localeCompare(b.split(" ").pop()))
 
@@ -227,9 +229,9 @@ export const query = graphql`
         }
       }
     }
-    allShopifyMetafield(filter: { key: { eq: "artist" } }) {
+    artistProduct: allShopifyProduct {
       nodes {
-        value
+        tags
       }
     }
   }

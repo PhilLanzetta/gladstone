@@ -45,8 +45,10 @@ const ArtistCollectionTemplate = ({ data, location }) => {
   const [filterOpen, setFilterOpen] = useState(false)
   const [products, setProducts] = useState(initialProducts)
 
-  const artists = data.allShopifyMetafield.nodes
-    .map(node => node.value)
+  const artists = data.artistProduct.nodes
+    .reduce((accumulator, object) => {
+      return accumulator.concat(object.tags)
+    }, [])
     .filter(onlyUnique)
     .sort((a, b) => a.split(" ").pop().localeCompare(b.split(" ").pop()))
 
@@ -129,12 +131,9 @@ const ArtistCollectionTemplate = ({ data, location }) => {
 }
 
 export const query = graphql`
-  query getSingleCollection($artist: String) {
+  query getSingleCollection($artist: [String]) {
     allShopifyProduct(
-      filter: {
-        metafields: { elemMatch: { value: { eq: $artist } } }
-        totalInventory: { gt: 0 }
-      }
+      filter: { tags: { in: $artist }, totalInventory: { gt: 0 } }
     ) {
       nodes {
         featuredImage {
@@ -162,9 +161,9 @@ export const query = graphql`
         totalInventory
       }
     }
-    allShopifyMetafield(filter: { key: { eq: "artist" } }) {
+    artistProduct: allShopifyProduct {
       nodes {
-        value
+        tags
       }
     }
   }

@@ -10,10 +10,13 @@ const Artists = ({ data }) => {
     return array.indexOf(value) === index
   }
 
-  const artists = data.allShopifyMetafield.nodes
-    .map(node => node.value)
+  const artists = data.allShopifyProduct.nodes
+    .reduce((accumulator, object) => {
+      return accumulator.concat(object.tags)
+    }, [])
     .filter(onlyUnique)
     .sort((a, b) => a.split(" ").pop().localeCompare(b.split(" ").pop()))
+    
   return (
     <div className="shopPageContainer">
       <div className={styles.shopSectionHeadingArtists}>
@@ -36,9 +39,9 @@ const Artists = ({ data }) => {
 
 export const query = graphql`
   query {
-    allShopifyMetafield(filter: { key: { eq: "artist" } }) {
+    allShopifyProduct {
       nodes {
-        value
+        tags
       }
     }
   }
