@@ -227,10 +227,6 @@ const About = ({ data }) => {
           </div>
           <div className={styles.staffContainer}>
             <div className={styles.staff}>
-              <p>Gael Diercxsens</p>
-              <p className={styles.title}>Senior Director, Brussels</p>
-            </div>
-            <div className={styles.staff}>
               <p>Maxime de la Brousse</p>
               <p className={styles.title}>Director, Brussels</p>
             </div>
