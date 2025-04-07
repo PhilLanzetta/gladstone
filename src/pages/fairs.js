@@ -23,7 +23,9 @@ const Fairs = ({ data }) => {
       moment(fair.endDate).isAfter(today)
   )
 
-  const upcoming = fairs.filter(fair => moment(fair.startDate).isAfter(today)).reverse()
+  const upcoming = fairs
+    .filter(fair => moment(fair.startDate).isAfter(today))
+    .reverse()
 
   const allPast = fairs.filter(fair => moment(fair.endDate).isBefore(today))
 
@@ -250,9 +252,11 @@ const Fairs = ({ data }) => {
                       onClick={() => handleFilter("location", location)}
                       className={styles.dropdownButton}
                     >
-                      <FormattedMessage
-                        id={location.toLowerCase().replace(" ", "_")}
-                      ></FormattedMessage>
+                      {location && (
+                        <FormattedMessage
+                          id={location.toLowerCase().replace(" ", "_")}
+                        ></FormattedMessage>
+                      )}
                     </button>
                   ))}
                 </motion.div>

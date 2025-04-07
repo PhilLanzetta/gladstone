@@ -23,9 +23,9 @@ const Exhibitions = ({ pageContext, data }) => {
       moment(exhibition.endDate).isAfter(today)
   )
 
-  const upcoming = exhibitions.filter(exhibition =>
-    moment(exhibition.startDate).isAfter(today)
-  ).reverse()
+  const upcoming = exhibitions
+    .filter(exhibition => moment(exhibition.startDate).isAfter(today))
+    .reverse()
 
   const allPast = exhibitions.filter(exhibition =>
     moment(exhibition.endDate).isBefore(today)
@@ -253,9 +253,11 @@ const Exhibitions = ({ pageContext, data }) => {
                       onClick={() => handleFilter("location", location)}
                       className={styles.dropdownButton}
                     >
-                      <FormattedMessage
-                        id={location.toLowerCase().replace(" ", "_")}
-                      ></FormattedMessage>
+                      {location && (
+                        <FormattedMessage
+                          id={location.toLowerCase().replace(" ", "_")}
+                        ></FormattedMessage>
+                      )}
                     </button>
                   ))}
                 </motion.div>
