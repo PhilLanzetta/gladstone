@@ -5,7 +5,7 @@ import { FormattedMessage } from "gatsby-plugin-intl"
 const LocationListing = () => {
   return (
     <div className={styles.locationListingContainer}>
-      <a href="https://google.com" target="_blank" rel="noreferrer">
+      <a href="https://gladstone-dev.netlify.app/about/#new_york">
         <p className={styles.locationHeading}>
           <FormattedMessage id="new_york_24.heading"></FormattedMessage>
         </p>
@@ -15,7 +15,7 @@ const LocationListing = () => {
           <FormattedMessage id="new_york_24.address_2"></FormattedMessage>
         </p>
       </a>
-      <a href="https://google.com" target="_blank" rel="noreferrer">
+      <a href="https://gladstone-dev.netlify.app/about/#new_york">
         <p className={styles.locationHeading}>
           <FormattedMessage id="new_york_21.heading"></FormattedMessage>
         </p>
@@ -25,7 +25,7 @@ const LocationListing = () => {
           <FormattedMessage id="new_york_21.address_2"></FormattedMessage>
         </p>
       </a>
-      <a href="https://google.com" target="_blank" rel="noreferrer">
+      <a href="https://gladstone-dev.netlify.app/about/#new_york">
         <p className={styles.locationHeading}>
           <FormattedMessage id="new_york_64.heading"></FormattedMessage>
         </p>
@@ -35,7 +35,7 @@ const LocationListing = () => {
           <FormattedMessage id="new_york_64.address_2"></FormattedMessage>
         </p>
       </a>
-      <a href="https://google.com" target="_blank" rel="noreferrer">
+      <a href="https://gladstone-dev.netlify.app/about/#brussels">
         <p className={styles.locationHeading}>
           <FormattedMessage id="brussels_location.heading"></FormattedMessage>
         </p>
@@ -45,7 +45,7 @@ const LocationListing = () => {
           <FormattedMessage id="brussels_location.address_2"></FormattedMessage>
         </p>
       </a>
-      <a href="https://google.com" target="_blank" rel="noreferrer">
+      <a href="https://gladstone-dev.netlify.app/about/#seoul">
         <p className={styles.locationHeading}>
           <FormattedMessage id="seoul_location.heading"></FormattedMessage>
         </p>

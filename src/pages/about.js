@@ -41,7 +41,7 @@ const About = ({ data }) => {
         }}
       ></div>
       <div className={styles.locationsOuterContainer}>
-        <p className={styles.aboutSectionHeading}>
+        <p className={styles.aboutSectionHeading} id="new_york">
           <FormattedMessage id="new_york"></FormattedMessage>
         </p>
         <div className={styles.locationContainer}>
@@ -80,7 +80,7 @@ const About = ({ data }) => {
           ))}
         </div>
         <div className={styles.worldLocationContainer}>
-          <p className={styles.aboutSectionHeading}>
+          <p className={styles.aboutSectionHeading} id="brussels">
             <FormattedMessage id="brussels"></FormattedMessage>
           </p>
           {brusselsLocations.map(location => (
@@ -118,7 +118,7 @@ const About = ({ data }) => {
           ))}
         </div>
         <div className={styles.worldLocationContainer}>
-          <p className={styles.aboutSectionHeading}>
+          <p className={styles.aboutSectionHeading} id="seoul">
             <FormattedMessage id="seoul"></FormattedMessage>
           </p>
           {seoulLocations.map(location => (
