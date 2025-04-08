@@ -1,29 +1,29 @@
 import React from "react"
 import { IntlContextConsumer, changeLocale } from "gatsby-plugin-intl"
-import * as styles from "./footer.module.css"
+import * as styles from "./header.module.css"
 
 const languageName = {
   zh: "中文",
   ko: "한국인",
-  en: "English",
+  en: "En",
 }
 
 const Language = () => (
-  <>
+  <div>
     <IntlContextConsumer>
       {({ languages, language: currentLocale }) =>
         languages.map(language => (
-          <button
+          <a
             key={language}
             onClick={() => changeLocale(language)}
             className={currentLocale === language ? styles.activeLanguage : ""}
           >
             {languageName[language]}
-          </button>
+          </a>
         ))
       }
     </IntlContextConsumer>
-  </>
+  </div>
 )
 
 export default Language

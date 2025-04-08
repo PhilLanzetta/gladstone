@@ -87,7 +87,7 @@ header {
 .search {
   width: 30px;
   height: 20px;
-  display: block;
+  display: inline-block;
 }
 
 .search:hover {
@@ -106,8 +106,17 @@ header {
 
 .languageContainer {
   position: absolute;
+  display: flex;
+  align-items: center;
   top: 0;
   right: 0;
+}
+
+
+.language {
+  display: inline-flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 #nav-icon {
@@ -255,6 +264,21 @@ header {
 
 .headerLink {
   transition: all 500ms;
+}
+
+.language a,
+.mobileLanguage a {
+  border-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.language a.activeLanguage,
+.mobileLanguage a.activeLanguage {
+  border-color: currentColor;
 }
 
 .secondaryBottom {
