@@ -118,7 +118,7 @@ const ViewingRoomCarousel = ({ item }) => {
           }}
         ></div>
         <a
-          href={item.callToActionEmail}
+          href={`mailto:${item.callToActionEmail}`}
           className={styles.inquire}
           target="_blank"
           rel="noreferrer"
