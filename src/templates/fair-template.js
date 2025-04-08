@@ -242,6 +242,15 @@ export const query = graphql`
           label
           url
         }
+        aboutDownloads {
+          id
+          buttonText
+          pdfFile {
+            file {
+              url
+            }
+          }
+        }
         location {
           childMarkdownRemark {
             html
