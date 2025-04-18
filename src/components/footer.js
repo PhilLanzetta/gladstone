@@ -46,13 +46,6 @@ const Footer = ({ isAfter }) => {
           </div>
           <div className={isAfter ? styles.afterLinkColumn : styles.linkColumn}>
             <a
-              href="https://x.com/GladstoneNYC"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Twitter
-            </a>
-            <a
               href="https://www.instagram.com/gladstone.gallery"
               target="_blank"
               rel="noreferrer"
