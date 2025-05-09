@@ -169,6 +169,8 @@ const About = ({ data }) => {
               <p>Gavin Brown</p>
               <p className={styles.title}>Partner</p>
             </div>
+            <div className={`${styles.staff} ${styles.mobileHide}`}></div>
+            <div className={`${styles.staff} ${styles.mobileHide}`}></div>
             <div className={styles.staff}>
               <p>Caroline Luce</p>
               <p className={styles.title}>Partner</p>
@@ -198,6 +200,7 @@ const About = ({ data }) => {
               <p>Emily Bates</p>
               <p className={styles.title}>Director</p>
             </div>
+            <div className={`${styles.staff} ${styles.mobileHide}`}></div>
             <div className={styles.staff}>
               <p>Alissa Bennett</p>
               <p className={styles.title}>Director</p>
@@ -210,6 +213,12 @@ const About = ({ data }) => {
               <p>Cooke Maroney</p>
               <p className={styles.title}>Director</p>
             </div>
+            <div className={`${styles.staff} ${styles.mobileHide}`}></div>
+            <div className={styles.staff}>
+              <p>Giulia Ruberti</p>
+              <p className={styles.title}>Director</p>
+            </div>
+
             <div className={styles.staff}>
               <p>Frederick Schampers</p>
               <p className={styles.title}>Director</p>

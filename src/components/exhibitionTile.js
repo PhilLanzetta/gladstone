@@ -55,7 +55,7 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
             {artistPage && <p className={styles.infoHeading}>{location}</p>}
             {mobilePast && (
               <p className={styles.mobileHeading}>
-                {region && region !== "Offsite" ? (
+                {region && region !== "Offsite" && region !== "New York" ? (
                   <FormattedMessage
                     id={region.toLowerCase().replace(" ", "_")}
                   ></FormattedMessage>
@@ -83,7 +83,7 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
               <h3 className={styles.infoHeading}>
                 {!fair &&
                   region &&
-                  (region !== "Offsite" ? (
+                  (region !== "Offsite" && region !== "New York" ? (
                     <FormattedMessage
                       id={region.toLowerCase().replace(" ", "_")}
                     ></FormattedMessage>

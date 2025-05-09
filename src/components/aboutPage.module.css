@@ -90,7 +90,6 @@
   transition: all 400ms;
 }
 
-
 .staffContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -141,5 +140,9 @@
 
   .staffContainer {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mobileHide {
+    display: none;
   }
 }
