@@ -87,10 +87,12 @@ const Exhibit = ({ data, pageContext }) => {
           )}
         </div>
         <div className={styles.aboveRight}>
-          <GatsbyImage
-            image={featuredImage.image.gatsbyImageData}
-            alt={featuredImage.image.description}
-          ></GatsbyImage>
+          {featuredImage && (
+            <GatsbyImage
+              image={featuredImage.image.gatsbyImageData}
+              alt={featuredImage.image.description}
+            ></GatsbyImage>
+          )}
         </div>
       </div>
       {installationMedia && (
