@@ -11,17 +11,20 @@ const NewsItem = ({ content, related, newLine }) => {
           related ? "" : isFeatured ? styles.featuredNewsItem : styles.newsItem
         }
       >
-        <GatsbyImage
-          image={newsImage.gatsbyImageData}
-          alt={newsImage.description}
-          className={
-            related
-              ? styles.relatedTileImage
-              : isFeatured
-              ? styles.featuredNewsImage
-              : styles.newsImage
-          }
-        ></GatsbyImage>
+        {" "}
+        {newsImage && (
+          <GatsbyImage
+            image={newsImage.gatsbyImageData}
+            alt={newsImage.description}
+            className={
+              related
+                ? styles.relatedTileImage
+                : isFeatured
+                ? styles.featuredNewsImage
+                : styles.newsImage
+            }
+          ></GatsbyImage>
+        )}
         <div
           className={
             related
