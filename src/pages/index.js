@@ -4,9 +4,10 @@ import HomeTile from "../components/homeTile"
 import * as styles from "../components/index.module.css"
 import LocationListing from "../components/locationListing"
 import Seo from "../components/seo"
+import CTABanner from "../components/ctaBanner"
 
 const Index = ({ data, pageContext }) => {
-  const { homeTiles } = data.allContentfulHomePage.nodes[0]
+  const { homeTiles, cta } = data.allContentfulHomePage.nodes[0]
   return (
     <div className={styles.homeContainer}>
       {homeTiles.map(item => (
@@ -17,6 +18,7 @@ const Index = ({ data, pageContext }) => {
         ></HomeTile>
       ))}
       <LocationListing></LocationListing>
+      {cta && <CTABanner cta={cta}></CTABanner>}
     </div>
   )
 }
@@ -51,6 +53,17 @@ export const query = graphql`
           linkIsExternal
           videoAspectRatio
           mobileVideoAspectRatio
+        }
+        cta {
+          backgroundImage {
+            description
+            gatsbyImageData
+          }
+          buttonText
+          buttonType
+          headlineText
+          subtitle
+          textColor
         }
       }
     }

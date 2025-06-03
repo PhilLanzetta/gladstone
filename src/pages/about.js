@@ -260,7 +260,7 @@ const About = ({ data }) => {
               <p>Sales Inquiries</p>
               <p className={styles.title}>
                 <a href="mailto:gg_sales@gladstonegallery.com">
-                  gg_sales@gladstonegallery.com
+                  sales@gladstonegallery.com
                 </a>
               </p>
             </div>
@@ -326,6 +326,17 @@ export const query = graphql`
             name
             title
           }
+        }
+        cta {
+          backgroundImage {
+            description
+            gatsbyImageData
+          }
+          buttonText
+          buttonType
+          headlineText
+          subtitle
+          textColor
         }
       }
     }

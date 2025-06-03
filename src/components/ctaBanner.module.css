@@ -1,0 +1,96 @@
+.bannerContainer {
+  position: relative;
+  aspect-ratio: 3 / 1;
+  overflow: hidden;
+  width: 100%;
+}
+
+.imageHolder {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.bannerImage {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.textContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+.ctaHeadline {
+  font-size: var(--title);
+  font-weight: normal;
+  padding: 0 30vw;
+  margin-bottom: 10px;
+}
+
+.ctaSubtitle {
+  padding: 0 30vw;
+}
+
+.ctaButton {
+  font-size: var(--subtext);
+  padding: 10px 30px 5px 30px;
+  border: 1px solid currentColor;
+  border-radius: 80px;
+  margin-top: 40px;
+}
+
+.subscribePopUp {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: 9 / 5;
+  background: #fff;
+  width: 75%;
+  z-index: 100;
+  padding: 15px;
+}
+
+.popUpHeadline {
+  font-size: var(--title);
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  .bannerContainer {
+    aspect-ratio: 5 / 4;
+  }
+
+  .ctaHeadline {
+    padding: 0 20vw;
+  }
+
+  .ctaSubtitle {
+    padding: 0 20vw;
+  }
+}
