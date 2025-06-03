@@ -35,11 +35,13 @@ const NewsItem = ({ content, related, newLine }) => {
           }
         >
           <div className={styles.category}>{category}</div>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: newsText.childMarkdownRemark.html,
-            }}
-          ></div>
+          {newsText && (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: newsText.childMarkdownRemark.html,
+              }}
+            ></div>
+          )}
           {download && (
             <a
               className={styles.downloadLink}
