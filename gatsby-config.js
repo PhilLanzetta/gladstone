@@ -27,7 +27,6 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
-    `custom-square-plugin`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -53,8 +52,9 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: `cmz556ev1x99`,
-        accessToken: process.env.CONTENTFUL_API_KEY,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_TOKEN,
+        host: process.env.CONTENTFUL_HOST,
         enableTags: true,
       },
     },
