@@ -1,15 +1,40 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
+import { navigate } from "gatsby"
 import { AnimatePresence, motion } from "framer-motion"
 import * as styles from "./ctaBanner.module.css"
 import MailchimpSubscribe from "react-mailchimp-subscribe"
-import { injectIntl, FormattedMessage } from "gatsby-plugin-intl"
+import { injectIntl } from "gatsby-plugin-intl"
+
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
 
 const CTABanner = ({ cta, intl }) => {
   const [isSubscribeOpen, setSubscribeOpen] = useState(false)
+  const [isInquireOpen, setInquireOpen] = useState(false)
   const [email, setEmail] = useState("")
   const [groups, setGroups] = useState([])
+  const [inquireState, setInquireState] = useState({})
+
+  const handleChange = e => {
+    setInquireState({ ...inquireState, [e.target.name]: e.target.value })
+  }
+
   const postUrl = process.env.GATSBY_MAILCHIMP_URL
+
+  let textarea = document.getElementById("message")
+  let charCount = document.getElementById("charCount")
+  const maxNumOfChars = 300
+
+  textarea?.addEventListener("keyup", function () {
+    let textEntered = textarea.value
+    let counter = maxNumOfChars - textEntered.length
+    charCount.textContent = counter + " characters remaining"
+  })
+
   const {
     headlineText,
     textColor,
@@ -31,6 +56,21 @@ const CTABanner = ({ cta, intl }) => {
     }
   }
 
+  const handleSubmit = e => {
+    e.preventDefault()
+    const form = e.target
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": form.getAttribute("name"),
+        ...inquireState,
+      }),
+    })
+      .then(() => navigate(form.getAttribute("action")))
+      .catch(error => alert(error))
+  }
+
   return (
     <div className={styles.bannerContainer}>
       {backgroundImage && (
@@ -50,6 +90,14 @@ const CTABanner = ({ cta, intl }) => {
           <button
             className={styles.ctaButton}
             onClick={() => setSubscribeOpen(true)}
+          >
+            {buttonText}
+          </button>
+        )}
+        {buttonType === "Inquire" && (
+          <button
+            className={styles.ctaButton}
+            onClick={() => setInquireOpen(true)}
           >
             {buttonText}
           </button>
@@ -134,6 +182,86 @@ const CTABanner = ({ cta, intl }) => {
                   </div>
                 )}
               />
+            </div>
+          </motion.div>
+        )}
+        {isInquireOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={styles.subscribePopUp}
+          >
+            <div className={styles.innerContainer}>
+              <button
+                className={styles.close}
+                onClick={() => setInquireOpen(false)}
+              >
+                <span></span>
+                <span></span>
+              </button>
+              <h2 className={styles.popUpHeadline}>Inquire</h2>
+              <p>
+                To learn more about the artist, please provide your contact
+                information, and we will reach out.
+              </p>
+              <form
+                name="inquire"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
+                className={styles.inquireForm}
+              >
+                <input type="hidden" name="form-name" value="inquire" />
+                <p hidden>
+                  <label>
+                    Don’t fill this out if you’re human:{" "}
+                    <input name="bot-field" onChange={handleChange} />
+                  </label>
+                </p>
+                <input
+                  type="text"
+                  name="first-name"
+                  onChange={handleChange}
+                  className={styles.inquireInput}
+                  placeholder="First Name"
+                />
+                <input
+                  type="text"
+                  name="last-name"
+                  onChange={handleChange}
+                  className={styles.inquireInput}
+                  placeholder="Last Name"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  required
+                  className={styles.inquireInput}
+                  placeholder="Email Address"
+                />
+                <input
+                  type="tel"
+                  name="telephone"
+                  onChange={handleChange}
+                  className={styles.inquireInput}
+                  placeholder="Phone Number"
+                />
+                <textarea
+                  name="message"
+                  id="message"
+                  rows="8"
+                  maxLength="300"
+                  placeholder="Additional Notes"
+                  onChange={handleChange}
+                  className={styles.inquireArea}
+                ></textarea>
+                <div id="charCount" className={styles.characterCount}>
+                  300 characters remaining
+                </div>
+              </form>
             </div>
           </motion.div>
         )}

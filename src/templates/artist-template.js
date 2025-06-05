@@ -13,6 +13,7 @@ import PdfDownload from "../components/pdfDownload"
 import Pagination from "../components/pagination"
 import moment from "moment"
 import { AnimatePresence, motion } from "framer-motion"
+import CtaBanner from "../components/ctaBanner"
 
 const Artist = ({ data }) => {
   const {
@@ -29,6 +30,7 @@ const Artist = ({ data }) => {
     flexSectionTitle,
     aboutDownloads,
     publications,
+    cta,
   } = data.allContentfulArtist.nodes[0]
 
   const allPublications = data.allShopifyProduct.nodes
@@ -347,6 +349,7 @@ const Artist = ({ data }) => {
           </div>
         )}
       </div>
+      {cta && <CtaBanner cta={cta}></CtaBanner>}
       <Link to="/artists" className={styles.explore}>
         <FormattedMessage id="explore"></FormattedMessage>
       </Link>
@@ -362,6 +365,17 @@ export const query = graphql`
       nodes {
         slug
         name
+        cta {
+          backgroundImage {
+            description
+            gatsbyImageData
+          }
+          buttonText
+          buttonType
+          headlineText
+          subtitle
+          textColor
+        }
         videos {
           id
           caption {
