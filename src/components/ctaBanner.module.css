@@ -70,7 +70,7 @@
   transform: translate(-50%, -50%);
   background: #fff;
   width: 75%;
-  z-index: 100;
+  z-index: 4000000;
   padding: 15px;
 }
 
@@ -140,6 +140,15 @@
   margin-top: 60px;
 }
 
+.submitInquire {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border: 1px solid currentColor;
+  padding: 10px 30px 5px 30px;
+  border-radius: 80px;
+}
+
 .inquireForm {
   display: flex;
   flex-wrap: wrap;
@@ -171,13 +180,11 @@
 }
 
 .characterCount {
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
+  transform: translate(10px, -300%);
   font-size: var(--caption);
   color: var(--dark-gray);
-  z-index: 2000;
 }
+
 @media screen and (max-width: 700px) {
   .bannerContainer {
     aspect-ratio: 5 / 4;

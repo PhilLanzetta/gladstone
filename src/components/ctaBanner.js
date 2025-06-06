@@ -1,5 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { navigate } from "gatsby"
 import { AnimatePresence, motion } from "framer-motion"
 import * as styles from "./ctaBanner.module.css"
@@ -25,15 +25,17 @@ const CTABanner = ({ cta, intl }) => {
 
   const postUrl = process.env.GATSBY_MAILCHIMP_URL
 
-  let textarea = document.getElementById("message")
-  let charCount = document.getElementById("charCount")
-  const maxNumOfChars = 300
+  useEffect(() => {
+    let textarea = document.getElementById("message")
+    let charCount = document.getElementById("charCount")
+    const maxNumOfChars = 300
 
-  textarea?.addEventListener("keyup", function () {
-    let textEntered = textarea.value
-    let counter = maxNumOfChars - textEntered.length
-    charCount.textContent = counter + " characters remaining"
-  })
+    textarea?.addEventListener("keyup", function () {
+      let textEntered = textarea.value
+      let counter = maxNumOfChars - textEntered.length
+      charCount.textContent = counter + " characters remaining"
+    })
+  }, [isInquireOpen])
 
   const {
     headlineText,
@@ -261,6 +263,9 @@ const CTABanner = ({ cta, intl }) => {
                 <div id="charCount" className={styles.characterCount}>
                   300 characters remaining
                 </div>
+                <button type="submit" className={styles.submitInquire}>
+                  Inquire
+                </button>
               </form>
             </div>
           </motion.div>
