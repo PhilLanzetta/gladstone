@@ -12,9 +12,9 @@ const ViewingRoom = ({ data }) => {
 
   const featuredImage = content[0]
   const remainingContent = content.slice(1)
-  const featuredArtists = fair[0].artists?.sort(
-    (a, b) => a.lastName - b.lastName
-  )
+  const featuredArtists = fair
+    ? fair[0].artists?.sort((a, b) => a.lastName - b.lastName)
+    : null
 
   return (
     <div className="pageContainer">
