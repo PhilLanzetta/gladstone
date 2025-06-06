@@ -236,7 +236,7 @@ const CTABanner = ({ cta, intl, artist }) => {
               <form
                 name="inquire"
                 method="POST"
-                data-netlify="true"
+                netlify
                 data-netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
                 className={styles.inquireForm}
