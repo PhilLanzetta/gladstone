@@ -349,7 +349,7 @@ const Artist = ({ data }) => {
           </div>
         )}
       </div>
-      {cta && <CtaBanner cta={cta}></CtaBanner>}
+      {cta && <CtaBanner cta={cta} artist={name}></CtaBanner>}
       <Link to="/artists" className={styles.explore}>
         <FormattedMessage id="explore"></FormattedMessage>
       </Link>

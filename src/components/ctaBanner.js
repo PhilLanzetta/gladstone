@@ -12,12 +12,14 @@ function encode(data) {
     .join("&")
 }
 
-const CTABanner = ({ cta, intl }) => {
+const CTABanner = ({ cta, intl, artist }) => {
   const [isSubscribeOpen, setSubscribeOpen] = useState(false)
   const [isInquireOpen, setInquireOpen] = useState(false)
   const [email, setEmail] = useState("")
-  const [groups, setGroups] = useState([])
-  const [inquireState, setInquireState] = useState({})
+  const [group1, setGroup1] = useState(true)
+  const [group2, setGroup2] = useState(true)
+  const [group3, setGroup3] = useState(true)
+  const [inquireState, setInquireState] = useState({ artist })
 
   const handleChange = e => {
     setInquireState({ ...inquireState, [e.target.name]: e.target.value })
@@ -48,14 +50,6 @@ const CTABanner = ({ cta, intl }) => {
 
   const handleEmailChange = e => {
     setEmail(e.target.value)
-  }
-
-  const handleCheckboxChange = groupId => {
-    if (groups.includes(groupId)) {
-      setGroups(groups.filter(id => id !== groupId))
-    } else {
-      setGroups([...groups, groupId])
-    }
   }
 
   const handleSubmit = e => {
@@ -116,71 +110,103 @@ const CTABanner = ({ cta, intl }) => {
             <div className={styles.innerContainer}>
               <button
                 className={styles.close}
-                onClick={() => setSubscribeOpen(false)}
+                onClick={() => {
+                  setSubscribeOpen(false)
+                  setGroup1(true)
+                  setGroup2(true)
+                  setGroup3(true)
+                }}
               >
                 <span></span>
                 <span></span>
               </button>
-              <h2 className={styles.popUpHeadline}>Stay In Touch</h2>
-              <p>
-                Sign up to be notified about upcoming exhibitions, art works,
-                events, and more.{" "}
-              </p>
               <MailchimpSubscribe
                 url={postUrl}
                 render={({ subscribe, status, message }) => (
                   <div>
-                    <input
-                      type="email"
-                      value={email}
-                      autoCapitalize="off"
-                      onChange={handleEmailChange}
-                      placeholder={intl.formatMessage({ id: "email" })}
-                      required
-                      className={styles.emailInput}
-                    />
-                    <label className={styles.check}>
-                      <input
-                        type="checkbox"
-                        onChange={() => handleCheckboxChange("GROUP_ID_1")} // Replace with your group ID
-                      />
-                      Artist Exhibitions, News, and Events
-                    </label>
-                    <label className={styles.check}>
-                      <input
-                        type="checkbox"
-                        onChange={() => handleCheckboxChange("GROUP_ID_2")} // Replace with your group ID
-                      />
-                      Available Works and Art Fairs
-                    </label>
-                    <label className={styles.check}>
-                      <input
-                        type="checkbox"
-                        onChange={() => handleCheckboxChange("GROUP_ID_3")} // Replace with your group ID
-                      />
-                      Publications and Editions
-                    </label>
-                    <button
-                      onClick={() =>
-                        subscribe({
-                          EMAIL: email,
-                          groupings: [
-                            {
-                              id: "YOUR_GROUP_CATEGORY_ID", // Replace with your group category ID
-                              groups: groups,
-                            },
-                          ],
-                        })
-                      }
-                      className={styles.submit}
-                    >
-                      Subscribe
-                    </button>
-                    {status === "sending" && <div>sending...</div>}
-                    {status === "error" && (
-                      <div dangerouslySetInnerHTML={{ __html: message }} />
+                    {status === "success" && (
+                      <div>
+                        <h2 className={styles.popUpHeadline}>Thank you</h2>
+                        <p>
+                          Gallery news and updates will arrive soon in your
+                          inbox.
+                        </p>
+                      </div>
                     )}
-                    {status === "success" && <div>Subscribed!</div>}
+                    {status !== "success" && (
+                      <div>
+                        <h2 className={styles.popUpHeadline}>Stay In Touch</h2>
+                        <p>
+                          Sign up to be notified about upcoming exhibitions, art
+                          works, events, and more.{" "}
+                        </p>
+                      </div>
+                    )}
+                    <div
+                      className={status === "success" ? styles.successHide : ""}
+                    >
+                      <input
+                        type="email"
+                        value={email}
+                        autoCapitalize="off"
+                        onChange={handleEmailChange}
+                        placeholder={intl.formatMessage({ id: "email" })}
+                        required
+                        className={styles.emailInput}
+                      />
+                      <label className={styles.check}>
+                        <input
+                          type="checkbox"
+                          checked={group1}
+                          onChange={() => setGroup1(!group1)} // Replace with your group ID
+                        />
+                        Artist Exhibitions, News, and Events
+                      </label>
+                      <label className={styles.check}>
+                        <input
+                          type="checkbox"
+                          checked={group2}
+                          onChange={() => setGroup2(!group2)} // Replace with your group ID
+                        />
+                        Available Works and Art Fairs
+                      </label>
+                      <label className={styles.check}>
+                        <input
+                          type="checkbox"
+                          checked={group3}
+                          onChange={() => setGroup3(!group3)} // Replace with your group ID
+                        />
+                        Publications and Editions
+                      </label>
+                    </div>
+                    {status === "success" ? (
+                      <button
+                        onClick={() => setSubscribeOpen(false)}
+                        className={styles.submit}
+                      >
+                        Close
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() =>
+                          subscribe({
+                            EMAIL: email,
+                            ...(group1 && { "group[70621][64]": "1" }),
+                            ...(group2 && { "group[70621][512]": "1" }),
+                            ...(group3 && { "group[70621][1024]": "1" }),
+                          })
+                        }
+                        className={styles.submit}
+                      >
+                        Subscribe
+                      </button>
+                    )}
+                    {status === "error" && (
+                      <div
+                        dangerouslySetInnerHTML={{ __html: message }}
+                        className={styles.errorMessage}
+                      />
+                    )}
                   </div>
                 )}
               />
