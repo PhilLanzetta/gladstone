@@ -236,7 +236,7 @@ const CTABanner = ({ cta, intl, artist }) => {
               <form
                 name="inquire"
                 method="POST"
-                netlify
+                data-netlify="true"
                 data-netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
                 className={styles.inquireForm}
@@ -289,7 +289,10 @@ const CTABanner = ({ cta, intl, artist }) => {
                 <div id="charCount" className={styles.characterCount}>
                   300 characters remaining
                 </div>
-                <button type="submit" className={styles.submitInquire}>
+                <button
+                  type="submit"
+                  className={styles.submitInquire}
+                >
                   Inquire
                 </button>
               </form>
