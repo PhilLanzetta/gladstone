@@ -27,10 +27,20 @@ const CTABanner = ({ cta, intl, artist }) => {
 
   const postUrl = process.env.GATSBY_MAILCHIMP_URL
 
+  let inquireSuccess
+  let inquireHeading
+  let inquireError
+
   useEffect(() => {
     let textarea = document.getElementById("message")
     let charCount = document.getElementById("charCount")
     const maxNumOfChars = 300
+    inquireSuccess = document.getElementById("inquire-success")
+    inquireHeading = document.getElementById("inquire-heading")
+    inquireError = document.getElementById("inquire-error")
+
+    inquireSuccess && (inquireSuccess.style.display = "none")
+    inquireError && (inquireError.style.display = "none")
 
     textarea?.addEventListener("keyup", function () {
       let textEntered = textarea.value
@@ -63,7 +73,12 @@ const CTABanner = ({ cta, intl, artist }) => {
         ...inquireState,
       }),
     })
-      .then(() => navigate(form.getAttribute("action")))
+      .then(() => {
+        inquireSuccess.style.display = "block"
+        inquireHeading.style.display = "none"
+        form.style.visibility = "hidden"
+        form.reset()
+      })
       .catch(error => alert(error))
   }
 
@@ -228,78 +243,143 @@ const CTABanner = ({ cta, intl, artist }) => {
                 <span></span>
                 <span></span>
               </button>
-              <h2 className={styles.popUpHeadline}>Inquire</h2>
-              <p>
-                To learn more about the artist, please provide your contact
-                information, and we will reach out.
-              </p>
-              <form
-                name="inquire"
-                method="POST"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-                onSubmit={handleSubmit}
-                className={styles.inquireForm}
-              >
-                <input type="hidden" name="form-name" value="inquire" />
-                <p hidden>
-                  <label>
-                    Don’t fill this out if you’re human:{" "}
-                    <input name="bot-field" onChange={handleChange} />
-                  </label>
+              <div id="inquire-heading">
+                <h2 className={styles.popUpHeadline}>Inquire</h2>
+                <p>
+                  To learn more about the artist, please provide your contact
+                  information, and we will reach out.
                 </p>
-                <input
-                  type="text"
-                  name="first-name"
-                  onChange={handleChange}
-                  className={styles.inquireInput}
-                  placeholder="First Name"
-                />
-                <input
-                  type="text"
-                  name="last-name"
-                  onChange={handleChange}
-                  className={styles.inquireInput}
-                  placeholder="Last Name"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  required
-                  className={styles.inquireInput}
-                  placeholder="Email Address"
-                />
-                <input
-                  type="tel"
-                  name="telephone"
-                  onChange={handleChange}
-                  className={styles.inquireInput}
-                  placeholder="Phone Number"
-                />
-                <textarea
-                  name="message"
-                  id="message"
-                  rows="8"
-                  maxLength="300"
-                  placeholder="Additional Notes"
-                  onChange={handleChange}
-                  className={styles.inquireArea}
-                ></textarea>
-                <div id="charCount" className={styles.characterCount}>
-                  300 characters remaining
-                </div>
-                <button
-                  type="submit"
-                  className={styles.submitInquire}
+              </div>
+              <div id="inquire-success">
+                <h2 className={styles.popUpHeadline}>Thank you</h2>
+                <p>We'll be in touch soon.</p>
+              </div>
+              <div id="inquire-error"></div>
+              <div>
+                <form
+                  name="inquire"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={handleSubmit}
+                  className={styles.inquireForm}
                 >
-                  Inquire
-                </button>
-              </form>
+                  <input type="hidden" name="form-name" value="inquire" />
+                  <p hidden>
+                    <label>
+                      Don’t fill this out if you’re human:{" "}
+                      <input name="bot-field" onChange={handleChange} />
+                    </label>
+                  </p>
+                  <input
+                    type="text"
+                    name="first-name"
+                    onChange={handleChange}
+                    className={styles.inquireInput}
+                    placeholder="First Name"
+                  />
+                  <input
+                    type="text"
+                    name="last-name"
+                    onChange={handleChange}
+                    className={styles.inquireInput}
+                    placeholder="Last Name"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                    required
+                    className={styles.inquireInput}
+                    placeholder="Email Address"
+                  />
+                  <input
+                    type="tel"
+                    name="telephone"
+                    onChange={handleChange}
+                    className={styles.inquireInput}
+                    placeholder="Phone Number"
+                  />
+                  <textarea
+                    name="message"
+                    id="message"
+                    rows="8"
+                    maxLength="300"
+                    placeholder="Additional Notes"
+                    onChange={handleChange}
+                    className={styles.inquireArea}
+                  ></textarea>
+                  <div id="charCount" className={styles.characterCount}>
+                    300 characters remaining
+                  </div>
+                  <button type="submit" className={styles.submitInquire}>
+                    Inquire
+                  </button>
+                </form>
+              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+      <form
+        hidden
+        name="inquire"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="inquire" />
+        <p hidden>
+          <label>
+            Don’t fill this out if you’re human:{" "}
+            <input name="bot-field" onChange={handleChange} />
+          </label>
+        </p>
+        <input
+          type="text"
+          name="first-name"
+          onChange={handleChange}
+          className={styles.inquireInput}
+          placeholder="First Name"
+        />
+        <input
+          type="text"
+          name="last-name"
+          onChange={handleChange}
+          className={styles.inquireInput}
+          placeholder="Last Name"
+        />
+        <input
+          type="email"
+          name="email"
+          onChange={handleChange}
+          required
+          className={styles.inquireInput}
+          placeholder="Email Address"
+        />
+        <input
+          type="tel"
+          name="telephone"
+          onChange={handleChange}
+          className={styles.inquireInput}
+          placeholder="Phone Number"
+        />
+        <textarea
+          name="message"
+          id="message"
+          rows="8"
+          maxLength="300"
+          placeholder="Additional Notes"
+          onChange={handleChange}
+          className={styles.inquireArea}
+        ></textarea>
+        <div id="charCount" className={styles.characterCount}>
+          300 characters remaining
+        </div>
+        <button type="submit" className={styles.submitInquire}>
+          Inquire
+        </button>
+      </form>
     </div>
   )
 }
