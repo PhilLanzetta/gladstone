@@ -294,7 +294,7 @@ const CTABanner = ({ cta, intl, artist }) => {
                       <input name="bot-field" onChange={handleChange} />
                     </label>
                   </p>
-                  <div id="inner-form">
+                  <div id="inner-form" className={styles.innerForm}>
                     <input
                       type="text"
                       name="first-name"

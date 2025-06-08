@@ -154,6 +154,14 @@
   flex-wrap: wrap;
   gap: 20px;
   margin-top: 40px;
+  width: 100%;
+}
+
+.innerForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
 }
 
 .inquireInput::placeholder {
