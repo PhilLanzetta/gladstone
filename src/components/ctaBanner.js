@@ -1,6 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect, useState } from "react"
-import { navigate } from "gatsby"
 import { AnimatePresence, motion } from "framer-motion"
 import * as styles from "./ctaBanner.module.css"
 import MailchimpSubscribe from "react-mailchimp-subscribe"
@@ -27,20 +26,17 @@ const CTABanner = ({ cta, intl, artist }) => {
 
   const postUrl = process.env.GATSBY_MAILCHIMP_URL
 
-  let inquireSuccess
-  let inquireHeading
-  let inquireError
-
   useEffect(() => {
     let textarea = document.getElementById("message")
     let charCount = document.getElementById("charCount")
     const maxNumOfChars = 300
-    inquireSuccess = document.getElementById("inquire-success")
-    inquireHeading = document.getElementById("inquire-heading")
-    inquireError = document.getElementById("inquire-error")
+    const inquireSuccess = document.getElementById("inquire-success")
+    const inquireError = document.getElementById("inquire-error")
+    const inquireClose = document.getElementById("inquire-close")
 
     inquireSuccess && (inquireSuccess.style.display = "none")
     inquireError && (inquireError.style.display = "none")
+    inquireClose && (inquireClose.style.display = "none")
 
     textarea?.addEventListener("keyup", function () {
       let textEntered = textarea.value
@@ -65,6 +61,13 @@ const CTABanner = ({ cta, intl, artist }) => {
   const handleSubmit = e => {
     e.preventDefault()
     const form = e.target
+    const inquireSuccess = document.getElementById("inquire-success")
+    const inquireHeading = document.getElementById("inquire-heading")
+    const inquireError = document.getElementById("inquire-error")
+    const inquireSubmit = document.getElementById("inquire-submit")
+    const inquireClose = document.getElementById("inquire-close")
+    const innerForm = document.getElementById("inner-form")
+
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -76,10 +79,19 @@ const CTABanner = ({ cta, intl, artist }) => {
       .then(() => {
         inquireSuccess.style.display = "block"
         inquireHeading.style.display = "none"
-        form.style.visibility = "hidden"
+        innerForm.style.visibility = "hidden"
+        inquireClose.style.display = "flex"
+        inquireSubmit.style.display = "none"
+        setTimeout(() => {
+          setInquireOpen(false)
+        }, 3000)
         form.reset()
       })
-      .catch(error => alert(error))
+      .catch(error => {
+        inquireHeading.style.display = "none"
+        inquireError.style.display = "block"
+        inquireError.innerHTML = error
+      })
   }
 
   return (
@@ -137,93 +149,104 @@ const CTABanner = ({ cta, intl, artist }) => {
               </button>
               <MailchimpSubscribe
                 url={postUrl}
-                render={({ subscribe, status, message }) => (
-                  <div>
-                    {status === "success" && (
-                      <div>
-                        <h2 className={styles.popUpHeadline}>Thank you</h2>
-                        <p>
-                          Gallery news and updates will arrive soon in your
-                          inbox.
-                        </p>
-                      </div>
-                    )}
-                    {status !== "success" && (
-                      <div>
-                        <h2 className={styles.popUpHeadline}>Stay In Touch</h2>
-                        <p>
-                          Sign up to be notified about upcoming exhibitions, art
-                          works, events, and more.{" "}
-                        </p>
-                      </div>
-                    )}
-                    <div
-                      className={status === "success" ? styles.successHide : ""}
-                    >
-                      <input
-                        type="email"
-                        value={email}
-                        autoCapitalize="off"
-                        onChange={handleEmailChange}
-                        placeholder={intl.formatMessage({ id: "email" })}
-                        required
-                        className={styles.emailInput}
-                      />
-                      <label className={styles.check}>
-                        <input
-                          type="checkbox"
-                          checked={group1}
-                          onChange={() => setGroup1(!group1)} // Replace with your group ID
-                        />
-                        Artist Exhibitions, News, and Events
-                      </label>
-                      <label className={styles.check}>
-                        <input
-                          type="checkbox"
-                          checked={group2}
-                          onChange={() => setGroup2(!group2)} // Replace with your group ID
-                        />
-                        Available Works and Art Fairs
-                      </label>
-                      <label className={styles.check}>
-                        <input
-                          type="checkbox"
-                          checked={group3}
-                          onChange={() => setGroup3(!group3)} // Replace with your group ID
-                        />
-                        Publications and Editions
-                      </label>
-                    </div>
-                    {status === "success" ? (
-                      <button
-                        onClick={() => setSubscribeOpen(false)}
-                        className={styles.submit}
-                      >
-                        Close
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() =>
-                          subscribe({
-                            EMAIL: email,
-                            ...(group1 && { "group[70621][64]": "1" }),
-                            ...(group2 && { "group[70621][512]": "1" }),
-                            ...(group3 && { "group[70621][1024]": "1" }),
-                          })
-                        }
-                        className={styles.submit}
-                      >
-                        Subscribe
-                      </button>
-                    )}
-                    {status === "error" && (
+                render={({ subscribe, status, message }) => {
+                  if (status === "success") {
+                    setTimeout(() => {
+                      setSubscribeOpen(false)
+                    }, 3000)
+                  }
+                  return (
+                    <div>
+                      {status === "success" && (
+                        <div>
+                          <h2 className={styles.popUpHeadline}>Thank you</h2>
+                          <p>
+                            Gallery news and updates will arrive soon in your
+                            inbox.
+                          </p>
+                        </div>
+                      )}
+                      {status !== "success" && (
+                        <div>
+                          <h2 className={styles.popUpHeadline}>
+                            Stay In Touch
+                          </h2>
+                          <p>
+                            Sign up to be notified about upcoming exhibitions,
+                            art works, events, and more.{" "}
+                          </p>
+                        </div>
+                      )}
                       <div
-                        dangerouslySetInnerHTML={{ __html: message }}
-                        className={styles.errorMessage}
-                      />
-                    )}
-                  </div>
-                )}
+                        className={
+                          status === "success" ? styles.successHide : ""
+                        }
+                      >
+                        <input
+                          type="email"
+                          value={email}
+                          autoCapitalize="off"
+                          onChange={handleEmailChange}
+                          placeholder={intl.formatMessage({ id: "email" })}
+                          required
+                          className={styles.emailInput}
+                        />
+                        <label className={styles.check}>
+                          <input
+                            type="checkbox"
+                            checked={group1}
+                            onChange={() => setGroup1(!group1)} // Replace with your group ID
+                          />
+                          Artist Exhibitions, News, and Events
+                        </label>
+                        <label className={styles.check}>
+                          <input
+                            type="checkbox"
+                            checked={group2}
+                            onChange={() => setGroup2(!group2)} // Replace with your group ID
+                          />
+                          Available Works and Art Fairs
+                        </label>
+                        <label className={styles.check}>
+                          <input
+                            type="checkbox"
+                            checked={group3}
+                            onChange={() => setGroup3(!group3)} // Replace with your group ID
+                          />
+                          Publications and Editions
+                        </label>
+                      </div>
+                      {status === "success" ? (
+                        <button
+                          onClick={() => setSubscribeOpen(false)}
+                          className={styles.submit}
+                        >
+                          Close
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() =>
+                            subscribe({
+                              EMAIL: email,
+                              ...(group1 && { "group[70621][64]": "1" }),
+                              ...(group2 && { "group[70621][512]": "1" }),
+                              ...(group3 && { "group[70621][1024]": "1" }),
+                            })
+                          }
+                          className={styles.submit}
+                        >
+                          Subscribe
+                        </button>
+                      )}
+                      {status === "error" && (
+                        <div
+                          dangerouslySetInnerHTML={{ __html: message }}
+                          className={styles.errorMessage}
+                        />
+                      )}
+                    </div>
+                  )
+                }}
               />
             </div>
           </motion.div>
@@ -271,49 +294,62 @@ const CTABanner = ({ cta, intl, artist }) => {
                       <input name="bot-field" onChange={handleChange} />
                     </label>
                   </p>
-                  <input
-                    type="text"
-                    name="first-name"
-                    onChange={handleChange}
-                    className={styles.inquireInput}
-                    placeholder="First Name"
-                  />
-                  <input
-                    type="text"
-                    name="last-name"
-                    onChange={handleChange}
-                    className={styles.inquireInput}
-                    placeholder="Last Name"
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    onChange={handleChange}
-                    required
-                    className={styles.inquireInput}
-                    placeholder="Email Address"
-                  />
-                  <input
-                    type="tel"
-                    name="telephone"
-                    onChange={handleChange}
-                    className={styles.inquireInput}
-                    placeholder="Phone Number"
-                  />
-                  <textarea
-                    name="message"
-                    id="message"
-                    rows="8"
-                    maxLength="300"
-                    placeholder="Additional Notes"
-                    onChange={handleChange}
-                    className={styles.inquireArea}
-                  ></textarea>
-                  <div id="charCount" className={styles.characterCount}>
-                    300 characters remaining
+                  <div id="inner-form">
+                    <input
+                      type="text"
+                      name="first-name"
+                      onChange={handleChange}
+                      className={styles.inquireInput}
+                      placeholder="First Name"
+                    />
+                    <input
+                      type="text"
+                      name="last-name"
+                      onChange={handleChange}
+                      className={styles.inquireInput}
+                      placeholder="Last Name"
+                    />
+                    <input
+                      type="email"
+                      name="email"
+                      onChange={handleChange}
+                      required
+                      className={styles.inquireInput}
+                      placeholder="Email Address"
+                    />
+                    <input
+                      type="tel"
+                      name="telephone"
+                      onChange={handleChange}
+                      className={styles.inquireInput}
+                      placeholder="Phone Number"
+                    />
+                    <textarea
+                      name="message"
+                      id="message"
+                      rows="8"
+                      maxLength="300"
+                      placeholder="Additional Notes"
+                      onChange={handleChange}
+                      className={styles.inquireArea}
+                    ></textarea>
+                    <div id="charCount" className={styles.characterCount}>
+                      300 characters remaining
+                    </div>
                   </div>
-                  <button type="submit" className={styles.submitInquire}>
+                  <button
+                    type="submit"
+                    className={styles.submitInquire}
+                    id="inquire-submit"
+                  >
                     Inquire
+                  </button>
+                  <button
+                    className={styles.submitInquire}
+                    onClick={() => setInquireOpen(false)}
+                    id="inquire-close"
+                  >
+                    Close
                   </button>
                 </form>
               </div>
