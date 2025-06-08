@@ -327,17 +327,6 @@ export const query = graphql`
             title
           }
         }
-        cta {
-          backgroundImage {
-            description
-            gatsbyImageData
-          }
-          buttonText
-          buttonType
-          headlineText
-          subtitle
-          textColor
-        }
       }
     }
   }
