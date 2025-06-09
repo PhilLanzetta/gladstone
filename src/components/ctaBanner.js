@@ -18,7 +18,7 @@ const CTABanner = ({ cta, intl, artist }) => {
   const [group1, setGroup1] = useState(true)
   const [group2, setGroup2] = useState(true)
   const [group3, setGroup3] = useState(true)
-  const [inquireState, setInquireState] = useState({ artist })
+  const [inquireState, setInquireState] = useState({})
 
   const handleChange = e => {
     setInquireState({ ...inquireState, [e.target.name]: e.target.value })
@@ -73,6 +73,7 @@ const CTABanner = ({ cta, intl, artist }) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
         "form-name": form.getAttribute("name"),
+        "artist": artist,
         ...inquireState,
       }),
     })
@@ -337,6 +338,7 @@ const CTABanner = ({ cta, intl, artist }) => {
                       300 characters remaining
                     </div>
                   </div>
+                  <input type="hidden" name="artist" value={artist} />
                   <button
                     type="submit"
                     className={styles.submitInquire}
@@ -412,6 +414,7 @@ const CTABanner = ({ cta, intl, artist }) => {
         <div id="charCount" className={styles.characterCount}>
           300 characters remaining
         </div>
+        <input type="hidden" name="artist" value={artist} />
         <button type="submit" className={styles.submitInquire}>
           Inquire
         </button>
