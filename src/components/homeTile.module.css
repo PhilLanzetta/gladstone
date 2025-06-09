@@ -1,10 +1,12 @@
 .tileContainer {
   position: relative;
+  display: block;
 }
 
 .tileContainerWhite {
   position: relative;
   color: #fff;
+  display: block;
 }
 
 .tileContainerWhite:hover {
