@@ -24,6 +24,7 @@ const HomeTile = ({ tile, pageContext }) => {
 
   const { width } = useWindowSize()
   const isMobile = width < 700
+  console.log(isMobile)
   const [isPlaying, setIsPlaying] = useState(false)
 
   let aspectMultiplier = 9 / 16
