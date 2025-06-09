@@ -25,8 +25,6 @@ const Artist = ({ data }) => {
     press,
     studioVisit,
     videos,
-    callToActionText,
-    callToActionEmail,
     flexSectionTitle,
     aboutDownloads,
     publications,
@@ -336,18 +334,6 @@ const Artist = ({ data }) => {
             </div>
           </>
         )}
-        {callToActionText && (
-          <div className={styles.callToActionContainer}>
-            <h2
-              dangerouslySetInnerHTML={{
-                __html: callToActionText.childMarkdownRemark.html,
-              }}
-            ></h2>
-            <a href={`mailto:${callToActionEmail}`} className={styles.ctaLink}>
-              <FormattedMessage id="inquire_here"></FormattedMessage>
-            </a>
-          </div>
-        )}
       </div>
       {cta && <CtaBanner cta={cta} artist={name}></CtaBanner>}
       <Link to="/artists" className={styles.explore}>
@@ -390,12 +376,6 @@ export const query = graphql`
           source
           aspectRatio
         }
-        callToActionText {
-          childMarkdownRemark {
-            html
-          }
-        }
-        callToActionEmail
         featuredBiography {
           childMarkdownRemark {
             html
