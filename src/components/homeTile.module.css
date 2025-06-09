@@ -1,19 +1,36 @@
 .tileContainer {
   position: relative;
   display: block;
+  width: 100%;
+}
+
+.tileContainerHalf {
+  position: relative;
+  display: block;
+  width: 50%;
 }
 
 .tileContainerWhite {
   position: relative;
   color: #fff;
   display: block;
+  width: 100%;
 }
 
-.tileContainerWhite:hover {
+.tileContainerWhiteHalf {
+  position: relative;
+  color: #fff;
+  display: block;
+  width: 50%;
+}
+
+.tileContainerWhite:hover,
+.tileContainerWhiteHalf:hover {
   color: #fff;
 }
 
-.tileContainer:hover {
+.tileContainer:hover,
+.tileContainerHalf:hover {
   color: currentColor;
 }
 
@@ -76,6 +93,11 @@
 }
 
 @media screen and (max-width: 700px) {
+  .tileContainerHalf,
+  .tileContainerWhiteHalf {
+    width: 100%;
+  }
+  
   .tileMedia,
   .tileMediaHalf {
     aspect-ratio: 4 / 5;
