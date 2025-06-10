@@ -72,6 +72,7 @@
   width: 75%;
   z-index: 4000000;
   padding: 15px;
+  border: 1px solid var(--light-gray);
 }
 
 .popUpHeadline {
@@ -116,11 +117,15 @@
 
 .emailInput {
   border-bottom: 1px solid var(--dark-gray);
-  padding: 2px 0px;
+  padding: 8px 0px 2px 0px;
   display: block;
   width: 100%;
   margin-top: 40px;
   margin-bottom: 60px;
+}
+
+.emailInput:focus {
+  outline: none;
 }
 
 .check {
@@ -128,6 +133,52 @@
   margin-bottom: 10px;
   display: flex;
   gap: 10px;
+  position: relative;
+  padding-left: calc(1rem + 15px);
+}
+
+.check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  height: 1rem;
+  width: 1rem;
+  border: 1px solid var(--dark-gray);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check .checkmark:after {
+  left: calc(1rem / 7);
+  top: calc(1rem / 2.75);
+  width: 0.25rem;
+  height: 0.75rem;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg) translate(-50%, -50%);
+  -ms-transform: rotate(45deg) translate(-50%, -50%);
+  transform: rotate(45deg) translate(-50%, -50%);
 }
 
 .submit {
@@ -173,6 +224,16 @@
   border-bottom: 1px solid var(--mid-gray);
   margin-bottom: 20px;
   font-family: var(--font-primary);
+  padding: 8px 0px 2px 0px;
+}
+
+.inquireInput:focus {
+  outline: none;
+}
+
+.extraPadding {
+  width: 100%;
+  height: 10px;
 }
 
 .inquireArea {

@@ -11,8 +11,7 @@ function encode(data) {
     .join("&")
 }
 
-const CTABanner = ({ cta, intl, artist }) => {
-  const [isSubscribeOpen, setSubscribeOpen] = useState(false)
+const CTABanner = ({ cta, intl, artist, isSubscribeOpen, setSubscribeOpen }) => {
   const [isInquireOpen, setInquireOpen] = useState(false)
   const [email, setEmail] = useState("")
   const [group1, setGroup1] = useState(true)
@@ -73,7 +72,7 @@ const CTABanner = ({ cta, intl, artist }) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
         "form-name": form.getAttribute("name"),
-        "artist": artist,
+        artist: artist,
         ...inquireState,
       }),
     })
@@ -199,6 +198,7 @@ const CTABanner = ({ cta, intl, artist }) => {
                             onChange={() => setGroup1(!group1)} // Replace with your group ID
                           />
                           Artist Exhibitions, News, and Events
+                          <span className={styles.checkmark}></span>
                         </label>
                         <label className={styles.check}>
                           <input
@@ -207,6 +207,7 @@ const CTABanner = ({ cta, intl, artist }) => {
                             onChange={() => setGroup2(!group2)} // Replace with your group ID
                           />
                           Available Works and Art Fairs
+                          <span className={styles.checkmark}></span>
                         </label>
                         <label className={styles.check}>
                           <input
@@ -215,6 +216,7 @@ const CTABanner = ({ cta, intl, artist }) => {
                             onChange={() => setGroup3(!group3)} // Replace with your group ID
                           />
                           Publications and Editions
+                          <span className={styles.checkmark}></span>
                         </label>
                       </div>
                       {status === "success" ? (
@@ -239,6 +241,7 @@ const CTABanner = ({ cta, intl, artist }) => {
                           Subscribe
                         </button>
                       )}
+                      <div className={styles.extraPadding}></div>
                       {status === "error" && (
                         <div
                           dangerouslySetInnerHTML={{ __html: message }}
