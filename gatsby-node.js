@@ -39,6 +39,14 @@ exports.createPages = async ({ actions, graphql }) => {
           }
         }
       }
+      allContentfulNewsSecondaryPage {
+        edges {
+          node {
+            slug
+            node_locale
+          }
+        }
+      }
       allContentfulExhibition(
         filter: {
           title: { ne: "Placeholder (does not show on site, do not delete)" }
@@ -81,9 +89,9 @@ exports.createPages = async ({ actions, graphql }) => {
         }
       }
       artistProduct: allShopifyProduct {
-          nodes {
-            tags
-          }
+        nodes {
+          tags
+        }
       }
       allShopifyCollection {
         edges {
@@ -117,12 +125,13 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const collections = result.data.allShopifyCollection.edges
 
-  const artistProducts = result.data.artistProduct.nodes.reduce(
-    (accumulator, object) => {
+  const newsSecondary = result.data.allContentfulNewsSecondaryPage.edges
+
+  const artistProducts = result.data.artistProduct.nodes
+    .reduce((accumulator, object) => {
       return accumulator.concat(object.tags)
-    },
-    []
-  ).filter(onlyUnique)
+    }, [])
+    .filter(onlyUnique)
 
   artists.forEach(({ node }) => {
     const artistSlug = node.slug
@@ -139,6 +148,15 @@ exports.createPages = async ({ actions, graphql }) => {
       path: `/exhibit/${exhibitSlug}`,
       component: require.resolve("./src/templates/exhibit-template.js"),
       context: { slug: exhibitSlug },
+    })
+  })
+
+  newsSecondary.forEach(({ node }) => {
+    const newsSlug = node.slug
+    createPage({
+      path: `/news/${newsSlug}`,
+      component: require.resolve("./src/templates/news-secondary-template.js"),
+      context: { slug: newsSlug },
     })
   })
 
