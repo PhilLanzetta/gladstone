@@ -4,6 +4,7 @@ import * as styles from "../components/newsSecondary.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { FormattedMessage, Link } from "gatsby-plugin-intl"
 import PdfDownload from "../components/pdfDownload"
+import Seo from "../components/seo"
 
 const NewsSecond = ({ data }) => {
   const { bodyContent, downloads, dates, location, headlineText, heroImage } =
@@ -106,6 +107,7 @@ export const query = graphql`
       filter: { node_locale: { eq: $locale }, slug: { eq: $slug } }
     ) {
       nodes {
+        title
         bodyContent {
           ... on ContentfulImageWrapper {
             bodyImageId: id
@@ -159,5 +161,9 @@ export const query = graphql`
     }
   }
 `
+
+export const Head = ({ data }) => (
+  <Seo title={data.allContentfulNewsSecondaryPage.nodes[0].title} />
+)
 
 export default NewsSecond
