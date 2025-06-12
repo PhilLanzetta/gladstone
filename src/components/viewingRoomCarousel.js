@@ -83,6 +83,7 @@ const ViewingRoomCarousel = ({ item, title }) => {
     },
   }
 
+  console.log(item.slides)
   return (
     <div
       id={item.artist.slug}
@@ -93,7 +94,7 @@ const ViewingRoomCarousel = ({ item, title }) => {
       }
     >
       <div className={styles.sliderContainer}>
-        {item.slides > 1 ? (
+        {item.slides.length > 1 ? (
           <Slider {...settings}>
             {item.slides.map(slide => (
               <div key={slide.id}>
