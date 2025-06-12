@@ -286,6 +286,10 @@
   border: 2px solid var(--dark-gray);
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 @media screen and (max-width: 700px) {
   .exhibitionsHeader {
     flex-wrap: wrap;

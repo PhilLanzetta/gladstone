@@ -54,8 +54,24 @@ const Exhibit = ({ data, pageContext }) => {
             <em dangerouslySetInnerHTML={{ __html: title }}></em>
           </p>
           <p className={styles.aboveInfo}>
-            {moment(startDate).format("MMMM D")} &mdash;{" "}
-            {moment(endDate).format("MMMM D, YYYY")}{" "}
+            {moment(startDate).year() === moment(endDate).year() ? (
+                            moment(startDate).month() === moment(endDate).month() ? (
+                              <span>
+                                {moment(startDate).format("MMMM D")}&mdash;
+                                {moment(endDate).format("D, YYYY")}
+                              </span>
+                            ) : (
+                              <span>
+                                {moment(startDate).format("MMMM D")} &mdash;{" "}
+                                {moment(endDate).format("MMMM D, YYYY")}
+                              </span>
+                            )
+                          ) : (
+                            <span>
+                              {moment(startDate).format("MMMM D, YYYY")} &mdash;{" "}
+                              {moment(endDate).format("MMMM D, YYYY")}
+                            </span>
+                          )}
           </p>
           {openingReception && (
             <p className={styles.aboveInfo}>

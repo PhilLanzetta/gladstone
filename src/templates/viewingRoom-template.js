@@ -63,11 +63,10 @@ const ViewingRoom = ({ data }) => {
           ></GatsbyImage>
         </div>
 
-        <div id="featured-art" className={styles.featuredArtistsContainer}>
-          <div className={styles.featuredHeading}>
-            <FormattedMessage id="artwork"></FormattedMessage>
-          </div>
-        </div>
+        <div
+          id="featured-art"
+          className={styles.featuredArtistsContainer}
+        ></div>
         <div>
           {remainingContent.map(item => {
             if (item.fullImgId) {

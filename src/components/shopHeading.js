@@ -37,8 +37,8 @@ const ShopHeading = () => {
         )}
       </AnimatePresence>
       <div className={styles.exhibitionsHeader}>
-        <Link className="pageHeading" to="/shop">
-          <FormattedMessage id="shop"></FormattedMessage>
+        <Link className={`pageHeading ${styles.hidden}`} to="/shop">
+          Shop
         </Link>
         <div className={styles.headerLinkContainer}>
           {orderedCollections.map((collection, index) => (
