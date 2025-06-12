@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import * as styles from "./viewingRoom.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Slider from "react-slick"
 import { FormattedMessage } from "gatsby-plugin-intl"
 import InquirePop from "./inquirePop"
 import { AnimatePresence } from "framer-motion"
+import MyContext from "../context/StateContext"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -68,7 +69,8 @@ function PrevArrow(props) {
 
 const ViewingRoomCarousel = ({ item, title }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isInquireOpen, setInquireOpen] = useState(false)
+  const { isInquireOpen, updateInquireOpen, updateContext, updateViewingRoom } =
+    useContext(MyContext)
 
   const settings = {
     slidesToShow: 1,
@@ -131,19 +133,16 @@ const ViewingRoomCarousel = ({ item, title }) => {
             ),
           }}
         ></div>
-        <button className={styles.inquire} onClick={() => setInquireOpen(true)}>
+        <button
+          className={styles.inquire}
+          onClick={() => {
+            updateInquireOpen(true)
+            updateContext(`${title} - ${item.artist.name}`)
+            updateViewingRoom(true)
+          }}
+        >
           <FormattedMessage id="inquire"></FormattedMessage>
         </button>
-        <AnimatePresence>
-          {isInquireOpen && (
-            <InquirePop
-              setInquireOpen={setInquireOpen}
-              isInquireOpen={isInquireOpen}
-              context={`${title} - ${item.artist.name}`}
-              viewingRoom={true}
-            ></InquirePop>
-          )}
-        </AnimatePresence>
       </div>
     </div>
   )

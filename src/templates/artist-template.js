@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { graphql } from "gatsby"
 import { Link, FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -14,6 +14,7 @@ import Pagination from "../components/pagination"
 import moment from "moment"
 import { AnimatePresence, motion } from "framer-motion"
 import CTABanner from "../components/ctaBanner"
+import MyContext from "../context/StateContext"
 
 const Artist = ({ data }) => {
   const {
@@ -44,6 +45,11 @@ const Artist = ({ data }) => {
   const isMobile = width < 700
 
   const [pressOpen, setPressOpen] = useState(false)
+  const { updateContext } = useContext(MyContext)
+
+  useEffect(() => {
+    updateContext(`Artist Page - ${name}`)
+  }, [])
 
   useEffect(() => {
     if (pressOpen === true) {
@@ -335,7 +341,7 @@ const Artist = ({ data }) => {
           </>
         )}
       </div>
-      {cta && <CTABanner cta={cta} context={name}></CTABanner>}
+      {cta && <CTABanner cta={cta}></CTABanner>}
       <Link to="/artists" className={styles.explore}>
         <FormattedMessage id="explore"></FormattedMessage>
       </Link>

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import * as styles from "../components/ctaBanner.module.css"
 import { motion } from "framer-motion"
 import { FormattedMessage } from "gatsby-plugin-intl"
+import MyContext from "../context/StateContext"
 
 function encode(data) {
   return Object.keys(data)
@@ -9,13 +10,10 @@ function encode(data) {
     .join("&")
 }
 
-const InquirePop = ({
-  isInquireOpen,
-  setInquireOpen,
-  context,
-  viewingRoom,
-}) => {
+const InquirePop = () => {
   const [inquireState, setInquireState] = useState({})
+  const { isInquireOpen, updateInquireOpen, context, viewingRoom } =
+    useContext(MyContext)
 
   const handleChange = e => {
     setInquireState({ ...inquireState, [e.target.name]: e.target.value })
@@ -66,7 +64,7 @@ const InquirePop = ({
         inquireClose.style.display = "flex"
         inquireSubmit.style.display = "none"
         setTimeout(() => {
-          setInquireOpen(false)
+          updateInquireOpen(false)
         }, 3000)
         form.reset()
       })
@@ -84,7 +82,10 @@ const InquirePop = ({
       className={styles.subscribePopUp}
     >
       <div className={styles.innerContainer}>
-        <button className={styles.close} onClick={() => setInquireOpen(false)}>
+        <button
+          className={styles.close}
+          onClick={() => updateInquireOpen(false)}
+        >
           <span></span>
           <span></span>
         </button>
@@ -174,7 +175,7 @@ const InquirePop = ({
             </button>
             <button
               className={styles.submitInquire}
-              onClick={() => setInquireOpen(false)}
+              onClick={() => updateInquireOpen(false)}
               id="inquire-close"
             >
               <FormattedMessage id="close"></FormattedMessage>

@@ -4,6 +4,7 @@ import Header from "./header"
 import Footer from "./footer"
 import { AnimatePresence, motion } from "framer-motion"
 import ShopHeading from "./shopHeading"
+import { MyContextProvider } from "../context/StateContext"
 // import CookieConsent from "react-cookie-consent"
 
 const Layout = ({ children, location }) => {
@@ -22,24 +23,23 @@ const Layout = ({ children, location }) => {
 
   return (
     <>
-      <Header
-        isHome={isHome}
-        isAfter={isAfter}
-      ></Header>
-      <AnimatePresence mode="wait">
-        <motion.main
-          key={location.pathname}
-          variants={container}
-          initial="start"
-          animate="in"
-          exit="out"
-          className={isAfter ? "afterMain" : ""}
-        >
-          {isShop && <ShopHeading></ShopHeading>}
-          {children}
-          <Footer isAfter={isAfter}></Footer>
-        </motion.main>
-      </AnimatePresence>
+      <MyContextProvider>
+        <Header isHome={isHome} isAfter={isAfter}></Header>
+        <AnimatePresence mode="wait">
+          <motion.main
+            key={location.pathname}
+            variants={container}
+            initial="start"
+            animate="in"
+            exit="out"
+            className={isAfter ? "afterMain" : ""}
+          >
+            {isShop && <ShopHeading></ShopHeading>}
+            {children}
+            <Footer isAfter={isAfter}></Footer>
+          </motion.main>
+        </AnimatePresence>
+      </MyContextProvider>
 
       {/* <CookieConsent
         location="bottom"

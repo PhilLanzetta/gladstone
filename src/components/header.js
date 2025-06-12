@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState, useRef } from "react"
 import * as styles from "./header.module.css"
 import useWindowSize from "../utils/useWindowSize"
 import {
@@ -10,12 +10,26 @@ import {
 import smallLogo from "../images/Gladstone_Small.svg"
 import bigLogo from "../images/Gladstone_Big.svg"
 import smallLogoWhite from "../images/Gladstone_Small_White.svg"
-import { Link, FormattedMessage } from "gatsby-plugin-intl"
+import { Link, FormattedMessage, injectIntl } from "gatsby-plugin-intl"
 import Language from "./language.js"
+import MyContext from "../context/StateContext.js"
+import MailchimpSubscribe from "react-mailchimp-subscribe"
+import InquirePop from "./inquirePop.js"
 
-const Header = ({ isHome, isAfter }) => {
+const Header = ({ isHome, isAfter, intl }) => {
+  const {
+    isSubscribeOpen,
+    updateSubscribeOpen,
+    isInquireOpen,
+    updateInquireOpen,
+    context,
+  } = useContext(MyContext)
   const [isOpen, setIsOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
+  const [group1, setGroup1] = useState(true)
+  const [group2, setGroup2] = useState(true)
+  const [group3, setGroup3] = useState(true)
+  const [email, setEmail] = useState("")
   const { width } = useWindowSize()
   const isMobile = width < 700
   const { scrollY } = useScroll()
@@ -28,12 +42,46 @@ const Header = ({ isHome, isAfter }) => {
     }
   })
 
+  const postUrl = process.env.GATSBY_MAILCHIMP_URL
+
+  const handleEmailChange = e => {
+    setEmail(e.target.value)
+  }
+
   useEffect(() => {
     if (isOpen) {
       setHidden(false)
     }
     return
   }, [isOpen])
+
+  const scrollRef = useRef(0) // Using useRef to store the last scroll position
+
+  useEffect(() => {
+    if (isHome) {
+      const handleScroll = () => {
+        // Calculate scroll percentage
+        const scrollPosition = window.scrollY
+        const totalHeight =
+          document.documentElement.scrollHeight - window.innerHeight
+        const scrollPercentage = (scrollPosition / totalHeight) * 100
+        const hasShowed = localStorage.getItem("pop-up")
+
+        // Check if scrolled three-quarters down (75%)
+        if (scrollPercentage >= 75 && !hasShowed && !isSubscribeOpen) {
+          updateSubscribeOpen(true)
+          localStorage.setItem("pop-up", true)
+        }
+        scrollRef.current = scrollPosition // Update the last scroll position
+      }
+
+      window.addEventListener("scroll", handleScroll)
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll) // Cleanup event listener
+      }
+    } else return
+  }, [isSubscribeOpen, isHome])
 
   return (
     <header
@@ -271,8 +319,145 @@ const Header = ({ isHome, isAfter }) => {
           )}
         </AnimatePresence>
       </div>
+      <AnimatePresence>
+        {isSubscribeOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={styles.subscribePopUp}
+          >
+            <div className={styles.innerContainer}>
+              <button
+                className={styles.close}
+                onClick={() => {
+                  updateSubscribeOpen(false)
+                  setGroup1(true)
+                  setGroup2(true)
+                  setGroup3(true)
+                }}
+              >
+                <span></span>
+                <span></span>
+              </button>
+              <MailchimpSubscribe
+                url={postUrl}
+                render={({ subscribe, status, message }) => {
+                  if (status === "success") {
+                    setTimeout(() => {
+                      updateSubscribeOpen(false)
+                    }, 3000)
+                  }
+                  return (
+                    <div>
+                      {status === "success" && (
+                        <div>
+                          <h2 className={styles.popUpHeadline}>Thank you</h2>
+                          <p>
+                            Gallery news and updates will arrive soon in your
+                            inbox.
+                          </p>
+                        </div>
+                      )}
+                      {status !== "success" && (
+                        <div>
+                          <h2 className={styles.popUpHeadline}>
+                            Stay In Touch
+                          </h2>
+                          <p>
+                            Sign up to be notified about upcoming exhibitions,
+                            art works, events, and more.{" "}
+                          </p>
+                        </div>
+                      )}
+                      <div
+                        className={
+                          status === "success" ? styles.successHide : ""
+                        }
+                      >
+                        <input
+                          type="email"
+                          value={email}
+                          autoCapitalize="off"
+                          onChange={handleEmailChange}
+                          placeholder={intl.formatMessage({ id: "email" })}
+                          required
+                          className={styles.emailInput}
+                        />
+                        <label className={styles.check}>
+                          <input
+                            type="checkbox"
+                            checked={group1}
+                            onChange={() => setGroup1(!group1)} // Replace with your group ID
+                          />
+                          Artist Exhibitions, News, and Events
+                          <span className={styles.checkmark}></span>
+                        </label>
+                        <label className={styles.check}>
+                          <input
+                            type="checkbox"
+                            checked={group2}
+                            onChange={() => setGroup2(!group2)} // Replace with your group ID
+                          />
+                          Available Works and Art Fairs
+                          <span className={styles.checkmark}></span>
+                        </label>
+                        <label className={styles.check}>
+                          <input
+                            type="checkbox"
+                            checked={group3}
+                            onChange={() => setGroup3(!group3)} // Replace with your group ID
+                          />
+                          Publications and Editions
+                          <span className={styles.checkmark}></span>
+                        </label>
+                      </div>
+                      {status === "success" ? (
+                        <button
+                          onClick={() => updateSubscribeOpen(false)}
+                          className={styles.submit}
+                        >
+                          Close
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() =>
+                            subscribe({
+                              EMAIL: email,
+                              ...(group1 && { "group[70621][64]": "1" }),
+                              ...(group2 && { "group[70621][512]": "1" }),
+                              ...(group3 && { "group[70621][1024]": "1" }),
+                            })
+                          }
+                          className={styles.submit}
+                        >
+                          Subscribe
+                        </button>
+                      )}
+                      <div className={styles.extraPadding}></div>
+                      {status === "error" && (
+                        <div
+                          dangerouslySetInnerHTML={{ __html: message }}
+                          className={styles.errorMessage}
+                        />
+                      )}
+                    </div>
+                  )
+                }}
+              />
+            </div>
+          </motion.div>
+        )}
+        {isInquireOpen && (
+          <InquirePop
+            isInquireOpen={isInquireOpen}
+            setInquireOpen={updateInquireOpen}
+            context={context}
+          ></InquirePop>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
 
-export default Header
+export default injectIntl(Header)
