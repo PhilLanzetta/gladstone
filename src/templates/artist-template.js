@@ -335,7 +335,7 @@ const Artist = ({ data }) => {
           </>
         )}
       </div>
-      {cta && <CtaBanner cta={cta} artist={name}></CtaBanner>}
+      {cta && <CtaBanner cta={cta} context={name}></CtaBanner>}
       <Link to="/artists" className={styles.explore}>
         <FormattedMessage id="explore"></FormattedMessage>
       </Link>
