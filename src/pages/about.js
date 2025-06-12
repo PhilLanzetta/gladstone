@@ -197,12 +197,12 @@ const About = ({ data }) => {
               <p className={styles.title}>Director</p>
             </div>
             <div className={styles.staff}>
-              <p>Emily Bates</p>
+              <p>Alissa Bennett</p>
               <p className={styles.title}>Director</p>
             </div>
             <div className={`${styles.staff} ${styles.mobileHide}`}></div>
             <div className={styles.staff}>
-              <p>Alissa Bennett</p>
+              <p>Julian Ehrlich</p>
               <p className={styles.title}>Director</p>
             </div>
             <div className={styles.staff}>
@@ -243,6 +243,10 @@ const About = ({ data }) => {
           <div className={styles.staffContainer}>
             <div className={styles.staff}>
               <p>Jiwoong Jeong</p>
+              <p className={styles.title}>Associate Director, Seoul</p>
+            </div>
+            <div className={styles.staff}>
+              <p>Wonn Jeong</p>
               <p className={styles.title}>Associate Director, Seoul</p>
             </div>
             <div className={styles.staff}>

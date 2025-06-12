@@ -97,94 +97,122 @@ const Fair = ({ data }) => {
         </div>
         {featuredImages && (
           <div className={styles.fairAboveRight}>
-            <Slider {...settings} ref={sliderRef}>
-              {featuredImages.map(featuredImage => (
-                <div key={featuredImage.id}>
-                  <div className={styles.fairSlide}>
-                    <GatsbyImage
-                      image={featuredImage.image.gatsbyImageData}
-                      alt={featuredImage.image.description}
-                    ></GatsbyImage>
+            {featuredImages.length > 1 && (
+              <>
+                <Slider {...settings} ref={sliderRef}>
+                  {featuredImages.map(featuredImage => (
+                    <div key={featuredImage.id}>
+                      <div className={styles.fairSlide}>
+                        <GatsbyImage
+                          image={featuredImage.image.gatsbyImageData}
+                          alt={featuredImage.image.description}
+                        ></GatsbyImage>
+                      </div>
+                    </div>
+                  ))}
+                </Slider>
+
+                <div className={styles.underCarousel}>
+                  <div
+                    className={styles.figcaption}
+                    dangerouslySetInnerHTML={{
+                      __html: featuredImages[
+                        activeSlide
+                      ].caption?.childMarkdownRemark.html.replace(
+                        /\b(\d+)\/(\d+)/g,
+                        "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
+                      ),
+                    }}
+                  ></div>
+                  <div className={styles.fairSlideCountContainer}>
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      aria-label="go to previous"
+                      className={styles.fairPreviousArrow}
+                      onClick={() => sliderRef.current.slickPrevious()}
+                      onKeyDown={e =>
+                        e.code === "Enter" || e.code === "Space"
+                          ? sliderRef.current.slickPrevious()
+                          : null
+                      }
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className={styles.carouselSVG}
+                        viewBox="0 0 13.047 28.672"
+                      >
+                        <path
+                          id="Polygon_4"
+                          data-name="Polygon 4"
+                          d="M0,12.009,14.011,0,28.021,12.009"
+                          transform="translate(0.659 28.346) rotate(-90)"
+                          fill="none"
+                          stroke="#000"
+                          strokeWidth="1"
+                        />
+                      </svg>
+                    </div>
+                    {featuredImages && featuredImages?.length > 1 && (
+                      <div className={styles.fairSlideCount}>
+                        {Math.round(activeSlide + 1)} / {featuredImages.length}
+                      </div>
+                    )}
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      aria-label="go to next"
+                      className={styles.fairNextArrow}
+                      onClick={() => sliderRef.current.slickNext()}
+                      onKeyDown={e =>
+                        e.code === "Enter" || e.code === "Space"
+                          ? sliderRef.current.slickNext()
+                          : null
+                      }
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className={styles.carouselSVG}
+                        viewBox="0 0 13.047 28.672"
+                      >
+                        <path
+                          id="Polygon_3"
+                          data-name="Polygon 3"
+                          d="M0,12.009,14.011,0,28.021,12.009"
+                          transform="translate(12.389 0.325) rotate(90)"
+                          fill="none"
+                          stroke="#000"
+                          strokeWidth="1"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </Slider>
-            <div className={styles.underCarousel}>
-              <div
-                className={styles.figcaption}
-                dangerouslySetInnerHTML={{
-                  __html: featuredImages[
-                    activeSlide
-                  ].caption?.childMarkdownRemark.html.replace(
-                    /\b(\d+)\/(\d+)/g,
-                    "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
-                  ),
-                }}
-              ></div>
-              <div className={styles.fairSlideCountContainer}>
-                <div
-                  role="button"
-                  tabIndex={0}
-                  aria-label="go to previous"
-                  className={styles.fairPreviousArrow}
-                  onClick={() => sliderRef.current.slickPrevious()}
-                  onKeyDown={e =>
-                    e.code === "Enter" || e.code === "Space"
-                      ? sliderRef.current.slickPrevious()
-                      : null
-                  }
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={styles.carouselSVG}
-                    viewBox="0 0 13.047 28.672"
-                  >
-                    <path
-                      id="Polygon_4"
-                      data-name="Polygon 4"
-                      d="M0,12.009,14.011,0,28.021,12.009"
-                      transform="translate(0.659 28.346) rotate(-90)"
-                      fill="none"
-                      stroke="#000"
-                      strokeWidth="1"
-                    />
-                  </svg>
+              </>
+            )}
+            {featuredImages.length === 1 && (
+              <>
+                <div className={styles.fairSlide}>
+                  <GatsbyImage
+                    image={featuredImages[0].image.gatsbyImageData}
+                    alt={featuredImages[0].image.description}
+                  ></GatsbyImage>
                 </div>
-                {featuredImages && featuredImages?.length > 1 && (
-                  <div className={styles.fairSlideCount}>
-                    {Math.round(activeSlide + 1)} / {featuredImages.length}
-                  </div>
-                )}
-                <div
-                  role="button"
-                  tabIndex={0}
-                  aria-label="go to next"
-                  className={styles.fairNextArrow}
-                  onClick={() => sliderRef.current.slickNext()}
-                  onKeyDown={e =>
-                    e.code === "Enter" || e.code === "Space"
-                      ? sliderRef.current.slickNext()
-                      : null
-                  }
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={styles.carouselSVG}
-                    viewBox="0 0 13.047 28.672"
-                  >
-                    <path
-                      id="Polygon_3"
-                      data-name="Polygon 3"
-                      d="M0,12.009,14.011,0,28.021,12.009"
-                      transform="translate(12.389 0.325) rotate(90)"
-                      fill="none"
-                      stroke="#000"
-                      strokeWidth="1"
-                    />
-                  </svg>
+                <div className={styles.underCarousel}>
+                  <div
+                    className={styles.figcaption}
+                    dangerouslySetInnerHTML={{
+                      __html: featuredImages[
+                        activeSlide
+                      ].caption?.childMarkdownRemark.html.replace(
+                        /\b(\d+)\/(\d+)/g,
+                        "<span class='fraction'><sup>$1</sup>&frasl;<sub>$2</sub></span>"
+                      ),
+                    }}
+                  ></div>
                 </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         )}
       </div>

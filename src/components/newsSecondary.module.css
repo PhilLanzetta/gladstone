@@ -39,6 +39,7 @@
   align-items: flex-start;
   gap: 30px;
   margin-bottom: var(--medium-padding);
+  color: var(--dark-gray);
 }
 
 .centerBody {
@@ -89,6 +90,6 @@
   }
 
   .sideBody {
-   gap: 15px;
+    gap: 15px;
   }
 }

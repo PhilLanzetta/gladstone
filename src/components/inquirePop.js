@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import * as styles from "../components/ctaBanner.module.css"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 
 function encode(data) {
   return Object.keys(data)
@@ -71,7 +71,6 @@ const InquirePop = ({ isInquireOpen, setInquireOpen, context }) => {
       })
   }
   return (
-    <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -176,7 +175,6 @@ const InquirePop = ({ isInquireOpen, setInquireOpen, context }) => {
           </div>
         </div>
       </motion.div>
-    </AnimatePresence>
   )
 }
 export default InquirePop

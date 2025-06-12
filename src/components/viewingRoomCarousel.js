@@ -3,6 +3,8 @@ import * as styles from "./viewingRoom.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Slider from "react-slick"
 import { FormattedMessage } from "gatsby-plugin-intl"
+import InquirePop from "./inquirePop"
+import { AnimatePresence } from "framer-motion"
 
 function NextArrow(props) {
   const { onClick } = props
@@ -64,8 +66,9 @@ function PrevArrow(props) {
   )
 }
 
-const ViewingRoomCarousel = ({ item }) => {
+const ViewingRoomCarousel = ({ item, title }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [isInquireOpen, setInquireOpen] = useState(false)
 
   const settings = {
     slidesToShow: 1,
@@ -90,20 +93,31 @@ const ViewingRoomCarousel = ({ item }) => {
       }
     >
       <div className={styles.sliderContainer}>
-        <Slider {...settings}>
-          {item.slides.map(slide => (
-            <div key={slide.id}>
-              <div className={styles.imageContainer}>
-                <GatsbyImage
-                  image={slide.image.gatsbyImageData}
-                  alt={slide.image.description}
-                  className={styles.carouselImage}
-                  imgStyle={{ objectFit: "scale-down" }}
-                ></GatsbyImage>
+        {item.slides > 1 ? (
+          <Slider {...settings}>
+            {item.slides.map(slide => (
+              <div key={slide.id}>
+                <div className={styles.imageContainer}>
+                  <GatsbyImage
+                    image={slide.image.gatsbyImageData}
+                    alt={slide.image.description}
+                    className={styles.carouselImage}
+                    imgStyle={{ objectFit: "scale-down" }}
+                  ></GatsbyImage>
+                </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        ) : (
+          <div className={styles.imageContainer}>
+            <GatsbyImage
+              image={item.slides[0].image.gatsbyImageData}
+              alt={item.slides[0].image.description}
+              className={styles.carouselImage}
+              imgStyle={{ objectFit: "scale-down" }}
+            ></GatsbyImage>
+          </div>
+        )}
       </div>
       <div className={styles.imageInfo}>
         <div
@@ -117,14 +131,18 @@ const ViewingRoomCarousel = ({ item }) => {
             ),
           }}
         ></div>
-        <a
-          href={`mailto:${item.callToActionEmail}`}
-          className={styles.inquire}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <button className={styles.inquire} onClick={() => setInquireOpen(true)}>
           <FormattedMessage id="inquire"></FormattedMessage>
-        </a>
+        </button>
+        <AnimatePresence>
+          {isInquireOpen && (
+            <InquirePop
+              setInquireOpen={setInquireOpen}
+              isInquireOpen={isInquireOpen}
+              context={`${title} - ${item.artist.name}`}
+            ></InquirePop>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   )

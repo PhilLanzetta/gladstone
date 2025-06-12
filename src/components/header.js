@@ -244,13 +244,6 @@ const Header = ({ isHome, isAfter }) => {
                   </div>
                   <div className={styles.mobileHeaderSocial}>
                     <a
-                      href="https://x.com/GladstoneNYC"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Twitter
-                    </a>
-                    <a
                       href="https://www.instagram.com/gladstone.gallery"
                       target="_blank"
                       rel="noreferrer"

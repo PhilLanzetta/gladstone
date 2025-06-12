@@ -52,8 +52,15 @@ const CTABanner = ({
         </div>
       )}
       <div style={{ color: textColor }} className={styles.textContainer}>
-        <h2 className={styles.ctaHeadline}>{headlineText}</h2>
-        <p className={styles.ctaSubtitle}>{subtitle}</p>
+        <h2
+          className={styles.ctaHeadline}
+          dangerouslySetInnerHTML={{ __html: headlineText }}
+        ></h2>
+        <p
+          className={styles.ctaSubtitle}
+          dangerouslySetInnerHTML={{ __html: subtitle }}
+        >
+        </p>
         {buttonType === "Subscribe" && (
           <button
             className={styles.ctaButton}

@@ -13,7 +13,7 @@ import PdfDownload from "../components/pdfDownload"
 import Pagination from "../components/pagination"
 import moment from "moment"
 import { AnimatePresence, motion } from "framer-motion"
-import CtaBanner from "../components/ctaBanner"
+import CTABanner from "../components/ctaBanner"
 
 const Artist = ({ data }) => {
   const {
@@ -335,7 +335,7 @@ const Artist = ({ data }) => {
           </>
         )}
       </div>
-      {cta && <CtaBanner cta={cta} context={name}></CtaBanner>}
+      {cta && <CTABanner cta={cta} context={name}></CTABanner>}
       <Link to="/artists" className={styles.explore}>
         <FormattedMessage id="explore"></FormattedMessage>
       </Link>
