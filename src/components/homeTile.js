@@ -110,13 +110,7 @@ const HomeTile = ({ tile, pageContext }) => {
             )}
           </AnimatePresence>
           <ReactPlayer
-            url={
-              isMobile && mobileVideo
-                ? mobileVideo
-                : tileWidth === "100%"
-                ? video
-                : mobileVideo
-            }
+            url={isMobile && mobileVideo ? mobileVideo : video}
             style={{
               position: "absolute",
               top: "50%",

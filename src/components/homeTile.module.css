@@ -44,6 +44,7 @@
   aspect-ratio: 8 / 9;
   background: #000;
   position: relative;
+  overflow: hidden;
 }
 
 .textContainer {
@@ -97,7 +98,7 @@
   .tileContainerWhiteHalf {
     width: 100%;
   }
-  
+
   .tileMedia,
   .tileMediaHalf {
     aspect-ratio: 4 / 5;
