@@ -115,5 +115,7 @@
   "not_found": "Content at that URL no longer exists.",
   "return_home": "RETURN HOME",
   "language": "Language",
-  "office_party": "Office Party"
+  "office_party": "Office Party",
+  "inquire_sub": "Please provide your contact information, and we will be in touch",
+  "in_touch": "We'll be in touch soon."
 }

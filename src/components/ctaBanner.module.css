@@ -71,7 +71,7 @@
   background: #fff;
   width: 75%;
   z-index: 4000000;
-  padding: 15px;
+  padding: 20px;
   border: 1px solid var(--light-gray);
 }
 
@@ -186,7 +186,7 @@
   width: 100%;
   justify-content: center;
   border: 1px solid currentColor;
-  padding: 10px 30px 5px 30px;
+  padding: 20px 30px 20px 30px;
   border-radius: 80px;
   margin-top: 60px;
 }
@@ -196,7 +196,7 @@
   width: 100%;
   justify-content: center;
   border: 1px solid currentColor;
-  padding: 10px 30px 5px 30px;
+  padding: 20px 30px 15px 30px;
   border-radius: 80px;
 }
 

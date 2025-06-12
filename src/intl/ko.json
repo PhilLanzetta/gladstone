@@ -115,5 +115,7 @@
   "not_found": "해당 URL의 콘텐츠가 더 이상 존재하지 않습니다.",
   "return_home": "집으로 돌아가기",
   "language": "언어",
-  "office_party": "사무실 파티"
+  "office_party": "사무실 파티",
+  "inquire_sub": "귀하의 연락처를 제공해 주시면 연락드리겠습니다",
+  "in_touch": "곧 연락드리겠습니다."
 }

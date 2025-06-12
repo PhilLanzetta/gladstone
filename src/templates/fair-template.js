@@ -94,7 +94,8 @@ const Fair = ({ data }) => {
                   to={`/fair/${slug}/viewing-room`}
                   className={styles.viewLink}
                 >
-                  <FormattedMessage id="viewing-room"></FormattedMessage> →
+                  <FormattedMessage id="viewing-room-preview"></FormattedMessage>{" "}
+                  →
                 </Link>
               </div>
             )}

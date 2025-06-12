@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import * as styles from "../components/ctaBanner.module.css"
 import { motion } from "framer-motion"
+import { FormattedMessage } from "gatsby-plugin-intl"
 
 function encode(data) {
   return Object.keys(data)
@@ -71,110 +72,112 @@ const InquirePop = ({ isInquireOpen, setInquireOpen, context }) => {
       })
   }
   return (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className={styles.subscribePopUp}
-      >
-        <div className={styles.innerContainer}>
-          <button
-            className={styles.close}
-            onClick={() => setInquireOpen(false)}
-          >
-            <span></span>
-            <span></span>
-          </button>
-          <div id="inquire-heading">
-            <h2 className={styles.popUpHeadline}>Inquire</h2>
-            <p>
-              To learn more about the artist, please provide your contact
-              information, and we will reach out.
-            </p>
-          </div>
-          <div id="inquire-success">
-            <h2 className={styles.popUpHeadline}>Thank you</h2>
-            <p>We'll be in touch soon.</p>
-          </div>
-          <div id="inquire-error"></div>
-          <div>
-            <form
-              name="inquire"
-              method="POST"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              onSubmit={handleSubmit}
-              className={styles.inquireForm}
-            >
-              <input type="hidden" name="form-name" value="inquire" />
-              <p hidden>
-                <label>
-                  Don’t fill this out if you’re human:{" "}
-                  <input name="bot-field" onChange={handleChange} />
-                </label>
-              </p>
-              <div id="inner-form" className={styles.innerForm}>
-                <input
-                  type="text"
-                  name="first-name"
-                  onChange={handleChange}
-                  className={styles.inquireInput}
-                  placeholder="First Name"
-                />
-                <input
-                  type="text"
-                  name="last-name"
-                  onChange={handleChange}
-                  className={styles.inquireInput}
-                  placeholder="Last Name"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  onChange={handleChange}
-                  required
-                  className={styles.inquireInput}
-                  placeholder="Email Address"
-                />
-                <input
-                  type="tel"
-                  name="telephone"
-                  onChange={handleChange}
-                  className={styles.inquireInput}
-                  placeholder="Phone Number"
-                />
-                <textarea
-                  name="message"
-                  id="message"
-                  rows="8"
-                  maxLength="300"
-                  placeholder="Additional Notes"
-                  onChange={handleChange}
-                  className={styles.inquireArea}
-                ></textarea>
-                <div id="charCount" className={styles.characterCount}>
-                  300 characters remaining
-                </div>
-              </div>
-              <input type="hidden" name="context" value={context} />
-              <button
-                type="submit"
-                className={styles.submitInquire}
-                id="inquire-submit"
-              >
-                Inquire
-              </button>
-              <button
-                className={styles.submitInquire}
-                onClick={() => setInquireOpen(false)}
-                id="inquire-close"
-              >
-                Close
-              </button>
-            </form>
-          </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={styles.subscribePopUp}
+    >
+      <div className={styles.innerContainer}>
+        <button className={styles.close} onClick={() => setInquireOpen(false)}>
+          <span></span>
+          <span></span>
+        </button>
+        <div id="inquire-heading">
+          <h2 className={styles.popUpHeadline}>
+            <FormattedMessage id="inquire"></FormattedMessage>
+          </h2>
+          <p>
+            <FormattedMessage id="inquire_sub"></FormattedMessage>
+          </p>
         </div>
-      </motion.div>
+        <div id="inquire-success">
+          <h2 className={styles.popUpHeadline}>
+            <FormattedMessage id="thank_you"></FormattedMessage>
+          </h2>
+          <p>
+            <FormattedMessage id="in_touch"></FormattedMessage>
+          </p>
+        </div>
+        <div id="inquire-error"></div>
+        <div>
+          <form
+            name="inquire"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={handleSubmit}
+            className={styles.inquireForm}
+          >
+            <input type="hidden" name="form-name" value="inquire" />
+            <p hidden>
+              <label>
+                Don’t fill this out if you’re human:{" "}
+                <input name="bot-field" onChange={handleChange} />
+              </label>
+            </p>
+            <div id="inner-form" className={styles.innerForm}>
+              <input
+                type="text"
+                name="first-name"
+                onChange={handleChange}
+                className={styles.inquireInput}
+                placeholder="First Name"
+              />
+              <input
+                type="text"
+                name="last-name"
+                onChange={handleChange}
+                className={styles.inquireInput}
+                placeholder="Last Name"
+              />
+              <input
+                type="email"
+                name="email"
+                onChange={handleChange}
+                required
+                className={styles.inquireInput}
+                placeholder="Email Address"
+              />
+              <input
+                type="tel"
+                name="telephone"
+                onChange={handleChange}
+                className={styles.inquireInput}
+                placeholder="Phone Number"
+              />
+              <textarea
+                name="message"
+                id="message"
+                rows="8"
+                maxLength="300"
+                placeholder="Additional Notes"
+                onChange={handleChange}
+                className={styles.inquireArea}
+              ></textarea>
+              <div id="charCount" className={styles.characterCount}>
+                300 characters remaining
+              </div>
+            </div>
+            <input type="hidden" name="context" value={context} />
+            <button
+              type="submit"
+              className={styles.submitInquire}
+              id="inquire-submit"
+            >
+              <FormattedMessage id="inquire"></FormattedMessage>
+            </button>
+            <button
+              className={styles.submitInquire}
+              onClick={() => setInquireOpen(false)}
+              id="inquire-close"
+            >
+              <FormattedMessage id="close"></FormattedMessage>
+            </button>
+          </form>
+        </div>
+      </div>
+    </motion.div>
   )
 }
 export default InquirePop

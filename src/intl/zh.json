@@ -115,5 +115,7 @@
   "not_found": "该 URL 上的内容不再存在。",
   "return_home": "回家",
   "language": "语言",
-  "office_party": "办公室聚会"
+  "office_party": "办公室聚会",
+  "inquire_sub": "请提供您的联系方式，我们将与您联系",
+  "in_touch": "我们将尽快与您联系。"
 }
