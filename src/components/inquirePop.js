@@ -9,7 +9,12 @@ function encode(data) {
     .join("&")
 }
 
-const InquirePop = ({ isInquireOpen, setInquireOpen, context }) => {
+const InquirePop = ({
+  isInquireOpen,
+  setInquireOpen,
+  context,
+  viewingRoom,
+}) => {
   const [inquireState, setInquireState] = useState({})
 
   const handleChange = e => {
@@ -102,7 +107,7 @@ const InquirePop = ({ isInquireOpen, setInquireOpen, context }) => {
         <div id="inquire-error"></div>
         <div>
           <form
-            name="inquire"
+            name={viewingRoom ? "viewing-room-inquire" : "inquire"}
             method="POST"
             data-netlify="true"
             data-netlify-honeypot="bot-field"

@@ -140,6 +140,7 @@ const ViewingRoomCarousel = ({ item, title }) => {
               setInquireOpen={setInquireOpen}
               isInquireOpen={isInquireOpen}
               context={`${title} - ${item.artist.name}`}
+              viewingRoom={true}
             ></InquirePop>
           )}
         </AnimatePresence>
