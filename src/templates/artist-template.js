@@ -45,10 +45,11 @@ const Artist = ({ data }) => {
   const isMobile = width < 700
 
   const [pressOpen, setPressOpen] = useState(false)
-  const { updateContext } = useContext(MyContext)
+  const { updateContext, updateViewingRoom } = useContext(MyContext)
 
   useEffect(() => {
     updateContext(`Artist Page - ${name}`)
+    updateViewingRoom(false)
   }, [])
 
   useEffect(() => {
