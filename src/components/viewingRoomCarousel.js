@@ -83,7 +83,6 @@ const ViewingRoomCarousel = ({ item, title }) => {
     },
   }
 
-  console.log(item.slides)
   return (
     <div
       id={item.artist.slug}
