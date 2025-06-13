@@ -258,7 +258,7 @@ header {
 
 .language button.activeLanguage,
 .mobileLanguage button.activeLanguage {
-  border-color: currentColor;
+  display: none;
 }
 
 .headerLink {
@@ -277,7 +277,7 @@ header {
 
 .language a.activeLanguage,
 .mobileLanguage a.activeLanguage {
-  border-color: currentColor;
+  display: none;
 }
 
 .secondaryBottom {
