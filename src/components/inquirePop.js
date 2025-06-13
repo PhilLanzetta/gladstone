@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import * as styles from "../components/ctaBanner.module.css"
+import * as styles from "../components/header.module.css"
 import { motion } from "framer-motion"
 import { FormattedMessage } from "gatsby-plugin-intl"
 import MyContext from "../context/StateContext"
@@ -19,6 +19,7 @@ const InquirePop = () => {
     setInquireState({ ...inquireState, [e.target.name]: e.target.value })
   }
 
+  console.log(viewingRoom)
   useEffect(() => {
     let textarea = document.getElementById("message")
     let charCount = document.getElementById("charCount")
@@ -108,7 +109,7 @@ const InquirePop = () => {
         <div id="inquire-error"></div>
         <div>
           <form
-            name={viewingRoom ? "viewing-room-inquire" : "inquire"}
+            name={viewingRoom === true ? "viewing-room-inquire" : "inquire"}
             method="POST"
             data-netlify="true"
             data-netlify-honeypot="bot-field"

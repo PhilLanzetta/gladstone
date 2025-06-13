@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useContext } from "react"
+import React, { useContext } from "react"
 import { graphql } from "gatsby"
 import HomeTile from "../components/homeTile"
 import * as styles from "../components/index.module.css"
@@ -9,7 +9,7 @@ import MyContext from "../context/StateContext"
 
 const Index = ({ data, pageContext }) => {
   const { homeTiles, cta } = data.allContentfulHomePage.nodes[0]
-  const { isSubscribeOpen, setSubscribeOpen, isInquireOpen, setInquireOpen } =
+  const { isSubscribeOpen, setSubscribeOpen } =
     useContext(MyContext)
 
   return (

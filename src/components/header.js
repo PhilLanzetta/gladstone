@@ -17,13 +17,8 @@ import MailchimpSubscribe from "react-mailchimp-subscribe"
 import InquirePop from "./inquirePop.js"
 
 const Header = ({ isHome, isAfter, intl }) => {
-  const {
-    isSubscribeOpen,
-    updateSubscribeOpen,
-    isInquireOpen,
-    updateInquireOpen,
-    context,
-  } = useContext(MyContext)
+  const { isSubscribeOpen, updateSubscribeOpen, isInquireOpen } =
+    useContext(MyContext)
   const [isOpen, setIsOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
   const [group1, setGroup1] = useState(true)
@@ -448,13 +443,7 @@ const Header = ({ isHome, isAfter, intl }) => {
             </div>
           </motion.div>
         )}
-        {isInquireOpen && (
-          <InquirePop
-            isInquireOpen={isInquireOpen}
-            setInquireOpen={updateInquireOpen}
-            context={context}
-          ></InquirePop>
-        )}
+        {isInquireOpen && <InquirePop></InquirePop>}
       </AnimatePresence>
     </header>
   )

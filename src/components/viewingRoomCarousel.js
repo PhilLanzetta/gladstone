@@ -3,8 +3,6 @@ import * as styles from "./viewingRoom.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Slider from "react-slick"
 import { FormattedMessage } from "gatsby-plugin-intl"
-import InquirePop from "./inquirePop"
-import { AnimatePresence } from "framer-motion"
 import MyContext from "../context/StateContext"
 
 function NextArrow(props) {
@@ -69,7 +67,7 @@ function PrevArrow(props) {
 
 const ViewingRoomCarousel = ({ item, title }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const { isInquireOpen, updateInquireOpen, updateContext, updateViewingRoom } =
+  const { updateInquireOpen, updateContext, updateViewingRoom } =
     useContext(MyContext)
 
   const settings = {

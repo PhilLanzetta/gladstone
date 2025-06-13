@@ -467,6 +467,8 @@ header {
   color: #000;
   font-family: var(--font-primary);
   width: 75%;
+  max-height: 95vh;
+  overflow-y: scroll;
   z-index: 4000000;
   padding: 20px;
   border: 1px solid var(--light-gray);

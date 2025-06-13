@@ -121,6 +121,18 @@ export const query = graphql`
           label
           url
         }
+        download {
+          buttonText
+          id
+          pdfFile {
+            file {
+              url
+            }
+          }
+        }
+        secondaryPage {
+          slug
+        }
         newsImage {
           gatsbyImageData(layout: FULL_WIDTH)
           description

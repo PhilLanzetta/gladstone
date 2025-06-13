@@ -1,9 +1,18 @@
 import React from "react"
 import * as styles from "./newsItem.module.css"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { Link } from "gatsby-plugin-intl"
 
 const NewsItem = ({ content, related, newLine }) => {
-  const { isFeatured, link, newsImage, newsText, download, category } = content
+  const {
+    isFeatured,
+    link,
+    newsImage,
+    newsText,
+    download,
+    category,
+    secondaryPage,
+  } = content
   return (
     <>
       <div
@@ -61,6 +70,14 @@ const NewsItem = ({ content, related, newLine }) => {
             >
               {link.label} &#8599;
             </a>
+          )}
+          {secondaryPage && (
+            <Link
+              to={`/news/${secondaryPage.slug}`}
+              className={styles.downloadLink}
+            >
+              Learn More &rarr;
+            </Link>
           )}
         </div>
       </div>
