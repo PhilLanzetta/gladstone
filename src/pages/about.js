@@ -8,8 +8,9 @@ import Seo from "../components/seo"
 
 const About = ({ data }) => {
   const { width } = useWindowSize()
-  const isMobile = width < 701
-  const { aboutHeadlineText, locations } = data.allContentfulAboutPage.nodes[0]
+  const isMobile = width < 841
+  const { aboutHeadlineText, locations, staffLeadership, staffSales, contact } =
+    data.allContentfulAboutPage.nodes[0]
 
   const newYorkLocations = locations.filter(
     location =>
@@ -31,6 +32,8 @@ const About = ({ data }) => {
       location.streetAddress.childMarkdownRemark.html.includes("汉城") ||
       location.streetAddress.childMarkdownRemark.html.includes("서울")
   )
+
+  const allSales = staffSales.map(row => row.staffEntry).flat()
 
   return (
     <div className="pageContainer">
@@ -160,25 +163,18 @@ const About = ({ data }) => {
         <div className={styles.staffOuterContainer}>
           <p className={styles.aboutSectionHeading}>Staff</p>
           <p className={styles.aboutSectionHeadingSub}>Leadership</p>
-          <div className={styles.staffContainer}>
-            <div className={styles.staff}>
-              <p>Max Falkenstein</p>
-              <p className={styles.title}>Senior Partner</p>
-            </div>
-            <div className={styles.staff}>
-              <p>Gavin Brown</p>
-              <p className={styles.title}>Partner</p>
-            </div>
-            <div className={`${styles.staff} ${styles.mobileHide}`}></div>
-            <div className={`${styles.staff} ${styles.mobileHide}`}></div>
-            <div className={styles.staff}>
-              <p>Caroline Luce</p>
-              <p className={styles.title}>Partner</p>
-            </div>
-            <div className={styles.staff}>
-              <p>Paula Tsai</p>
-              <p className={styles.title}>Partner</p>
-            </div>
+          <div className={styles.leadershipContainer}>
+            {staffLeadership &&
+              staffLeadership.map(row => (
+                <div key={row.id} className={styles.leadershipInner}>
+                  {row.staffEntry.map(entry => (
+                    <div className={styles.staff} key={entry.id}>
+                      <p>{entry.name}</p>
+                      <p className={styles.title}>{entry.title}</p>
+                    </div>
+                  ))}
+                </div>
+              ))}
           </div>
         </div>
         <div className={styles.staffOuterContainer}>
@@ -188,71 +184,28 @@ const About = ({ data }) => {
             Sales
           </p>
           <div className={styles.staffContainer}>
-            <div className={styles.staff}>
-              <p>Trina Gordon</p>
-              <p className={styles.title}>Senior Director</p>
-            </div>
-            <div className={styles.staff}>
-              <p>Aaron Baldinger</p>
-              <p className={styles.title}>Director</p>
-            </div>
-            <div className={styles.staff}>
-              <p>Alissa Bennett</p>
-              <p className={styles.title}>Director</p>
-            </div>
-            <div className={`${styles.staff} ${styles.mobileHide}`}></div>
-            <div className={styles.staff}>
-              <p>Julian Ehrlich</p>
-              <p className={styles.title}>Director</p>
-            </div>
-            <div className={styles.staff}>
-              <p>Maia Gianakos</p>
-              <p className={styles.title}>Director</p>
-            </div>
-            <div className={styles.staff}>
-              <p>Cooke Maroney</p>
-              <p className={styles.title}>Director</p>
-            </div>
-            <div className={`${styles.staff} ${styles.mobileHide}`}></div>
-            <div className={styles.staff}>
-              <p>Giulia Ruberti</p>
-              <p className={styles.title}>Director</p>
-            </div>
-
-            <div className={styles.staff}>
-              <p>Frederick Schampers</p>
-              <p className={styles.title}>Director</p>
-            </div>
-          </div>
-          <div className={styles.staffContainer}>
-            <div className={styles.staff}>
-              <p>Erik Savercool</p>
-              <p className={styles.title}>Associate Director</p>
-            </div>
-            <div className={styles.staff}>
-              <p>Caressa Yan</p>
-              <p className={styles.title}>Associate Director</p>
-            </div>
-          </div>
-          <div className={styles.staffContainer}>
-            <div className={styles.staff}>
-              <p>Maxime de la Brousse</p>
-              <p className={styles.title}>Director, Brussels</p>
-            </div>
-          </div>
-          <div className={styles.staffContainer}>
-            <div className={styles.staff}>
-              <p>Jiwoong Jeong</p>
-              <p className={styles.title}>Associate Director, Seoul</p>
-            </div>
-            <div className={styles.staff}>
-              <p>Wonn Jeong</p>
-              <p className={styles.title}>Associate Director, Seoul</p>
-            </div>
-            <div className={styles.staff}>
-              <p>Qinrui Hua</p>
-              <p className={styles.title}>Associate Director, Beijing</p>
-            </div>
+            {staffSales &&
+              !isMobile &&
+              staffSales.map(row => (
+                <div key={row.id} className={styles.staffInner}>
+                  {row.staffEntry.map(entry => (
+                    <div className={styles.staff} key={entry.id}>
+                      <p>{entry.name}</p>
+                      <p className={styles.title}>{entry.title}</p>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            {staffSales && isMobile && (
+              <div className={styles.staffInner}>
+                {allSales.map(entry => (
+                  <div className={styles.staff} key={entry.id}>
+                    <p>{entry.name}</p>
+                    <p className={styles.title}>{entry.title}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
         <div className={styles.staffOuterContainer}>
@@ -260,30 +213,20 @@ const About = ({ data }) => {
             Contact
           </p>
           <div className={styles.staffContainer}>
-            <div className={styles.staff}>
-              <p>Sales Inquiries</p>
-              <p className={styles.title}>
-                <a href="mailto:gg_sales@gladstonegallery.com">
-                  sales@gladstonegallery.com
-                </a>
-              </p>
-            </div>
-            <div className={styles.staff}>
-              <p>Press Inquiries</p>
-              <p className={styles.title}>
-                <a href="mailto:press@gladstonegallery.com">
-                  press@gladstonegallery.com
-                </a>
-              </p>
-            </div>
-            <div className={styles.staff}>
-              <p>General</p>
-              <p className={styles.title}>
-                <a href="mailto:info@gladstonegallery.com">
-                  info@gladstonegallery.com
-                </a>
-              </p>
-            </div>
+            {contact &&
+              contact.map(row => (
+                <div key={row.id} className={styles.staffInner}>
+                  {row.staffEntry.map(entry => (
+                    <div className={styles.staff} key={entry.id}>
+                      <p>{entry.name}</p>
+                      <p
+                        className={styles.title}
+                        dangerouslySetInnerHTML={{ __html: entry.title }}
+                      ></p>
+                    </div>
+                  ))}
+                </div>
+              ))}
           </div>
         </div>
       </div>
@@ -322,11 +265,25 @@ export const query = graphql`
             }
           }
         }
-        leadershipstaff {
+        staffLeadership {
           id
-          heading
-          staffMembers {
+          staffEntry {
             id
+            name
+            title
+          }
+        }
+        staffSales {
+          id
+          staffEntry {
+            id
+            name
+            title
+          }
+        }
+        contact {
+          id
+          staffEntry {
             name
             title
           }

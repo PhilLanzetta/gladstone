@@ -90,10 +90,17 @@
   transition: all 400ms;
 }
 
-.staffContainer {
+.staffContainer,
+.leadershipContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.staffInner,
+.leadershipInner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
 }
 
 .staff {
@@ -108,7 +115,7 @@
   padding-top: var(--medium-padding);
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 840px) {
   .worldLocationContainer {
     width: 100%;
     margin-right: 0px;
@@ -138,11 +145,15 @@
     transition: all 400ms;
   }
 
-  .staffContainer {
-    grid-template-columns: repeat(2, 1fr);
+  .staffInner,
+  .leadershipInner {
+    display: inline-flex;
+    max-width: 100%;
+    flex-wrap: wrap;
   }
 
-  .mobileHide {
-    display: none;
+  .staff {
+    width: 48%;
+    margin-right: 1%;
   }
 }
