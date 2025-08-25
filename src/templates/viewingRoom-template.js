@@ -58,8 +58,8 @@ const ViewingRoom = ({ data }) => {
         )}
         <div className={styles.fullWidthImg}>
           <GatsbyImage
-            image={featuredImage.image.gatsbyImageData}
-            alt={featuredImage.image.description}
+            image={featuredImage.image?.gatsbyImageData}
+            alt={featuredImage.image?.description}
           ></GatsbyImage>
         </div>
 
