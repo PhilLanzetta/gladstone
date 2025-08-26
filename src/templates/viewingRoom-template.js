@@ -10,8 +10,8 @@ import CTABanner from "../components/ctaBanner"
 const ViewingRoom = ({ data }) => {
   const { title, content, fair, cta } = data.allContentfulViewingRoom.nodes[0]
 
-  const featuredImage = content[0]
-  const remainingContent = content.slice(1)
+  const featuredImage = content ? content[0] : null
+  const remainingContent = content ? content.slice(1) : null
   const featuredArtists = fair
     ? fair[0].artists?.sort((a, b) => a.lastName - b.lastName)
     : null
