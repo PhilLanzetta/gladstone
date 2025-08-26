@@ -58,8 +58,8 @@ const ViewingRoom = ({ data }) => {
         )}
         <div className={styles.fullWidthImg}>
           <GatsbyImage
-            image={featuredImage.image?.gatsbyImageData}
-            alt={featuredImage.image?.description}
+            image={featuredImage?.image?.gatsbyImageData}
+            alt={featuredImage?.image?.description}
           ></GatsbyImage>
         </div>
 
@@ -68,7 +68,7 @@ const ViewingRoom = ({ data }) => {
           className={styles.featuredArtistsContainer}
         ></div>
         <div>
-          {remainingContent.map(item => {
+          {remainingContent && remainingContent.map(item => {
             if (item.fullImgId) {
               return (
                 <div className={styles.fullWidthImg} key={item.fullImgId}>
