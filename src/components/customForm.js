@@ -69,7 +69,7 @@ const CustomForm = ({ status, message, onValidated, intl, isAfter }) => {
               onChange={handleEmailChange}
               placeholder={intl.formatMessage({ id: "email" })}
               required
-              className={isAfter ? styles.afterEmail : styles.email}
+              className={styles.email}
             />
           </div>
           <input
