@@ -21,7 +21,7 @@
     "gatsby-plugin-sharp": "^5.13.1",
     "gatsby-source-contentful": "^8.13.2",
     "gatsby-source-filesystem": "^5.13.1",
-    "gatsby-source-shopify": "^9.0.0",
+    "gatsby-source-shopify": "^10.0.0",
     "gatsby-source-square-catalog": "^0.0.4",
     "gatsby-transformer-remark": "^6.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
@@ -39,7 +39,7 @@
     "react-slick": "^0.30.2",
     "react-zoom-pan-pinch": "^3.6.1",
     "screenfull": "^6.0.2",
-    "shopify-buy": "^3.0.6",
+    "shopify-buy": "^3.0.7",
     "slick-carousel": "^1.8.1",
     "slugify": "^1.6.6",
     "square": "^38.2.0"
