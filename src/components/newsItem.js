@@ -54,7 +54,7 @@ const NewsItem = ({ content, related, newLine }) => {
           {download && (
             <a
               className={styles.downloadLink}
-              href={download.pdfFile.file.url}
+              href={download.pdfFile?.file?.url}
               target="_blank"
               rel="noreferrer"
             >
