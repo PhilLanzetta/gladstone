@@ -278,7 +278,7 @@ const Header = ({ isHome, isAfter, intl }) => {
                 className={styles.headerLink}
                 onClick={isMobile ? () => setIsOpen(false) : null}
               >
-                <FormattedMessage id="publications"></FormattedMessage>
+                <FormattedMessage id="shop"></FormattedMessage>
               </Link>
               {isMobile && (
                 <div className={styles.secondaryBottom}>
