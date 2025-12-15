@@ -26,6 +26,7 @@ const ShopHeading = () => {
   `)
 
   const orderedCollections = data.allShopifyCollection.nodes
+    .filter(node => node.metafields?.length)
     .sort((a, b) => a.metafields[0].value - b.metafields[0].value)
     .filter(node => node.metafields[0].value < 100)
 
