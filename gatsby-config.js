@@ -100,5 +100,14 @@ module.exports = {
         environments: ["production", "development"],
       },
     },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: ["G-5DTWMQVQQK"],
+        pluginConfig: {
+          head: true,
+        },
+      },
+    },
   ],
 }
