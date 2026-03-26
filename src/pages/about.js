@@ -12,28 +12,28 @@ const About = ({ data }) => {
   const { aboutHeadlineText, locations, staffLeadership, staffSales, contact } =
     data.allContentfulAboutPage.nodes[0]
 
-  const newYorkLocations = locations.filter(
+  const newYorkLocations = locations?.filter(
     location =>
       location.streetAddress.childMarkdownRemark.html.includes("New York") ||
       location.streetAddress.childMarkdownRemark.html.includes("纽约") ||
       location.streetAddress.childMarkdownRemark.html.includes("뉴욕")
   )
 
-  const brusselsLocations = locations.filter(
+  const brusselsLocations = locations?.filter(
     location =>
       location.streetAddress.childMarkdownRemark.html.includes("Brussels") ||
       location.streetAddress.childMarkdownRemark.html.includes("브뤼셀") ||
       location.streetAddress.childMarkdownRemark.html.includes("布鲁塞尔")
   )
 
-  const seoulLocations = locations.filter(
+  const seoulLocations = locations?.filter(
     location =>
       location.streetAddress.childMarkdownRemark.html.includes("Seoul") ||
       location.streetAddress.childMarkdownRemark.html.includes("汉城") ||
       location.streetAddress.childMarkdownRemark.html.includes("서울")
   )
 
-  const allSales = staffSales.map(row => row.staffEntry).flat()
+  const allSales = staffSales?.map(row => row.staffEntry).flat()
 
   return (
     <div className="pageContainer">
@@ -48,7 +48,7 @@ const About = ({ data }) => {
           <FormattedMessage id="new_york"></FormattedMessage>
         </p>
         <div className={styles.locationContainer}>
-          {newYorkLocations.map(location => (
+          {newYorkLocations?.map(location => (
             <div key={location.id} className={styles.locationTile}>
               <a
                 href={location.googleMapLink}
@@ -86,7 +86,7 @@ const About = ({ data }) => {
           <p className={styles.aboutSectionHeading} id="brussels">
             <FormattedMessage id="brussels"></FormattedMessage>
           </p>
-          {brusselsLocations.map(location => (
+          {brusselsLocations?.map(location => (
             <div key={location.id} className={styles.locationTile}>
               <a
                 href={location.googleMapLink}
@@ -124,7 +124,7 @@ const About = ({ data }) => {
           <p className={styles.aboutSectionHeading} id="seoul">
             <FormattedMessage id="seoul"></FormattedMessage>
           </p>
-          {seoulLocations.map(location => (
+          {seoulLocations?.map(location => (
             <div key={location.id} className={styles.locationTile}>
               <a
                 href={location.googleMapLink}
