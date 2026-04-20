@@ -384,7 +384,7 @@ const koPageToAlgoliaRecord = edge => {
     return {
       objectID: id,
       searchCategory: "Exhibition",
-      searchCategoryDisplay: "전시회",
+      searchCategoryDisplay: "전시",
       ...rest,
     }
   } else if (fairEntry) {

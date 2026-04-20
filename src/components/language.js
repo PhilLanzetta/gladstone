@@ -4,7 +4,7 @@ import * as styles from "./header.module.css"
 
 const languageName = {
   zh: "中文",
-  ko: "한국인",
+  ko: "한국어",
   en: "En",
 }
 
