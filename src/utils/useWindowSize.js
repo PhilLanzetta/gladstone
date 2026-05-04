@@ -3,7 +3,7 @@ import React from "react"
 export default function useWindowSize() {
   const isSSR = typeof window !== "undefined"
   const [windowSize, setWindowSize] = React.useState({
-    width: isSSR ? window.innerWidth : 1200,
+    width: isSSR ? window.innerWidth : 600,
     height: isSSR ? window.innerHeight : 800,
   })
 
