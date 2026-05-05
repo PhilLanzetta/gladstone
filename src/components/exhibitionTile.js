@@ -22,6 +22,8 @@ const ExhibitionTile = ({ content, artistPage, past, fair }) => {
   const mobilePast = width < 1100 && past
   const titleIsArtist = artists?.filter(artist => artist.name === title).length
 
+  if (!width) return null
+
   return (
     <div className={past ? styles.tileContainerPast : styles.tileContainer}>
       <Link to={`${fair ? "/fair/" : "/exhibit/"}${slug}`}>

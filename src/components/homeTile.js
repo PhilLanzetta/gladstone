@@ -45,6 +45,8 @@ const HomeTile = ({ tile, pageContext }) => {
     )
   }
 
+  if (!width) return null
+
   return (
     <a
       className={
