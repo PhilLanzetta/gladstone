@@ -1,46 +1,61 @@
 import React, { useState, useEffect } from "react"
-import { graphql } from "gatsby"
+import { graphql, navigate } from "gatsby"
 import * as styles from "../components/newsItem.module.css"
 import NewsItem from "../components/newsItem"
 import { FormattedMessage } from "gatsby-plugin-intl"
 import Seo from "../components/seo"
 
-const News = ({ data }) => {
+const News = ({ data, location }) => {
   const allNews = data.allContentfulNewsEntry.nodes
   const [newsItems, setNewsItems] = useState(allNews)
-  const [filter, setFilter] = useState()
+  const [filter, setFilter] = useState(undefined)
 
+  // Read initial filter from URL — runs client-side only, safe for SSG
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    const urlFilter = params.get("filter") || undefined
+    setFilter(urlFilter)
+  }, [])
+
+  // Apply filter
   useEffect(() => {
     if (filter === "Featured") {
-      const filteredContent = allNews.filter(item => item.isFeatured === true)
-      setNewsItems(filteredContent)
+      setNewsItems(allNews.filter(item => item.isFeatured === true))
     } else if (filter) {
-      const filteredContent = allNews.filter(item => item.category === filter)
-      setNewsItems(filteredContent)
+      setNewsItems(allNews.filter(item => item.category === filter))
     } else {
       setNewsItems(allNews)
     }
   }, [filter, allNews])
+
+  const updateFilter = value => {
+    if (value) {
+      navigate(`?filter=${value}`, { replace: true })
+    } else {
+      navigate(location.pathname, { replace: true })
+    }
+    setFilter(value)
+  }
 
   return (
     <div className="pageContainer">
       <div className={styles.newsHeader}>
         <button
           className={`pageHeading ${styles.allNewsBtn}`}
-          onClick={() => setFilter()}
+          onClick={() => updateFilter()}
         >
           <FormattedMessage id="news_events"></FormattedMessage>
         </button>
         <div className={styles.headerLinkContainer}>
           <button
-            onClick={() => setFilter()}
+            onClick={() => updateFilter()}
             className={filter ? styles.buttonInactive : styles.buttonActive}
           >
             <FormattedMessage id="all"></FormattedMessage>
           </button>
           <button
             onClick={() =>
-              filter === "Featured" ? setFilter() : setFilter("Featured")
+              filter === "Featured" ? updateFilter() : updateFilter("Featured")
             }
             className={
               filter === "Featured"
@@ -52,7 +67,9 @@ const News = ({ data }) => {
           </button>
           <button
             onClick={() =>
-              filter === "Exhibition" ? setFilter() : setFilter("Exhibition")
+              filter === "Exhibition"
+                ? updateFilter()
+                : updateFilter("Exhibition")
             }
             className={
               filter === "Exhibition"
@@ -64,7 +81,7 @@ const News = ({ data }) => {
           </button>
           <button
             onClick={() =>
-              filter === "Event" ? setFilter() : setFilter("Event")
+              filter === "Event" ? updateFilter() : updateFilter("Event")
             }
             className={
               filter === "Event" ? styles.buttonActive : styles.buttonInactive
@@ -75,8 +92,8 @@ const News = ({ data }) => {
           <button
             onClick={() =>
               filter === "Announcement"
-                ? setFilter()
-                : setFilter("Announcement")
+                ? updateFilter()
+                : updateFilter("Announcement")
             }
             className={
               filter === "Announcement"
